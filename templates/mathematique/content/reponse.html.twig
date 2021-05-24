@@ -1,0 +1,10 @@
+{% if finished == true %}
+    <p>Félicitations, vous avec terminé !!</p>
+    <a href="{{ path('main') }}">Redirection</a>
+{% else %}
+    <img src="{{ enigmeRandom.urlImage }}" alt="">
+    <label for="reponseUtilisateur">Votre réponse :</label>
+    <input type="text" name="{{ nomInput }}" required="required" id="reponseUtilisateur">
+    <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
+{#   <button id="buttonEnvoyer" onclick="requeteAjaxPost('#formEnigme','#buttonEnvoyer', 'click', '#blockEnigme', false)">Envoyer</button>#}
+{% endif %}
