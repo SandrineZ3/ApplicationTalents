@@ -28,7 +28,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private $roles = ['ROLE_USER'];
 
     /**
      * @var string The hashed password
@@ -39,7 +39,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $admin;
+    private $admin = false;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -59,7 +59,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $visuoSpatialeFinished;
+    private $visuoSpatialeFinished = false;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -69,7 +69,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $naturalisteFinished;
+    private $naturalisteFinished = false;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -79,7 +79,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $mathematiqueFinished;
+    private $mathematiqueFinished = false;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -89,7 +89,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $interpersonnelleFinished;
+    private $interpersonnelleFinished = false;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -99,7 +99,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $linguistiqueFinished;
+    private $linguistiqueFinished = false;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -109,7 +109,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $kinesthesiqueFinished;
+    private $kinesthesiqueFinished = false;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -119,7 +119,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $musicaleFinished;
+    private $musicaleFinished = false;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -129,7 +129,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $intrapersonnelleFinished;
+    private $intrapersonnelleFinished = false;
 
     public function getId(): ?int
     {

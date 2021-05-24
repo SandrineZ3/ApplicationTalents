@@ -1,13 +1,17 @@
+###> config IDE ###
+/.idea/
+###< config IDE ###
 
 ###> symfony/framework-bundle ###
-/.idea/
 /.env.local
 /.env.local.php
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
-/vendor/
+/vendor/*
+!/vendor/symfony/
+/vendor/symfony/*
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
@@ -15,3 +19,21 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+###> exclure la page error ###
+!/vendor/symfony/error-handler/
+/vendor/symfony/error-handler/*
+!/vendor/symfony/error-handler/Resources
+###< exclure la page error ###
+
+###> exclure layout semantic ###
+!/vendor/symfony/twig-bridge/
+/vendor/symfony/twig-bridge/*
+!/vendor/symfony/twig-bridge/Resources
+/vendor/symfony/twig-bridge/Resources/*
+!/vendor/symfony/twig-bridge/Resources/views
+/vendor/symfony/twig-bridge/Resources/views/*
+!/vendor/symfony/twig-bridge/Resources/views/Form
+/vendor/symfony/twig-bridge/Resources/views/Form/*
+!/vendor/symfony/twig-bridge/Resources/views/Form/semantic-ui-form-theme.html.twig
+###< exclure layout semantic ###
