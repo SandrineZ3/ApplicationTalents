@@ -41,7 +41,7 @@ class VisuoSpatialeController extends AbstractController
             $this->addFlash('success', 'L\'énigme a bien été enregistré');
             return $this->redirectToRoute('visuoSpatiale_create');
         }
-        return $this->render('enigmes/visuoSpatiale/create.html.twig', [
+        return $this->render('visuoSpatiale/create.html.twig', [
             'visuoSpatialeForm' => $visuoSpatialeForm->createView(),
         ]);
     }
