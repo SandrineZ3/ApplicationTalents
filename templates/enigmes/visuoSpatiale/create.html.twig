@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création énigme Visuo-Spatiale{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="ui grid container pad">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+                <div class="ui segment">
+                    <h3 class="ui dividing header">Création</h3>
+                    {{ form_start(visuoSpatialeForm) }}
+                    <div class="field">
+                        {{ form_row(visuoSpatialeForm.image) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(visuoSpatialeForm.solution) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(visuoSpatialeForm.levelOfDifficulty) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(visuoSpatialeForm.save) }}
+                    </div>
+                    {{ form_end(visuoSpatialeForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
