@@ -10,12 +10,12 @@
     <section>
         <div id="blocEnigme">
             <form id="formEnigme">
-                <img src="{{ asset('images/mathematique/') ~ enigmeRandom.urlImage  }}" alt="">
+                <img src="{{ asset('images/mathematique/') ~ enigmeRandom.urlImage }}" alt="">
                 <label for="reponseUtilisateur">Votre réponse :</label>
                 <input type="text" name="reponseFacile" required="required" id="reponseUtilisateur" autofocus>
                 <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
             </form>
-            <button id="buttonEnvoyer" onclick="requeteAjaxPostv2('#formEnigme', '#blockEnigme')">Envoyer</button>
+            <button id="buttonEnvoyer" onclick="requeteAjaxPostv2('#formEnigme', '#blocEnigme')">Envoyer</button>
         </div>
     </section>
 {% endblock %}

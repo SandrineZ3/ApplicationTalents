@@ -20,10 +20,10 @@ class MathematiqueController extends AbstractController
      * @Route("/mathematique", name="mathematique")
      */
     public function mathematique(MathematiqueRepository $mathematiqueRepository,
-                           LevelOfDifficultyRepository $levelOfDifficultyRepository,
-                           Request $request,
-                           UserRepository $userRepository,
-                           EntityManagerInterface $entityManager): Response
+                                 LevelOfDifficultyRepository $levelOfDifficultyRepository,
+                                 Request $request,
+                                 UserRepository $userRepository,
+                                 EntityManagerInterface $entityManager): Response
     {
         $user = $userRepository->find($this->getUser());
         if ($user->getMathematiqueFinished()) {
