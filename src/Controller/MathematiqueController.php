@@ -200,7 +200,7 @@ class MathematiqueController extends AbstractController
         if (!$mathematique) {
             $this->addFlash('error', 'L\'enigme recherchée n\'existe pas');
             return $this->redirectToRoute('main');
-        }
+        } 
 
         unlink($this->getParameter('image_mathematique_directory') . '/' . $mathematique->getUrlImage());
         $entityManager->remove($mathematique);
