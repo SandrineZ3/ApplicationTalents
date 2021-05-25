@@ -6,6 +6,7 @@
 parameters:
     image_visuoSpatiale_directory: '%kernel.project_dir%/public/images/visuoSpatiale'
     image_naturaliste_directory: '%kernel.project_dir%/public/images/naturaliste'
+    image_mathematique_directory: '%kernel.project_dir%/public/images/mathematique'
 
 services:
     # default configuration for services in *this* file
