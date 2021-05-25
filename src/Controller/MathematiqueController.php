@@ -26,7 +26,6 @@ class MathematiqueController extends AbstractController
                            EntityManagerInterface $entityManager): Response
     {
         $user = $userRepository->find($this->getUser());
-
         if ($user->getMathematiqueFinished()) {
             return $this->redirectToRoute('linguistique');
         }
@@ -67,7 +66,7 @@ class MathematiqueController extends AbstractController
             // Réponse OBLIGATOIRE pour la requête AJAX qui contient un mini morceau de Twig
             $finished = false;
             return new JsonResponse([
-                'content' => $this->renderView('formEnigme.html.twig', compact('enigmeRandom', 'nomInput', 'finished'))
+                'content' => $this->renderView('mathematique/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput', 'finished'))
             ]);
         }
 
@@ -96,7 +95,7 @@ class MathematiqueController extends AbstractController
             // Réponse OBLIGATOIRE pour la requête AJAX qui contient un mini morceau de Twig
             $finished = false;
             return new JsonResponse([
-                'content' => $this->renderView('formEnigme.html.twig', compact('enigmeRandom', 'nomInput', 'finished'))
+                'content' => $this->renderView('mathematique/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput', 'finished'))
             ]);
         }
 
@@ -121,11 +120,11 @@ class MathematiqueController extends AbstractController
 
             // Réponse OBLIGATOIRE pour la requête AJAX qui contient un mini morceau de Twig renvoyé
             return new JsonResponse([
-                'content' => $this->renderView('endScreen.html.twig')
+                'content' => $this->renderView('mathematique/content/endScreen.html.twig')
             ]);
         }
 
-        return $this->render('show.html.twig', [
+        return $this->render('mathematique/show.html.twig', [
             "enigmeRandom" => $enigmeRandom
         ]);
     }
