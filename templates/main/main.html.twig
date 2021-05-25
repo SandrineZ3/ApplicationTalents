@@ -9,12 +9,18 @@
             <a class="fluid ui button" href="{{ path('app_register') }}">Nouvelle Partie</a>
             <br>
             <a class="fluid ui button" href="{{ path('app_login') }}">Reprendre</a>
+            <br><br>
+            <a class="fluid ui button" href="{{ path('app_login_admin') }}">Espace admin</a>
         </div>
 
         {% if app.user %}
             <div class="ui segment">
                 <h1>Liste jeux</h1>
                 <a class="ui button" href="{{ path('visuoSpatiale') }}">Visuo Spatiale</a>
+                <br>
+                <a class="ui button" href="{{ path('mathematique') }}">Mathematique</a>
+                <br>
+                <a class="ui button" href="{{ path('linguistique') }}">Linguistique</a>
                 <br>
             </div>
         {% endif %}

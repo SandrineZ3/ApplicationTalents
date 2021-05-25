@@ -52,9 +52,11 @@ class VisuoSpatialeController extends AbstractController
         }
         else if ($reponse = $request->get("reponseDifficile")) {
             $visuoSpatialeUtils->recordScore($request, $reponse, $visuoSpatialeRepository, $user, $entityManager);
+            $user->setVisuoSpatialeFinished(true);
+            $entityManager->flush();
 
             return new JsonResponse([
-                'content' => 'FIN DU JEU'
+                'content' => $this->renderView('visuoSpatiale/content/endScreen.html.twig')
             ]);
         }
         else {
