@@ -121,7 +121,7 @@ class MathematiqueController extends AbstractController
 
             // Réponse OBLIGATOIRE pour la requête AJAX qui contient un mini morceau de Twig renvoyé
             return new JsonResponse([
-                'content' => $this->renderView('mathematique/content/injection.html.twig')
+                'content' => $this->renderView('mathematique/content/mathematiqueTermine.html.twig')
             ]);
         }
 
