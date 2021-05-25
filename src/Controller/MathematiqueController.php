@@ -25,8 +25,8 @@ class MathematiqueController extends AbstractController
     {
         $user = $userRepository->find($this->getUser());
 
-        if ($user->getMathematiqueFinished() == true ) {
-            return $this->redirectToRoute('main');
+        if ($user->getMathematiqueFinished()) {
+            return $this->redirectToRoute('linguistique');
         }
 
         //Aller chercher les images en BDD et les filer à Twig pour affichage
@@ -37,8 +37,6 @@ class MathematiqueController extends AbstractController
         // On récupère 1 énigme de maniere random dans tableau enigmes
         $indexRandom = array_rand($enigmes, 1);
         $enigmeRandom = $enigmes[$indexRandom];
-
-
 
         if ($request->get("reponseFacile")) {
             $user->setScoreMathematique(0);
@@ -125,7 +123,7 @@ class MathematiqueController extends AbstractController
             ]);
         }
 
-        return $this->render('mathematique/enigme.html.twig', [
+        return $this->render('mathematique/mathematique.html.twig', [
             "enigmeRandom" => $enigmeRandom
         ]);
     }
