@@ -1,7 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LinguistiqueController!{% endblock %}
+{% block title %}Les talents de {{ app.user.username }} | Verbo-Linguistique{% endblock %}
 
 {% block body %}
-<p>ETAPE LINGUISTIQUE</p>
+    <h1>{{ parent() }}</h1>
+    <h2>Nom du jeu énigmes Verbo-linguistiques</h2>
+
+    {# Afficher l'énigme (phrase + pictos) + Input en drag and drop = formulaire pour enregistrement en BDD #}
+    <section>
+        <div id="blockEnigme">
+            <form id="formEnigme">
+                <p>{{ enigmeRandom.text }}</p>
+                <label for="reponseUtilisateur">Placez les pictos dans le bon ordre :</label>
+                <input type="text" name="reponseFacile" required="required" id="reponseUtilisateur">
+                <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
+            </form>
+{#            <button id="buttonEnvoyer" onclick="requeteAjaxPostv2('#formEnigme', '#blockEnigme')">Envoyer</button>#}
+        </div>
+    </section>
 {% endblock %}
