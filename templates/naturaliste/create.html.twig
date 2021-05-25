@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création énigme Naturaliste{% endblock %}
+
+{% block body %}
+    <div class="ui grid container pad">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+                <div class="ui segment">
+                    <h3 class="ui dividing header">Création</h3>
+                    {{ form_start(naturalisteForm) }}
+                    <div class="field">
+                        {{ form_row(naturalisteForm.image1) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(naturalisteForm.image2) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(naturalisteForm.image3) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(naturalisteForm.image4) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(naturalisteForm.solution) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(naturalisteForm.levelOfDifficulty) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(naturalisteForm.save) }}
+                    </div>
+                    {{ form_end(naturalisteForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
