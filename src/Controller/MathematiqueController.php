@@ -27,7 +27,7 @@ class MathematiqueController extends AbstractController
     {
         $user = $userRepository->find($this->getUser());
         if ($user->getMathematiqueFinished()) {
-            return $this->redirectToRoute('linguistique');
+            return $this->redirectToRoute('main');
         }
 
         //Aller chercher les images en BDD et les filer à Twig pour affichage
