@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier énigme Logico-Mathématique{% endblock %}
+
+{% block body %}
+    <div class="ui grid container pad">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+                <div class="ui segment">
+                    <h3 class="ui dividing header">Modification</h3>
+                    {{ form_start(mathematiqueForm) }}
+                    <div class="field">
+                        {{ form_row(mathematiqueForm.image) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(mathematiqueForm.solution) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(mathematiqueForm.levelOfDifficulty) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(mathematiqueForm.save) }}
+                    </div>
+                    {{ form_end(mathematiqueForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

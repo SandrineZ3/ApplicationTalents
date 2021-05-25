@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     image_visuoSpatiale_directory: '%kernel.project_dir%/public/images/visuoSpatiale'
+    image_mathematique_directory: '%kernel.project_dir%/public/images/mathematique'
 
 services:
     # default configuration for services in *this* file
