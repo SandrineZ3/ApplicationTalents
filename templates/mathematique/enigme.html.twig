@@ -6,25 +6,21 @@
     <h1>{{ parent() }}</h1>
     <h2>Nom du jeu énigmes LogicoMathématiques</h2>
 
-    {# Afficher image de l'énigme #}
+    {# Afficher image de l'énigme + Input = formulaire pour enregistrement en BDD #}
     <section>
-        <form id="formEnigme">
-            <div id="blockEnigme">
+        <div id="blockEnigme">
+            <form id="formEnigme">
                 <img src="{{ enigmeRandom.urlImage }}" alt="">
                 <label for="reponseUtilisateur">Votre réponse :</label>
-                <input type="text" name="reponseFacile" required="required" id="reponseUtilisateur">
+                <input type="text" name="reponseFacile" required="required" id="reponseUtilisateur" autofocus>
                 <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
-            </div>
-            <button id="buttonEnvoyer">Envoyer</button>
-        </form>
+            </form>
+            <button id="buttonEnvoyer" onclick="requeteAjaxPostv2('#formEnigme', '#blockEnigme')">Envoyer</button>
+        </div>
     </section>
-    {# Input = formulaire pour enregistrement en BDD #}
 
-    {#  <a href="{{ path('#') }}" title="Test suivant"></a> {# Lien déguisé en bouton pour aller vers verbolinguistique ? #}
 {% endblock %}
 
 {% block javascripts %}
-    <script>
-        requeteAjaxPost('#formEnigme','#buttonEnvoyer', 'click', '#blockEnigme', false);
-    </script>
+
 {% endblock %}
