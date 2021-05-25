@@ -17,17 +17,28 @@ class VisuoSpatialeFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        if ($options['update']) {
+            $builder
+                ->add('image', FileType::class, [
+                    'label' => 'Image',
+                    'required' => false,
+                    'mapped' => false,
+                ]);
+        }
+        else {
+            $builder
+                ->add('image', FileType::class, [
+                    'label' => 'Image',
+                    'required' => false,
+                    'mapped' => false,
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Veuillez télécharger une image',
+                        ]),
+                    ],
+                ]);
+        }
         $builder
-            ->add('image', FileType::class, [
-                'label' => 'Image',
-                'required' => false,
-                'mapped' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez télécharger une image',
-                    ]),
-                ],
-            ])
             ->add('solution', ChoiceType::class, [
                 'label' => 'Solution',
                 'required' => false,
@@ -38,6 +49,7 @@ class VisuoSpatialeFormType extends AbstractType
                     'A' => 'A',
                     'B' => 'B',
                     'C' => 'C',
+                    'D' => 'D',
                 ],
                 'constraints' => [
                     new NotBlank([
@@ -69,6 +81,7 @@ class VisuoSpatialeFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => VisuoSpatiale::class,
+            'update' => false
         ]);
     }
 }

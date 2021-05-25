@@ -1,0 +1,11 @@
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="ui message-fixed compact {{ label }} message auto-close manuel-close">
+            <i class="close icon" onclick="removeMessage()"></i>
+            <div class="header">
+                {{ label | capitalize }}
+            </div>
+            <p>{{ message }}</p>
+        </div>
+    {% endfor %}
+{% endfor %}
