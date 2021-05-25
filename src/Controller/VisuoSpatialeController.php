@@ -71,7 +71,7 @@ class VisuoSpatialeController extends AbstractController
     }
 
     /**
-     * @Route("admin//visuoSpatiale/create", name="visuoSpatiale_create")
+     * @Route("admin/visuoSpatiale/create", name="visuoSpatiale_create")
      */
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
