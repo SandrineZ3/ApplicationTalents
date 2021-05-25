@@ -15,9 +15,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class MathematiqueController extends AbstractController
 {
     /**
-     * @Route("/mathematique", name="mathematique_enigme")
+     * @Route("/mathematique", name="mathematique")
      */
-    public function enigme(MathematiqueRepository $mathematiqueRepository,
+    public function mathematique(MathematiqueRepository $mathematiqueRepository,
                            LevelOfDifficultyRepository $levelOfDifficultyRepository,
                            Request $request,
                            UserRepository $userRepository,
@@ -25,14 +25,20 @@ class MathematiqueController extends AbstractController
     {
         $user = $userRepository->find($this->getUser());
 
-        //Aller chercher les images en BDD et les filer à Twig pour affichage
-        // 1 = level facile
-        $levelOfDifficulty= $levelOfDifficultyRepository->find(1);
-        $enigmes = $mathematiqueRepository->findBy(array("levelOfDifficulty"=>$levelOfDifficulty), array("id"=>"ASC"));
+        if ($user->getMathematiqueFinished() == true ) {
+            return $this->redirectToRoute('main');
+        }
 
-        // On récupère une énigme de maniere random dans tableau enigmes
+        //Aller chercher les images en BDD et les filer à Twig pour affichage
+        // 1 = NIVEAU FACILE
+        $levelOfDifficulty = $levelOfDifficultyRepository->find(1);
+        $enigmes = $mathematiqueRepository->findBy(array("levelOfDifficulty" => $levelOfDifficulty), array("id" => "ASC"));
+
+        // On récupère 1 énigme de maniere random dans tableau enigmes
         $indexRandom = array_rand($enigmes, 1);
         $enigmeRandom = $enigmes[$indexRandom];
+
+
 
         if ($request->get("reponseFacile")) {
             $user->setScoreMathematique(0);
@@ -50,9 +56,9 @@ class MathematiqueController extends AbstractController
                 $entityManager->flush();
             }
 
-            // 2 = level moyen
-            $levelOfDifficulty= $levelOfDifficultyRepository->find(2);
-            $enigmes = $mathematiqueRepository->findBy(array("levelOfDifficulty"=>$levelOfDifficulty), array("id"=>"ASC"));
+            // 2 = NIVEAU MOYEN
+            $levelOfDifficulty = $levelOfDifficultyRepository->find(2);
+            $enigmes = $mathematiqueRepository->findBy(array("levelOfDifficulty" => $levelOfDifficulty), array("id" => "ASC"));
             // On récupère une énigme de maniere random dans tableau enigmes
             $indexRandom = array_rand($enigmes, 1);
             $enigmeRandom = $enigmes[$indexRandom];
@@ -79,9 +85,9 @@ class MathematiqueController extends AbstractController
                 $entityManager->flush();
             }
 
-            // 3 = level difficile
-            $levelOfDifficulty= $levelOfDifficultyRepository->find(3);
-            $enigmes = $mathematiqueRepository->findBy(array("levelOfDifficulty"=>$levelOfDifficulty), array("id"=>"ASC"));
+            // 3 = NIVEAU DIFFICILE
+            $levelOfDifficulty = $levelOfDifficultyRepository->find(3);
+            $enigmes = $mathematiqueRepository->findBy(array("levelOfDifficulty" => $levelOfDifficulty), array("id" => "ASC"));
             // On récupère une énigme de maniere random dans tableau enigmes
             $indexRandom = array_rand($enigmes, 1);
             $enigmeRandom = $enigmes[$indexRandom];
@@ -108,10 +114,14 @@ class MathematiqueController extends AbstractController
                 $entityManager->flush();
             }
 
-            // Réponse OBLIGATOIRE pour la requête AJAX qui contient un mini morceau de Twig
-            $finished = true;
+            // On met les Maths en statut terminé
+//            $entityManager->persist($user->setMathematiqueFinished(true));
+            $user->setMathematiqueFinished(true);
+            $entityManager->flush();
+
+            // Réponse OBLIGATOIRE pour la requête AJAX qui contient un mini morceau de Twig renvoyé
             return new JsonResponse([
-                'content' => $this->renderView('mathematique/content/reponse.html.twig', compact('finished'))
+                'content' => $this->renderView('mathematique/content/injection.html.twig')
             ]);
         }
 
