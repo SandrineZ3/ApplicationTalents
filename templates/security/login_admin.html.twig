@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    <div class="ui grid container pad">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+                <div class="ui segment">
+                    <h3 class="ui dividing header">Espace Administrateur</h3>
+                    <form class="ui form" action="{{ path('app_login') }}" method="post">
+                        <div class="field">
+                            <label for="inputUsername">Pseudo</label>
+                            <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+                        </div>
+                        <div class="field">
+                            <label for="inputPassword">Mot de passe</label>
+                            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                        </div>
+                        <div class="field">
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="_remember_me">
+                                <label>Se souvenir de moi</label>
+                            </div>
+                        </div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <button class="ui button" type="submit">S'identifier</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
