@@ -71,7 +71,7 @@ class VisuoSpatialeController extends AbstractController
     }
 
     /**
-     * @Route("/visuoSpatiale/create", name="visuoSpatiale_create")
+     * @Route("admin//visuoSpatiale/create", name="visuoSpatiale_create")
      */
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -98,7 +98,7 @@ class VisuoSpatialeController extends AbstractController
     }
 
     /**
-     * @Route("/visuoSpatiale/{id}/update", name="visuoSpatiale_update", requirements={"id"="\d+"})
+     * @Route("admin/visuoSpatiale/{id}/update", name="visuoSpatiale_update", requirements={"id"="\d+"})
      */
     public function update(int $id, Request $request, EntityManagerInterface $entityManager, VisuoSpatialeRepository $visuoSpatialeRepository): Response
     {
@@ -133,7 +133,7 @@ class VisuoSpatialeController extends AbstractController
     }
 
     /**
-     * @Route("/visuoSpatiale/{id}/delete", name="visuoSpatiale_delete", requirements={"id"="\d+"})
+     * @Route("admin/visuoSpatiale/{id}/delete", name="visuoSpatiale_delete", requirements={"id"="\d+"})
      */
     public function delete(int $id, EntityManagerInterface $entityManager, VisuoSpatialeRepository $visuoSpatialeRepository): Response
     {
