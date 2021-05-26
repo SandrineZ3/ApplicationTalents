@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier énigme Interpersonnelle{% endblock %}
+
+{% block body %}
+    <div class="ui grid container pad">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+                <div class="ui segment">
+                    <h3 class="ui dividing header">Modification</h3>
+                    {{ form_start(interpersonnelleForm) }}
+                    <div class="field">
+                        {{ form_row(interpersonnelleForm.urlVideo) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(interpersonnelleForm.solution) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(interpersonnelleForm.levelOfDifficulty) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(interpersonnelleForm.save) }}
+                    </div>
+                    {{ form_end(interpersonnelleForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

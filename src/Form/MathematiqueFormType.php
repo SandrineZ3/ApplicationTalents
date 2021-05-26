@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class MathematiqueFormType extends AbstractType
@@ -23,8 +24,18 @@ class MathematiqueFormType extends AbstractType
                     'label' => 'Image',
                     'required' => false,
                     'mapped' => false,
+                    'constraints' => [
+                        new Image([
+                            'maxSize' => '1024k',
+                            'mimeTypes' => [
+                                'image/png',
+                                'image/jpeg',
+                            ]
+                        ])
+                    ],
                 ]);
-        } else {
+        }
+        else {
             $builder
                 ->add('image', FileType::class, [
                     'label' => 'Image',
@@ -34,6 +45,13 @@ class MathematiqueFormType extends AbstractType
                         new NotBlank([
                             'message' => 'Veuillez télécharger une image',
                         ]),
+                        new Image([
+                            'maxSize' => '1024k',
+                            'mimeTypes' => [
+                                'image/png',
+                                'image/jpeg',
+                            ]
+                        ])
                     ],
                 ]);
         }

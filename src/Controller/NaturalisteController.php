@@ -29,7 +29,7 @@ class NaturalisteController extends AbstractController
         }
 
         $tableauReponse = ['reponseFacile', 'reponseMoyen', 'reponseDifficile'];
-        foreach ($tableauReponse as $index => $reponseUser){
+        foreach ($tableauReponse as $index => $reponseUser) {
             if ($request->get($reponseUser)) {
                 if ($index === 0) {
                     $user->setScoreNaturaliste(0);
