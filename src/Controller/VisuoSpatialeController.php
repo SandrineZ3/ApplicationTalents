@@ -116,6 +116,7 @@ class VisuoSpatialeController extends AbstractController
 
         return $this->render('visuoSpatiale/update.html.twig', [
             'visuoSpatialeForm' => $visuoSpatialeForm->createView(),
+            'visuoSpatiale' => $visuoSpatiale,
         ]);
     }
 
