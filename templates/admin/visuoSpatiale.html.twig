@@ -1,0 +1,40 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Admin Gestion{% endblock %}
+
+{% block body %}
+    <a href="{{ path('visuoSpatiale_create') }}"><i class="plus circle big icon"></i></a>
+
+    <div class="ui grid stackable padded">
+        <div class="row">
+            <div class="column">
+                <div class="ui four stackable doubling cards">
+                    {% for enigme in tableauEnigmes %}
+                        <div class="card">
+                            {% if enigme.levelOfDifficulty.id == 1 %}
+                                <div class="ui green right corner label">
+                                    <i class="balance scale icon"></i>
+                                </div>
+                            {% elseif enigme.levelOfDifficulty.id == 2 %}
+                                <div class="ui orange right corner label">
+                                    <i class="balance scale icon"></i>
+                                </div>
+                            {% elseif enigme.levelOfDifficulty.id == 3 %}
+                                <div class="ui red right corner label">
+                                    <i class="balance scale icon"></i>
+                                </div>
+                            {% endif %}
+                            <div class="ui fluid image image-css-perso">
+                                <img src="{{ asset('images/visuoSpatiale/') ~ enigme.urlImage }}" alt="image enigme">
+                            </div>
+                            <div class="extra content">
+                                <span class="right floated"><a href="{{ path('visuoSpatiale_update', {'id': enigme.id }) }}"><i class="edit icon"></i></a></span>
+                                <span>Id : {{ enigme.id }}, Solution : {{ enigme.solution }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

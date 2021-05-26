@@ -111,7 +111,7 @@ class VisuoSpatialeController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'énigme a bien été mise à jour');
-            return $this->redirectToRoute('visuoSpatiale_update', ["id" => $id]);
+            return $this->redirectToRoute('admin_visuoSpatiale');
         }
 
         return $this->render('visuoSpatiale/update.html.twig', [

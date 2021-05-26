@@ -1,0 +1,60 @@
+body {
+    margin-top: 40px !important;
+    max-height: calc(100% - 40px) !important;
+    height: calc(100% - 40px) !important;
+}
+
+.image-css-perso {
+    height: 250px !important;
+}
+
+.image-css-perso img {
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+.ui.vertical.menu.sidebar-menu {
+    margin-top: 40px !important;
+    max-height: calc(100% - 40px) !important;
+    height: calc(100% - 40px) !important;
+}
+
+.ui.vertical.menu.sidebar-menu .item i.icon {
+    float: left;
+    margin: 0 0.5em 0 0;
+}
+
+/*.main-content {*/
+/*    margin-top: 40px !important;*/
+/*    max-height: calc(100% - 40px) !important;*/
+/*    height: calc(100% - 40px) !important;*/
+/*}*/
+
+@media (min-width: 768px) {
+    .ui.vertical.menu.sidebar-menu {
+        visibility: visible;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        width: 15rem !important;
+    }
+    .main-content {
+        margin-left: 15rem;
+    }
+    .sidebar-menu-toggler {
+        display: none !important;
+    }
+}
+
+.button_passage_user_admin {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 99;
+}
+
+.message-fixed {
+    position: fixed !important;
+    z-index: 99 !important;
+    top: 70px;
+    right: 20px;
+}
