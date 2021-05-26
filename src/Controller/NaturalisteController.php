@@ -21,49 +21,39 @@ class NaturalisteController extends AbstractController
     /**
      * @Route("/naturaliste", name="naturaliste")
      */
-    public function show(Request $request, EntityManagerInterface $entityManager, NaturalisteUtils $naturalisteUtils, UserRepository $userRepository, LevelOfDifficultyRepository $levelOfDifficultyRepository, NaturalisteRepository $naturalisteRepository): Response
+    public function show(Request $request, EntityManagerInterface $entityManager, NaturalisteUtils $naturalisteUtils, Utils $utils, UserRepository $userRepository, LevelOfDifficultyRepository $levelOfDifficultyRepository, NaturalisteRepository $naturalisteRepository): Response
     {
         $user = $userRepository->find($this->getUser());
         if ($user->getNaturalisteFinished()) {
             return $this->redirectToRoute('main');
         }
 
-        if ($reponse = $request->get('reponseFacile')) {
-            $user->setScoreNaturaliste(0);
-            $entityManager->flush();
+        $tableauReponse = ['reponseFacile', 'reponseMoyen', 'reponseDifficile'];
+        foreach ($tableauReponse as $index => $reponseUser){
+            if ($request->get($reponseUser)) {
+                if ($index === 0) {
+                    $user->setScoreNaturaliste(0);
+                    $entityManager->flush();
+                }
 
-            $naturalisteUtils->recordScore($request, $reponse, $naturalisteRepository, $user, $entityManager);
+                $naturalisteUtils->recordScore($request, $reponseUser, $naturalisteRepository, $user, $entityManager);
 
-            $enigmeRandom = $naturalisteUtils->nextEnigme(2, $naturalisteRepository, $levelOfDifficultyRepository);
-            $nomInput = 'reponseMoyen';
-
-            return new JsonResponse([
-                'content' => $this->renderView('naturaliste/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput'))
-            ]);
+                if ($index === 0 || $index === 1) {
+                    $enigmeRandom = $utils->nextEnigme($index + 2, $naturalisteRepository, $levelOfDifficultyRepository);
+                    $nomInput = $tableauReponse[$index + 1];
+                    return new JsonResponse([
+                        'content' => $this->renderView('naturaliste/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput'))
+                    ]);
+                }
+                else {
+                    return new JsonResponse([
+                        'content' => $this->renderView('naturaliste/content/endScreen.html.twig')
+                    ]);
+                }
+            }
         }
-        else if ($reponse = $request->get("reponseMoyen")) {
-            $naturalisteUtils->recordScore($request, $reponse, $naturalisteRepository, $user, $entityManager);
-
-            $enigmeRandom = $naturalisteUtils->nextEnigme(3, $naturalisteRepository, $levelOfDifficultyRepository);
-            $nomInput = 'reponseDifficile';
-
-            return new JsonResponse([
-                'content' => $this->renderView('naturaliste/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput'))
-            ]);
-        }
-        else if ($reponse = $request->get("reponseDifficile")) {
-            $naturalisteUtils->recordScore($request, $reponse, $naturalisteRepository, $user, $entityManager);
-            $user->setNaturalisteFinished(true);
-            $entityManager->flush();
-
-            return new JsonResponse([
-                'content' => $this->renderView('naturaliste/content/endScreen.html.twig')
-            ]);
-        }
-        else {
-            $enigmeRandom = $naturalisteUtils->nextEnigme(1, $naturalisteRepository, $levelOfDifficultyRepository);
-            $nomInput = 'reponseFacile';
-        }
+        $enigmeRandom = $utils->nextEnigme(1, $naturalisteRepository, $levelOfDifficultyRepository);
+        $nomInput = 'reponseFacile';
 
         return $this->render('naturaliste/show.html.twig', [
             'enigmeRandom' => $enigmeRandom,
@@ -82,7 +72,6 @@ class NaturalisteController extends AbstractController
 
         if ($naturalisteForm->isSubmitted() && $naturalisteForm->isValid()) {
             $directoryImage = $this->getParameter('image_naturaliste_directory');
-
             $naturaliste->setUrlImage1($utils->saveImageAndGenerateUrl($naturalisteForm, 'image1', $directoryImage));
             $naturaliste->setUrlImage2($utils->saveImageAndGenerateUrl($naturalisteForm, 'image2', $directoryImage));
             $naturaliste->setUrlImage3($utils->saveImageAndGenerateUrl($naturalisteForm, 'image3', $directoryImage));
@@ -161,6 +150,7 @@ class NaturalisteController extends AbstractController
         unlink($directoryImage . '/' . $naturaliste->getUrlImage2());
         unlink($directoryImage . '/' . $naturaliste->getUrlImage3());
         unlink($directoryImage . '/' . $naturaliste->getUrlImage4());
+
         $entityManager->remove($naturaliste);
         $entityManager->flush();
 

@@ -2,9 +2,7 @@
 
 namespace App\Services;
 
-use App\Entity\Naturaliste;
 use App\Entity\User;
-use App\Repository\LevelOfDifficultyRepository;
 use App\Repository\NaturalisteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,14 +20,5 @@ class NaturalisteUtils
             $user->setScoreNaturaliste($currentScore + $pointsGagnes);
             $entityManager->flush();
         }
-    }
-
-    public function nextEnigme(int $levelOfDifficultySuivant, NaturalisteRepository $naturalisteRepository, LevelOfDifficultyRepository $levelOfDifficultyRepository): Naturaliste
-    {
-        $levelOfDifficulty = $levelOfDifficultyRepository->find($levelOfDifficultySuivant);
-        $tableauEnigme = $naturalisteRepository->findBy(array('levelOfDifficulty' => $levelOfDifficulty), array('id' => 'ASC'), null, 0);
-        $indexRandom = array_rand($tableauEnigme);
-
-        return $tableauEnigme[$indexRandom];
     }
 }
