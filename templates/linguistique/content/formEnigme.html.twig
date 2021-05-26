@@ -1,0 +1,7 @@
+<form id="formEnigme">
+    <p>{{ enigmeRandom.text }}</p>
+    <label for="reponseUtilisateur">Placez les pictos dans le bon ordre :</label>
+    <input type="text" name="reponseFacile" required="required" id="reponseUtilisateur">
+    <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
+</form>
+<button id="buttonEnvoyer" onclick="requeteAjaxPostv2('#formEnigme', '#blockEnigme')">Envoyer</button>
