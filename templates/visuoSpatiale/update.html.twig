@@ -10,6 +10,7 @@
                     <h3 class="ui dividing header">Modification</h3>
                     {{ form_start(visuoSpatialeForm) }}
                     <div class="field">
+                        <img src="{{ asset('images/visuoSpatiale/') ~ visuoSpatiale.urlImage }}" alt="image enigme" width="100%">
                         {{ form_row(visuoSpatialeForm.image) }}
                     </div>
                     <div class="field">
@@ -20,9 +21,30 @@
                     </div>
                     <div class="field">
                         {{ form_row(visuoSpatialeForm.save) }}
+
                     </div>
                     {{ form_end(visuoSpatialeForm) }}
+                    <button onclick="afficherModalDelete({{ visuoSpatiale.id }})" class="ui button">Supprimer</button>
                 </div>
+                {#modal#}
+                <div class="ui mini modal trash id-{{ visuoSpatiale.id }}">
+                    <div class="header">
+                        Suppression
+                    </div>
+                    <div class="content">
+                        <p>Êtes-vous sûr de vouloir supprimer cette énigme</p>
+                    </div>
+                    <div class="actions">
+                        <div class="ui negative button">
+                            Non
+                        </div>
+                        <a class="ui positive right labeled icon button" href="{{ path('visuoSpatiale_delete', {'id': visuoSpatiale.id }) }}">
+                            Oui
+                            <i class="checkmark icon"></i>
+                        </a>
+                    </div>
+                </div>
+                {#modal#}
             </div>
         </div>
     </div>

@@ -17,7 +17,7 @@
             Général
         </div>
         <div class="menu">
-            <a class="item" href="">
+            <a class="item" href="{{ path('admin_dashboard') }}">
                 <div><i class="icon tachometer alternate"></i>Tableau de bord</div>
             </a>
         </div>
@@ -40,12 +40,12 @@
                 <div><i class="tree icon"></i>Naturaliste</div>
             </a>
             <a class="item" href="{{ path('admin_visuoSpatiale') }}">
-                <div><i class="random icon"></i>Visuo-Spatiale</div>
+                <div><i class="map signs icon"></i>Visuo-Spatiale</div>
             </a>
         </div>
     </div>
 
-    <a href="" class="item">
+    <a href="{{ path('admin_dashboard') }}" class="item">
         <div>
             <i class="icon chart line"></i>
             Statistiques

@@ -34,6 +34,9 @@
     function removeMessage() {
         $('.message.manuel-close').remove();
     }
+    function afficherModalDelete(i) {
+        $('.mini.modal.trash.id-' + i).modal('show');
+    }
 </script>
 {% block javascripts %}{% endblock %}
 </body>
