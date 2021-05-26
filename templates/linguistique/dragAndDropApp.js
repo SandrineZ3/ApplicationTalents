@@ -51,10 +51,14 @@ function dragLeave(event) {
 function drop(event) {
     event.preventDefault(); // n'affiche pas l'image
     event.target.classList.remove("droppable-hover"); // juste pour le css, on remet le style de la case à l'initial
-    let draggableElementData = event.dataTransfer.getData("text");
+    const draggableElementData = event.dataTransfer.getData("text");
     event.target.appendChild((document.getElementById(draggableElementData)));
+    const droppableElementData = event.target.getAttribute("data-draggable-id");
+    const isCorrectMatching = draggableElementData === droppableElementData;
+    if(isCorrectMatching) {
+        return
 
-
+    }
 // let droppableElementData = event.target.getAttribute("data-draggable-id");
 // let isCorrectMatching = draggableElementData === droppableElementData;
 //
