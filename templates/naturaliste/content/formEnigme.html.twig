@@ -1,18 +1,13 @@
 <form class="ui form" id="formEnigme">
-    <img src="{{ asset('images/visuoSpatiale/') ~ enigmeRandom.urlImage }}" alt="image enigme" width="100%">
+    <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage1 }}" alt="image enigme" width="100%">
+    <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage2 }}" alt="image enigme" width="100%">
+    <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage3 }}" alt="image enigme" width="100%">
+    <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage4 }}" alt="image enigme" width="100%">
 
-    <div class="inline fields">
-        <label for="reponse">Réponse :</label>
-        {% set tableauRadio = ['A','B','C','D'] %}
-        {% for radio in tableauRadio %}
-            <div class="field">
-                <div class="">
-                    <input type="radio" name="{{ nomInput }}" value="{{ radio }}" tabindex="0" class="hidden">
-                    <label>{{ radio }}</label>
-                </div>
-            </div>
-        {% endfor %}
-        <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
+    <div class="field">
+        <label for="input">Réponse :</label>
+        <input type="text" name="{{ nomInput }}" id="input" placeholder="Réponse">
     </div>
+    <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
 </form>
 <button class="ui button" id="submitReponse" onclick="requeteAjaxPostv2('#formEnigme', '#blocEnigme')">Envoyer</button>
