@@ -1,13 +1,131 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}Admin Dashboard{% endblock %}
+{% block title %}Admin tableau de bord{% endblock %}
 
 {% block body %}
-    <div class="ui container">
-        <div class="ui segment">
-            <h1>Admin Dashboard</h1>
+    <div class="ui grid padded">
+        <div class="row">
+            <div class="four wide column">
+                <h2>Tableau de bord</h2>
+            </div>
         </div>
-
+    </div>
+    <div class="ui grid stackable padded">
+        <div class="four wide computer eight wide tablet sixteen wide mobile column">
+            <div class="ui fluid card">
+                <div class="content">
+                    <div class="ui right floated header red">
+                        <i class="icon calculator"></i>
+                    </div>
+                    <div class="header">
+                        <div class="ui red header">15</div>
+                    </div>
+                    <div class="meta">
+                        Mathématique
+                    </div>
+                    <div class="description">
+                        Ensemble des énigmes Mathématique
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div class="ui two buttons">
+                        <a class="ui red button" href="">Voir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="four wide computer eight wide tablet sixteen wide mobile column">
+            <div class="ui fluid card">
+                <div class="content">
+                    <div class="ui right floated header green">
+                        <i class="icon language"></i>
+                    </div>
+                    <div class="header">
+                        <div class="ui header green">15</div>
+                    </div>
+                    <div class="meta">
+                        Linguistique
+                    </div>
+                    <div class="description">
+                        Ensemble des énigmes Linguistique
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div class="ui two buttons">
+                        <a class="ui green button" href="">Voir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="four wide computer eight wide tablet sixteen wide mobile column">
+            <div class="ui fluid card">
+                <div class="content">
+                    <div class="ui right floated header teal">
+                        <i class="icon random"></i>
+                    </div>
+                    <div class="header">
+                        <div class="ui teal header">15</div>
+                    </div>
+                    <div class="meta">
+                        Visuo-Spatiale
+                    </div>
+                    <div class="description">
+                        Ensemble des énigmes Visuo-Spatiale
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div class="ui two buttons">
+                        <a class="ui teal button" href="">Voir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="four wide computer eight wide tablet sixteen wide mobile column">
+            <div class="ui fluid card">
+                <div class="content">
+                    <div class="ui right floated header yellow">
+                        <i class="icon tree"></i>
+                    </div>
+                    <div class="header">
+                        <div class="ui yellow header">15</div>
+                    </div>
+                    <div class="meta">
+                        Naturaliste
+                    </div>
+                    <div class="description">
+                        Ensemble des énigmes Naturaliste
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div class="ui two buttons">
+                        <a class="ui yellow button" href="">Voir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="four wide computer eight wide tablet sixteen wide mobile column">
+            <div class="ui fluid card">
+                <div class="content">
+                    <div class="ui right floated header purple">
+                        <i class="icon user"></i>
+                    </div>
+                    <div class="header">
+                        <div class="ui purple header">15</div>
+                    </div>
+                    <div class="meta">
+                        Interpersonnelle
+                    </div>
+                    <div class="description">
+                        Ensemble des énigmes Interpersonnelle
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div class="ui two buttons">
+                        <a class="ui purple button" href="">Voir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
