@@ -9,7 +9,16 @@
     display: flex;
     justify-content: center;
     margin: 2rem;
+    margin-top: 100px;
 }
+
+.droppable-elements {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 150px;
+}
+
 .draggable {
     height: 5rem;
     width: 5rem;
@@ -27,20 +36,23 @@
 .droppable {
     height: 6.5rem;
     width: 6.5rem;
-    margin: 1rem auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     text-align: center;
     font-size: 4rem;
     font-weight: bold;
     background-color: #fff;
-    border: 3px dashed #111;
+    border-top: 1px solid darkgrey;
+    border-bottom: 1px solid darkgrey;
+    /*border-right: 1px dashed darkgrey;*/
+    /*border-left: 1px dashed darkgrey;*/
     transition: border-width 0.2s, transform 0.2s, background-color 0.4s;
 }
 .droppable span {
-    font-size: 1rem;
+    font-size: 0.2em;
+    color: white;
     pointer-events: none; /* The element is never the target of pointer events */
 }
 
