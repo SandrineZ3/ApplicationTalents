@@ -1,9 +1,6 @@
 const draggableElements = document.querySelectorAll(".draggable");
 const droppableElements = document.querySelectorAll(".droppable");
 
-// Solution pour éviter pb figé ?
-// const boxElements = document.querySelectorAll(".box");
-
 draggableElements.forEach(elem => {
     elem.addEventListener("dragstart", dragStart);
 });
@@ -53,12 +50,7 @@ function drop(event) {
     event.target.classList.remove("droppable-hover"); // juste pour le css, on remet le style de la case à l'initial
     const draggableElementData = event.dataTransfer.getData("text");
     event.target.appendChild((document.getElementById(draggableElementData)));
-    const droppableElementData = event.target.getAttribute("data-draggable-id");
-    const isCorrectMatching = draggableElementData === droppableElementData;
-    if(isCorrectMatching) {
-        return
 
-    }
 // let droppableElementData = event.target.getAttribute("data-draggable-id");
 // let isCorrectMatching = draggableElementData === droppableElementData;
 //
@@ -73,51 +65,3 @@ function drop(event) {
 //     event.target.appendChild(draggableElement);
 //  }
 }
-
-// faire un bouton pour tout vider en cas d'erreur ?
-
-
-// DRAG AND DROP FONCTIONNEMENT DE BASE
-// const base = document.querySelector('.base'); // nos elements draggables
-// const box = document.querySelectorAll('.case'); // la ou on veut placer nos images
-//
-// base.addEventListener('dragstart', dragStart);
-// base.addEventListener('dragend', dragEnd);
-//
-// function dragStart() {
-//     this.className += ' tenu';   // this.className représente l'imge que l'on prend, donc ici "base" et on rajoute la classe tenu (bordure grise)
-//     setTimeout(() => (this.className = 'invisible'), 0); // on fait disparaitre l'image quand on la tient hors de sa case
-// }
-//
-// function dragEnd() {
-//     this.className = 'base'; // des qu'on lache notre image en dehors, l'image revient au debut, dans sa case.
-// }
-//
-// for (const vide of box) { // on itere sur toutes les box pour definir les listeners
-//     vide.addEventListener('dragover', dragOver);
-//     vide.addEventListener('dragenter', dragEnter);
-//     vide.addEventListener('dragleave', dragLeave);
-//     vide.addEventListener('drop', dragDrop);
-// }
-//
-// // quand on maintient l'élément
-// function dragOver(e) {
-//     e.preventDefault()  // empeche l'action par défaut
-// }
-//
-// // quand on rentre dans une case autre
-// function dragEnter(e) {
-//     e.preventDefault();
-//     this.className += ' hovered';
-// }
-//
-// // quand on quitte la case d'origine
-// function dragLeave() {
-//     this.className = 'case';
-// }
-//
-// // quand on drop l'element dans une box
-// function dragDrop() {
-//     this.className = 'case';
-//     this.append(base); // on rajoute l'image dans la box
-// }
