@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class VisuoSpatialeFormType extends AbstractType
@@ -23,6 +24,15 @@ class VisuoSpatialeFormType extends AbstractType
                     'label' => 'Image',
                     'required' => false,
                     'mapped' => false,
+                    'constraints' => [
+                        new Image([
+                            'maxSize' => '1024k',
+                            'mimeTypes' => [
+                                'image/png',
+                                'image/jpeg',
+                            ]
+                        ])
+                    ],
                 ]);
         }
         else {
@@ -35,6 +45,13 @@ class VisuoSpatialeFormType extends AbstractType
                         new NotBlank([
                             'message' => 'Veuillez télécharger une image',
                         ]),
+                        new Image([
+                            'maxSize' => '1024k',
+                            'mimeTypes' => [
+                                'image/png',
+                                'image/jpeg',
+                            ]
+                        ])
                     ],
                 ]);
         }

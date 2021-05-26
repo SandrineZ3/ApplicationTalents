@@ -14,6 +14,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -87,6 +88,13 @@ class NaturalisteFormType extends AbstractType
                         new NotBlank([
                             'message' => 'Veuillez télécharger une image',
                         ]),
+                        new Image([
+                            'maxSize' => '1024k',
+                            'mimeTypes' => [
+                                'image/png',
+                                'image/jpeg',
+                            ]
+                        ])
                     ],
                 ]);
         }
@@ -100,6 +108,15 @@ class NaturalisteFormType extends AbstractType
                     'label' => 'Image',
                     'required' => false,
                     'mapped' => false,
+                    'constraints' => [
+                        new Image([
+                            'maxSize' => '1024k',
+                            'mimeTypes' => [
+                                'image/png',
+                                'image/jpeg',
+                            ]
+                        ])
+                    ],
                 ]);
         }
     }
