@@ -78,7 +78,7 @@ class VisuoSpatialeController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'énigme a bien été enregistré');
-            return $this->redirectToRoute('visuoSpatiale_create');
+            return $this->redirectToRoute('admin_visuoSpatiale');
         }
 
         return $this->render('visuoSpatiale/create.html.twig', [
@@ -138,6 +138,6 @@ class VisuoSpatialeController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', 'L\'énigme a bien été supprimée');
-        return $this->redirectToRoute('main');
+        return $this->redirectToRoute('admin_visuoSpatiale');
     }
 }

@@ -1,38 +1,14 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'admin/layouts/gabarit.html.twig' %}
 
-{% block title %}Admin Gestion{% endblock %}
+{% set nameEnigme = 'Mathématique' %}
+{% set nameEnigmeRoute = 'mathematique' %}
 
-{% block body %}
-    <div class="ui grid stackable padded">
-        <div class="row">
-            <div class="column">
-                <div class="ui four stackable doubling cards">
-                    {% for enigme in tableauEnigmes %}
-                        <div class="card">
-                            {% if enigme.levelOfDifficulty.id == 1 %}
-                                <div class="ui green right corner label">
-                                    <i class="balance scale icon"></i>
-                                </div>
-                            {% elseif enigme.levelOfDifficulty.id == 2 %}
-                                <div class="ui orange right corner label">
-                                    <i class="balance scale icon"></i>
-                                </div>
-                            {% elseif enigme.levelOfDifficulty.id == 3 %}
-                                <div class="ui red right corner label">
-                                    <i class="balance scale icon"></i>
-                                </div>
-                            {% endif %}
-                            <a class="ui fluid image image-css-perso" href="">
-                                <img src="{{ asset('images/mathematique/') ~ enigme.urlImage }}" alt="image enigme">
-                            </a>
-                            <div class="extra content">
-                                <span class="right floated">Solution : {{ enigme.solution }}</span>
-                                <span>Id : {{ enigme.id }}</span>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
+{% block visuel %}
+    <div class="ui fluid image oneImageInOneBox">
+        <img src="{{ asset('images/mathematique/') ~ enigme.urlImage }}" alt="image enigme">
     </div>
+{% endblock %}
+
+{% block solution %}
+    {{ enigme.solution }}
 {% endblock %}

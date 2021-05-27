@@ -81,7 +81,7 @@ class NaturalisteController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'énigme a bien été enregistré');
-            return $this->redirectToRoute('naturaliste_create');
+            return $this->redirectToRoute('admin_naturaliste');
         }
 
         return $this->render('naturaliste/create.html.twig', [
@@ -126,7 +126,7 @@ class NaturalisteController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'énigme a bien été mise à jour');
-            return $this->redirectToRoute('naturaliste_update', ["id" => $id]);
+            return $this->redirectToRoute('admin_naturaliste');
         }
 
         return $this->render('naturaliste/update.html.twig', [
@@ -155,6 +155,6 @@ class NaturalisteController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', 'L\'énigme a bien été supprimée');
-        return $this->redirectToRoute('main');
+        return $this->redirectToRoute('admin_naturaliste');
     }
 }

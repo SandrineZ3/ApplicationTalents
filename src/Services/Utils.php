@@ -11,7 +11,6 @@ class Utils
         $levelOfDifficulty = $levelOfDifficultyRepository->find($levelOfDifficultySuivant);
         $tableauEnigme = $repository->findBy(array('levelOfDifficulty' => $levelOfDifficulty), array('id' => 'ASC'), null, 0);
         $indexRandom = array_rand($tableauEnigme);
-
         return $tableauEnigme[$indexRandom];
     }
 

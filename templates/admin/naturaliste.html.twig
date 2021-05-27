@@ -1,39 +1,17 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'admin/layouts/gabarit.html.twig' %}
 
-{% block title %}Admin Gestion{% endblock %}
+{% set nameEnigme = 'Naturaliste' %}
+{% set nameEnigmeRoute = 'naturaliste' %}
 
-{% block body %}
-    <div class="ui grid stackable padded">
-        <div class="column">
-            <table class="ui celled striped table">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>UrlImage1</th>
-                    <th>UrlImage2</th>
-                    <th>UrlImage3</th>
-                    <th>UrlImage4</th>
-                    <th>Solution</th>
-                    <th>Niveau difficulté</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for enigme in tableauEnigmes %}
-                    <tr>
-                        <td>{{ enigme.id }}</td>
-                        <td>{{ enigme.urlImage1 }}</td>
-                        <td>{{ enigme.urlImage2 }}</td>
-                        <td>{{ enigme.urlImage3 }}</td>
-                        <td>{{ enigme.urlImage4 }}</td>
-                        <td>{{ enigme.solution }}</td>
-                        <td>{{ enigme.levelOfDifficulty.label }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+{% block visuel %}
+    <div class="fourImagesInOneBox">
+        <img src="{{ asset('images/naturaliste/') ~ enigme.urlImage1 }}" alt="image enigme">
+        <img src="{{ asset('images/naturaliste/') ~ enigme.urlImage2 }}" alt="image enigme">
+        <img src="{{ asset('images/naturaliste/') ~ enigme.urlImage3 }}" alt="image enigme">
+        <img src="{{ asset('images/naturaliste/') ~ enigme.urlImage4 }}" alt="image enigme">
     </div>
+{% endblock %}
 
-
-
+{% block solution %}
+    {{ enigme.solution }}
 {% endblock %}

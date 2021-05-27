@@ -14,6 +14,7 @@
                     </div>
                     <div class="field">
                         {{ form_row(interpersonnelleForm.solution) }}
+                        <button onclick="afficherModalCreateEmoticon()" class="ui button mini">Ajouter un Emoticône</button>
                     </div>
                     <div class="field">
                         {{ form_row(interpersonnelleForm.levelOfDifficulty) }}
@@ -23,10 +24,58 @@
                     </div>
                     {{ form_end(interpersonnelleForm) }}
                 </div>
+                <button onclick="afficherModalDelete({{ interpersonnelle.id }})" class="ui button">Supprimer</button>
+            </div>
+            {#modal#}
+            <div class="ui mini modal createEmoticon">
+                <div class="ui segment">
+                    <h3 class="ui dividing header">Création Émoticône</h3>
+                    {{ form_start(emoticonForm) }}
+                    <div class="field">
+                        {{ form_row(emoticonForm.label) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(emoticonForm.image) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(emoticonForm.save) }}
+                    </div>
+                    {{ form_end(emoticonForm) }}
+                </div>
+                {#modal#}
+                <div class="ui mini modal trash id-{{ interpersonnelle.id }}">
+                    <div class="header">
+                        Suppression
+                    </div>
+                    <div class="content">
+                        <p>Êtes-vous sûr de vouloir supprimer cette énigme</p>
+                    </div>
+                    <div class="actions">
+                        <div class="ui negative button">
+                            Non
+                        </div>
+                        <a class="ui positive right labeled icon button" href="{{ path('interpersonnelle_delete', {'id': interpersonnelle.id }) }}">
+                            Oui
+                            <i class="checkmark icon"></i>
+                        </a>
+                    </div>
+                </div>
+                {#modal#}
             </div>
         </div>
     </div>
 {% endblock %}
 
 {% block javascripts %}
+    <script>
+        function afficherModalCreateEmoticon() {
+            event.preventDefault();
+            $('.mini.modal.createEmoticon').modal('show');
+        }
+        $('#interpersonnelle_form_solution label').each(function() {
+            let urlImage = $(this).text().trim();
+            $('<img width="75px" src="{{ asset('images/emoticon/') }}' + urlImage + '" alt="image emoticone"/>').insertAfter($(this));
+            $(this).remove();
+        });
+    </script>
 {% endblock %}
