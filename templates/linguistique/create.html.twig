@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="ui grid container pad">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+                <div class="ui segment">
+                    <h3 class="ui dividing header">Création</h3>
+                    {{ form_start(linguistiqueForm) }}
+                    <div class="field">
+                        {{ form_row(linguistiqueForm.text) }}
+                    </div>
+{#                    <div class="field">#}
+{#                        {{ form_row(linguistiqueForm.picto) }}#}
+{#                    </div>#}
+                    <div class="field">
+                        {{ form_row(linguistiqueForm.solution) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(linguistiqueForm.levelOfDifficulty) }}
+                    </div>
+
+                    <div class="field">
+                        {{ form_row(linguistiqueForm.save) }}
+                    </div>
+                    {{ form_end(linguistiqueForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

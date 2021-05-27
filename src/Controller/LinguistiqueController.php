@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Linguistique;
+use App\Entity\Picto;
+use App\Form\LinguistiqueFormType;
 use App\Repository\LevelOfDifficultyRepository;
 use App\Repository\LinguistiqueRepository;
 use App\Repository\UserRepository;
+use App\Services\Utils;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -117,4 +121,48 @@ class LinguistiqueController extends AbstractController
     }
 
 //    TODO: implémenter les méthodes CREATE/UPDATE/DELETE
+
+    /**
+     * @Route("admin/linguistique/create", name="linguistique_create")
+     */
+    public function create(Request $request, EntityManagerInterface $entityManager, Utils $utils): Response
+    {
+        $linguistique = new Linguistique();
+        $linguistiqueForm = $this->createForm(linguistiqueFormType::class, $linguistique);
+        $linguistiqueForm = $linguistiqueForm->handleRequest($request);
+
+        if ($linguistiqueForm->isSubmitted() && $linguistiqueForm->isValid()) {
+            $entityManager->persist($linguistique);
+            $entityManager->flush();
+//        $linguistique = new Linguistique();
+//        $picto = new Picto();
+//        $linguistiqueForm = $this->createForm(LinguistiqueFormType::class, $linguistique);
+//        $linguistiqueForm = $linguistiqueForm->handleRequest($request);
+//
+//        if ($linguistiqueForm->isSubmitted() && $linguistiqueForm->isValid()) {
+//            // On récupère les images transmises
+//            $images = $linguistiqueForm->get('images')->getData();
+//            // On boucle sur les images
+//            foreach ($images as $image) {
+//                // On génère un nouveau nom de fichier
+//                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+//                // On copie le fichier dans le dossier uploads
+//                $image->move(
+//                    $directoryImage = $this->getParameter('image_linguistique_directory'),
+//                    $fichier
+//                );
+//                // On crée l'image dans la base de données
+//                $picto->setUrlImage($utils->saveImageAndGenerateUrl($linguistiqueForm, 'picto', $directoryImage));
+//            }
+//            $entityManager->persist($picto);
+//            $entityManager->flush();
+
+            $this->addFlash('success', 'L\'énigme a bien été enregistrée');
+            return $this->redirectToRoute('linguistique_create');
+        }
+
+        return $this->render('linguistique/create.html.twig', [
+            'linguistiqueForm' => $linguistiqueForm->createView(),
+        ]);
+    }
 }

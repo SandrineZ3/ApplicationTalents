@@ -1,14 +1,18 @@
 {% extends 'base.html.twig' %}
 {% block title %}Les talents de {{ app.user.username }} | Verbo-Linguistique{% endblock %}
 {% block body %}
-    <h1>{{ parent() }}</h1>
+    <div class="title">
+    <h1>Les talents de {{ app.user.username }}</h1>
     <h2>Nom du jeu énigmes Verbo-linguistiques</h2>
-
+    </div>
     <section>
         <div id="blockEnigme">
             <form id="formEnigme">
                 <p>{{ enigmeRandom.text }}</p>
                 <label for="reponseUtilisateur">Placez les pictos dans le bon ordre :</label>
+
+                {# Boucle for pour récupérer les pictos et emplacements ??  #}
+
                 {# Emplacements vides #}
                 {# TODO : enlever les span #}
                 <div class="droppable-elements">
@@ -18,7 +22,7 @@
                     <div class="droppable" ondrop="drop(event)" ondragover="allowDrop(event)" data-draggable-id="fish"><span>Fish</span></div>
                     <div class="droppable" ondrop="drop(event)" ondragover="allowDrop(event)" data-draggable-id="dog"><span>Dog</span></div>
                 </div>
-                {# Pictos #}
+                {# Picto #}
                 <div class="draggable-elements" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <i class="fas fa-cat draggable" ondragstart="drag(event)" draggable="true" style="color: #ff6384;" id="cat"></i>
                     <i class="fas fa-dog draggable" ondragstart="drag(event)" draggable="true" style="color: #36a2eb;" id="dog"></i>
@@ -28,7 +32,7 @@
                 </div>
                 <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
             </form>
-            <button id="buttonEnvoyer" onclick="requeteAjaxPostv2('#formEnigme', '#blockEnigme')">Envoyer</button>
+            <button id="buttonEnvoyer" class="button" onclick="requeteAjaxPostv2('#formEnigme', '#blockEnigme')">Envoyer</button>
         </div>
         <script src="../templates/linguistique/dragAndDropApp.js"></script>
     </section>
