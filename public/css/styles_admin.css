@@ -4,12 +4,25 @@ body {
     height: calc(100% - 40px) !important;
 }
 
-.image-css-perso {
+.oneImageInOneBox {
     height: 250px !important;
 }
 
-.image-css-perso img {
+.oneImageInOneBox img {
     height: 100% !important;
+    object-fit: cover !important;
+}
+
+.fourImagesInOneBox {
+    height: 250px !important;
+    display: flex; !important;
+    flex-wrap: wrap; !important;
+    flex-direction: row; !important;
+}
+
+.fourImagesInOneBox img {
+    height: 50% !important;
+    width: 50% !important;
     object-fit: cover !important;
 }
 
