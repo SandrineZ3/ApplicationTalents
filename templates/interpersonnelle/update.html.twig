@@ -72,10 +72,17 @@
             event.preventDefault();
             $('.mini.modal.createEmoticon').modal('show');
         }
-        $('#interpersonnelle_form_solution label').each(function() {
+
+        let tableauLabelEmoticon = [
+            {% for element in tableauLabelEmoticon %}
+            '{{ element }}',
+            {% endfor %}
+        ];
+        $('#interpersonnelle_form_solution label').each(function(i) {
             let urlImage = $(this).text().trim();
-            $('<img width="75px" src="{{ asset('images/emoticon/') }}' + urlImage + '" alt="image emoticone"/>').insertAfter($(this));
+            $('<img width="75px" src="{{ asset('images/emoticon/') }}' + urlImage + '" class="test" alt="image emoticone" data-content="'+ tableauLabelEmoticon[i] +'" data-position="top left"/>').insertAfter($(this));
             $(this).remove();
         });
+        $('.test').popup();
     </script>
 {% endblock %}
