@@ -39,7 +39,6 @@ class InterpersonnelleFormType extends AbstractType
                 'multiple' => false,
                 'placeholder' => false,
                 'choice_label' => 'urlImage',
-                'attr' => ['test' => 'test'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner la solution',

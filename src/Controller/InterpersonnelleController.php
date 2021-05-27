@@ -126,6 +126,7 @@ class InterpersonnelleController extends AbstractController
         $emoticon = new Emoticon();
         $emoticonForm = $this->createForm(EmoticonFormType::class, $emoticon);
         $emoticonForm = $emoticonForm->handleRequest($request);
+        $tableauLabelEmoticon = ['enervé', 'surpris', 'enervé', 'surpris', 'enervé', 'surpris'];
 
         if ($emoticonForm->isSubmitted() && $emoticonForm->isValid()) {
             $directoryImage = $this->getParameter('image_emoticon_directory');
@@ -142,6 +143,7 @@ class InterpersonnelleController extends AbstractController
             'interpersonnelleForm' => $interpersonnelleForm->createView(),
             'emoticonForm' => $emoticonForm->createView(),
             'interpersonnelle' => $interpersonnelle,
+            'tableauLabelEmoticon' => $tableauLabelEmoticon,
         ]);
     }
 
