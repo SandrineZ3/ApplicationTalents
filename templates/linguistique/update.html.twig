@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier énigme Verbo-Linguistique{% endblock %}
+
+{% block body %}
+    <div class="ui grid container pad">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+                <div class="ui segment">
+                    <h3 class="ui dividing header">Modification</h3>
+                    {{ form_start(linguistiqueForm) }}
+                    <div class="field">
+                        {{ form_row(linguistiqueForm.text) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(linguistiqueForm.solution) }}
+                        <button onclick="afficherModalCreatePicto()" class="ui button mini">Ajouter un pictogramme
+                        </button>
+                    </div>
+                    <div class="field">
+                        {{ form_row(linguistiqueForm.levelOfDifficulty) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(linguistiqueForm.save) }}
+                    </div>
+                    {{ form_end(linguistiqueForm) }}
+                </div>
+                <button onclick="afficherModalDelete({{ linguistique.id }})" class="ui button">Supprimer</button>
+            </div>
+            {# modal #}
+            <div class="ui mini modal createPicto">
+                <div class="ui segment">
+                    <h3 class="ui dividing header">Création Pictogramme</h3>
+                    {{ form_start(pictoForm) }}
+                    <div class="field">
+                        {{ form_row(pictoForm.label) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(pictoForm.image) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(pictoForm.save) }}
+                    </div>
+                    {{ form_end(pictoForm) }}
+                </div>
+                {# modal #}
+                <div class="ui mini modal trash id-{{ linguistique.id }}">
+                    <div class="header">
+                        Suppression
+                    </div>
+                    <div class="content">
+                        <p>Êtes-vous sûr de vouloir supprimer cette énigme</p>
+                    </div>
+                    <div class="actions">
+                        <div class="ui negative button">
+                            Non
+                        </div>
+                        <a class="ui positive right labeled icon button"
+                           href="{{ path('linguistique_delete', {'id': linguistique.id }) }}">
+                            Oui
+                            <i class="checkmark icon"></i>
+                        </a>
+                    </div>
+                </div>
+                {# modal #}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function afficherModalCreatePicto() {
+            event.preventDefault();
+            $('.mini.modal.createPicto').modal('show');
+        }
+
+        {#let tableauLabelPicto = [#}
+        {#    {% for element in tableauLabelPicto %}#}
+        {#    '{{ element }}',#}
+        {#    {% endfor %}#}
+        {#];#}
+        $('#linguistique_form_solution label').each(function () {
+            let urlImage = $(this).text().trim();
+            $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '"alt="image pictogramme"/>').insertAfter($(this));
+            $(this).remove();
+        });
+        // $('.test').popup();
+    </script>
+{% endblock %}
+

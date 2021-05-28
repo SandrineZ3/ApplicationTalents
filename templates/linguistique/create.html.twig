@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="ui grid container pad">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+                <div class="ui segment">
+                    <h3 class="ui dividing header">Création</h3>
+                    {{ form_start(linguistiqueForm) }}
+                    <div class="field">
+                        {{ form_row(linguistiqueForm.text) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(linguistiqueForm.solution) }}
+                        <button onclick="afficherModalCreatePicto()" class="ui button mini">Ajouter un Pictogramme
+                        </button>
+                    </div>
+                    <div class="field">
+                        {{ form_row(linguistiqueForm.levelOfDifficulty) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(linguistiqueForm.save) }}
+                    </div>
+                    {{ form_end(linguistiqueForm) }}
+                </div>
+            </div>
+            {# modal #}
+            <div class="ui mini modal createPicto">
+                <div class="ui segment">
+                    <h3 class="ui dividing header">Création Pictogramme</h3>
+                    {{ form_start(pictoForm) }}
+                    <div class="field">
+                        {{ form_row(pictoForm.label) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(pictoForm.image) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(pictoForm.save) }}
+                    </div>
+                    {{ form_end(pictoForm) }}
+                </div>
+            </div>
+            {# modal #}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function afficherModalCreatePicto() {
+            event.preventDefault();
+            $('.mini.modal.createPicto').modal('show');
+        }
+
+        $('#linguistique_form_solution label').each(function () {
+            let urlImage = $(this).text().trim();
+            $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" alt="image pictogramme"/>').insertAfter($(this));
+            $(this).remove();
+        });
+    </script>
+{% endblock %}

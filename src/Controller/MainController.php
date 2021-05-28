@@ -29,6 +29,8 @@ class MainController extends AbstractController
                 ['mathematique', $user->getMathematiqueFinished()],
                 ['intrapersonnelle', $user->getIntrapersonnelleFinished()],
                 ['result', 0],
+                ['linguistique_pictos', $user->getLinguistiqueFinished()],
+                ['mathematique', $user->getMathematiqueFinished()]
             ];
             $i = 0;
             while ($i < count($tableauOrdreJeux)) {
