@@ -8,7 +8,7 @@ parameters:
     image_naturaliste_directory: '%kernel.project_dir%/public/images/naturaliste'
     image_mathematique_directory: '%kernel.project_dir%/public/images/mathematique'
     image_emoticon_directory: '%kernel.project_dir%/public/images/emoticon'
-    image_linguistique_directory: '%kernel.project_dir%/public/images/linguistique'
+    image_linguistique_directory: '%kernel.project_dir%/public/images/linguistique_pictos'
 
 services:
     # default configuration for services in *this* file
