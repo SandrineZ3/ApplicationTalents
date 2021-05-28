@@ -1,0 +1,40 @@
+.rating {
+    border: none;
+    margin: 0 0 0 28px;
+}
+
+.rating > input {
+    display: none;
+}
+
+.rating > label:before {
+    margin-top: 2px;
+    padding: 0 5px 0 5px;
+    font-size: 30px;
+    font-family: "Font Awesome 5 Free", serif;
+    display: inline-block;
+    font-weight: bold;
+    content: "\f005";
+}
+
+.rating > label {
+    color: lightgrey;
+    float: right;
+    margin: 4px 1px 0 0;
+    height: 25px;
+}
+
+/* hover current star */
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: red !important;
+    cursor: pointer;
+}
+
+/* hover current star when changing rating */
+.rating > input:checked + label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+    color: red !important;
+    cursor: pointer;
+}

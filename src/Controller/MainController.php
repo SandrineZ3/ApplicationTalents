@@ -20,10 +20,15 @@ class MainController extends AbstractController
         if ($this->getUser() && $this->getUser()->getRoles() === ['ROLE_USER']) {
             $user = $userRepository->find($this->getUser());
             $tableauOrdreJeux = [
+//                ['kinesthesique', $user->getKinesthesiqueFinished()],
+//                ['musicale', $user->getMusicaleFinished()],
+                ['interpersonnelle', $user->getInterpersonnelleFinished()],
                 ['naturaliste', $user->getNaturalisteFinished()],
                 ['visuoSpatiale', $user->getVisuoSpatialeFinished()],
                 ['linguistique_pictos', $user->getLinguistiqueFinished()],
-                ['mathematique', $user->getMathematiqueFinished()]
+                ['mathematique', $user->getMathematiqueFinished()],
+                ['intrapersonnelle', $user->getIntrapersonnelleFinished()],
+                ['result', 0],
             ];
             $i = 0;
             while ($i < count($tableauOrdreJeux)) {
@@ -34,5 +39,20 @@ class MainController extends AbstractController
             }
         }
         return $this->render('main/main.html.twig');
+    }
+
+    /**
+     * @Route("/result", name="result")
+     */
+    public function result(UserRepository $userRepository): Response
+    {
+        $user = $userRepository->find($this->getUser());
+        if (!$user->getIntrapersonnelleFinished()) {
+            return $this->redirectToRoute('main');
+        }
+
+        return $this->render('main/result.html.twig', [
+            'user' => $user
+        ]);
     }
 }
