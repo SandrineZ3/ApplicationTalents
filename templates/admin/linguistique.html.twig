@@ -10,6 +10,19 @@
 {% endblock %}
 
 {# TODO: display la solution sous forme de suite de pictos #}
-{#{% block solution %}#}
-{#    {{ enigme.solution.urlImage }}#}
-{#{% endblock %}#}
+ {% block solution %}
+     {% for picto in enigme.solution %}
+         <div class="pictoUrlImage">{{ picto.urlImage }}</div>
+     {% endfor %}
+ {% endblock %}
+
+ {% block javascripts %}
+     <script>
+         $('.pictoUrlImage').each(function () {
+             let urlImage = $(this).text().trim();
+             $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" alt="image picto"/>').insertAfter($(this));
+             $(this).remove();
+         });
+     </script>
+ {% endblock %}
+
