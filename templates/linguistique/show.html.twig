@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}Les talents de {{ app.user.username }} | Verbo-Linguistique{% endblock %}
+
 {% block body %}
     <div class="title">
     <h1>Les talents de {{ app.user.username }}</h1>
@@ -34,6 +36,7 @@
             </form>
             <button id="buttonEnvoyer" class="button" onclick="requeteAjaxPostv2('#formEnigme', '#blockEnigme')">Envoyer</button>
         </div>
-        <script src="../templates/linguistique/dragAndDropApp.js"></script>
+        <script src="../templates/linguistique/content/dragAndDropApp.js"></script>
     </section>
 {% endblock %}
+

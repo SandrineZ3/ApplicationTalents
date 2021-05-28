@@ -34,7 +34,7 @@ class LinguistiqueFormType extends AbstractType
                 'expanded' => true,
                 'multiple' => true,
                 'placeholder' => false,
-                'choice_label' => 'label',
+                'choice_label' => 'urlImage',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner la solution',
@@ -59,31 +59,6 @@ class LinguistiqueFormType extends AbstractType
                 'label' => 'Enregistrer',
             ]);
     }
-
-//    private function addUrlPictoFields(FormInterface $form)
-//    {
-//        $tableau = array();
-//        foreach ($tableau as $element) {
-//            $form
-//                ->add($element, FileType::class, [
-//                    'label' => 'Picto',
-//                    'required' => false,
-//                    'mapped' => false,
-//                    'constraints' => [
-//                        new NotBlank([
-//                            'message' => 'Veuillez télécharger un pictogramme',
-//                        ]),
-//                        new Image([
-//                            'maxSize' => '1024k',
-//                            'mimeTypes' => [
-//                                'image/png',
-//                                'image/jpeg',
-//                            ]
-//                        ])
-//                    ],
-//                ]);
-//        }
-//    }
 
     public function configureOptions(OptionsResolver $resolver)
     {

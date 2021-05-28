@@ -71,3 +71,10 @@ body {
     top: 70px;
     right: 20px;
 }
+
+.text_linguistique_admin_dashboard {
+    text-align: center;
+    margin-top: 7rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}

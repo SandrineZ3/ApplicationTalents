@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Entity\Linguistique;
 use App\Entity\Picto;
 use App\Form\LinguistiqueFormType;
+use App\Form\PictoFormType;
 use App\Repository\LevelOfDifficultyRepository;
 use App\Repository\LinguistiqueRepository;
+use App\Repository\PictoRepository;
 use App\Repository\UserRepository;
 use App\Services\Utils;
 use Doctrine\ORM\EntityManagerInterface;
@@ -120,49 +122,101 @@ class LinguistiqueController extends AbstractController
         ]);
     }
 
-//    TODO: implémenter les méthodes CREATE/UPDATE/DELETE
-
     /**
      * @Route("admin/linguistique/create", name="linguistique_create")
      */
-    public function create(Request $request, EntityManagerInterface $entityManager, Utils $utils): Response
+    public function create(Request $request, EntityManagerInterface $entityManager, Utils $utils, PictoRepository $pictoRepository): Response
     {
         $linguistique = new Linguistique();
         $linguistiqueForm = $this->createForm(linguistiqueFormType::class, $linguistique);
         $linguistiqueForm = $linguistiqueForm->handleRequest($request);
 
+        $picto = new Picto();
+        $pictoForm = $this->createForm(PictoFormType::class, $picto);
+        $pictoForm = $pictoForm->handleRequest($request);
+
         if ($linguistiqueForm->isSubmitted() && $linguistiqueForm->isValid()) {
             $entityManager->persist($linguistique);
             $entityManager->flush();
-//        $linguistique = new Linguistique();
-//        $picto = new Picto();
-//        $linguistiqueForm = $this->createForm(LinguistiqueFormType::class, $linguistique);
-//        $linguistiqueForm = $linguistiqueForm->handleRequest($request);
-//
-//        if ($linguistiqueForm->isSubmitted() && $linguistiqueForm->isValid()) {
-//            // On récupère les images transmises
-//            $images = $linguistiqueForm->get('images')->getData();
-//            // On boucle sur les images
-//            foreach ($images as $image) {
-//                // On génère un nouveau nom de fichier
-//                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
-//                // On copie le fichier dans le dossier uploads
-//                $image->move(
-//                    $directoryImage = $this->getParameter('image_linguistique_directory'),
-//                    $fichier
-//                );
-//                // On crée l'image dans la base de données
-//                $picto->setUrlImage($utils->saveImageAndGenerateUrl($linguistiqueForm, 'picto', $directoryImage));
-//            }
-//            $entityManager->persist($picto);
-//            $entityManager->flush();
-
             $this->addFlash('success', 'L\'énigme a bien été enregistrée');
+            return $this->redirectToRoute('linguistique_create');
+        }
+
+        if ($pictoForm->isSubmitted() && $pictoForm->isValid()) {
+            $directoryImage = $this->getParameter('image_linguistique_directory');
+            $picto->setUrlImage($utils->saveImageAndGenerateUrl($pictoForm, 'image', $directoryImage));
+
+            $entityManager->persist($picto);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Le pictogramme a bien été enregistré');
             return $this->redirectToRoute('linguistique_create');
         }
 
         return $this->render('linguistique/create.html.twig', [
             'linguistiqueForm' => $linguistiqueForm->createView(),
+            'pictoForm' => $pictoForm->createView(),
         ]);
+    }
+
+    /**
+     * @Route("admin/linguistique/{id}/update", name="linguistique_update", requirements={"id"="\d+"})
+     */
+    public function update(int $id, Request $request, Utils $utils, EntityManagerInterface $entityManager, LinguistiqueRepository $linguistiqueRepository): Response
+    {
+        $linguistique = $linguistiqueRepository->find($id);
+        if (!$linguistique) {
+            $this->addFlash('error', 'L\'enigme recherchée n\'existe pas');
+            return $this->redirectToRoute('main');
+        }
+
+        $linguistiqueForm = $this->createForm(LinguistiqueFormType::class, $linguistique);
+        $linguistiqueForm = $linguistiqueForm->handleRequest($request);
+
+        if ($linguistiqueForm->isSubmitted() && $linguistiqueForm->isValid()) {
+            $entityManager->flush();
+
+            $this->addFlash('success', 'L\'énigme a bien été mise à jour');
+            return $this->redirectToRoute('linguistique_update', ["id" => $id]);
+        }
+
+        $picto = new Picto();
+        $pictoForm = $this->createForm(PictoFormType::class, $picto);
+        $pictoForm = $pictoForm->handleRequest($request);
+
+        if ($pictoForm->isSubmitted() && $pictoForm->isValid()) {
+            $directoryImage = $this->getParameter('image_linguistique_directory');
+            $picto->setUrlImage($utils->saveImageAndGenerateUrl($pictoForm, 'image', $directoryImage));
+
+            $entityManager->persist($picto);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Le pictogramme a bien été enregistré');
+            return $this->redirectToRoute('linguistique_update');
+        }
+
+        return $this->render('linguistique/update.html.twig', [
+            'linguistiqueForm' => $linguistiqueForm->createView(),
+            'pictoForm' => $pictoForm->createView(),
+            'linguistique' => $linguistique,
+        ]);
+    }
+
+    /**
+     * @Route("admin/linguistique/{id}/delete", name="linguistique_delete", requirements={"id"="\d+"})
+     */
+    public function delete(int $id, EntityManagerInterface $entityManager, LinguistiqueRepository $linguistiqueRepository): Response
+    {
+        $linguistique = $linguistiqueRepository->find($id);
+        if (!$linguistique) {
+            $this->addFlash('error', 'L\'énigme recherchée n\'existe pas');
+            return $this->redirectToRoute('main');
+        }
+
+        $entityManager->remove($linguistique);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'L\'énigme a bien été supprimée');
+        return $this->redirectToRoute('main');
     }
 }

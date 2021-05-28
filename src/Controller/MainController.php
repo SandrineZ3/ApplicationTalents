@@ -22,7 +22,7 @@ class MainController extends AbstractController
             $tableauOrdreJeux = [
                 ['naturaliste', $user->getNaturalisteFinished()],
                 ['visuoSpatiale', $user->getVisuoSpatialeFinished()],
-                ['linguistique', $user->getLinguistiqueFinished()],
+                ['linguistique_pictos', $user->getLinguistiqueFinished()],
                 ['mathematique', $user->getMathematiqueFinished()]
             ];
             $i = 0;
