@@ -10,3 +10,18 @@
 {% block solution %}
     {{ enigme.solution.label }}
 {% endblock %}
+{% block solutionImage %}
+    {{ enigme.solution.urlImage }}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            $('span.solutionImage').each(function() {
+                let urlImage = $(this).text().trim();
+                $('<img width="25px" src="{{ asset('images/emoticon/') }}' + urlImage + '" alt="image emoticone"/>').insertAfter($(this));
+                $(this).remove();
+            });
+        });
+    </script>
+{% endblock %}

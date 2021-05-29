@@ -38,7 +38,9 @@ class InterpersonnelleFormType extends AbstractType
                 'expanded' => true,
                 'multiple' => false,
                 'placeholder' => false,
-                'choice_label' => 'urlImage',
+                'choice_label' => function (Emoticon $emoticon) {
+                    return $emoticon->getUrlImage() . '--' . $emoticon->getLabel();
+                },
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner la solution',

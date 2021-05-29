@@ -23,10 +23,13 @@ class VisuoSpatialeController extends AbstractController
      */
     public function show(Request $request, EntityManagerInterface $entityManager, VisuoSpatialeUtils $visuoSpatialeUtils, Utils $utils, UserRepository $userRepository, LevelOfDifficultyRepository $levelOfDifficultyRepository, VisuoSpatialeRepository $visuoSpatialeRepository): Response
     {
-        $user = $userRepository->find($this->getUser());
-        if ($user->getVisuoSpatialeFinished()) {
+        if (!$this->getUser()) {
             return $this->redirectToRoute('main');
         }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'visuoSpatiale') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+        $user = $userRepository->find($this->getUser());
 
         $tableauReponse = ['reponseFacile', 'reponseMoyen', 'reponseDifficile'];
         foreach ($tableauReponse as $index => $reponseUser) {
@@ -46,6 +49,9 @@ class VisuoSpatialeController extends AbstractController
                     ]);
                 }
                 else {
+                    $user->setVisuoSpatialeFinished(true);
+                    $entityManager->flush();
+
                     return new JsonResponse([
                         'content' => $this->renderView('visuoSpatiale/content/endScreen.html.twig')
                     ]);

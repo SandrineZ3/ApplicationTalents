@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Création énigme Interpersonnelle{% endblock %}
 
@@ -49,14 +49,20 @@
 
 {% block javascripts %}
     <script>
+        $(document).ready(function() {
+            $('#interpersonnelle_form_solution label').each(function() {
+                let text = $(this).text().trim();
+                let urlImage = text.split('--')[0];
+                let label = text.split('--')[1];
+                $('<img width="75px" src="{{ asset('images/emoticon/') }}' + urlImage + '" class="popup" alt="image emoticone" data-content="'+ label +'" data-position="top left"/>').insertAfter($(this));
+                $(this).remove();
+            });
+            $('.popup').popup();
+        });
+
         function afficherModalCreateEmoticon() {
             event.preventDefault();
             $('.mini.modal.createEmoticon').modal('show');
         }
-        $('#interpersonnelle_form_solution label').each(function() {
-            let urlImage = $(this).text().trim();
-            $('<img width="75px" src="{{ asset('images/emoticon/') }}' + urlImage + '" alt="image emoticone"/>').insertAfter($(this));
-            $(this).remove();
-        });
     </script>
 {% endblock %}

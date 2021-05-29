@@ -6,7 +6,6 @@ use App\Entity\Emoticon;
 use App\Entity\Interpersonnelle;
 use App\Form\EmoticonFormType;
 use App\Form\InterpersonnelleFormType;
-use App\Repository\EmoticonRepository;
 use App\Repository\InterpersonnelleRepository;
 use App\Repository\LevelOfDifficultyRepository;
 use App\Repository\UserRepository;
@@ -26,10 +25,13 @@ class InterpersonnelleController extends AbstractController
      */
     public function show(Request $request, EntityManagerInterface $entityManager, InterpersonnelleUtils $interpersonnelleUtils, Utils $utils, UserRepository $userRepository, LevelOfDifficultyRepository $levelOfDifficultyRepository, InterpersonnelleRepository $interpersonnelleRepository): Response
     {
-        $user = $userRepository->find($this->getUser());
-        if ($user->getInterpersonnelleFinished()) {
+        if (!$this->getUser()) {
             return $this->redirectToRoute('main');
         }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'interpersonnelle') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+        $user = $userRepository->find($this->getUser());
 
         $tableauReponse = ['reponseFacile', 'reponseMoyen', 'reponseDifficile'];
         foreach ($tableauReponse as $index => $reponseUser) {
@@ -49,6 +51,9 @@ class InterpersonnelleController extends AbstractController
                     ]);
                 }
                 else {
+                    $user->setInterpersonnelleFinished(true);
+                    $entityManager->flush();
+
                     return new JsonResponse([
                         'content' => $this->renderView('interpersonnelle/content/endScreen.html.twig')
                     ]);
@@ -67,23 +72,23 @@ class InterpersonnelleController extends AbstractController
     /**
      * @Route("admin/interpersonnelle/create", name="interpersonnelle_create")
      */
-    public function create(Request $request, Utils $utils, EntityManagerInterface $entityManager, EmoticonRepository $emoticonRepository): Response
+    public function create(Request $request, Utils $utils, EntityManagerInterface $entityManager): Response
     {
         $interpersonnelle = new Interpersonnelle();
         $interpersonnelleForm = $this->createForm(InterpersonnelleFormType::class, $interpersonnelle);
         $interpersonnelleForm = $interpersonnelleForm->handleRequest($request);
-
-        $emoticon = new Emoticon();
-        $emoticonForm = $this->createForm(EmoticonFormType::class, $emoticon);
-        $emoticonForm = $emoticonForm->handleRequest($request);
 
         if ($interpersonnelleForm->isSubmitted() && $interpersonnelleForm->isValid()) {
             $entityManager->persist($interpersonnelle);
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'énigme a bien été enregistré');
-            return $this->redirectToRoute('interpersonnelle_create');
+            return $this->redirectToRoute('admin_interpersonnelle');
         }
+
+        $emoticon = new Emoticon();
+        $emoticonForm = $this->createForm(EmoticonFormType::class, $emoticon);
+        $emoticonForm = $emoticonForm->handleRequest($request);
 
         if ($emoticonForm->isSubmitted() && $emoticonForm->isValid()) {
             $directoryImage = $this->getParameter('image_emoticon_directory');
@@ -120,13 +125,12 @@ class InterpersonnelleController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'énigme a bien été mise à jour');
-            return $this->redirectToRoute('interpersonnelle_update', ["id" => $id]);
+            return $this->redirectToRoute('admin_interpersonnelle');
         }
 
         $emoticon = new Emoticon();
         $emoticonForm = $this->createForm(EmoticonFormType::class, $emoticon);
         $emoticonForm = $emoticonForm->handleRequest($request);
-        $tableauLabelEmoticon = ['enervé', 'surpris', 'enervé', 'surpris', 'enervé', 'surpris'];
 
         if ($emoticonForm->isSubmitted() && $emoticonForm->isValid()) {
             $directoryImage = $this->getParameter('image_emoticon_directory');
@@ -136,14 +140,13 @@ class InterpersonnelleController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'émoticône a bien été enregistré');
-            return $this->redirectToRoute('interpersonnelle_update');
+            return $this->redirectToRoute('interpersonnelle_update', ['id' => $id]);
         }
 
         return $this->render('interpersonnelle/update.html.twig', [
             'interpersonnelleForm' => $interpersonnelleForm->createView(),
             'emoticonForm' => $emoticonForm->createView(),
             'interpersonnelle' => $interpersonnelle,
-            'tableauLabelEmoticon' => $tableauLabelEmoticon,
         ]);
     }
 
@@ -162,6 +165,6 @@ class InterpersonnelleController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', 'L\'énigme a bien été supprimée');
-        return $this->redirectToRoute('main');
+        return $this->redirectToRoute('admin_interpersonnelle');
     }
 }
