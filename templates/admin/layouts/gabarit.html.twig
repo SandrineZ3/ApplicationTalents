@@ -36,7 +36,8 @@
                                 <span class="right floated">
                                     <a href="{{ path(nameEnigmeRoute ~ '_update', {'id': enigme.id }) }}"><i class="edit icon"></i></a>
                                 </span>
-                                <span>Id : {{ enigme.id }}, Solution : {% block solution %}{% endblock %}</span>
+                                <span>Id : {{ enigme.id }} // Solution : {% block solution %}{% endblock %}</span>
+                                <span class="solutionImage">{% block solutionImage %}{% endblock %}</span>
                             </div>
                         </div>
                     {% endfor %}

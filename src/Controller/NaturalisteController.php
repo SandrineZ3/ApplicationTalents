@@ -23,10 +23,13 @@ class NaturalisteController extends AbstractController
      */
     public function show(Request $request, EntityManagerInterface $entityManager, NaturalisteUtils $naturalisteUtils, Utils $utils, UserRepository $userRepository, LevelOfDifficultyRepository $levelOfDifficultyRepository, NaturalisteRepository $naturalisteRepository): Response
     {
-        $user = $userRepository->find($this->getUser());
-        if ($user->getNaturalisteFinished()) {
+        if (!$this->getUser()) {
             return $this->redirectToRoute('main');
         }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'naturaliste') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+        $user = $userRepository->find($this->getUser());
 
         $tableauReponse = ['reponseFacile', 'reponseMoyen', 'reponseDifficile'];
         foreach ($tableauReponse as $index => $reponseUser) {
@@ -46,6 +49,9 @@ class NaturalisteController extends AbstractController
                     ]);
                 }
                 else {
+                    $user->setNaturalisteFinished(true);
+                    $entityManager->flush();
+
                     return new JsonResponse([
                         'content' => $this->renderView('naturaliste/content/endScreen.html.twig')
                     ]);
@@ -131,6 +137,7 @@ class NaturalisteController extends AbstractController
 
         return $this->render('naturaliste/update.html.twig', [
             'naturalisteForm' => $naturalisteForm->createView(),
+            'naturaliste' => $naturaliste,
         ]);
     }
 

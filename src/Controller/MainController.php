@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
+use App\Services\Utils;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,44 +13,27 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="main")
      */
-    public function main(UserRepository $userRepository): Response
+    public function main(UserRepository $userRepository, Utils $utils): Response
     {
-        if ($this->getUser() && $this->getUser()->getRoles() === ['ROLE_ADMIN']) {
-            return $this->redirectToRoute('admin_dashboard');
-        }
         if ($this->getUser() && $this->getUser()->getRoles() === ['ROLE_USER']) {
-            $user = $userRepository->find($this->getUser());
-            $tableauOrdreJeux = [
-//                ['kinesthesique', $user->getKinesthesiqueFinished()],
-//                ['musicale', $user->getMusicaleFinished()],
-                ['interpersonnelle', $user->getInterpersonnelleFinished()],
-                ['naturaliste', $user->getNaturalisteFinished()],
-                ['visuoSpatiale', $user->getVisuoSpatialeFinished()],
-                ['linguistique_pictos', $user->getLinguistiqueFinished()],
-                ['mathematique', $user->getMathematiqueFinished()],
-                ['intrapersonnelle', $user->getIntrapersonnelleFinished()],
-                ['result', 0],
-            ];
-            $i = 0;
-            while ($i < count($tableauOrdreJeux)) {
-                if (!$tableauOrdreJeux[$i][1]) {
-                    return $this->redirectToRoute($tableauOrdreJeux[$i][0]);
-                }
-                $i++;
-            }
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
         }
+
         return $this->render('main/main.html.twig');
     }
 
     /**
      * @Route("/result", name="result")
      */
-    public function result(UserRepository $userRepository): Response
+    public function result(UserRepository $userRepository, Utils $utils): Response
     {
-        $user = $userRepository->find($this->getUser());
-        if (!$user->getIntrapersonnelleFinished()) {
+        if (!$this->getUser()) {
             return $this->redirectToRoute('main');
         }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'intrapersonnelle') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+        $user = $userRepository->find($this->getUser());
 
         return $this->render('main/result.html.twig', [
             'user' => $user

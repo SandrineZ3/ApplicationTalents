@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Modifier énigme Interpersonnelle{% endblock %}
 
@@ -23,9 +23,28 @@
                         {{ form_row(interpersonnelleForm.save) }}
                     </div>
                     {{ form_end(interpersonnelleForm) }}
+                    <button onclick="afficherModalDelete()" class="ui button">Supprimer</button>
                 </div>
-                <button onclick="afficherModalDelete({{ interpersonnelle.id }})" class="ui button">Supprimer</button>
             </div>
+            {#modal#}
+            <div class="ui mini modal trash">
+                <div class="header">
+                    Suppression
+                </div>
+                <div class="content">
+                    <p>Êtes-vous sûr de vouloir supprimer cette énigme</p>
+                </div>
+                <div class="actions">
+                    <div class="ui negative button">
+                        Non
+                    </div>
+                    <a class="ui positive right labeled icon button" href="{{ path('interpersonnelle_delete', {'id': interpersonnelle.id }) }}">
+                        Oui
+                        <i class="checkmark icon"></i>
+                    </a>
+                </div>
+            </div>
+            {#modal#}
             {#modal#}
             <div class="ui mini modal createEmoticon">
                 <div class="ui segment">
@@ -42,47 +61,28 @@
                     </div>
                     {{ form_end(emoticonForm) }}
                 </div>
-                {#modal#}
-                <div class="ui mini modal trash id-{{ interpersonnelle.id }}">
-                    <div class="header">
-                        Suppression
-                    </div>
-                    <div class="content">
-                        <p>Êtes-vous sûr de vouloir supprimer cette énigme</p>
-                    </div>
-                    <div class="actions">
-                        <div class="ui negative button">
-                            Non
-                        </div>
-                        <a class="ui positive right labeled icon button" href="{{ path('interpersonnelle_delete', {'id': interpersonnelle.id }) }}">
-                            Oui
-                            <i class="checkmark icon"></i>
-                        </a>
-                    </div>
-                </div>
-                {#modal#}
             </div>
+            {#modal#}
         </div>
     </div>
 {% endblock %}
 
 {% block javascripts %}
     <script>
+        $(document).ready(function() {
+            $('#interpersonnelle_form_solution label').each(function() {
+                let text = $(this).text().trim();
+                let urlImage = text.split('--')[0];
+                let label = text.split('--')[1];
+                $('<img width="75px" src="{{ asset('images/emoticon/') }}' + urlImage + '" class="popup" alt="image emoticone" data-content="'+ label +'" data-position="top left"/>').insertAfter($(this));
+                $(this).remove();
+            });
+            $('.popup').popup();
+        });
+
         function afficherModalCreateEmoticon() {
             event.preventDefault();
             $('.mini.modal.createEmoticon').modal('show');
         }
-
-        let tableauLabelEmoticon = [
-            {% for element in tableauLabelEmoticon %}
-            '{{ element }}',
-            {% endfor %}
-        ];
-        $('#interpersonnelle_form_solution label').each(function(i) {
-            let urlImage = $(this).text().trim();
-            $('<img width="75px" src="{{ asset('images/emoticon/') }}' + urlImage + '" class="test" alt="image emoticone" data-content="'+ tableauLabelEmoticon[i] +'" data-position="top left"/>').insertAfter($(this));
-            $(this).remove();
-        });
-        $('.test').popup();
     </script>
 {% endblock %}

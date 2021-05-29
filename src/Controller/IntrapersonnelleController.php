@@ -18,10 +18,13 @@ class IntrapersonnelleController extends AbstractController
      */
     public function show(Request $request, EntityManagerInterface $entityManager, InterpersonnelleUtils $interpersonnelleUtils, Utils $utils, UserRepository $userRepository): Response
     {
-        $user = $userRepository->find($this->getUser());
-        if ($user->getIntrapersonnelleFinished()) {
+        if (!$this->getUser()) {
             return $this->redirectToRoute('main');
         }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'intrapersonnelle') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+        $user = $userRepository->find($this->getUser());
 
         if ($request->get('formIntrapersonnelle')) {
             $scoreTotal =
