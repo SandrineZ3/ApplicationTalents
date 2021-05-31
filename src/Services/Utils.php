@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Entity\User;
 use App\Repository\LevelOfDifficultyRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -18,7 +17,7 @@ class Utils
             ['interpersonnelle', $user->getInterpersonnelleFinished()],
             ['naturaliste', $user->getNaturalisteFinished()],
             ['visuoSpatiale', $user->getVisuoSpatialeFinished()],
-            ['linguistique_pictos', $user->getLinguistiqueFinished()],
+            ['linguistique', $user->getLinguistiqueFinished()],
             ['mathematique', $user->getMathematiqueFinished()],
             ['intrapersonnelle', $user->getIntrapersonnelleFinished()],
         ];
