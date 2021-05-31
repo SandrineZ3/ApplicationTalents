@@ -6,6 +6,7 @@ use App\Entity\Emoticon;
 use App\Entity\Interpersonnelle;
 use App\Form\EmoticonFormType;
 use App\Form\InterpersonnelleFormType;
+use App\Repository\EmoticonRepository;
 use App\Repository\InterpersonnelleRepository;
 use App\Repository\LevelOfDifficultyRepository;
 use App\Repository\UserRepository;
@@ -23,7 +24,7 @@ class InterpersonnelleController extends AbstractController
     /**
      * @Route("/interpersonnelle", name="interpersonnelle")
      */
-    public function show(Request $request, EntityManagerInterface $entityManager, InterpersonnelleUtils $interpersonnelleUtils, Utils $utils, UserRepository $userRepository, LevelOfDifficultyRepository $levelOfDifficultyRepository, InterpersonnelleRepository $interpersonnelleRepository): Response
+    public function show(Request $request, EntityManagerInterface $entityManager, InterpersonnelleUtils $interpersonnelleUtils, Utils $utils, UserRepository $userRepository, LevelOfDifficultyRepository $levelOfDifficultyRepository, InterpersonnelleRepository $interpersonnelleRepository, EmoticonRepository $emoticonRepository): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('main');
@@ -33,21 +34,23 @@ class InterpersonnelleController extends AbstractController
         }
         $user = $userRepository->find($this->getUser());
 
-        $tableauReponse = ['reponseFacile', 'reponseMoyen', 'reponseDifficile'];
-        foreach ($tableauReponse as $index => $reponseUser) {
-            if ($request->get($reponseUser)) {
+
+        $tableauOfDifficulty = ['reponseFacile', 'reponseMoyen', 'reponseDifficile'];
+        foreach ($tableauOfDifficulty as $index => $difficulty) {
+            if ($request->get($difficulty)) {
                 if ($index === 0) {
                     $user->setScoreInterpersonnelle(0);
                     $entityManager->flush();
                 }
 
-                $interpersonnelleUtils->recordScore($request, $reponseUser, $interpersonnelleRepository, $user, $entityManager);
+                $interpersonnelleUtils->recordScore($request, $request->get($difficulty), $interpersonnelleRepository, $user, $entityManager);
 
                 if ($index === 0 || $index === 1) {
                     $enigmeRandom = $utils->nextEnigme($index + 2, $interpersonnelleRepository, $levelOfDifficultyRepository);
-                    $nomInput = $tableauReponse[$index + 1];
+                    $nomInput = $tableauOfDifficulty[$index + 1];
+                    $tableauChoixEmoticon = $emoticonRepository->findAll();
                     return new JsonResponse([
-                        'content' => $this->renderView('interpersonnelle/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput'))
+                        'content' => $this->renderView('interpersonnelle/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput', 'tableauChoixEmoticon'))
                     ]);
                 }
                 else {
@@ -62,10 +65,12 @@ class InterpersonnelleController extends AbstractController
         }
         $enigmeRandom = $utils->nextEnigme(1, $interpersonnelleRepository, $levelOfDifficultyRepository);
         $nomInput = 'reponseFacile';
+        $tableauChoixEmoticon = $emoticonRepository->findAll();
 
         return $this->render('interpersonnelle/show.html.twig', [
             'enigmeRandom' => $enigmeRandom,
-            'nomInput' => $nomInput
+            'nomInput' => $nomInput,
+            'tableauChoixEmoticon' => $tableauChoixEmoticon
         ]);
     }
 

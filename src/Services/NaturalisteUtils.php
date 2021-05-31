@@ -14,7 +14,7 @@ class NaturalisteUtils
         $enigme = $naturalisteRepository->find($request->get("idEnigme"));
 
         // On cherche si la réponse donnée par l'user figure dans la string des solutions acceptées
-        if (strpos($enigme->getSolution(), $reponse) >= 0) {
+        if (strpos($enigme->getSolution(), $reponse) !== false) {
             $pointsGagnes = $enigme->getLevelOfDifficulty()->getPoints();
             $currentScore = $user->getScoreNaturaliste();
             $user->setScoreNaturaliste($currentScore + $pointsGagnes);

@@ -13,7 +13,7 @@ class InterpersonnelleUtils
     {
         $enigme = $interpersonnelleRepository->find($request->get("idEnigme"));
 
-        if ($reponse == $enigme->getSolution()) {
+        if ($reponse == $enigme->getSolution()->getId()) {
             $pointsGagnes = $enigme->getLevelOfDifficulty()->getPoints();
             $currentScore = $user->getScoreInterpersonnelle();
             $user->setScoreInterpersonnelle($currentScore + $pointsGagnes);

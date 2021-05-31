@@ -31,19 +31,19 @@ class VisuoSpatialeController extends AbstractController
         }
         $user = $userRepository->find($this->getUser());
 
-        $tableauReponse = ['reponseFacile', 'reponseMoyen', 'reponseDifficile'];
-        foreach ($tableauReponse as $index => $reponseUser) {
-            if ($request->get($reponseUser)) {
+        $tableauOfDifficulty = ['reponseFacile', 'reponseMoyen', 'reponseDifficile'];
+        foreach ($tableauOfDifficulty as $index => $difficulty) {
+            if ($request->get($difficulty)) {
                 if ($index === 0) {
                     $user->setScoreVisuoSpatiale(0);
                     $entityManager->flush();
                 }
 
-                $visuoSpatialeUtils->recordScore($request, $reponseUser, $visuoSpatialeRepository, $user, $entityManager);
+                $visuoSpatialeUtils->recordScore($request, $request->get($difficulty), $visuoSpatialeRepository, $user, $entityManager);
 
                 if ($index === 0 || $index === 1) {
                     $enigmeRandom = $utils->nextEnigme($index + 2, $visuoSpatialeRepository, $levelOfDifficultyRepository);
-                    $nomInput = $tableauReponse[$index + 1];
+                    $nomInput = $tableauOfDifficulty[$index + 1];
                     return new JsonResponse([
                         'content' => $this->renderView('visuoSpatiale/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput'))
                     ]);

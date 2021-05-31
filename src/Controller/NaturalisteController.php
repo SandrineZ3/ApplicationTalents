@@ -31,19 +31,19 @@ class NaturalisteController extends AbstractController
         }
         $user = $userRepository->find($this->getUser());
 
-        $tableauReponse = ['reponseFacile', 'reponseMoyen', 'reponseDifficile'];
-        foreach ($tableauReponse as $index => $reponseUser) {
-            if ($request->get($reponseUser)) {
+        $tableauOfDifficulty = ['reponseFacile', 'reponseMoyen', 'reponseDifficile'];
+        foreach ($tableauOfDifficulty as $index => $difficulty) {
+            if ($request->get($difficulty)) {
                 if ($index === 0) {
                     $user->setScoreNaturaliste(0);
                     $entityManager->flush();
                 }
 
-                $naturalisteUtils->recordScore($request, $reponseUser, $naturalisteRepository, $user, $entityManager);
+                $naturalisteUtils->recordScore($request, $request->get($difficulty), $naturalisteRepository, $user, $entityManager);
 
                 if ($index === 0 || $index === 1) {
                     $enigmeRandom = $utils->nextEnigme($index + 2, $naturalisteRepository, $levelOfDifficultyRepository);
-                    $nomInput = $tableauReponse[$index + 1];
+                    $nomInput = $tableauOfDifficulty[$index + 1];
                     return new JsonResponse([
                         'content' => $this->renderView('naturaliste/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput'))
                     ]);
