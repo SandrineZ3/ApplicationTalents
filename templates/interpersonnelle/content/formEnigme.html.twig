@@ -1,9 +1,16 @@
 <form class="ui form" id="formEnigme">
     <iframe width="560" height="315" src="{{ enigmeRandom.urlVideo }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-    <div class="field">
-        <label for="input">Réponse :</label>
-        <input type="text" name="{{ nomInput }}" id="input" placeholder="Réponse">
+    <div class="inline fields">
+        <label for="{{ nomInput }}">Réponse :</label>
+        {% for emoticon in tableauChoixEmoticon %}
+            <div class="field">
+                {#                <div class="ui radio checkbox">#}
+                <input type="radio" name="{{ nomInput }}" tabindex="0" class="hidden" value="{{ emoticon.id }}">
+                <label>{{ emoticon.label }}</label>
+                {#                </div>#}
+            </div>
+        {% endfor %}
     </div>
     <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
 </form>
