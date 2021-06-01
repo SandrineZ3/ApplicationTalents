@@ -11,7 +11,7 @@ particlesJS("particles-js", {
             "value": "#000000"
         },
         "shape": {
-            "type": "image",
+            "type": "circle",
             "stroke": {
                 "width": 0,
                 "color": "#000000"
@@ -20,7 +20,7 @@ particlesJS("particles-js", {
                 "nb_sides": 5
             },
             "image": {
-                "src": "share.svg",
+                "src": "images/emoticon/0e6a5323ceb1ef82a769a0921191fc18.jpg",
                 "width": 100,
                 "height": 100
             }

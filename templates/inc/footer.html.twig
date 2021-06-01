@@ -3,6 +3,7 @@
         <div class="right menu">
             <div class="item">
                 <a class="item" href="{{ path('interpersonnelle') }}">Interpersonnelle</a>
+                <a class="item" href="{{ path('linguistique') }}">Linguistique</a>
             </div>
         </div>
     </div>
@@ -11,8 +12,6 @@
 <div class="ui vertical labeled icon bottom fixed menu">
     <a class="item"><i class="volume up icon"></i></a>
     {% if app.user == false %}
-
         <a class="item" href="{{ path('app_login_admin') }}">Admin</a>
-
     {% endif %}
 </div>
