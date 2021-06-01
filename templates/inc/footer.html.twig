@@ -1,0 +1,18 @@
+{% if app.user and app.user.roles == ['ROLE_ADMIN'] %}
+    <div class="ui mini bottom fixed menu">
+        <div class="right menu">
+            <div class="item">
+                <a class="item" href="{{ path('interpersonnelle') }}">Interpersonnelle</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+<div class="ui vertical labeled icon bottom fixed menu">
+    <a class="item"><i class="volume up icon"></i></a>
+    {% if app.user == false %}
+
+        <a class="item" href="{{ path('app_login_admin') }}">Admin</a>
+
+    {% endif %}
+</div>
