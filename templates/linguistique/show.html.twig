@@ -20,7 +20,7 @@
                              data-draggable-id={{ loop.index0 }}></div>
                     {% endfor %}
 {#                    Input caché qui récupère la réponse de l'utilisateur #}
-                    <input type="hidden" id="reponseRecuperee" name="reponseEnigme" value="">
+                    <input type="hidden" id="reponseRecuperee" name="{{ nomInput }}" value="">
                 </div>
 
                 {# Pictos : tous ceux de la BDD #}
@@ -28,6 +28,7 @@
                     {% for picto in allPictos %}
                         <div class="picto" ondragstart="dragStart(event)"
                              draggable="true" id="{{ picto.id }}"
+                             data-id ="{{ picto.id }}"
                              data-src="{{ picto.urlImage }}">{{ picto.label }}</div>
                     {% endfor %}
                 </div>
@@ -37,17 +38,18 @@
                         $('.picto').each(function () {
                             let urlPicto = $(this).data('src');
                             let pictoImage = urlPicto.trim();
-                            $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + pictoImage + '" alt="image picto"/>').insertAfter($(this));
+                            let id = $(this).data('id');
+                            $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + pictoImage + '"draggable="true" ondragstart="dragStart(event)" id="' + id + '" alt="image picto"/>').insertAfter($(this));
                             $(this).remove();
                         });
                     </script>
 
 {#Script qui récupère la réponse de l'utilisateur à partir de l'emplacement accueillant les pictos, puis l'injecte dans l'input caché#}
-                    <script>
-                            let reponseUtilisateur = document.getElementById('emplacementReponseUtilisateur').value;
-                            document.getElementById('reponseRecuperee').value = reponseUtilisateur;
-                            console.log(reponseUtilisateur);
-                    </script>
+{#                    <script>#}
+{#                            let reponseUtilisateur = document.getElementById('emplacementReponseUtilisateur').value;#}
+{#                            document.getElementById('reponseRecuperee').value = reponseUtilisateur;#}
+{#                            // console.log(reponseUtilisateur);#}
+{#                    </script>#}
                 {% endblock %}
 
 
@@ -80,7 +82,7 @@
             </button>
         </div>
         <script>let tableau = new Array({{ enigmeRandom.solution | length }});</script>
-        <script src="../templates/linguistique/content/dragAndDropApp.js"></script>
+        <script src="{{ asset('js/dragAndDropApp.js') }}"></script>
     </section>
 {% endblock %}
 

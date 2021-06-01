@@ -50,6 +50,7 @@ function dropSave(event) {
     event.target.appendChild((document.getElementById(draggableElementData)));
     let droppableElementData = event.target.getAttribute("data-draggable-id");
     tableau[droppableElementData] = draggableElementData;
+    document.getElementById('reponseRecuperee').value = tableau;
 }
 
 function drop(event) {
@@ -58,5 +59,5 @@ function drop(event) {
     const draggableElementData = event.dataTransfer.getData("text");
     event.target.appendChild((document.getElementById(draggableElementData)));
     let droppableElementData = event.target.getAttribute("data-draggable-id");
-    console.log(tableau);
+    // document.getElementById('reponseRecuperee').value = tableau;
 }

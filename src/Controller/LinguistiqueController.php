@@ -40,6 +40,7 @@ class LinguistiqueController extends AbstractController
         $enigmes = $linguistiqueRepository->findBy(array("levelOfDifficulty" => $levelOfDifficulty), array("id" => "ASC"));
         $indexRandom = array_rand($enigmes, 1);
         $enigmeRandom = $enigmes[$indexRandom];
+        $nomInput = "reponseEnigme";
 
         if ($request->get("reponseEnigme")) {
             $user->setScoreLinguistique(0);
@@ -138,7 +139,8 @@ class LinguistiqueController extends AbstractController
 
         return $this->render('linguistique/show.html.twig', [
             "enigmeRandom" => $enigmeRandom,
-            "allPictos" => $allPictos
+            "allPictos" => $allPictos,
+            "nomInput" => $nomInput,
         ]);
     }
 
