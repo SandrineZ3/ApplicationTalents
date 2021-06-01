@@ -41,14 +41,10 @@ class LinguistiqueController extends AbstractController
         $indexRandom = array_rand($enigmes, 1);
         $enigmeRandom = $enigmes[$indexRandom];
 
-        // Test pour afficher tous les pictos implémentés
-        $pictos = new Picto();
-        $tableauPictos = [$pictos->getUrlImage()];
-
-        if ($request->get("reponseFacile")) {
+        if ($request->get("reponseEnigme")) {
             $user->setScoreLinguistique(0);
             $entityManager->flush();
-            $reponse = $request->get("reponseFacile");
+            $reponse = $request->get("reponseEnigme");
             $enigme = $linguistiqueRepository->find($request->get("idEnigme"));
 
             $solution = $enigme->getSolution();
@@ -142,7 +138,6 @@ class LinguistiqueController extends AbstractController
 
         return $this->render('linguistique/show.html.twig', [
             "enigmeRandom" => $enigmeRandom,
-            "tableauPictos" => $tableauPictos,
             "allPictos" => $allPictos
         ]);
     }

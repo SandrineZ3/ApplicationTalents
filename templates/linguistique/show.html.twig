@@ -3,7 +3,6 @@
 {% block title %}Les talents de {{ app.user.username }} | Verbo-Linguistique{% endblock %}
 
 {% block body %}
-
     <div class="title">
         <h1>Les talents de {{ app.user.username }}</h1>
         <h2>Nom du jeu énigmes Verbo-linguistiques</h2>
@@ -14,13 +13,14 @@
                 <p>{{ enigmeRandom.text }}</p>
                 <label for="reponseUtilisateur">Placez les pictos dans le bon ordre :</label>
 
-
                 {# Emplacements vides #}
                 <div class="droppable-elements" ondrop="drop(event)" ondragover="allowDrop(event)">
                     {% for picto in enigmeRandom.solution %}
-                        <div class="droppable" ondrop="dropSave(event)" ondragover="allowDrop(event)"
+                        <div class="droppable" ondrop="dropSave(event)" ondragover="allowDrop(event)" id="emplacementReponseUtilisateur"
                              data-draggable-id={{ loop.index0 }}></div>
                     {% endfor %}
+{#                    Input caché qui récupère la réponse de l'utilisateur #}
+                    <input type="hidden" id="reponseRecuperee" name="reponseEnigme" value="">
                 </div>
 
                 {# Pictos : tous ceux de la BDD #}
@@ -41,6 +41,13 @@
                             $(this).remove();
                         });
                     </script>
+
+{#Script qui récupère la réponse de l'utilisateur à partir de l'emplacement accueillant les pictos, puis l'injecte dans l'input caché#}
+                    <script>
+                            let reponseUtilisateur = document.getElementById('emplacementReponseUtilisateur').value;
+                            document.getElementById('reponseRecuperee').value = reponseUtilisateur;
+                            console.log(reponseUtilisateur);
+                    </script>
                 {% endblock %}
 
 
@@ -53,7 +60,6 @@
                 {# }); #}
                 {# </script> #}
                 {# {% endblock %} #}
-
 
                 {# <div class="draggable-elements" ondrop="drop(event)" ondragover="allowDrop(event)"> #}
                 {# <i class="fas fa-cat draggable" ondragstart="drag(event)" draggable="true" style="color: #ff6384;" #}
@@ -75,7 +81,6 @@
         </div>
         <script>let tableau = new Array({{ enigmeRandom.solution | length }});</script>
         <script src="../templates/linguistique/content/dragAndDropApp.js"></script>
-
     </section>
 {% endblock %}
 
