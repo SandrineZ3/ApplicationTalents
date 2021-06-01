@@ -64,9 +64,7 @@
     font-size: 0.75rem;
     margin-top: 0.5rem;
 }
-.dropped i {
-    pointer-events: none;
-}
+
 .dragged {
     user-select: none;
     opacity: 0.1;
