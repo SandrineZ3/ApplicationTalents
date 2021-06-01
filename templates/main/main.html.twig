@@ -3,28 +3,32 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <div class="ui container">
-        <div class="ui segment">
-            <h1>Accueil</h1>
-            <a class="fluid ui button" href="{{ path('app_register') }}">Nouvelle Partie</a>
-            <br>
-            <a class="fluid ui button" href="{{ path('app_login') }}">Reprendre</a>
-            <br><br>
-            <a class="fluid ui button" href="{{ path('app_login_admin') }}">Espace admin</a>
-        </div>
-
-        {% if app.user and app.user.roles == ['ROLE_ADMIN'] %}
-            <div class="ui segment">
-                <h1>Liste jeux</h1>
-                <a class="ui button" href="{{ path('interpersonnelle') }}">Interpersonnelle</a>
-                <a class="ui button" href="{{ path('intrapersonnelle') }}">Intrapersonnelle</a>
-                <a class="ui button" href="{{ path('linguistique') }}">Linguistique</a>
-                <a class="ui button" href="{{ path('mathematique') }}">Mathematique</a>
-                <a class="ui button" href="{{ path('naturaliste') }}">Naturaliste</a>
-                <a class="ui button" href="{{ path('visuoSpatiale') }}">VisuoSpatiale</a>
-                <a class="ui button" href="{{ path('result') }}">Résultat</a>
+    <div class="ui grid container h100 middle aligned">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+                <div class="ui grey inverted segment">
+                    <h1>Accueil</h1>
+                    <a class="fluid ui button" href="{{ path('app_register') }}">Nouvelle Partie</a>
+                    <br>
+                    <a class="fluid ui button" href="{{ path('app_login') }}">Reprendre</a>
+                </div>
             </div>
-        {% endif %}
+        </div>
+    </div>
+
+{#    {% if app.user and app.user.roles == ['ROLE_ADMIN'] %}#}
+{#        <div>#}
+{#        <div class="ui segment">#}
+{#            <h1>Liste jeux</h1>#}
+{#            <a class="ui button" href="{{ path('interpersonnelle') }}">Interpersonnelle</a>#}
+{#            <a class="ui button" href="{{ path('intrapersonnelle') }}">Intrapersonnelle</a>#}
+{#            <a class="ui button" href="{{ path('linguistique') }}">Linguistique</a>#}
+{#            <a class="ui button" href="{{ path('mathematique') }}">Mathematique</a>#}
+{#            <a class="ui button" href="{{ path('naturaliste') }}">Naturaliste</a>#}
+{#            <a class="ui button" href="{{ path('visuoSpatiale') }}">VisuoSpatiale</a>#}
+{#            <a class="ui button" href="{{ path('result') }}">Résultat</a>#}
+{#        </div>#}
+{#    {% endif %}#}
     </div>
 {% endblock %}
 
