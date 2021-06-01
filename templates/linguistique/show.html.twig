@@ -15,14 +15,7 @@
                 <label for="reponseUtilisateur">Placez les pictos dans le bon ordre :</label>
 
 
-                {# #}{# Emplacements vides #}
-                {# #}{# TODO : enlever les span #}
-                {# <div class="droppable-elements"> #}
-                {# {% for picto in enigmeRandom.solution.label %} #}
-                {# <div class="pictoUrlImage draggable" ondragstart="drag(event)" #}
-                {# draggable="true">{{ picto.label }}</div> #}
-                {# {% endfor %} #}
-                {# </div> #}
+                {# Emplacements vides #}
                 <div class="droppable-elements" ondrop="drop(event)" ondragover="allowDrop(event)">
                     {% for picto in enigmeRandom.solution %}
                         <div class="droppable" ondrop="dropSave(event)" ondragover="allowDrop(event)"
@@ -30,9 +23,9 @@
                     {% endfor %}
                 </div>
 
-                {# Picto #}
+                {# Pictos : tous ceux de la BDD #}
                 <div class="draggable-elements" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    {% for picto in enigmeRandom.solution %}
+                    {% for picto in allPictos %}
                         <div class="picto" ondragstart="dragStart(event)"
                              draggable="true" id="{{ picto.id }}"
                              data-src="{{ picto.urlImage }}">{{ picto.label }}</div>

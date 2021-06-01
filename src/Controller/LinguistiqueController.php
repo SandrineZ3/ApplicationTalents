@@ -24,6 +24,7 @@ class LinguistiqueController extends AbstractController
      * @Route("/linguistique", name="linguistique")
      */
     public function linguistique(LinguistiqueRepository $linguistiqueRepository,
+                                 PictoRepository $pictoRepository,
                                  LevelOfDifficultyRepository $levelOfDifficultyRepository,
                                  Request $request,
                                  UserRepository $userRepository,
@@ -137,9 +138,12 @@ class LinguistiqueController extends AbstractController
             ]);
         }
 
+        $allPictos = $pictoRepository->findAll();
+
         return $this->render('linguistique/show.html.twig', [
             "enigmeRandom" => $enigmeRandom,
-            "tableauPictos" => $tableauPictos
+            "tableauPictos" => $tableauPictos,
+            "allPictos" => $allPictos
         ]);
     }
 
