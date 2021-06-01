@@ -3,7 +3,6 @@
 {% block title %}Les talents de {{ app.user.username }} | Verbo-Linguistique{% endblock %}
 
 {% block body %}
-
     <div class="title">
         <h1>Les talents de {{ app.user.username }}</h1>
         <h2>Nom du jeu énigmes Verbo-linguistiques</h2>
@@ -14,50 +13,74 @@
                 <p>{{ enigmeRandom.text }}</p>
                 <label for="reponseUtilisateur">Placez les pictos dans le bon ordre :</label>
 
-                {# Boucle for pour récupérer les pictos et emplacements ?? #}
-
                 {# Emplacements vides #}
-                {# TODO : enlever les span #}
-                <div class="droppable-elements">
-                    <div class="droppable" ondrop="drop(event)" ondragover="allowDrop(event)" data-draggable-id="frog">
-                        <span>Frog</span></div>
-                    <div class="droppable" ondrop="drop(event)" ondragover="allowDrop(event)" data-draggable-id="dove">
-                        <span>Bird</span></div>
-                    <div class="droppable" ondrop="drop(event)" ondragover="allowDrop(event)" data-draggable-id="cat">
-                        <span>Cat</span></div>
-                    <div class="droppable" ondrop="drop(event)" ondragover="allowDrop(event)" data-draggable-id="fish">
-                        <span>Fish</span></div>
-                    <div class="droppable" ondrop="drop(event)" ondragover="allowDrop(event)" data-draggable-id="dog">
-                        <span>Dog</span></div>
+                <div class="droppable-elements" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    {% for picto in enigmeRandom.solution %}
+                        <div class="droppable" ondrop="dropSave(event)" ondragover="allowDrop(event)" id="emplacementReponseUtilisateur"
+                             data-draggable-id={{ loop.index0 }}></div>
+                    {% endfor %}
+{#                    Input caché qui récupère la réponse de l'utilisateur #}
+                    <input type="hidden" id="reponseRecuperee" name="reponseEnigme" value="">
                 </div>
 
-                {# Picto #}
-                {% set pictos = tableauPictos %}
-                {% for picto in pictos %}
-                    <img src="{{ asset('images/linguistique_pictos/') }}" alt="image enigme">
-                {% endfor %}
-
+                {# Pictos : tous ceux de la BDD #}
                 <div class="draggable-elements" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <i class="fas fa-cat draggable" ondragstart="drag(event)" draggable="true" style="color: #ff6384;"
-                       id="cat"></i>
-                    <i class="fas fa-dog draggable" ondragstart="drag(event)" draggable="true" style="color: #36a2eb;"
-                       id="dog"></i>
-                    <i class="fas fa-dove draggable" ondragstart="drag(event)" draggable="true" style="color: #ffce30;"
-                       id="dove"></i>
-                    <i class="fas fa-fish draggable" ondragstart="drag(event)" draggable="true" style="color: #9966ff;"
-                       id="fish"></i>
-                    <i class="fas fa-frog draggable" ondragstart="drag(event)" draggable="true" style="color: #4bc0c0;"
-                       id="frog"></i>
+                    {% for picto in allPictos %}
+                        <div class="picto" ondragstart="dragStart(event)"
+                             draggable="true" id="{{ picto.id }}"
+                             data-src="{{ picto.urlImage }}">{{ picto.label }}</div>
+                    {% endfor %}
                 </div>
+
+                {% block javascripts %}
+                    <script>
+                        $('.picto').each(function () {
+                            let urlPicto = $(this).data('src');
+                            let pictoImage = urlPicto.trim();
+                            $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + pictoImage + '" alt="image picto"/>').insertAfter($(this));
+                            $(this).remove();
+                        });
+                    </script>
+
+{#Script qui récupère la réponse de l'utilisateur à partir de l'emplacement accueillant les pictos, puis l'injecte dans l'input caché#}
+                    <script>
+                            let reponseUtilisateur = document.getElementById('emplacementReponseUtilisateur').value;
+                            document.getElementById('reponseRecuperee').value = reponseUtilisateur;
+                            console.log(reponseUtilisateur);
+                    </script>
+                {% endblock %}
+
+
+                {# {% block javascripts %} #}
+                {# <script> #}
+                {# $('.picto').each(function () { #}
+                {# let urlImage = $(this).text().trim(); #}
+                {# $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" alt="image picto"/>').insertAfter($(this)); #}
+                {# $(this).remove(); #}
+                {# }); #}
+                {# </script> #}
+                {# {% endblock %} #}
+
+                {# <div class="draggable-elements" ondrop="drop(event)" ondragover="allowDrop(event)"> #}
+                {# <i class="fas fa-cat draggable" ondragstart="drag(event)" draggable="true" style="color: #ff6384;" #}
+                {# id="cat"></i> #}
+                {# <i class="fas fa-dog draggable" ondragstart="drag(event)" draggable="true" style="color: #36a2eb;" #}
+                {# id="dog"></i> #}
+                {# <i class="fas fa-dove draggable" ondragstart="drag(event)" draggable="true" style="color: #ffce30;" #}
+                {# id="dove"></i> #}
+                {# <i class="fas fa-fish draggable" ondragstart="drag(event)" draggable="true" style="color: #9966ff;" #}
+                {# id="fish"></i> #}
+                {# <i class="fas fa-frog draggable" ondragstart="drag(event)" draggable="true" style="color: #4bc0c0;" #}
+                {# id="frog"></i> #}
+                {# </div> #}
                 <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
             </form>
             <button id="buttonEnvoyer" class="button" onclick="requeteAjaxPostv2('#formEnigme', '#blockEnigme')">
                 Envoyer
             </button>
         </div>
-
+        <script>let tableau = new Array({{ enigmeRandom.solution | length }});</script>
         <script src="../templates/linguistique/content/dragAndDropApp.js"></script>
-
     </section>
 {% endblock %}
 

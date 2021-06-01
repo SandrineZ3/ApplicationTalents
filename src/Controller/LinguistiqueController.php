@@ -24,6 +24,7 @@ class LinguistiqueController extends AbstractController
      * @Route("/linguistique", name="linguistique")
      */
     public function linguistique(LinguistiqueRepository $linguistiqueRepository,
+                                 PictoRepository $pictoRepository,
                                  LevelOfDifficultyRepository $levelOfDifficultyRepository,
                                  Request $request,
                                  UserRepository $userRepository,
@@ -40,17 +41,18 @@ class LinguistiqueController extends AbstractController
         $indexRandom = array_rand($enigmes, 1);
         $enigmeRandom = $enigmes[$indexRandom];
 
-        // Test pour afficher tous les pictos implémentés
-        $pictos = new Picto();
-        $tableauPictos = [$pictos->getUrlImage()];
-
-        if ($request->get("reponseFacile")) {
+        if ($request->get("reponseEnigme")) {
             $user->setScoreLinguistique(0);
             $entityManager->flush();
-            $reponse = $request->get("reponseFacile");
+            $reponse = $request->get("reponseEnigme");
             $enigme = $linguistiqueRepository->find($request->get("idEnigme"));
 
-            if ($reponse == $enigme->getSolution()) {
+            $solution = $enigme->getSolution();
+            $tableauId = [];
+            foreach ($solution as $element) {
+                $tableauId[] = $element->getId();
+            }
+            if ($tableauId === $reponse) {
                 $pointGagnes = $enigme->getLevelOfDifficulty()->getPoints();
                 $user = $userRepository->find($this->getUser());
                 $scoreTemp = $user->getScoreLinguistique();
@@ -58,6 +60,17 @@ class LinguistiqueController extends AbstractController
                 $user->setScoreLinguistique($scoreCalcule);
                 $entityManager->flush();
             }
+
+//            if (isset($_GET["matchingOk"])){
+//                dump("Résultat correct !");
+////            if ($reponse == $enigme->getSolution()) {
+//                $pointGagnes = $enigme->getLevelOfDifficulty()->getPoints();
+//                $user = $userRepository->find($this->getUser());
+//                $scoreTemp = $user->getScoreLinguistique();
+//                $scoreCalcule = $scoreTemp + $pointGagnes;
+//                $user->setScoreLinguistique($scoreCalcule);
+//                $entityManager->flush();
+//            }
 
             // 2 = NIVEAU MOYEN
             $levelOfDifficulty = $levelOfDifficultyRepository->find(2);
@@ -121,9 +134,11 @@ class LinguistiqueController extends AbstractController
             ]);
         }
 
+        $allPictos = $pictoRepository->findAll();
+
         return $this->render('linguistique/show.html.twig', [
             "enigmeRandom" => $enigmeRandom,
-            "tableauPictos" => $tableauPictos
+            "allPictos" => $allPictos
         ]);
     }
 
