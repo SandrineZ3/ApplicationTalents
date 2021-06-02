@@ -3,10 +3,17 @@
 {% block title %}Nouvelle partie{% endblock %}
 
 {% block body %}
-    <h1>Nouvelle partie</h1>
-
-    {{ form_start(registrationForm) }}
-    {{ form_widget(registrationForm) }}
-    <button type="submit" class="btn">Nouvelle partie</button>
-    {{ form_end(registrationForm) }}
+    <div class="ui grid container h100 middle aligned">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+                <div class="ui colorApp segment">
+                    <h3 class="ui dividing header">Nouvelle partie</h3>
+                    {{ form_start(registrationForm) }}
+                    {{ form_widget(registrationForm) }}
+                    <button type="submit" class="button">Nouvelle partie</button>
+                    {{ form_end(registrationForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

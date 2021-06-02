@@ -3,14 +3,21 @@
 {% block title %}Reprendre{% endblock %}
 
 {% block body %}
-    <form action="{{ path('app_login') }}" method="post">
-        <h1 class="h3 mb-3 font-weight-normal">Reprendre</h1>
+    <div class="ui grid container h100 middle aligned">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+                <div class="ui colorApp segment">
+                    <h3 class="ui dividing header">Reprendre une partie</h3>
+                    <form action="{{ path('app_login') }}" method="post">
+                        <label for="inputUsername">Pseudo</label>
+                        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" autofocus>
+                        <input type="hidden" value="password" name="password" id="inputPassword" class="form-control">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        <label for="inputUsername">Pseudo</label>
-        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" autofocus>
-        <input type="hidden" value="password" name="password" id="inputPassword" class="form-control">
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-        <button class="btn btn-lg btn-primary" type="submit">C'est parti</button>
-    </form>
+                        <button class="button" type="submit">C'est parti</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
