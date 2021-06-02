@@ -1,11 +1,11 @@
-
+/* DIVERS */ 
 .title {
     text-align: center;
     margin-top: 50px;
     font-family: 'Architects Daughter', cursive;
 }
 
-
+/* BOUTONS */
 .button {
     width: 100px;
     height: 50px;
@@ -29,6 +29,7 @@
     -webkit-transform: translate(0px,1px);
 }
 
+/* CURSEURS */
 body {
     cursor: url("../images/divers/cursormini.png"), auto;
 }
