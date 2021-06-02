@@ -3,19 +3,16 @@
 {% block title %}Les talents de {{ app.user.username }} | Logico-Mathématique{% endblock %}
 
 {% block body %}
-    <h1>{{ parent() }}</h1>
-    <h2>Nom du jeu énigmes LogicoMathématiques</h2>
-
-    {# Afficher image de l'énigme + Input = formulaire pour enregistrement en BDD #}
-    <section>
-        <div id="blocEnigme">
-            <form id="formEnigme">
-                <img src="{{ asset('images/mathematique/') ~ enigmeRandom.urlImage }}" alt="">
-                <label for="reponseUtilisateur">Votre réponse :</label>
-                <input type="text" name="reponseFacile" required="required" id="reponseUtilisateur" autofocus>
-                <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
-            </form>
-            <button id="buttonEnvoyer" onclick="requeteAjaxPostv2('#formEnigme', '#blocEnigme')">Envoyer</button>
+    <div class="ui grid container h100 middle aligned">
+        <div class="row">
+            <div class="sixteen wide mobile twelve wide tablet ten wide computer centered column">
+                <div class="ui colorApp segment">
+                    <h3 class="ui dividing header">Mathématique</h3>
+                    <div id="blocEnigme">
+                        {% include("mathematique/content/formEnigme.html.twig") %}
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 {% endblock %}

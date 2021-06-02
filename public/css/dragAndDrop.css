@@ -2,15 +2,13 @@
     display: flex;
     justify-content: center;
     margin: 2rem;
-    margin-top: 100px;
-    height: 100px;
 }
 
 .droppable-elements{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 150px
+    margin-top: 25px
 }
 
 .draggable-elements img {

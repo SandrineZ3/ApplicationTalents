@@ -38,6 +38,7 @@ class MathematiqueController extends AbstractController
         // On récupère 1 énigme de maniere random dans tableau enigmes
         $indexRandom = array_rand($enigmes, 1);
         $enigmeRandom = $enigmes[$indexRandom];
+        $nomInput = "reponseFacile";
 
         if ($request->get("reponseFacile")) {
             $user->setScoreMathematique(0);
@@ -124,7 +125,8 @@ class MathematiqueController extends AbstractController
         }
 
         return $this->render('mathematique/show.html.twig', [
-            "enigmeRandom" => $enigmeRandom
+            "enigmeRandom" => $enigmeRandom,
+            "nomInput" => $nomInput
         ]);
     }
 

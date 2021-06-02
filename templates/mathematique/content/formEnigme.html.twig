@@ -1,7 +1,10 @@
-<form id="formEnigme">
-    <img src="{{ asset('images/mathematique/') ~ enigmeRandom.urlImage }}" alt="">
-    <label for="reponseUtilisateur">Votre réponse :</label>
-    <input type="text" name="{{ nomInput }}" required="required" id="reponseUtilisateur" autofocus>
+<form class="ui form" id="formEnigme">
+    <img src="{{ asset('images/mathematique/') ~ enigmeRandom.urlImage }}" alt="image enigme" width="100%">
+
+    <div class="field">
+        <label for="input">Réponse :</label>
+        <input type="text" name="{{ nomInput }}" id="input" placeholder="Réponse">
+    </div>
     <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
 </form>
-<button id="buttonEnvoyer" onclick="requeteAjaxPostv2('#formEnigme', '#blocEnigme')">Envoyer</button>
+<button class="ui button" id="buttonEnvoyer" onclick="requeteAjaxPostv2('#formEnigme', '#blocEnigme')">Envoyer</button>
