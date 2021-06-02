@@ -1,8 +1,30 @@
+html, body {
+    font-family: 'Architects Daughter', cursive;
+}
+
 /* DIVERS */
 .title {
     text-align: center;
     margin-top: 50px;
     font-family: 'Architects Daughter', cursive;
+}
+
+h1 {
+    font-size: 2.2em;
+    font-family: 'Architects Daughter', cursive;
+    font-weight: 20;
+}
+
+.ui.fluid.button {
+    font-size: 1.7em;
+    font-family: 'Architects Daughter', cursive;
+    font-weight: 100;
+    color : black;
+    border-radius: 255px 20px 225px 15px/13px 250px 20px 255px;
+}
+
+.ui.inverted.grey.segment {
+    border-radius: 255px 17px 225px 14px/13px 250px 7px 255px;
 }
 
 /* BOUTONS */
@@ -29,11 +51,22 @@
     -webkit-transform: translate(0px,1px);
 }
 
+/* Boutons validation réponses*/
+.ui.button {
+    font-size: 1.3em;
+    font-family: 'Architects Daughter', cursive;
+    font-weight: 100;
+    color : black;
+    border-radius: 255px 20px 225px 15px/13px 250px 20px 255px;
+    padding: 0;
+}
+
+
 /* CURSEURS */
 body {
     cursor: url("../images/divers/cursormini.png") 11 9, auto;
 }
 
-.button:hover {
-    cursor: url("../images/divers/pointermini.png") 20 7, auto;
+.button:hover, input:hover {
+    cursor: url("../images/divers/pointermini.png") 27 7, auto;
 }
