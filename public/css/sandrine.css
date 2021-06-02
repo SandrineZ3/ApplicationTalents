@@ -15,6 +15,12 @@ h1 {
     font-weight: 20;
 }
 
+h3 {
+    font-size: 2.2em !important;
+    font-family: 'Architects Daughter', cursive !important;
+    font-weight: 20 !important;
+}
+
 .ui.fluid.button {
     font-size: 1.7em;
     font-family: 'Architects Daughter', cursive;
@@ -37,7 +43,20 @@ h1 {
     margin-left: 70%;
     font-size: 1.4em;
     font-family: 'Architects Daughter', cursive;
+}
 
+#submitReponse {
+    padding: 0 !important;
+    margin-left: 81% !important;
+}
+.field label {
+    font-size: 1.4em !important;
+    margin-top : 30px !important;
+}
+
+.field input {
+    font-size: 1.2em !important;
+    margin-top : 15px !important;
 }
 
 .button:hover {
@@ -53,20 +72,26 @@ h1 {
 
 /* Boutons validation réponses*/
 .ui.button {
-    font-size: 1.3em;
+    font-size: 1.4em;
     font-family: 'Architects Daughter', cursive;
-    font-weight: 100;
+    font-weight: 10;
     color : black;
     border-radius: 255px 20px 225px 15px/13px 250px 20px 255px;
-    /*padding: 0;*/
 }
 
 
 /* CURSEURS */
-body {
-    cursor: url("../images/divers/cursormini.png") 11 9, auto;
+body, label:hover {
+    cursor: url("../images/divers/cursor.png") 8 9, auto;
 }
 
 .button:hover, input:hover {
-    cursor: url("../images/divers/pointermini.png") 27 7, auto;
+    cursor: url("../images/divers/pointer.png") 14 7, auto;
 }
+/**, html, body, input, input:hover, button, button:hover, iframe, label:hover  {*/
+/*    cursor: url("../images/divers/cursor.png") 11 9, auto ;!important*/
+/*}*/
+
+/*.colorApp {*/
+/*    background-color: #0e1821 !important;*/
+/*}*/
