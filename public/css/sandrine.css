@@ -1,4 +1,4 @@
-/* DIVERS */ 
+/* DIVERS */
 .title {
     text-align: center;
     margin-top: 50px;
@@ -31,9 +31,9 @@
 
 /* CURSEURS */
 body {
-    cursor: url("../images/divers/cursormini.png"), auto;
+    cursor: url("../images/divers/cursormini.png") 11 9, auto;
 }
 
 .button:hover {
-    cursor: url("../images/divers/pointermini.png"), auto;
+    cursor: url("../images/divers/pointermini.png") 20 7, auto;
 }
