@@ -1,8 +1,10 @@
 <form class="ui form" id="formEnigme">
-    <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage1 }}" alt="image enigme" width="100%">
-    <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage2 }}" alt="image enigme" width="100%">
-    <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage3 }}" alt="image enigme" width="100%">
-    <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage4 }}" alt="image enigme" width="100%">
+    <div class="fourImagesInOneBox">
+        <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage1 }}" alt="image enigme" width="100%">
+        <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage2 }}" alt="image enigme" width="100%">
+        <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage3 }}" alt="image enigme" width="100%">
+        <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage4 }}" alt="image enigme" width="100%">
+    </div>
 
     <div class="field">
         <label for="input">Réponse :</label>

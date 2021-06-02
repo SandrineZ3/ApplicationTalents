@@ -21,7 +21,7 @@ function init() {
     }
 
     if (document.querySelector('#pageLinguistique')) {
-        linguistiqueJS();
+        transformPictoIntoImage();
     }
 }
 
@@ -48,7 +48,7 @@ function starColorManagement() {
     });
 }
 
-function linguistiqueJS() {
+function transformPictoIntoImage() {
     $('.picto').each(function () {
         let urlPicto = $(this).data('src');
         let pictoImage = urlPicto.trim();

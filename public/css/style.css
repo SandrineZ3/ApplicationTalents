@@ -1,3 +1,20 @@
 .h100 {
     height: 100vh !important;
 }
+
+.colorApp {
+    background-color: #ffffff !important;
+}
+
+.fourImagesInOneBox {
+    height: 400px !important;
+    display: flex; !important;
+    flex-wrap: wrap; !important;
+    flex-direction: row; !important;
+}
+
+.fourImagesInOneBox img {
+    height: 50% !important;
+    width: 50% !important;
+    object-fit: cover !important;
+}
