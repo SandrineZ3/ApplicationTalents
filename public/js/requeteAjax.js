@@ -127,6 +127,7 @@ function requeteAjaxPostv2(selectorFormulaire, selectorReponse, modificationUrl=
 
         const contentPage = document.querySelector(selectorReponse);
         contentPage.innerHTML = data.content;
+        init();
 
         if (modificationUrl) {
             history.pushState({}, null, Url.pathname + "?" + Params.toString());
