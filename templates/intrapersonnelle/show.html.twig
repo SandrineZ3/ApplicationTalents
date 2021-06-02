@@ -3,7 +3,7 @@
 {% block title %}Enigme Intrapersonnelle{% endblock %}
 
 {% block body %}
-    <div class="ui grid container pad">
+    <div class="ui grid container pad" id="pageIntrapersonnelle">
         <div class="row">
             <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
                 <div class="ui segment">
@@ -21,14 +21,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    <script>
-        $("label").click(function(){
-            $(this).parent().find("label").css({"color": "lightgrey"});
-            $(this).css({"color": "orange"});
-            $(this).nextAll().css({"color": "orange"});
-        });
-    </script>
 {% endblock %}

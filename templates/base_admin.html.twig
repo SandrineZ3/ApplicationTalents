@@ -13,44 +13,25 @@
 </head>
 
 <body>
-{% include("inc/navbar-admin.html.twig") %}
-{% include("inc/message-flash.html.twig") %}
+<header>
+    {% include("inc/navbarAdmin.html.twig") %}
+    {% include("inc/messageFlash.html.twig") %}
+</header>
 
-<div class="pusher">
-    <div class="main-content">
-        {% block body %}{% endblock %}
+<main>
+    <div class="pusher">
+        <div class="main-content">
+            {% block body %}{% endblock %}
+        </div>
     </div>
-</div>
+</main>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <script src="{{ asset('js/requeteAjax.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 <script>
-    $(document).ready(function() {
-        $('.ui.checkbox').checkbox();
-
-        $('.sidebar-menu-toggler').on('click', function() {
-            let target = $(this).data('target');
-            $(target)
-                .sidebar({
-                    dinPage: true,
-                    transition: 'overlay',
-                    mobileTransition: 'overlay'
-                })
-                .sidebar('toggle');
-        });
-
-        setTimeout(function(){
-            $('.message.auto-close').closest('.message').transition('fade');
-        }, 10000 );
-    });
-
-    function removeMessage() {
-        $('.message.manuel-close').remove();
-    }
-    function afficherModalDelete() {
-        $('.mini.modal.trash').modal('show');
-    }
+    init();
 </script>
 {% block javascripts %}{% endblock %}
 </body>

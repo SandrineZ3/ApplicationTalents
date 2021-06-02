@@ -7,29 +7,30 @@
     <link rel="icon" type="image/png" href="{{ asset('images/divers/flavicon.png') }}"/>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=KoHo:wght@200&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/rating_stars.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/ratingStars.css') }}" rel="stylesheet">
     <link href="{{ asset('css/swup.css') }}" rel="stylesheet">
     <link href="{{ asset('css/particles.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styleLinguistiqueDragAndDrop.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/sandrine.css') }}">
-{#    <script src="linguistique/content/dragAndDropApp.js"></script>#}
+    {#    <script src="linguistique/content/dragAndDropApp.js"></script>#}
     {% block stylesheets %}{% endblock %}
 </head>
 
 <body>
 <header>
-    {% include("inc/message-flash.html.twig") %}
+    {% include("inc/messageFlash.html.twig") %}
 </header>
 
-<div id="particles-js"></div>
-<div class="transition-fade" id="swup">
-    {% block body %}{% endblock %}
-</div>
+<main>
+    <div id="particles-js"></div>
+    <div class="transition-fade" id="swup">
+        {% block body %}{% endblock %}
+    </div>
+</main>
 
 <footer>
     {% include("inc/footer.html.twig") %}
@@ -39,24 +40,14 @@
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-{#<script src="{{ asset('js/particles.js') }}"></script>#}
+<script src="{{ asset('js/particles.js') }}"></script>
 <script src="{{ asset('js/requeteAjax.js') }}"></script>
+<script src="{{ asset('js/dragAndDropApp.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 <script>
-    $(document).ready(function() {
-        $('.ui.checkbox').checkbox();
-
-        setTimeout(function(){
-            $('.message.auto-close').closest('.message').transition('fade');
-        }, 10000 );
-    });
-
-    function removeMessage() {
-        $('.message.manuel-close').remove();
-    }
-
-    // const swup = new Swup();
+    const swup = new Swup();
+    init();
+    swup.on('contentReplaced', init);
 </script>
-{% block javascripts %}{% endblock %}
 </body>
-
 </html>

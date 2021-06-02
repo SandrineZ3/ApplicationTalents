@@ -7,7 +7,8 @@
         <h1>Les talents de {{ app.user.username }}</h1>
         <h2>Nom du jeu énigmes Verbo-linguistiques</h2>
     </div>
-    <section>
+
+    <section id="pageLinguistique">
         <div id="blockEnigme">
             <form id="formEnigme">
                 <p>{{ enigmeRandom.text }}</p>
@@ -19,8 +20,6 @@
                         <div class="droppable" ondrop="dropSave(event)" ondragover="allowDrop(event)" id="emplacementReponseUtilisateur"
                              data-draggable-id={{ loop.index0 }}></div>
                     {% endfor %}
-{#                    Input caché qui récupère la réponse de l'utilisateur #}
-                    <input type="hidden" id="reponseRecuperee" name="{{ nomInput }}" value="">
                 </div>
 
                 {# Pictos : tous ceux de la BDD #}
@@ -33,56 +32,18 @@
                     {% endfor %}
                 </div>
 
-                {% block javascripts %}
-                    <script>
-                        $('.picto').each(function () {
-                            let urlPicto = $(this).data('src');
-                            let pictoImage = urlPicto.trim();
-                            let id = $(this).data('id');
-                            $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + pictoImage + '"draggable="true" ondragstart="dragStart(event)" id="' + id + '" alt="image picto"/>').insertAfter($(this));
-                            $(this).remove();
-                        });
-                    </script>
-
-{#Script qui récupère la réponse de l'utilisateur à partir de l'emplacement accueillant les pictos, puis l'injecte dans l'input caché#}
-{#                    <script>#}
-{#                            let reponseUtilisateur = document.getElementById('emplacementReponseUtilisateur').value;#}
-{#                            document.getElementById('reponseRecuperee').value = reponseUtilisateur;#}
-{#                            // console.log(reponseUtilisateur);#}
-{#                    </script>#}
-                {% endblock %}
-
-
-                {# {% block javascripts %} #}
-                {# <script> #}
-                {# $('.picto').each(function () { #}
-                {# let urlImage = $(this).text().trim(); #}
-                {# $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" alt="image picto"/>').insertAfter($(this)); #}
-                {# $(this).remove(); #}
-                {# }); #}
-                {# </script> #}
-                {# {% endblock %} #}
-
-                {# <div class="draggable-elements" ondrop="drop(event)" ondragover="allowDrop(event)"> #}
-                {# <i class="fas fa-cat draggable" ondragstart="drag(event)" draggable="true" style="color: #ff6384;" #}
-                {# id="cat"></i> #}
-                {# <i class="fas fa-dog draggable" ondragstart="drag(event)" draggable="true" style="color: #36a2eb;" #}
-                {# id="dog"></i> #}
-                {# <i class="fas fa-dove draggable" ondragstart="drag(event)" draggable="true" style="color: #ffce30;" #}
-                {# id="dove"></i> #}
-                {# <i class="fas fa-fish draggable" ondragstart="drag(event)" draggable="true" style="color: #9966ff;" #}
-                {# id="fish"></i> #}
-                {# <i class="fas fa-frog draggable" ondragstart="drag(event)" draggable="true" style="color: #4bc0c0;" #}
-                {# id="frog"></i> #}
-                {# </div> #}
+                {# Input caché qui récupère la réponse de l'utilisateur #}
+                <input type="hidden" id="reponseRecuperee" name="{{ nomInput }}" value="">
                 <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
             </form>
             <button id="buttonEnvoyer" class="button" onclick="requeteAjaxPostv2('#formEnigme', '#blockEnigme')">
                 Envoyer
             </button>
         </div>
-        <script>let tableau = new Array({{ enigmeRandom.solution | length }});</script>
-        <script src="{{ asset('js/dragAndDropApp.js') }}"></script>
+
     </section>
+
+    <script>let tableauReponse = Array({{ enigmeRandom.solution | length }});</script>
+    <script>let racineUrlPicto = "{{ asset('images/linguistique_pictos/') }}";</script>
 {% endblock %}
 
