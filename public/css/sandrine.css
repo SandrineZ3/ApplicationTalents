@@ -29,3 +29,10 @@
     -webkit-transform: translate(0px,1px);
 }
 
+body {
+    cursor: url("../images/divers/cursormini.png"), auto;
+}
+
+.button:hover {
+    cursor: url("../images/divers/pointermini.png"), auto;
+}
