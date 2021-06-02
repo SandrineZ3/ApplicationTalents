@@ -7,7 +7,7 @@
             <div class="field">
                 {#                <div class="ui radio checkbox">#}
                 <input type="radio" name="{{ nomInput }}" tabindex="0" class="hidden" value="{{ emoticon.id }}">
-                <label>{{ emoticon.label }}</label>
+                <label>{{ emoticon.urlImage }}--{{ emoticon.label }}</label>
                 {#                </div>#}
             </div>
         {% endfor %}
