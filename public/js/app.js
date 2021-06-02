@@ -60,7 +60,7 @@ function transformPictoIntoImage() {
         let urlPicto = $(this).data('src');
         let pictoImage = urlPicto.trim();
         let id = $(this).data('id');
-        $("<img width='75px' src='" + racineUrlPicto + pictoImage + "' draggable='true' ondragstart='dragStart(event)' id='" + id + "' alt='image picto'/>").insertAfter($(this));
+        $("<img width='75px' src='" + "images/linguistique_pictos/" + pictoImage + "' draggable='true' ondragstart='dragStart(event)' id='" + id + "' alt='image picto'/>").insertAfter($(this));
         $(this).remove();
     });
 }
@@ -70,8 +70,7 @@ function transformEmoticonIntoImage() {
         let text = $(this).text().trim();
         let urlImage = text.split('--')[0];
         let label = text.split('--')[1];
-        $("<img width='75px' src='" + racineUrlPicto + urlImage + "' class='popup' data-content='" + label + "' data-position='top left' alt='image emoticone'/>").insertAfter($(this));
-        // $('<img width="75px" src="{{ asset('images/emoticon/') }}' + urlImage + '" class="popup" alt="image emoticone" data-content="'+ label +'" data-position="top left"/>').insertAfter($(this));
+        $("<img width='75px' src='" + "images/emoticon/" + urlImage + "' class='popup' data-content='" + label + "' data-position='top left' alt='image emoticone'/>").insertAfter($(this));
         $(this).remove();
     });
     $('.popup').popup();
