@@ -91,8 +91,8 @@ body, label:hover {
     cursor: url("../images/divers/cursor.png") 8 9, auto;
 }
 
-.button:hover, input:hover {
-    cursor: url("../images/divers/pointer.png") 14 7, auto;
+.button:hover, input:hover, .rating>label:hover {
+    cursor: url("../images/divers/pointer.png") 14 7, auto !important;
 }
 /**, html, body, input, input:hover, button, button:hover, iframe, label:hover  {*/
 /*    cursor: url("../images/divers/cursor.png") 11 9, auto ;!important*/
