@@ -1,6 +1,12 @@
 .rating {
     border: none;
-    margin: 0 0 0 28px;
+    /*padding: 10px;*/
+    /*margin: 0 0 0 28px;*/
+    /*margin: 14px;*/
+}
+
+.rating > .label {
+    padding: 0 5px 0 50px;
 }
 
 .rating > input {
@@ -8,7 +14,7 @@
 }
 
 .rating > label:before {
-    margin-top: 2px;
+    /*margin-top: 2px;*/
     padding: 0 5px 0 5px;
     font-size: 30px;
     font-family: "Font Awesome 5 Free", serif;
@@ -20,8 +26,8 @@
 .rating > label {
     color: lightgrey;
     float: right;
-    margin: 4px 1px 0 0;
-    height: 25px;
+    /*margin: 4px 1px 0 0;*/
+    /*height: 25px;*/
 }
 
 /* hover current star */

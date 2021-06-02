@@ -1,14 +1,7 @@
-body {
-    margin: 0;
-    font: normal 75% Arial,Helvetica,sans-serif;
-}
-
-canvas {
+#particles-js > canvas {
     display: block;
-    vertical-align: bottom;
+    /*vertical-align: bottom;*/
 }
-
-/* ---- particles.js container ---- */
 
 #particles-js {
     position: absolute;
@@ -22,42 +15,4 @@ canvas {
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-/* ---- stats.js ---- */
-
-.count-particles {
-    position: absolute;
-    top: 48px;
-    left: 0;
-    width: 80px;
-    padding-bottom: 2px;
-    text-align: left;
-    text-indent: 4px;
-    font-family: Helvetica,Arial,sans-serif;
-    font-size: .8em;
-    font-weight: bold;
-    line-height: 14px;
-    color: #13E8E9;
-    background: #002;
-}
-
-.js-count-particles {
-    font-size: 1.1em;
-}
-
-#stats,
-.count-particles {
-    margin-top: 5px;
-    margin-left: 5px;
-    -webkit-user-select: none;
-}
-
-#stats {
-    border-radius: 3px 3px 0 0;
-    overflow: hidden;
-}
-
-.count-particles {
-    border-radius: 0 0 3px 3px;
 }
