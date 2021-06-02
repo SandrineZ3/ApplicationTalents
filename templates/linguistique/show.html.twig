@@ -3,47 +3,23 @@
 {% block title %}Les talents de {{ app.user.username }} | Verbo-Linguistique{% endblock %}
 
 {% block body %}
-    <div class="title">
-        <h1>Les talents de {{ app.user.username }}</h1>
-        <h2>Nom du jeu énigmes Verbo-linguistiques</h2>
-    </div>
+{#    <div class="title">#}
+{#        <h1>Les talents de {{ app.user.username }}</h1>#}
+{#    </div>#}
 
-    <section id="pageLinguistique">
-        <div id="blockEnigme">
-            <form id="formEnigme">
-                <p>{{ enigmeRandom.text }}</p>
-                <label for="reponseUtilisateur">Placez les pictos dans le bon ordre :</label>
-
-                {# Emplacements vides #}
-                <div class="droppable-elements" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    {% for picto in enigmeRandom.solution %}
-                        <div class="droppable" ondrop="dropSave(event)" ondragover="allowDrop(event)" id="emplacementReponseUtilisateur"
-                             data-draggable-id={{ loop.index0 }}></div>
-                    {% endfor %}
+    <div class="ui grid container h100 middle aligned" id="pageLinguistique">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet ten wide computer centered column">
+                <div class="ui colorApp segment">
+                    <h3 class="ui dividing header">Linguistique</h3>
+                    <div id="blocEnigme">
+                        {% include("linguistique/content/formEnigme.html.twig") %}
+                    </div>
                 </div>
-
-                {# Pictos : tous ceux de la BDD #}
-                <div class="draggable-elements" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    {% for picto in allPictos %}
-                        <div class="picto" ondragstart="dragStart(event)"
-                             draggable="true" id="{{ picto.id }}"
-                             data-id ="{{ picto.id }}"
-                             data-src="{{ picto.urlImage }}">{{ picto.label }}</div>
-                    {% endfor %}
-                </div>
-
-                {# Input caché qui récupère la réponse de l'utilisateur #}
-                <input type="hidden" id="reponseRecuperee" name="{{ nomInput }}" value="">
-                <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
-            </form>
-            <button id="buttonEnvoyer" class="button" onclick="requeteAjaxPostv2('#formEnigme', '#blockEnigme')">
-                Envoyer
-            </button>
+            </div>
         </div>
-
-    </section>
+    </div>
 
     <script>let tableauReponse = Array({{ enigmeRandom.solution | length }});</script>
     <script>let racineUrlPicto = "{{ asset('images/linguistique_pictos/') }}";</script>
 {% endblock %}
-
