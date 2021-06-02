@@ -1,16 +1,19 @@
-const draggableElements = document.querySelectorAll(".draggable");
-const droppableElements = document.querySelectorAll(".droppable");
+// function initDragAndDrop() {
+//     const draggableElements = document.querySelectorAll(".draggable");
+//     const droppableElements = document.querySelectorAll(".droppable");
+//
+//     draggableElements.forEach(elem => {
+//         elem.addEventListener("dragstart", dragStart);
+//     });
+//
+//     droppableElements.forEach(elem => {
+//         elem.addEventListener("dragenter", dragEnter); // quand on rentre dans une case autre
+//         elem.addEventListener("dragover", dragOver); // quand on maintient l'élément sur une cible de drop
+//         elem.addEventListener("dragleave", dragLeave); // quand on quitte la case d'origine
+//         elem.addEventListener("drop", drop); // quand on drop l'element dans une box
+//     });
+// }
 
-draggableElements.forEach(elem => {
-    elem.addEventListener("dragstart", dragStart);
-});
-
-droppableElements.forEach(elem => {
-    elem.addEventListener("dragenter", dragEnter); // quand on rentre dans une case autre
-    elem.addEventListener("dragover", dragOver); // quand on maintient l'élément sur une cible de drop
-    elem.addEventListener("dragleave", dragLeave); // quand on quitte la case d'origine
-    elem.addEventListener("drop", drop); // quand on drop l'element dans une box
-});
 
 // Drag and Drop Fonctions
 function allowDrop(event) {
@@ -49,8 +52,8 @@ function dropSave(event) {
     const draggableElementData = event.dataTransfer.getData("text");
     event.target.appendChild((document.getElementById(draggableElementData)));
     let droppableElementData = event.target.getAttribute("data-draggable-id");
-    tableau[droppableElementData] = draggableElementData;
-    document.getElementById('reponseRecuperee').value = tableau;
+    tableauReponse[droppableElementData] = draggableElementData;
+    document.getElementById('reponseRecuperee').value = tableauReponse;
 }
 
 function drop(event) {
