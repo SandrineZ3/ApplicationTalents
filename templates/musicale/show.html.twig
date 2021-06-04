@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Enigme Musicale{% endblock %}
+
+{% block body %}
+    <div class="ui grid container h100 middle aligned" id="pageMusicale">
+        <div class="row">
+            <div class="sixteen wide mobile twelve wide tablet ten wide computer centered column">
+                <div class="ui colorApp segment">
+                    <h3 class="ui dividing header">Musicale</h3>
+                    <div id="blocEnigme">
+                        {% include("musicale/content/formEnigme.html.twig") %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

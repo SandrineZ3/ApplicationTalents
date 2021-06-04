@@ -54,6 +54,11 @@ class LevelOfDifficulty
      */
     private $linguistiques;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Musicale::class, mappedBy="levelOfDifficulty")
+     */
+    private $musicales;
+
     public function __construct()
     {
         $this->visuoSpatiales = new ArrayCollection();
@@ -61,6 +66,7 @@ class LevelOfDifficulty
         $this->mathematiques = new ArrayCollection();
         $this->interpersonnelles = new ArrayCollection();
         $this->linguistiques = new ArrayCollection();
+        $this->musicales = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -236,6 +242,36 @@ class LevelOfDifficulty
             // set the owning side to null (unless already changed)
             if ($linguistique->getLevelOfDifficulty() === $this) {
                 $linguistique->setLevelOfDifficulty(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Musicale[]
+     */
+    public function getMusicales(): Collection
+    {
+        return $this->musicales;
+    }
+
+    public function addMusicale(Musicale $musicale): self
+    {
+        if (!$this->musicales->contains($musicale)) {
+            $this->musicales[] = $musicale;
+            $musicale->setLevelOfDifficulty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMusicale(Musicale $musicale): self
+    {
+        if ($this->musicales->removeElement($musicale)) {
+            // set the owning side to null (unless already changed)
+            if ($musicale->getLevelOfDifficulty() === $this) {
+                $musicale->setLevelOfDifficulty(null);
             }
         }
 

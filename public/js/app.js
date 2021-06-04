@@ -30,6 +30,25 @@ function init() {
         console.log('pageInterpersonnelle');
         transformEmoticonIntoImage();
     }
+
+    if (document.querySelector('#pageMusicale')) {
+        console.log('pageMusicale');
+        tonesManager();
+    }
+}
+
+function onOffAudioBackground() {
+    let buttonOnOff = $('#audioBackgroundButton');
+    if (audioBackground.playing()) {
+        audioBackground.pause();
+        buttonOnOff.children().removeClass("volume up");
+        buttonOnOff.children().addClass("volume off");
+    }
+    else {
+        audioBackground.play();
+        buttonOnOff.children().removeClass("volume off");
+        buttonOnOff.children().addClass("volume up");
+    }
 }
 
 function removeMessage() {
@@ -74,4 +93,27 @@ function transformEmoticonIntoImage() {
         $(this).remove();
     });
     $('.popup').popup();
+}
+
+function tonesManager() {
+    let cols = 6;
+    let rows = 4;
+    let noteDiv = $('.note');
+    let tones = [];
+
+    for (let i = 0; i < rows; i++) {
+        tones[i] = new Howl({
+            src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.mp3',
+                'https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.ogg']
+        });
+    }
+
+    playNote(cols, tones);
+    if (document.querySelector('#musicale_form_numberOfRows')) {
+        adminControls();
+        userControls(noteDiv, '#musicale_form_solution');
+    }
+    else {
+        userControls(noteDiv, '#reponseRecuperee');
+    }
 }

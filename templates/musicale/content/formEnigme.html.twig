@@ -1,0 +1,55 @@
+{% set rows = 3 %}
+{% set cols = 6 %}
+{% set speed = 0.5 %}
+
+<style>
+    .holderContainer {
+        width: {{ cols * 85 }}px;
+    }
+    .holderContainer .holder {
+        -webkit-animation: line {{ cols * speed }}s linear infinite;
+        animation: line {{ cols * speed }}s linear infinite;
+    }
+    {% for i in 0..cols-1 %}
+    .holderContainer .holder:nth-child({{ cols }}n+{{ i }}) {
+        -webkit-animation-delay: {{ i * speed }}s;
+        animation-delay: {{ i * speed }}s;
+    }
+    {% endfor %}
+</style>
+
+<form class="ui form" id="formEnigme">
+    <div class="ui grid">
+        <div class="row">
+            <div class="column">
+                <div class="holderContainer" id="holderContainer">
+                    {% for j in 0..rows-1 %}
+                        {% for i in 0..cols-1 %}
+                            <div class="holder" data-note="{{ j }}">
+                                <div class="note">
+                                    <div class="ripple"></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="eight wide column">
+                <div class="button" id="audio">
+                    <i class="volume up icon"></i>
+                </div>
+            </div>
+            <div class="eight wide column">
+                <div class="button" id="reset">
+                    <i class="redo alternate icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="idEnigme" value="id">
+    <input type="text" name="reponse" value="" id="reponseRecuperee">
+
+</form>
+<button class="button" id="submitReponse" onclick="requeteAjaxPostv2('#formEnigme', '#blocEnigme')">Envoyer</button>

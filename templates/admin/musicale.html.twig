@@ -1,0 +1,14 @@
+{% extends 'admin/layouts/gabarit.html.twig' %}
+
+{% set nameEnigme = 'Musicale' %}
+{% set nameEnigmeRoute = 'musicale' %}
+
+{% block visuel %}
+{#    <div class="ui fluid image oneImageInOneBox">#}
+{#        <img src="{{ asset('images/mathematique/') ~ enigme.urlImage }}" alt="image enigme">#}
+{#    </div>#}
+{% endblock %}
+
+{% block solution %}
+    {{ enigme.solution }}
+{% endblock %}
