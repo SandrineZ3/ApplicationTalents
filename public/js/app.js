@@ -17,23 +17,19 @@ function init() {
     }
 
     if (document.querySelector('#pageIntrapersonnelle')) {
-        console.log('pageIntrapersonnelle');
         starColorManagement();
     }
 
     if (document.querySelector('#pageLinguistique')) {
-        console.log('pageLinguistique');
         transformPictoIntoImage();
     }
 
     if (document.querySelector('#pageInterpersonnelle')) {
-        console.log('pageInterpersonnelle');
         transformEmoticonIntoImage();
     }
 
     if (document.querySelector('#pageMusicale')) {
-        console.log('pageMusicale');
-        loadNumberOfNote(0.5, '#musicale_form_solution');
+        loadNumberOfNote();
     }
 }
 
@@ -93,30 +89,4 @@ function transformEmoticonIntoImage() {
         $(this).remove();
     });
     $('.popup').popup();
-}
-
-function tonesManager() {
-    let numberOfRows = $('#holderContainer .row').length;
-    let note = $('.note');
-    let numberOfColumns = note.length / numberOfRows;
-    let speed = 0.5;
-    let idInputSolutionAdmin = '#musicale_form_solution';
-    let idInputReponseUser = '#reponseRecuperee';
-    let tones = [];
-
-    for (let i = 0; i < numberOfRows; i++) {
-        tones[i] = new Howl({
-            src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.mp3',
-                'https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.ogg']
-        });
-    }
-
-    playNote(numberOfColumns, tones);
-    if (document.querySelector('#musicale_form_numberOfRows')) {
-        adminControls(speed, idInputSolutionAdmin);
-        userControls(note, idInputSolutionAdmin);
-    }
-    else {
-        userControls(note, idInputReponseUser);
-    }
 }

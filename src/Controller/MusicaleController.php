@@ -35,7 +35,7 @@ class MusicaleController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'énigme a bien été enregistrée');
-            return $this->redirectToRoute('mathematique_create');
+            return $this->redirectToRoute('admin_musicale');
         }
 
         return $this->render('musicale/create.html.twig', [

@@ -1,3 +1,38 @@
+let speed = 0.5;
+let idInputSolutionAdmin = '#musicale_form_solution';
+let idInputReponseUser = '#reponseRecuperee';
+
+function loadNumberOfNote() {
+    let holderContainerDiv = $('#holderContainer');
+    let numberOfRows = holderContainerDiv.attr('data-row');
+    let numberOfColumns = holderContainerDiv.attr('data-col');
+    $('body').prepend('<style></style>');
+    let noteCode = $(idInputSolutionAdmin).val();
+
+    changeNumberOfNote(numberOfRows, numberOfColumns);
+    importMelody(noteCode);
+}
+
+function tonesManager(numberOfRows, numberOfColumns) {
+    let tones = [];
+
+    for (let i = 0; i < numberOfRows; i++) {
+        tones[i] = new Howl({
+            src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.mp3',
+                'https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.ogg']
+        });
+    }
+
+    playNote(numberOfColumns, tones);
+    if (document.querySelector(idInputSolutionAdmin)) {
+        adminControls();
+        userControls(idInputSolutionAdmin);
+    }
+    else {
+        userControls(idInputReponseUser);
+    }
+}
+
 function playNote(numberOfColumns, tones) {
     for (let i = 0; i < numberOfColumns; i++) {
         $('#holderContainer .holder:nth-child(' + numberOfColumns + 'n + ' + i + ')').
@@ -14,17 +49,21 @@ function playNote(numberOfColumns, tones) {
     }
 }
 
-function userControls(note, idInput) {
-    $(note).on('click', function () {
+function userControls(idInput) {
+    $('.note').on('click', function () {
         $(this).toggleClass("active");
         $(this).parent().toggleClass("active");
         exportMelody(idInput);
     });
-    $('#reset').on('click', function () {
+    let resetButton = $('#reset');
+    resetButton.off();
+    resetButton.on('click', function () {
         $('.active').removeClass('active');
         exportMelody(idInput);
     });
-    $('#audio').on('click', function () {
+    let audioButton = $('#audio');
+    audioButton.off();
+    audioButton.on('click', function () {
         if ($(this).hasClass("mute")) {
             Howler.mute(false);
             $(this).children().removeClass("volume off");
@@ -39,50 +78,49 @@ function userControls(note, idInput) {
     });
 }
 
-function adminControls(speed, idInput) {
+function adminControls() {
     $('#musicale_form_numberOfRows').on('change', function () {
-        editNumberOfNote(speed, idInput);
+        editNumberOfNote();
     });
     $('#musicale_form_numberOfColumns').on('change', function () {
-        editNumberOfNote(speed, idInput);
+        editNumberOfNote();
     });
 }
 
-function loadNumberOfNote(speed, idInput) {
-    let numberOfRows = $('#holderContainer').attr('data-row');
-    let numberOfColumns = $('#holderContainer').attr('data-col');
-    $("body").prepend('<style></style>');
-    changeNumberOfNote(speed, idInput, numberOfRows, numberOfColumns);
+function editNumberOfNote() {
+    let numberOfColumnsDiv = $('#musicale_form_numberOfColumns');
+    if (numberOfColumnsDiv.val() < 2) {
+        numberOfColumnsDiv.val(2);
+    }
+    if (numberOfColumnsDiv.val() > 20) {
+        numberOfColumnsDiv.val(20);
+    }
+
+    let numberOfRowsDiv = $('#musicale_form_numberOfRows');
+    if (numberOfRowsDiv.val() < 1) {
+        numberOfRowsDiv.val(1);
+    }
+    if (numberOfRowsDiv.val() > 6) {
+        numberOfRowsDiv.val(6);
+    }
+
+    changeNumberOfNote(numberOfRowsDiv.val(), numberOfColumnsDiv.val());
 }
 
-function editNumberOfNote(speed, idInput) {
-    let numberOfRows = $('#musicale_form_numberOfRows').val();
-    let numberOfColumns = $('#musicale_form_numberOfColumns').val();
-    if (numberOfColumns < 2) {
-        $('#musicale_form_numberOfColumns').val(2);
-    }
-    if (numberOfColumns > 20) {
-        $('#musicale_form_numberOfColumns').val(20);
-    }
-    if (numberOfRows < 1) {
-        $('#musicale_form_numberOfRows').val(1);
-    }
-    if (numberOfRows > 6) {
-        $('#musicale_form_numberOfRows').val(6);
-    }
-    changeNumberOfNote(speed, idInput, numberOfRows, numberOfRows);
-}
-
-function changeNumberOfNote(speed, idInput, numberOfRows, numberOfColumns) {
-    $("#holderContainer").children().remove();
+function changeNumberOfNote(numberOfRows, numberOfColumns) {
+    let holderContainerDiv = $("#holderContainer");
+    holderContainerDiv.children().remove();
     for (let j = 0; j < numberOfRows; j++) {
-        $('#holderContainer').append('<div class="row"></div>');
+        holderContainerDiv.append('<div class="row"></div>');
+        let notesOnTheRow = '';
         for (let i = 0; i < numberOfColumns; i++) {
-            $('#holderContainer .row').last().append('<div class="holder" data-note="' + j + '"><div class="note"><div class="ripple"></div></div></div>');
+            notesOnTheRow += '<div class="holder" data-note="' + j + '"><div class="note"><div class="ripple"></div></div></div>';
         }
+        $('#holderContainer .row').last().append(notesOnTheRow);
     }
 
-    $("style").empty();
+    let styleBalise = $('style');
+    styleBalise.empty();
     let property1 = ".holder {" +
         "   width: " + ((100 / numberOfColumns) - 0.5) + "%;" +
         "}";
@@ -95,10 +133,10 @@ function changeNumberOfNote(speed, idInput, numberOfRows, numberOfColumns) {
             "   animation-delay: " + h * speed + "s;" +
             "}";
     }
-    $("style").append(property1 + property2 + property3);
-    $(idInput).val('');
+    styleBalise.append(property1 + property2 + property3);
+    $(idInputSolutionAdmin).val('');
 
-    tonesManager();
+    tonesManager(numberOfRows, numberOfColumns);
 }
 
 function exportMelody(idInput) {
@@ -136,47 +174,25 @@ function exportMelody(idInput) {
     $(idInput).val(noteCode);
 }
 
-function importMelody() {
-    let noteCode = '',
-        noteState,
-        error = false,
-        note;
+function importMelody(noteCode) {
+    $(idInputSolutionAdmin).val(noteCode);
 
-    noteCode = dialog.find('textarea#importCode').val();
-    dialog.dialog("close");
+    let splitCode = noteCode.split(' ');
 
-    noteCode = noteCode.replace("[", "");
-    noteCode = noteCode.replace("]", "");
+    let holder = document.querySelectorAll('.holder');
+    let currentIndex = 0;
 
-    if (noteCode.charAt(0) === ":")
-        noteState = 1;
-    else if (noteCode.charAt(0) === ";")
-        noteState = 0;
-    else {
-        alert("Your note code wasn't recognised");
-        error = true;
-    }
-
-    if (!error) {
-        $('.active').removeClass('active');
-        noteCode = noteCode.substr(1);
-        var splitCode = noteCode.split(/:|;/g);
-        var noteCounter = 0;
-
-        for (i = 0; i < splitCode.length; i++) {
-            var currNum = parseInt(splitCode[i]);
-
-            if (noteState) {
-                for (var n = 0; n < currNum; n++) {
-                    noteCounter++;
-                    note = $('#board span:nth-child(' + noteCounter + ')');
-                    note.addClass('active');
-                    note.children().addClass('active');
-                }
-            } else {
-                noteCounter = noteCounter + currNum;
+    for (let i = 0; i < splitCode.length; i++) {
+        let currentNoteCode = parseInt(splitCode[i]);
+        if (currentNoteCode > 0) {
+            for (let k = 0; k < currentNoteCode; k++) {
+                holder[currentIndex].className += ' active';
+                holder[currentIndex].firstChild.className += ' active';
+                currentIndex++;
             }
-            noteState = !noteState;
+        }
+        else {
+            currentIndex += Math.abs(currentNoteCode);
         }
     }
 }

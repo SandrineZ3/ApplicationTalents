@@ -3,7 +3,7 @@
 {% block title %}Modifier énigme Musicale{% endblock %}
 
 {% block body %}
-    <div class="ui grid container pad">
+    <div class="ui grid container pad" id="pageMusicale">
         <div class="row">
             <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
                 <div class="ui segment">
@@ -14,6 +14,26 @@
                     </div>
                     <div class="field">
                         {{ form_row(musicaleForm.numberOfColumns) }}
+                    </div>
+                    <div class="ui grid">
+                        <div class="row">
+                            <div class="column">
+                                <div class="holderContainer" id="holderContainer" data-col="{{ musicale.numberOfColumns }}" data-row="{{ musicale.numberOfRows }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="eight wide column">
+                                <div class="button" id="audio">
+                                    <i class="volume up icon"></i>
+                                </div>
+                            </div>
+                            <div class="eight wide column">
+                                <div class="button" id="reset">
+                                    <i class="redo alternate icon"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="field">
                         {{ form_row(musicaleForm.solution) }}
