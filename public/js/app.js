@@ -33,7 +33,7 @@ function init() {
 
     if (document.querySelector('#pageMusicale')) {
         console.log('pageMusicale');
-        tonesManager();
+        loadNumberOfNote(0.5, '#musicale_form_solution');
     }
 }
 
@@ -96,24 +96,27 @@ function transformEmoticonIntoImage() {
 }
 
 function tonesManager() {
-    let cols = 6;
-    let rows = 4;
-    let noteDiv = $('.note');
+    let numberOfRows = $('#holderContainer .row').length;
+    let note = $('.note');
+    let numberOfColumns = note.length / numberOfRows;
+    let speed = 0.5;
+    let idInputSolutionAdmin = '#musicale_form_solution';
+    let idInputReponseUser = '#reponseRecuperee';
     let tones = [];
 
-    for (let i = 0; i < rows; i++) {
+    for (let i = 0; i < numberOfRows; i++) {
         tones[i] = new Howl({
             src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.mp3',
                 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.ogg']
         });
     }
 
-    playNote(cols, tones);
+    playNote(numberOfColumns, tones);
     if (document.querySelector('#musicale_form_numberOfRows')) {
-        adminControls();
-        userControls(noteDiv, '#musicale_form_solution');
+        adminControls(speed, idInputSolutionAdmin);
+        userControls(note, idInputSolutionAdmin);
     }
     else {
-        userControls(noteDiv, '#reponseRecuperee');
+        userControls(note, idInputReponseUser);
     }
 }

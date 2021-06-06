@@ -1,6 +1,6 @@
-function playNote(cols, tones) {
-    for (let i = 0; i < cols; i++) {
-        $('#holderContainer .holder:nth-child(' + cols + 'n + ' + i + ')').
+function playNote(numberOfColumns, tones) {
+    for (let i = 0; i < numberOfColumns; i++) {
+        $('#holderContainer .holder:nth-child(' + numberOfColumns + 'n + ' + i + ')').
         on('webkitAnimationIteration mozAnimationIteration animationiteration',
             function () {
                 if ($(this).hasClass('active')) {
@@ -14,8 +14,8 @@ function playNote(cols, tones) {
     }
 }
 
-function userControls(noteDiv, idInput) {
-    $(noteDiv).on('click', function () {
+function userControls(note, idInput) {
+    $(note).on('click', function () {
         $(this).toggleClass("active");
         $(this).parent().toggleClass("active");
         exportMelody(idInput);
@@ -39,28 +39,69 @@ function userControls(noteDiv, idInput) {
     });
 }
 
-function adminControls() {
-    $('#musicale_form_numberOfRows').on('click', function () {
-        editNumberOfNote();
+function adminControls(speed, idInput) {
+    $('#musicale_form_numberOfRows').on('change', function () {
+        editNumberOfNote(speed, idInput);
     });
-    $('#musicale_form_numberOfColumns').on('click', function () {
-        editNumberOfNote();
+    $('#musicale_form_numberOfColumns').on('change', function () {
+        editNumberOfNote(speed, idInput);
     });
 }
 
-function editNumberOfNote() {
-    $("#holderContainer").children().remove();
+function loadNumberOfNote(speed, idInput) {
+    let numberOfRows = $('#holderContainer').attr('data-row');
+    let numberOfColumns = $('#holderContainer').attr('data-col');
+    $("body").prepend('<style></style>');
+    changeNumberOfNote(speed, idInput, numberOfRows, numberOfColumns);
+}
+
+function editNumberOfNote(speed, idInput) {
     let numberOfRows = $('#musicale_form_numberOfRows').val();
     let numberOfColumns = $('#musicale_form_numberOfColumns').val();
+    if (numberOfColumns < 2) {
+        $('#musicale_form_numberOfColumns').val(2);
+    }
+    if (numberOfColumns > 20) {
+        $('#musicale_form_numberOfColumns').val(20);
+    }
+    if (numberOfRows < 1) {
+        $('#musicale_form_numberOfRows').val(1);
+    }
+    if (numberOfRows > 6) {
+        $('#musicale_form_numberOfRows').val(6);
+    }
+    changeNumberOfNote(speed, idInput, numberOfRows, numberOfRows);
+}
+
+function changeNumberOfNote(speed, idInput, numberOfRows, numberOfColumns) {
+    $("#holderContainer").children().remove();
     for (let j = 0; j < numberOfRows; j++) {
+        $('#holderContainer').append('<div class="row"></div>');
         for (let i = 0; i < numberOfColumns; i++) {
-            $('#holderContainer').append('<div class="holder" data-note="' + j + '"><div class="note"><div class="ripple"></div></div></div>');
+            $('#holderContainer .row').last().append('<div class="holder" data-note="' + j + '"><div class="note"><div class="ripple"></div></div></div>');
         }
     }
+
+    $("style").empty();
+    let property1 = ".holder {" +
+        "   width: " + ((100 / numberOfColumns) - 0.5) + "%;" +
+        "}";
+    let property2 = ".holderContainer .holder {" +
+        "   animation: line " + numberOfColumns * speed + "s linear infinite;" +
+        "}";
+    let property3 = "";
+    for (let h = 0; h < numberOfColumns; h++) {
+        property3 += ".holderContainer .holder:nth-child(" + numberOfColumns + "n+" + h + ") {" +
+            "   animation-delay: " + h * speed + "s;" +
+            "}";
+    }
+    $("style").append(property1 + property2 + property3);
+    $(idInput).val('');
+
     tonesManager();
 }
 
-function exportMelody(input) {
+function exportMelody(idInput) {
     let holder = $('#holderContainer .holder');
     let noteCode = "",
         offCount = 0,
@@ -92,7 +133,7 @@ function exportMelody(input) {
     if (noteCode === '-'+holder.length) {
         noteCode = '';
     }
-    $(input).val(noteCode);
+    $(idInput).val(noteCode);
 }
 
 function importMelody() {

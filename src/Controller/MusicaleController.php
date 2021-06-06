@@ -40,6 +40,7 @@ class MusicaleController extends AbstractController
 
         return $this->render('musicale/create.html.twig', [
             'musicaleForm' => $musicaleForm->createView(),
+            'musicale' => $musicale,
         ]);
     }
 

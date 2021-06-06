@@ -3,25 +3,6 @@
 {% block title %}Création énigme Musicale{% endblock %}
 
 {% block body %}
-    {% set rows = 3 %}
-    {% set cols = 6 %}
-    {% set speed = 0.5 %}
-
-    <style>
-        .holderContainer {
-            width: {{ cols * 85 }}px;
-        }
-        .holderContainer .holder {
-            -webkit-animation: line {{ cols * speed }}s linear infinite;
-            animation: line {{ cols * speed }}s linear infinite;
-        }
-        {% for i in 0..cols-1 %}
-        .holderContainer .holder:nth-child({{ cols }}n+{{ i }}) {
-            -webkit-animation-delay: {{ i * speed }}s;
-            animation-delay: {{ i * speed }}s;
-        }
-        {% endfor %}
-    </style>
 
     <div class="ui grid container pad" id="pageMusicale">
         <div class="row">
@@ -40,16 +21,7 @@
                     <div class="ui grid">
                         <div class="row">
                             <div class="column">
-                                <div class="holderContainer" id="holderContainer">
-                                    {% for j in 0..rows-1 %}
-                                        {% for i in 0..cols-1 %}
-                                            <div class="holder" data-note="{{ j }}">
-                                                <div class="note">
-                                                    <div class="ripple"></div>
-                                                </div>
-                                            </div>
-                                        {% endfor %}
-                                    {% endfor %}
+                                <div class="holderContainer" id="holderContainer" data-col="{{ musicale.numberOfColumns }}" data-row="{{ musicale.numberOfRows }}">
                                 </div>
                             </div>
                         </div>

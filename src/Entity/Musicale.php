@@ -25,7 +25,7 @@ class Musicale
     /**
      * @ORM\Column(type="integer")
      */
-    private $numberOfColumns = 6;
+    private $numberOfColumns = 4;
 
     /**
      * @ORM\Column(type="string", length=255)
