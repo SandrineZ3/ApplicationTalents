@@ -2,7 +2,7 @@
     <div class="ui grid">
         <div class="row">
             <div class="column">
-                <div class="holderContainer" id="holderContainer" data-col="{{ musicale.numberOfColumns }}" data-row="{{ musicale.numberOfRows }}">
+                <div class="holderContainer" id="holderContainer" data-col="{{ enigmeRandom.numberOfColumns }}" data-row="{{ enigmeRandom.numberOfRows }}">
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    <input type="hidden" name="idEnigme" value="id">
-    <input type="text" name="reponse" value="" id="reponseRecuperee">
+    <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
+    <input type="text" name="{{ nomInput }}" value="" id="reponseUser">
 </form>
 <button class="button" id="submitReponse" onclick="requeteAjaxPostv2('#formEnigme', '#blocEnigme')">Envoyer</button>

@@ -1,16 +1,24 @@
 let speed = 0.5;
 let idInputSolutionAdmin = '#musicale_form_solution';
-let idInputReponseUser = '#reponseRecuperee';
+let idInputReponseUser = '#reponseUser';
 
 function loadNumberOfNote() {
     let holderContainerDiv = $('#holderContainer');
     let numberOfRows = holderContainerDiv.attr('data-row');
     let numberOfColumns = holderContainerDiv.attr('data-col');
     $('body').prepend('<style></style>');
-    let noteCode = $(idInputSolutionAdmin).val();
+    let noteCode;
+
+    if (document.querySelector(idInputSolutionAdmin)) {
+        noteCode = $(idInputSolutionAdmin).val();
+    }
 
     changeNumberOfNote(numberOfRows, numberOfColumns);
-    importMelody(noteCode);
+
+    if (document.querySelector(idInputSolutionAdmin)) {
+        importMelody(noteCode);
+    }
+
 }
 
 function tonesManager(numberOfRows, numberOfColumns) {
@@ -175,6 +183,7 @@ function exportMelody(idInput) {
 }
 
 function importMelody(noteCode) {
+    console.log(noteCode)
     $(idInputSolutionAdmin).val(noteCode);
 
     let splitCode = noteCode.split(' ');

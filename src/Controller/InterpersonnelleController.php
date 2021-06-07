@@ -34,7 +34,6 @@ class InterpersonnelleController extends AbstractController
         }
         $user = $userRepository->find($this->getUser());
 
-
         $tableauOfDifficulty = ['reponseFacile', 'reponseMoyen', 'reponseDifficile'];
         foreach ($tableauOfDifficulty as $index => $difficulty) {
             if ($request->get($difficulty)) {

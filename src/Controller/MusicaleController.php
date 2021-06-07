@@ -4,9 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Musicale;
 use App\Form\MusicaleFormType;
+use App\Repository\LevelOfDifficultyRepository;
 use App\Repository\MusicaleRepository;
+use App\Repository\UserRepository;
+use App\Services\MusicaleUtils;
+use App\Services\Utils;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,9 +21,50 @@ class MusicaleController extends AbstractController
     /**
      * @Route("/musicale", name="musicale")
      */
-    public function show(): Response
+    public function show(Request $request, EntityManagerInterface $entityManager, MusicaleUtils $musicaleUtils, Utils $utils, UserRepository $userRepository, LevelOfDifficultyRepository $levelOfDifficultyRepository, MusicaleRepository $musicaleRepository): Response
     {
-        return $this->render('musicale/show.html.twig');
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('main');
+        }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'musicale') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+        $user = $userRepository->find($this->getUser());
+
+        $tableauOfDifficulty = ['reponseFacile', 'reponseMoyen', 'reponseDifficile'];
+        foreach ($tableauOfDifficulty as $index => $difficulty) {
+            if ($request->get($difficulty)) {
+                if ($index === 0) {
+                    $user->setScoreMusicale(0);
+                    $entityManager->flush();
+                }
+
+                $musicaleUtils->recordScore($request, $request->get($difficulty), $musicaleRepository, $user, $entityManager);
+
+                if ($index === 0 || $index === 1) {
+                    $enigmeRandom = $utils->nextEnigme($index + 2, $musicaleRepository, $levelOfDifficultyRepository);
+                    $nomInput = $tableauOfDifficulty[$index + 1];
+                    return new JsonResponse([
+                        'content' => $this->renderView('musicale/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput'))
+                    ]);
+                }
+                else {
+                    $user->setMusicaleFinished(true);
+                    $entityManager->flush();
+
+                    return new JsonResponse([
+                        'content' => $this->renderView('musicale/content/endScreen.html.twig')
+                    ]);
+                }
+            }
+        }
+        $enigmeRandom = $utils->nextEnigme(1, $musicaleRepository, $levelOfDifficultyRepository);
+        $nomInput = 'reponseFacile';
+
+        return $this->render('musicale/show.html.twig', [
+            'enigmeRandom' => $enigmeRandom,
+            'nomInput' => $nomInput,
+        ]);
     }
 
     /**
