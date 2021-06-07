@@ -20,6 +20,6 @@
         </div>
     </div>
     <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
-    <input type="text" name="{{ nomInput }}" value="" id="reponseUser">
+    <input type="hidden" name="{{ nomInput }}" value="" id="reponseUser">
 </form>
 <button class="button" id="submitReponse" onclick="requeteAjaxPostv2('#formEnigme', '#blocEnigme')">Envoyer</button>
