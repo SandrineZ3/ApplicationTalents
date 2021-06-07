@@ -6,9 +6,9 @@ use App\Entity\LevelOfDifficulty;
 use App\Entity\Musicale;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
@@ -47,7 +47,7 @@ class MusicaleFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('solution', TextType::class, [
+            ->add('solution', HiddenType::class, [
                 'label' => 'Solution',
                 'required' => false,
                 'constraints' => [
