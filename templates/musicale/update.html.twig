@@ -1,0 +1,75 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Modifier énigme Musicale{% endblock %}
+
+{% block body %}
+    <div class="ui grid container pad" id="pageMusicale">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+                <div class="ui segment">
+                    <h3 class="ui dividing header">Modification</h3>
+                    {{ form_start(musicaleForm) }}
+                    <div class="field">
+                        {{ form_row(musicaleForm.numberOfRows) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(musicaleForm.numberOfColumns) }}
+                    </div>
+                    <div class="ui grid">
+                        <div class="row">
+                            <div class="column">
+                                <div class="holderContainer" id="holderContainer" data-col="{{ musicale.numberOfColumns }}" data-row="{{ musicale.numberOfRows }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="eight wide column">
+                                <div class="button" id="audio">
+                                    <i class="volume up icon"></i>
+                                </div>
+                            </div>
+                            <div class="eight wide column">
+                                <div class="button" id="reset">
+                                    <i class="redo alternate icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        {{ form_row(musicaleForm.solution) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(musicaleForm.levelOfDifficulty) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(musicaleForm.save) }}
+                    </div>
+                    {{ form_end(musicaleForm) }}
+                    <button onclick="afficherModalDelete()" class="ui button">Supprimer</button>
+                </div>
+            </div>
+            {#modal#}
+            <div class="ui mini modal trash">
+                <div class="header">
+                    Suppression
+                </div>
+                <div class="content">
+                    <p>Êtes-vous sûr de vouloir supprimer cette énigme</p>
+                </div>
+                <div class="actions">
+                    <div class="ui negative button">
+                        Non
+                    </div>
+                    <a class="ui positive right labeled icon button" href="{{ path('musicale_delete', {'id': musicale.id }) }}">
+                        Oui
+                        <i class="checkmark icon"></i>
+                    </a>
+                </div>
+            </div>
+            {#modal#}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

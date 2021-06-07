@@ -17,18 +17,33 @@ function init() {
     }
 
     if (document.querySelector('#pageIntrapersonnelle')) {
-        console.log('pageIntrapersonnelle');
         starColorManagement();
     }
 
     if (document.querySelector('#pageLinguistique')) {
-        console.log('pageLinguistique');
         transformPictoIntoImage();
     }
 
     if (document.querySelector('#pageInterpersonnelle')) {
-        console.log('pageInterpersonnelle');
         transformEmoticonIntoImage();
+    }
+
+    if (document.querySelector('#pageMusicale')) {
+        loadNumberOfNote();
+    }
+}
+
+function onOffAudioBackground() {
+    let buttonOnOff = $('#audioBackgroundButton');
+    if (audioBackground.playing()) {
+        audioBackground.pause();
+        buttonOnOff.children().removeClass("volume up");
+        buttonOnOff.children().addClass("volume off");
+    }
+    else {
+        audioBackground.play();
+        buttonOnOff.children().removeClass("volume off");
+        buttonOnOff.children().addClass("volume up");
     }
 }
 

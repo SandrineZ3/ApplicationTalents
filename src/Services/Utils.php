@@ -13,9 +13,9 @@ class Utils
         $user = $userRepository->find($appUser);
         $tableauOrdreJeux = [
 //                ['kinesthesique', $user->getKinesthesiqueFinished()],
-//                ['musicale', $user->getMusicaleFinished()],
             ['interpersonnelle', $user->getInterpersonnelleFinished()],
             ['naturaliste', $user->getNaturalisteFinished()],
+            ['musicale', $user->getMusicaleFinished()],
             ['visuoSpatiale', $user->getVisuoSpatialeFinished()],
             ['linguistique', $user->getLinguistiqueFinished()],
             ['mathematique', $user->getMathematiqueFinished()],

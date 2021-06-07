@@ -2,17 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Emoticon;
-use App\Form\EmoticonFormType;
 use App\Repository\InterpersonnelleRepository;
 use App\Repository\LinguistiqueRepository;
 use App\Repository\MathematiqueRepository;
+use App\Repository\MusicaleRepository;
 use App\Repository\NaturalisteRepository;
 use App\Repository\VisuoSpatialeRepository;
-use App\Services\Utils;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -24,12 +20,14 @@ class AdminController extends AbstractController
     public function dashboard(InterpersonnelleRepository $interpersonnelleRepository,
                               LinguistiqueRepository $linguistiqueRepository,
                               MathematiqueRepository $mathematiqueRepository,
+                              MusicaleRepository $musicaleRepository,
                               NaturalisteRepository $naturalisteRepository,
                               VisuoSpatialeRepository $visuoSpatialeRepository): Response
     {
         $nbreEnigmeInterpersonnelle = $interpersonnelleRepository->count([]);
         $nbreEnigmeLinguistique = $linguistiqueRepository->count([]);
         $nbreEnigmeMathematique = $mathematiqueRepository->count([]);
+        $nbreEnigmeMusicale = $musicaleRepository->count([]);
         $nbreEnigmeNaturaliste = $naturalisteRepository->count([]);
         $nbreEnigmeVisuoSpatiale = $visuoSpatialeRepository->count([]);
 
@@ -37,6 +35,7 @@ class AdminController extends AbstractController
             'nbreEnigmeInterpersonnelle' => $nbreEnigmeInterpersonnelle,
             'nbreEnigmeLinguistique' => $nbreEnigmeLinguistique,
             'nbreEnigmeMathematique' => $nbreEnigmeMathematique,
+            'nbreEnigmeMusicale' => $nbreEnigmeMusicale,
             'nbreEnigmeNaturaliste' => $nbreEnigmeNaturaliste,
             'nbreEnigmeVisuoSpatiale' => $nbreEnigmeVisuoSpatiale,
         ]);
@@ -45,27 +44,11 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/interpersonnelle", name="admin_interpersonnelle")
      */
-    public function showAllInterpersonnelle(Request $request, EntityManagerInterface $entityManager, Utils $utils, InterpersonnelleRepository $interpersonnelleRepository): Response
+    public function showAllInterpersonnelle(InterpersonnelleRepository $interpersonnelleRepository): Response
     {
-        $emoticon = new Emoticon();
-        $emoticonForm = $this->createForm(EmoticonFormType::class, $emoticon);
-        $emoticonForm = $emoticonForm->handleRequest($request);
-
-        if ($emoticonForm->isSubmitted() && $emoticonForm->isValid()) {
-            $directoryImage = $this->getParameter('image_emoticon_directory');
-            $emoticon->setUrlImage($utils->saveImageAndGenerateUrl($emoticonForm, 'image', $directoryImage));
-
-            $entityManager->persist($emoticon);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'L\'émoticône a bien été enregistré');
-            return $this->redirectToRoute('admin_interpersonnelle');
-        }
-
         $tableauEnigmes = $interpersonnelleRepository->findAll();
 
         return $this->render('admin/interpersonnelle.html.twig', [
-            'emoticonForm' => $emoticonForm->createView(),
             'tableauEnigmes' => $tableauEnigmes,
         ]);
     }
@@ -90,6 +73,18 @@ class AdminController extends AbstractController
         $tableauEnigmes = $mathematiqueRepository->findAll();
 
         return $this->render('admin/mathematique.html.twig', [
+            'tableauEnigmes' => $tableauEnigmes,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/musicale", name="admin_musicale")
+     */
+    public function showAllMusicale(MusicaleRepository $musicaleRepository): Response
+    {
+        $tableauEnigmes = $musicaleRepository->findAll();
+
+        return $this->render('admin/musicale.html.twig', [
             'tableauEnigmes' => $tableauEnigmes,
         ]);
     }
