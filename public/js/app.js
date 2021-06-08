@@ -31,6 +31,10 @@ function init() {
     if (document.querySelector('#pageMusicale')) {
         loadNumberOfNote();
     }
+
+    if (document.querySelector('#pageResult')) {
+        displayBrainResult();
+    }
 }
 
 function onOffAudioBackground() {
