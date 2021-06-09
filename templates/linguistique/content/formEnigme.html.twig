@@ -3,7 +3,7 @@
     <label for="reponseUtilisateur">Placez les pictos dans le bon ordre :</label>
 
     {# Emplacements vides #}
-    <div class="droppable-elements" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="droppable-elements">
         {% for picto in enigmeRandom.solution %}
             <div class="droppable" ondrop="dropSave(event)" ondragover="allowDrop(event)" id="emplacementReponseUtilisateur"
                  data-draggable-id={{ loop.index0 }}></div>
@@ -13,7 +13,7 @@
     {# Pictos : tous ceux de la BDD #}
     <div class="draggable-elements" ondrop="drop(event)" ondragover="allowDrop(event)">
         {% for picto in allPictos %}
-            <div class="picto" ondragstart="dragStart(event)"
+            <div class="picto" ondragstart="drag(event)"
                  draggable="true" id="{{ picto.id }}"
                  data-id ="{{ picto.id }}"
                  data-src="{{ picto.urlImage }}">{{ picto.label }}</div>
@@ -21,7 +21,7 @@
     </div>
 
     {# Input caché qui récupère la réponse de l'utilisateur #}
-    <input type="hidden" id="reponseRecuperee" name="{{ nomInput }}" value="">
     <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
+    <input type="hidden" id="reponseRecuperee" name="{{ nomInput }}" value="">
 </form>
 <button class="button" id="submitReponse" onclick="requeteAjaxPostv2('#formEnigme', '#blocEnigme')">Envoyer</button>

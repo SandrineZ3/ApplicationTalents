@@ -20,35 +20,35 @@ function allowDrop(event) {
     event.preventDefault();
 }
 
-// function drag(event) {
+ function drag(event) {
+     event.dataTransfer.setData("text", event.target.id);
+ }
+
+// function dragStart(event) {
 //     event.dataTransfer.setData("text", event.target.id);
 // }
 
-function dragStart(event) {
-    event.dataTransfer.setData("text", event.target.id);
-}
-
-function dragEnter(event) {
-    if (!event.target.classList.contains("dropped")) {
-        event.target.classList.add("droppable-hover");  // juste pour le css, changer le style de la case quand on passe l'éléement dessus SI il elle est encore droppable
-    }
-}
-
-function dragOver(event) {
-    if (!event.target.classList.contains("dropped")) { // pour effet css
-        event.preventDefault();
-    }
-}
-
-function dragLeave(event) {
-    if (!event.target.classList.contains("dropped")) {
-        event.target.classList.remove("droppable-hover"); // juste pour le css, on remet le style de la case à l'initial
-    }
-}
+// function dragEnter(event) {
+//     if (!event.target.classList.contains("dropped")) {
+//         event.target.classList.add("droppable-hover");  // juste pour le css, changer le style de la case quand on passe l'éléement dessus SI il elle est encore droppable
+//     }
+// }
+//
+// function dragOver(event) {
+//     if (!event.target.classList.contains("dropped")) { // pour effet css
+//         event.preventDefault();
+//     }
+// }
+//
+// function dragLeave(event) {
+//     if (!event.target.classList.contains("dropped")) {
+//         event.target.classList.remove("droppable-hover"); // juste pour le css, on remet le style de la case à l'initial
+//     }
+// }
 
 function dropSave(event) {
     event.preventDefault(); // n'affiche pas l'image
-    event.target.classList.remove("droppable-hover"); // juste pour le css, on remet le style de la case à l'initial
+    // event.target.classList.remove("droppable-hover"); // juste pour le css, on remet le style de la case à l'initial
     const draggableElementData = event.dataTransfer.getData("text");
     event.target.appendChild((document.getElementById(draggableElementData)));
     let droppableElementData = event.target.getAttribute("data-draggable-id");
@@ -58,9 +58,8 @@ function dropSave(event) {
 
 function drop(event) {
     event.preventDefault(); // n'affiche pas l'image
-    event.target.classList.remove("droppable-hover"); // juste pour le css, on remet le style de la case à l'initial
+    // event.target.classList.remove("droppable-hover"); // juste pour le css, on remet le style de la case à l'initial
     const draggableElementData = event.dataTransfer.getData("text");
     event.target.appendChild((document.getElementById(draggableElementData)));
     let droppableElementData = event.target.getAttribute("data-draggable-id");
-    // document.getElementById('reponseRecuperee').value = tableau;
 }
