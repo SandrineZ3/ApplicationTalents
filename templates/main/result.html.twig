@@ -5,10 +5,13 @@
 {% block body %}
     <div class="ui grid container h100 middle aligned" id="pageResult">
         <div class="row">
-            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+            <div class="sixteen wide mobile ten wide tablet ten wide computer centered column">
                 <div class="ui colorApp segment">
                     <h3 class="ui dividing header">Résultats</h3>
                     <div class="row">
+                        <div class="line-drawing-demo">
+                            {% include("main/content/brain.html.twig") %}
+                        </div>
                         <div id="blocEnigme">
                             <p>scoreInterpersonnelle : {{ user.scoreInterpersonnelle }}</p>
                             <p>scoreIntrapersonnelle : {{ user.scoreIntrapersonnelle }}</p>
@@ -18,9 +21,6 @@
                             <p>scoreMusicale : {{ user.scoreMusicale }}</p>
                             <p>scoreNaturaliste : {{ user.scoreNaturaliste }}</p>
                             <p>scoreVisuoSpatiale : {{ user.scoreVisuoSpatiale }}</p>
-                        </div>
-                        <div class="line-drawing-demo">
-                            {% include("main/content/brain.html.twig") %}
                         </div>
                     </div>
                 </div>
