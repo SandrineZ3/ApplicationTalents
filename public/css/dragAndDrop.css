@@ -12,68 +12,34 @@
 }
 
 .draggable-elements img {
-    margin-right: 20px;
     height: 8rem;
     width: 8rem;
+    margin-left : 10px;
+    margin-right : 10px;
 }
 
 .draggable {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 0.5rem;
     transition: opacity 0.2s;
 }
 
-.draggable:hover {
+.draggable img:hover {
     opacity: 0.5;
     cursor: pointer;
 }
+
 .droppable {
     height: 8rem;
     width: 8rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
-    text-align: center;
-    font-size: 4rem;
-    font-weight: bold;
-    background-color: #fff;
     border-top: 1px solid darkgrey;
     border-bottom: 1px solid darkgrey;
-    /*border-right: 1px dashed darkgrey;*/
-    /*border-left: 1px dashed darkgrey;*/
-    transition: border-width 0.2s, transform 0.2s, background-color 0.4s;
-}
-.droppable span {
-    font-size: 0.2em;
-    color: white;
-    pointer-events: none; /* The element is never the target of pointer events */
-}
-
-/* Drag and Drop Related Styling */
-.droppable.droppable-hover {
-    background-color: #bee3f0;
-    border-width: 5px;
-    transform: scale(1.1);
-}
-.droppable.dropped {
-    border-style: solid;
-    color: #fff;
-}
-.droppable.dropped span {
-    font-size: 0.75rem;
-    margin-top: 0.5rem;
-}
-
-.dragged {
-    user-select: none;
-    opacity: 0.1;
-    cursor: default;
-}
-.draggable.dragged:hover {
-    opacity: 0.1;
+    border-right: 1px dashed darkgrey;
+    border-left: 1px dashed darkgrey;
 }
 
 @media (max-width: 600px) {
