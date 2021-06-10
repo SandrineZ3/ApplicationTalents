@@ -10,6 +10,7 @@ use App\Repository\LevelOfDifficultyRepository;
 use App\Repository\LinguistiqueRepository;
 use App\Repository\PictoRepository;
 use App\Repository\UserRepository;
+use App\Services\LinguistiqueUtils;
 use App\Services\Utils;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,12 +29,16 @@ class LinguistiqueController extends AbstractController
                                  LevelOfDifficultyRepository $levelOfDifficultyRepository,
                                  Request $request,
                                  UserRepository $userRepository,
-                                 EntityManagerInterface $entityManager): Response
+                                 EntityManagerInterface $entityManager,
+                                 Utils $utils): Response
     {
-        $user = $userRepository->find($this->getUser());
-        if ($user->getLinguistiqueFinished()) {
+        if (!$this->getUser()) {
             return $this->redirectToRoute('main');
         }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'linguistique') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+        $user = $userRepository->find($this->getUser());
 
         // 1 = NIVEAU FACILE
         $levelOfDifficulty = $levelOfDifficultyRepository->find(1);
@@ -144,6 +149,8 @@ class LinguistiqueController extends AbstractController
         ]);
     }
 
+
+
     /**
      * @Route("admin/linguistique/create", name="linguistique_create")
      */
@@ -161,7 +168,7 @@ class LinguistiqueController extends AbstractController
             $entityManager->persist($linguistique);
             $entityManager->flush();
             $this->addFlash('success', 'L\'énigme a bien été enregistrée');
-            return $this->redirectToRoute('linguistique_create');
+            return $this->redirectToRoute('admin_linguistique');
         }
 
         if ($pictoForm->isSubmitted() && $pictoForm->isValid()) {
@@ -199,7 +206,7 @@ class LinguistiqueController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'énigme a bien été mise à jour');
-            return $this->redirectToRoute('linguistique_update', ["id" => $id]);
+            return $this->redirectToRoute('admin_linguistique', ["id" => $id]);
         }
 
         $picto = new Picto();

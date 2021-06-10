@@ -46,17 +46,33 @@
     </div>
 {% endblock %}
 
-{% block javascripts %}
-    <script>
-        function afficherModalCreatePicto() {
-            event.preventDefault();
-            $('.mini.modal.createPicto').modal('show');
-        }
+{# {% block javascripts %} #}
+{# <script> #}
+{# $('.pictoUrlImage').each(function () { #}
+{# let urlImage = $(this).text().trim(); #}
+{# $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" alt="image pictogramme"/>').insertAfter($(this)); #}
+{# $(this).remove(); #}
+{# }); #}
+{# function afficherModalCreatePicto() { #}
+{# event.preventDefault(); #}
+{# $('.mini.modal.createPicto').modal('show'); #}
+{# } #}
+{# </script> #}
+{# {% endblock %} #}
 
-        $('.pictoUrlImage').each(function () {
-            let urlImage = $(this).text().trim();
-            $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" alt="image pictogramme"/>').insertAfter($(this));
-            $(this).remove();
-        });
-    </script>
-{% endblock %}
+ {% block javascripts %}
+     <script>
+         $(document).ready(function () {
+             $('#linguistique_form_solution label').each(function () { // Si "label" au lieu de "urlImage", picto s'affiche mais pas chk box
+                 let urlImage = $(this).text();
+                 $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" alt="image pictogramme"/>').insertAfter($(this));
+                 $(this).text('');
+             });
+         });
+
+         function afficherModalCreatePicto() {
+             event.preventDefault();
+             $('.mini.modal.createPicto').modal('show');
+         }
+     </script>
+ {% endblock %}

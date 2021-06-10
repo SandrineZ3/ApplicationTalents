@@ -28,7 +28,7 @@ class LinguistiqueFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Veuillez renseigner une phrase à traduire en pictogrammes',
                     ]),],])
-            ->add('solution', EntityType::class, [
+            ->add('solution', EntityType::class, [ // ou ChoiceType ??
                 'class' => Picto::class,
                 'required' => false,
                 'expanded' => true,

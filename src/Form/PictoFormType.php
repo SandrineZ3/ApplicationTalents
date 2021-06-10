@@ -47,8 +47,7 @@ class PictoFormType extends AbstractType
                         ])
                     ],
                 ]);
-        }
-        else {
+        } else {
             $builder
                 ->add('image', FileType::class, [
                     'label' => 'Image',
@@ -71,13 +70,8 @@ class PictoFormType extends AbstractType
         $builder
             ->add('save', SubmitType::class, [
                 'label' => 'Enregistrer',
-            ])
-        ;
+            ]);
     }
-//            ->add('urlImage')
-//            ->add('linguistiques')
-//        ;
-//    }
 
     public function configureOptions(OptionsResolver $resolver)
     {
