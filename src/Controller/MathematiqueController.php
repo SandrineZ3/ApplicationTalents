@@ -7,6 +7,7 @@ use App\Form\MathematiqueFormType;
 use App\Repository\LevelOfDifficultyRepository;
 use App\Repository\MathematiqueRepository;
 use App\Repository\UserRepository;
+use App\Services\Utils;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -23,12 +24,16 @@ class MathematiqueController extends AbstractController
                                  LevelOfDifficultyRepository $levelOfDifficultyRepository,
                                  Request $request,
                                  UserRepository $userRepository,
-                                 EntityManagerInterface $entityManager): Response
+                                 EntityManagerInterface $entityManager,
+                                 Utils $utils): Response
     {
-        $user = $userRepository->find($this->getUser());
-        if ($user->getMathematiqueFinished()) {
+        if (!$this->getUser()) {
             return $this->redirectToRoute('main');
         }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'mathematique') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+        $user = $userRepository->find($this->getUser());
 
         //Aller chercher les images en BDD et les filer à Twig pour affichage
         // 1 = NIVEAU FACILE
@@ -162,6 +167,7 @@ class MathematiqueController extends AbstractController
      */
     public function update(int $id, Request $request, EntityManagerInterface $entityManager, MathematiqueRepository $mathematiqueRepository): Response
     {
+
         $mathematique = $mathematiqueRepository->find($id);
         if (!$mathematique) {
             $this->addFlash('error', 'L\'enigme recherchée n\'existe pas');
