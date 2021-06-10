@@ -1,49 +1,29 @@
 function displayBrainResult() {
-    let vect = document.querySelectorAll('.st1');
-    console.log(vect.length);
+    let circle = document.querySelectorAll('.st1');
+    let result = document.querySelector('#tableauResult');
+    let tableauAttribute = result.getAttributeNames();
+    tableauAttribute.splice(0 ,1);
     let color = ["#D9C7ED", "#B3EDF8", "#E1DACA", "#BCE9D5", "#F6BDCE", "#FEEEB3", "#F9C29B", "#FF889A"]
-    let i = 0;
-    let index = 0;
-    for (i; i < 5; i++) {
-        vect[i].setAttribute("fill", color[index]);
-        insertRandomCircle(vect[i], color[index]);
+
+    let sommeResultat = 0;
+    for (let i = 0; i < tableauAttribute.length; i++) {
+        sommeResultat += parseInt(result.getAttribute(tableauAttribute[i]));
     }
-    index++;
-    for (i; i < 9; i++) {
-        vect[i].setAttribute("fill", color[index]);
-        insertRandomCircle(vect[i], color[index]);
+
+    let j = 0;
+    let k = 0;
+    for (let i = 0; i < tableauAttribute.length; i++) {
+        for (j; j < Math.round(((circle.length / sommeResultat) * result.getAttribute(tableauAttribute[i]))) + k; j++) {
+            circle[j].setAttribute("fill", color[i]);
+            insertRandomCircle(circle[j], color[i]);
+        }
+        k = j;
     }
-    index++;
-    for (i; i < 17; i++) {
-        vect[i].setAttribute("fill", color[index]);
-        insertRandomCircle(vect[i], color[index]);
+    while (j < circle.length) {
+        circle[j].setAttribute("fill", color[color.length-1]);
+        insertRandomCircle(circle[j], color[color.length-1]);
+        j++;
     }
-    index++;
-    for (i; i < 28; i++) {
-        vect[i].setAttribute("fill", color[index]);
-        insertRandomCircle(vect[i], color[index]);
-    }
-    index++;
-    for (i; i < 32; i++) {
-        vect[i].setAttribute("fill", color[index]);
-        insertRandomCircle(vect[i], color[index]);
-    }
-    index++;
-    for (i; i < 39; i++) {
-        vect[i].setAttribute("fill", color[index]);
-        insertRandomCircle(vect[i], color[index]);
-    }
-    index++;
-    for (i; i < 42; i++) {
-        vect[i].setAttribute("fill", color[index]);
-        insertRandomCircle(vect[i], color[index]);
-    }
-    index++;
-    for (i; i < vect.length; i++) {
-        vect[i].setAttribute("fill", color[index]);
-        insertRandomCircle(vect[i], color[index]);
-    }
-    index++;
 }
 
 function insertRandomCircle(initialCircle, color) {

@@ -12,6 +12,16 @@
                         <div class="line-drawing-demo">
                             {% include("main/content/brain.html.twig") %}
                         </div>
+                        <div id="tableauResult"
+                                dataScore-Interpersonnelle="{{ user.scoreInterpersonnelle }}"
+                                dataScore-Intrapersonnelle="{{ user.scoreIntrapersonnelle }}"
+                                dataScore-Kinesthesique="{{ user.scoreKinesthesique }}"
+                                dataScore-Linguistique="{{ user.scoreLinguistique }}"
+                                dataScore-Mathematique="{{ user.scoreMathematique }}"
+                                dataScore-Musicale="{{ user.scoreMusicale }}"
+                                dataScore-Naturaliste="{{ user.scoreNaturaliste }}"
+                                dataScore-VisuoSpatiale="{{ user.scoreVisuoSpatiale }}">
+                        </div>
                         <div id="blocEnigme">
                             <p>scoreInterpersonnelle : {{ user.scoreInterpersonnelle }}</p>
                             <p>scoreIntrapersonnelle : {{ user.scoreIntrapersonnelle }}</p>
