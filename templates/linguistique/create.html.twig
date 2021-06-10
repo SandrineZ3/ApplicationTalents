@@ -63,10 +63,10 @@
  {% block javascripts %}
      <script>
          $(document).ready(function () {
-             $('#linguistique_form_solution urlImage').each(function () { // Si "label" au lieu de "urlImage", picto s'affiche mais pas chk box
+             $('#linguistique_form_solution label').each(function () { // Si "label" au lieu de "urlImage", picto s'affiche mais pas chk box
                  let urlImage = $(this).text();
                  $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" alt="image pictogramme"/>').insertAfter($(this));
-                 $(this).remove();
+                 $(this).text('');
              });
          });
 
