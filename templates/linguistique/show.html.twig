@@ -11,10 +11,9 @@
                     <div id="blocEnigme">
                         {% include("linguistique/content/formEnigme.html.twig") %}
                     </div>
+                    <div id="nombrePictoReponse" data-nombrePictoReponse="{{ enigmeRandom.solution | length }}"></div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>let tableauReponse = Array({{ enigmeRandom.solution | length }});</script>
 {% endblock %}
