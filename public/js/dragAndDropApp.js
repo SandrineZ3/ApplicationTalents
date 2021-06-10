@@ -47,6 +47,11 @@ function dragStart(event) {
 // }
 
 function dropSave(event) {
+    let nombrePictoReponse = document.querySelector('#nombrePictoReponse');
+    let nombreReponse = parseInt(nombrePictoReponse.getAttribute('data-nombrePictoReponse'));
+    let tableauReponse = Array(nombreReponse);
+    nombrePictoReponse.remove();
+
     event.preventDefault(); // n'affiche pas l'image
     if (event.target.id > 0) {  // Impossible de déplacer un picto sur un autre
         event.target.innerHTML = '';
