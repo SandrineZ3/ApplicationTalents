@@ -28,13 +28,24 @@ class LinguistiqueFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Veuillez renseigner une phrase à traduire en pictogrammes',
                     ]),],])
-            ->add('solution', EntityType::class, [
+            ->add('solution', EntityType::class, [ // ou ChoiceType ??
                 'class' => Picto::class,
                 'required' => false,
                 'expanded' => true,
                 'multiple' => true,
                 'placeholder' => false,
                 'choice_label' => 'urlImage',
+                // TODO : Tableau associatif pour choisir ordre des pictos pour la solution
+                'choices' => [
+                    'Pomme' => 1,
+                    'Banane' => 2,
+                    'Kiwi' => 3,
+                ],
+                'choice_attr' => [
+                    'Pomme' => ['data-color' => 'Red'],
+                    'Banane' => ['data-color' => 'Yellow'],
+                    'Kiwi' => ['data-color' => 'Green'],
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner la solution',

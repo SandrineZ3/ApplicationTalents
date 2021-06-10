@@ -164,7 +164,7 @@ class LinguistiqueController extends AbstractController
             $entityManager->persist($linguistique);
             $entityManager->flush();
             $this->addFlash('success', 'L\'énigme a bien été enregistrée');
-            return $this->redirectToRoute('linguistique_create');
+            return $this->redirectToRoute('admin_linguistique');
         }
 
         if ($pictoForm->isSubmitted() && $pictoForm->isValid()) {
@@ -202,7 +202,7 @@ class LinguistiqueController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'énigme a bien été mise à jour');
-            return $this->redirectToRoute('linguistique_update', ["id" => $id]);
+            return $this->redirectToRoute('admin_linguistique', ["id" => $id]);
         }
 
         $picto = new Picto();
