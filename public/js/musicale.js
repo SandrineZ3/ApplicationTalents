@@ -46,7 +46,7 @@ function playNote(numberOfColumns, tones) {
         $('#holderContainer .holder:nth-child(' + numberOfColumns + 'n + ' + i + ')').
         on('webkitAnimationIteration mozAnimationIteration animationiteration',
             function () {
-                if ($(this).hasClass('active')) {
+                if ($(this).hasClass('active') && !$('#holderContainer').hasClass('mute')) {
                     tones[$(this).attr('data-note')].play();
 
                     $(this).find('.ripple').addClass('rippleAnim').delay(500).queue(function () {
@@ -73,15 +73,14 @@ function userControls(idInput) {
     audioButton.off();
     audioButton.on('click', function () {
         if ($(this).hasClass("mute")) {
-            Howler.mute(false);
             $(this).children().removeClass("volume off");
             $(this).children().addClass("volume up");
         }
         else {
-            Howler.mute(true);
             $(this).children().removeClass("volume up");
             $(this).children().addClass("volume off");
         }
+        $('#holderContainer').toggleClass("mute")
         $(this).toggleClass('mute');
     });
 }
