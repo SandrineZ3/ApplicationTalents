@@ -56,6 +56,7 @@ function dropSave(event) {
         let droppableElementData = event.target.getAttribute("data-draggable-id");
         tableauReponse[droppableElementData] = draggableElementData;
         document.getElementById('reponseRecuperee').value = tableauReponse;
+        console.log(tableauReponse);
     }
 }
 
