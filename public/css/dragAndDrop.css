@@ -42,6 +42,10 @@
     border-left: 1px dashed darkgrey;
 }
 
+.droppable img {
+    width : 110px; /* remplir le cadre du drop pour éviter plusieurs pictos dans une case */
+}
+
 @media (max-width: 600px) {
     html { font-size: 14px; }
     .draggable-elements { margin: 1.5rem; }
