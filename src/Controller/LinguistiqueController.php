@@ -246,6 +246,6 @@ class LinguistiqueController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', 'L\'énigme a bien été supprimée');
-        return $this->redirectToRoute('main');
+        return $this->redirectToRoute('admin_linguistique');
     }
 }
