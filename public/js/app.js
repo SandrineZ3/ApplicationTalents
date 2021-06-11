@@ -12,6 +12,12 @@ function init() {
             .sidebar('toggle');
     });
 
+    $("form").keypress(function(e) {
+        if (e.which === 13) {
+            return false;
+        }
+    });
+
     if (document.querySelector('#messageFlash')) {
         autoClosingMessageFlash();
     }
