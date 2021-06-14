@@ -3,17 +3,27 @@
 {% block title %}Reprendre{% endblock %}
 
 {% block body %}
-    <div class="ui grid container h100 middle aligned">
+    <div class="ui grid container h100 middle aligned" id="pageConnexion">
         <div class="row">
             <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
                 <div class="ui colorApp segment">
                     <h3 class="ui dividing header">Reprendre une partie</h3>
-                    <form action="{{ path('app_login') }}" method="post">
-                        <label for="inputUsername">Pseudo</label>
-                        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" autofocus>
-                        <input type="hidden" value="password" name="password" id="inputPassword" class="form-control">
+                    <form class="ui form" method="post">
+                        <div class="field">
+                            <label for="inputUsername">Pseudo</label>
+                            <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" autofocus>
+                        </div>
+                        <div class="field">
+                            <label for="inputPassword">Mot de passe</label>
+                            <input type="password" value="password" name="password" id="inputPassword" class="form-control">
+                        </div>
+                        <div class="field">
+                            <div class="ui checkbox">
+                                <input type="checkbox" id="iHavePasswordSession">
+                                <label>Je dispose d'un mot de passe pour ma partie</label>
+                            </div>
+                        </div>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
                         <button class="button" type="submit">C'est parti</button>
                     </form>
                 </div>

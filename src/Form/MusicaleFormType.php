@@ -19,20 +19,6 @@ class MusicaleFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numberOfRows', IntegerType::class, [
-                'label' => 'Nombre de lignes',
-                'required' => false,
-                'attr'=> ['min' => '1', 'max' => '6'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez renseigner le nombre de lignes',
-                    ]),
-                    new GreaterThanOrEqual([
-                        'value' => 1,
-                        'message' => 'Le nombre de lignes doit être supérieure ou égale à {{ compared_value }}',
-                    ]),
-                ],
-            ])
             ->add('numberOfColumns', IntegerType::class, [
                 'label' => 'Nombre de colonnes',
                 'required' => false,

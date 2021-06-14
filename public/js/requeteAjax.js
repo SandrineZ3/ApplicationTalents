@@ -105,13 +105,23 @@ function requeteAjaxPostv2(selectorFormulaire, selectorReponse, modificationUrl=
 
     const Form = new FormData(document.querySelector(selectorFormulaire));
     const Params = new URLSearchParams();
+    let reponseError = '' +
+        '<div class="ui message-fixed compact error message auto-close manuel-close" id="messageFlash">' +
+        '<i class="close icon" onClick="removeMessage()"></i>' +
+        '<div class="header">' +
+        'Réponse invalide' +
+        '</div>' +
+        '<p>Merci de choisir une réponse</p>' +
+        '</div>';
 
     Form.forEach((value, key) => {
         if (value.trim()) {
             Params.append(key, value);
         }
         else {
-            throw 'Les champs sont obligatoires';
+            document.querySelector('header').innerHTML = reponseError;
+            init();
+            throw 'Réponse invalide';
         }
     });
 
@@ -125,8 +135,12 @@ function requeteAjaxPostv2(selectorFormulaire, selectorReponse, modificationUrl=
         response.json()
     ).then(data => {
 
-        const contentPage = document.querySelector(selectorReponse);
-        contentPage.innerHTML = data.content;
+        if (data.content === 'error') {
+            document.querySelector('header').innerHTML = reponseError;
+        }
+        else {
+            document.querySelector(selectorReponse).innerHTML = data.content;
+        }
         init();
 
         if (modificationUrl) {

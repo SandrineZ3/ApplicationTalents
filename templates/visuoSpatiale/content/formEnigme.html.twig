@@ -1,18 +1,20 @@
 <form class="ui form" id="formEnigme">
     <img src="{{ asset('images/visuoSpatiale/') ~ enigmeRandom.urlImage }}" alt="image enigme" width="100%">
 
-    <div class="inline fields">
-        <label for="reponse">Réponse :</label>
-        {% set tableauRadio = ['A','B','C','D'] %}
-        {% for radio in tableauRadio %}
-            <div class="field">
-                <div class="">
-                    <input type="radio" name="{{ nomInput }}" value="{{ radio }}" tabindex="0" class="hidden">
-                    <label>{{ radio }}</label>
-                </div>
-            </div>
-        {% endfor %}
-        <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
+    <div class="grouped fields">
+        <div class="field">
+            <label for="{{ nomInput }}">Réponse :</label>
+        </div>
+        <div class="inline fields">
+            {% set tableauRadio = ['A','B','C','D'] %}
+            {% for radio in tableauRadio %}
+                <label>
+                    <input type="radio" name="{{ nomInput }}" tabindex="0" class="hidden" value="{{ radio }}">
+                    {{ radio }}
+                </label>
+            {% endfor %}
+        </div>
     </div>
+    <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
 </form>
 <button class="button" id="submitReponse" onclick="requeteAjaxPostv2('#formEnigme', '#blocEnigme')">Envoyer</button>

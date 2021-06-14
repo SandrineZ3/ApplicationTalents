@@ -89,7 +89,7 @@ h4 {
     margin-left: 0;
 }
 
-/* Bouton menu principal*/
+/* Bouton menu principal */
 .ui.button {
     font-size: 1.4em;
     font-family: 'Architects Daughter', cursive;
@@ -103,6 +103,6 @@ body, label:hover {
     cursor: url("../images/divers/cursor.png") 8 9, auto;
 }
 
-.button:hover, input:hover, .rating>label:hover {
+.button:hover, input:hover, .rating>label:hover, [type=radio] + img:hover, .cursor {
     cursor: url("../images/divers/pointer.png") 14 2, auto !important;
 }

@@ -125,7 +125,7 @@ class MusicaleController extends AbstractController
         $musicale = $musicaleRepository->find($id);
         if (!$musicale) {
             $this->addFlash('error', 'L\'enigme recherchée n\'existe pas');
-            return $this->redirectToRoute('main');
+            return $this->redirectToRoute('admin_musicale');
         }
 
         $entityManager->remove($musicale);

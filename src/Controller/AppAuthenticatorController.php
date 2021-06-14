@@ -27,23 +27,6 @@ class AppAuthenticatorController extends AbstractController
     }
 
     /**
-     * @Route("/login_admin", name="app_login_admin")
-     */
-    public function login_admin(AuthenticationUtils $authenticationUtils): Response
-    {
-        if ($this->getUser() && $this->getUser()->getRoles() === ['ROLE_ADMIN']) {
-            return $this->redirectToRoute('admin_dashboard');
-        }
-
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('security/login_admin.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
-    }
-
-    /**
      * @Route("/logout", name="app_logout")
      */
     public function logout()
