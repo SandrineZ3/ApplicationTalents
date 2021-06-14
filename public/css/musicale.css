@@ -1,6 +1,8 @@
 .holderContainer {
     margin: auto;
     width: 100%;
+    border: solid 1px black;
+    border-radius: 2px;
 }
 
 .holder {
@@ -10,30 +12,81 @@
     margin-left: 0.25%;
     margin-right: 0.25%;
     border-radius: 2px;
-    background-color: #F36E6B;
+    background-color: #FFF;
+    border: solid 2px transparent;
+}
+
+.touchPad {
+    display: inline-block;
+    position: relative;
+    height: 40px;
+    width: 40px;
+    margin-top: 3px;
+    margin-left: 0.25%;
+    margin-right: 0.25%;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.color0 {
+    background-color: deepskyblue;
+}
+.color1 {
+    background-color: blue;
+}
+.color2 {
+    background-color: lawngreen;
+}
+.color3 {
+    background-color: yellow;
+}
+.color4 {
+    background-color: orange;
+}
+.color5 {
+    background-color: red;
 }
 
 .note {
-    background-color: transparent;
+    position: relative;
+    /*background-color: transparent;*/
     border-radius: 2px;
     width: 100%;
     height: 100%;
     transition: all 0.1s;
+
 }
 
-.note.active {
-    background-color: green;
-    box-shadow: 0 0 5px #FFF;
+.note i {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    z-index: 20;
+    margin: 0;
+}
+
+.touchPad i {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    bottom: 0;
+    right: 0;
+    z-index: 20;
 }
 
 .ripple {
     position: relative;
+    /*display: block;*/
     margin: auto;
     background: rgba(255, 255, 255, 0.35);
     border-radius: 100%;
     width: 24px;
     height: 24px;
-    z-index: 1;
+    z-index: 10;
     opacity: 1;
     transform: scale(0);
 }
@@ -44,20 +97,28 @@
     transition: all 0.5s;
 }
 
-@-webkit-keyframes line {
-    0% {
-        background: #FCD7D6;
-    }
-    30% {
-        background: #F36E6B;
-    }
-}
+/*@-webkit-keyframes line {*/
+/*    0% {*/
+/*        background: #F36E6B;*/
+/*        border: solid 2px #F36E6B;*/
+/*        box-shadow: 0 0 5px #F36E6B;*/
+/*    }*/
+/*    10% {*/
+/*        background: transparent;*/
+/*        border: solid 2px transparent;*/
+/*        box-shadow: none;*/
+/*    }*/
+/*}*/
 
-@keyframes line {
-    0% {
-        background: #FCD7D6;
-    }
-    30% {
-        background: #F36E6B;
-    }
-}
+/*@keyframes line {*/
+/*    0% {*/
+/*        background: #F36E6B;*/
+/*        border: solid 2px #F36E6B;*/
+/*        box-shadow: 0 0 5px #F36E6B;*/
+/*    }*/
+/*    10% {*/
+/*        background: transparent;*/
+/*        border: solid 2px transparent;*/
+/*        box-shadow: none;*/
+/*    }*/
+/*}*/

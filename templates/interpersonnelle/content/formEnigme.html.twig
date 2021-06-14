@@ -1,16 +1,18 @@
 <form class="ui form" id="formEnigme">
     <iframe width="100%" height="315" src="{{ enigmeRandom.urlVideo }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-    <div class="inline fields">
-        <label for="{{ nomInput }}">Réponse :</label>
-        {% for emoticon in tableauChoixEmoticon %}
-            <div class="field">
-                {#                <div class="ui radio checkbox">#}
-                <input type="radio" name="{{ nomInput }}" tabindex="0" class="hidden" value="{{ emoticon.id }}">
-                <label>{{ emoticon.urlImage }}--{{ emoticon.label }}</label>
-                {#                </div>#}
-            </div>
-        {% endfor %}
+    <div class="grouped fields">
+        <div class="field">
+            <label for="{{ nomInput }}">Réponse :</label>
+        </div>
+        <div class="inline fields">
+            {% for emoticon in tableauChoixEmoticon %}
+                <label>
+                    <input type="radio" name="{{ nomInput }}" tabindex="0" class="hidden" value="{{ emoticon.id }}">
+                    <img src="{{ asset('images/emoticon/') ~ emoticon.urlImage }}" width='60px' class='popup' data-content='{{ emoticon.label }}' data-position='top left' alt="image emoticone">
+                </label>
+            {% endfor %}
+        </div>
     </div>
     <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
 </form>

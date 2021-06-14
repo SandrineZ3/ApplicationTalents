@@ -3,23 +3,30 @@
 {% block title %}Modifier énigme Musicale{% endblock %}
 
 {% block body %}
-    <div class="ui grid container pad" id="pageMusicale">
+    <div class="ui grid container" id="pageMusicale">
         <div class="row">
             <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
                 <div class="ui segment">
                     <h3 class="ui dividing header">Modification</h3>
                     {{ form_start(musicaleForm) }}
                     <div class="field">
-                        {{ form_row(musicaleForm.numberOfRows) }}
-                    </div>
-                    <div class="field">
                         {{ form_row(musicaleForm.numberOfColumns) }}
                     </div>
                     <div class="ui grid">
                         <div class="row">
                             <div class="column">
-                                <div class="holderContainer" id="holderContainer" data-col="{{ musicale.numberOfColumns }}" data-row="{{ musicale.numberOfRows }}">
+                                <div class="holderContainer" id="holderContainer" data-col="{{ musicale.numberOfColumns }}">
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column">
+                                <div class="touchPad color0" data-note="0"><div class="ripple"></div><i class="plus icon"></i></div>
+                                <div class="touchPad color1" data-note="1"><div class="ripple"></div><i class="plus icon"></i></div>
+                                <div class="touchPad color2" data-note="2"><div class="ripple"></div><i class="plus icon"></i></div>
+                                <div class="touchPad color3" data-note="3"><div class="ripple"></div><i class="plus icon"></i></div>
+                                <div class="touchPad color4" data-note="4"><div class="ripple"></div><i class="plus icon"></i></div>
+                                <div class="touchPad color5" data-note="5"><div class="ripple"></div><i class="plus icon"></i></div>
                             </div>
                         </div>
                         <div class="row">

@@ -37,12 +37,6 @@ body {
     margin: 0 0.5em 0 0;
 }
 
-/*.main-content {*/
-/*    margin-top: 40px !important;*/
-/*    max-height: calc(100% - 40px) !important;*/
-/*    height: calc(100% - 40px) !important;*/
-/*}*/
-
 @media (min-width: 768px) {
     .ui.vertical.menu.sidebar-menu {
         visibility: visible;

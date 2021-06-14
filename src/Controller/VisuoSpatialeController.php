@@ -58,6 +58,12 @@ class VisuoSpatialeController extends AbstractController
                 }
             }
         }
+        if ($request->get('ajax')) {
+            return new JsonResponse([
+                'content' => 'error'
+            ]);
+        }
+
         $enigmeRandom = $utils->nextEnigme(1, $visuoSpatialeRepository, $levelOfDifficultyRepository);
         $nomInput = 'reponseFacile';
 
@@ -134,7 +140,7 @@ class VisuoSpatialeController extends AbstractController
         $visuoSpatiale = $visuoSpatialeRepository->find($id);
         if (!$visuoSpatiale) {
             $this->addFlash('error', 'L\'enigme recherchée n\'existe pas');
-            return $this->redirectToRoute('main');
+            return $this->redirectToRoute('admin_visuoSpatiale');
         }
 
         $directoryImage = $this->getParameter('image_visuoSpatiale_directory');

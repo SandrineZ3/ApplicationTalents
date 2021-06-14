@@ -1,0 +1,253 @@
+let speed = 0.5;
+let idInputSolutionAdmin = '#musicale_form_solution';
+let idInputReponseUser = '#reponseUser';
+
+function loadNumberOfNote() {
+    let holderContainerDiv = $('#holderContainer');
+    let numberOfColumns = holderContainerDiv.attr('data-col');
+    $('body').prepend('<style></style>');
+
+
+    changeNumberOfNote(numberOfColumns);
+
+    if (document.querySelector(idInputSolutionAdmin)) {
+        adminControls();
+        userControls(idInputSolutionAdmin);
+        if ($(idInputSolutionAdmin).val()) {
+            let noteCode = $(idInputSolutionAdmin).val();
+            importMelody(noteCode, idInputSolutionAdmin);
+        }
+    }
+    else {
+        userControls(idInputReponseUser);
+    }
+}
+
+function changeNumberOfNote(numberOfColumns) {
+    let holderContainerDiv = $("#holderContainer");
+    holderContainerDiv.children().remove();
+    holderContainerDiv.append('<div class="row"></div>');
+    let notesOnTheRow = '';
+    for (let i = 0; i < numberOfColumns; i++) {
+        notesOnTheRow += '<div class="holder"><div class="note"><div class="ripple"></div></div></div>';
+    }
+    $('#holderContainer .row').last().append(notesOnTheRow);
+
+    let styleBalise = $('style');
+    styleBalise.empty();
+    let property1 = ".holder {" +
+        "width: " + ((100 / numberOfColumns) - 0.5) + "%;" +
+        "}";
+    let property2 = ".holderContainer .holder {" +
+        "   animation: line " + numberOfColumns * speed + "s linear infinite;" +
+        "}";
+    let property3 = "";
+    for (let h = 0; h < numberOfColumns; h++) {
+        property3 += ".holderContainer .holder:nth-child(" + numberOfColumns + "n+" + h + ") {" +
+            "animation-delay: " + h * speed + "s;" +
+            "}";
+    }
+    let property4 = "@keyframes line {" +
+        "0% {" +
+        "background: #F36E6B;" +
+        "border: solid 2px #F36E6B;" +
+        "box-shadow: 0 0 5px #F36E6B;" +
+        "}" +
+        100/numberOfColumns+"% {" +
+        "background: transparent;" +
+        "border: solid 2px transparent;" +
+        "box-shadow: none;" +
+        "}";
+    styleBalise.append(property1 + property2 + property3 + property4);
+
+    tonesManager(numberOfColumns);
+}
+
+function tonesManager(numberOfColumns) {
+    let tones = [];
+
+    for (let i = 0; i < 6; i++) {
+        tones[i] = new Howl({
+            src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.mp3',
+                'https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.ogg']
+        });
+    }
+
+    playNote(numberOfColumns, tones);
+    // if (document.querySelector(idInputSolutionAdmin)) {
+    //     // adminControls2();
+    //     userControls2(idInputSolutionAdmin);
+    // }
+    // else {
+    //     userControls2(idInputReponseUser);
+    // }
+}
+
+function playNote(numberOfColumns, tones) {
+    for (let i = 0; i < numberOfColumns; i++) {
+        $('#holderContainer .holder:nth-child(' + numberOfColumns + 'n + ' + i + ')').
+        on('webkitAnimationIteration mozAnimationIteration animationiteration',
+            function () {
+                if ($(this).hasClass('active') && !$('#holderContainer').hasClass('mute')) {
+                    tones[$(this).attr('data-note')].play();
+
+                    $(this).find('.ripple').addClass('rippleAnim').delay(500).queue(function () {
+                        $(this).removeClass('rippleAnim').dequeue();
+                    });
+                }
+            });
+    }
+    $('.touchPad').on('click', function () {
+        tones[$(this).attr('data-note')].play();
+        $(this).find('.ripple').addClass('rippleAnim').delay(500).queue(function () {
+            $(this).removeClass('rippleAnim').dequeue();
+        });
+    });
+}
+
+function userControls(idInput) {
+    $('.plus.icon').on('click', function () {
+        let soundNumber = $(this).parent().attr('data-note');
+        let boolean = true;
+        let iconCloseDiv = '<i class="close icon"></i>';
+
+        $('.note').each(function() {
+            if (!$(this).hasClass('active') && boolean) {
+                $(this).parent().attr('data-note', soundNumber);
+                $(this).parent().addClass("active");
+                $(this).addClass("active");
+                $(this).addClass('color' + soundNumber);
+                $(this).append(iconCloseDiv);
+                boolean = false;
+            }
+        });
+        exportMelody(idInput);
+        closeIcon(idInput);
+    });
+
+    let resetButton = $('#reset');
+    resetButton.off();
+    resetButton.on('click', function () {
+        let note = $('.note');
+        $('.active').removeClass('active');
+        note.find("i").remove();
+        note.each(function () {
+            $(this).removeClass('color' + $(this).parent().attr('data-note'));
+        });
+        exportMelody(idInput);
+    });
+
+    let audioButton = $('#audio');
+    audioButton.off();
+    audioButton.on('click', function () {
+        if ($(this).hasClass("mute")) {
+            $(this).children().removeClass("volume off");
+            $(this).children().addClass("volume up");
+        }
+        else {
+            $(this).children().removeClass("volume up");
+            $(this).children().addClass("volume off");
+        }
+        $('#holderContainer').toggleClass("mute")
+        $(this).toggleClass('mute');
+    });
+
+    if (document.querySelector('#lecture')) {
+        let lectureButton = $('#lecture');
+        let solution = $('#reponseUser').val();
+        let listeningNumber = lectureButton.find('div').text();
+        $('#reponseUser').val('');
+        let splitCode = solution.split(';');
+        splitCode.splice(-1,1) // supprime le dernier élément du tableau : ""
+        let tonesX = [];
+        for (let i = 0; i < 6; i++) {
+            tonesX[i] = new Howl({
+                src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.mp3',
+                    'https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.ogg']
+            });
+        }
+        lectureButton.on('click', function () {
+            if (listeningNumber > 0 ) {
+                let i = 0;
+                let myInterval = setInterval(function() {
+                    tonesX[splitCode[i]].play();
+                    i++;
+                    if (i >= splitCode.length) {
+                        clearInterval(myInterval);
+                    }
+                }, 500 );
+                listeningNumber--;
+                lectureButton.find('div').text(listeningNumber);
+            }
+        });
+    }
+}
+
+function closeIcon(idInput) {
+    $('.close.icon').on('click', function () {
+        if ($(this).parent().hasClass('active')) {
+            $(this).parent().removeClass('active');
+            $(this).parent().removeClass('color' + $(this).parent().parent().attr('data-note'));
+            $(this).parent().parent().removeClass('active');
+            $(this).remove();
+            exportMelody(idInput);
+        }
+    });
+}
+
+function adminControls() {
+    $('#musicale_form_numberOfColumns').on('change', function () {
+        editNumberOfNote();
+    });
+}
+
+function editNumberOfNote() {
+    let numberOfColumnsDiv = $('#musicale_form_numberOfColumns');
+    if (numberOfColumnsDiv.val() < 2) {
+        numberOfColumnsDiv.val(2);
+    }
+    if (numberOfColumnsDiv.val() > 20) {
+        numberOfColumnsDiv.val(20);
+    }
+
+    changeNumberOfNote(numberOfColumnsDiv.val());
+}
+
+function exportMelody(idInput) {
+    let holder = $('#holderContainer .holder');
+    let noteCode = "";
+
+    holder.each(function() {
+        if ($(this).hasClass('active')) {
+            noteCode += $(this).attr('data-note') + ";";
+        }
+        else {
+            noteCode += "empty;";
+        }
+    });
+
+    if (!noteCode.includes("empty")) {
+        $(idInput).val(noteCode);
+    }
+    else {
+        $(idInput).val('');
+    }
+}
+
+function importMelody(noteCode, idInput) {
+
+    let splitCode = noteCode.split(';');
+
+    let iconCloseDiv = '<i class="close icon"></i>';
+    let currentIndex = 0;
+
+    $('.note').each(function() {
+        $(this).parent().attr('data-note', splitCode[currentIndex]);
+        $(this).parent().addClass("active");
+        $(this).addClass("active");
+        $(this).addClass('color' + splitCode[currentIndex]);
+        $(this).append(iconCloseDiv);
+        currentIndex++;
+    });
+    closeIcon(idInput);
+}

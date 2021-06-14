@@ -3,13 +3,20 @@
 {% block title %}Nouvelle partie{% endblock %}
 
 {% block body %}
-    <div class="ui grid container h100 middle aligned">
+    <div class="ui grid container h100 middle aligned" id="pageConnexion">
         <div class="row">
             <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
                 <div class="ui colorApp segment">
                     <h3 class="ui dividing header">Nouvelle partie</h3>
                     {{ form_start(registrationForm) }}
-                    {{ form_widget(registrationForm) }}
+                    {{ form_row(registrationForm.username) }}
+                    {{ form_row(registrationForm.plainPassword) }}
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" id="iHavePasswordSession">
+                            <label>Ajouter un mot de passe à ma partie (facultatif)</label>
+                        </div>
+                    </div>
                     <button type="submit" class="button">Nouvelle partie</button>
                     {{ form_end(registrationForm) }}
                 </div>

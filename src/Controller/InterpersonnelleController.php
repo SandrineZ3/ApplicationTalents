@@ -62,6 +62,12 @@ class InterpersonnelleController extends AbstractController
                 }
             }
         }
+        if ($request->get('ajax')) {
+            return new JsonResponse([
+                'content' => 'error'
+            ]);
+        }
+
         $enigmeRandom = $utils->nextEnigme(1, $interpersonnelleRepository, $levelOfDifficultyRepository);
         $nomInput = 'reponseFacile';
         $tableauChoixEmoticon = $emoticonRepository->findAll();
@@ -162,7 +168,7 @@ class InterpersonnelleController extends AbstractController
         $interpersonnelle = $interpersonnelleRepository->find($id);
         if (!$interpersonnelle) {
             $this->addFlash('error', 'L\'enigme recherchée n\'existe pas');
-            return $this->redirectToRoute('main');
+            return $this->redirectToRoute('admin_interpersonnelle');
         }
 
         $entityManager->remove($interpersonnelle);

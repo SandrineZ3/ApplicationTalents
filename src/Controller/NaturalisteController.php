@@ -149,7 +149,7 @@ class NaturalisteController extends AbstractController
         $naturaliste = $naturalisteRepository->find($id);
         if (!$naturaliste) {
             $this->addFlash('error', 'L\'enigme recherchée n\'existe pas');
-            return $this->redirectToRoute('main');
+            return $this->redirectToRoute('admin_naturaliste');
         }
 
         $directoryImage = $this->getParameter('image_naturaliste_directory');

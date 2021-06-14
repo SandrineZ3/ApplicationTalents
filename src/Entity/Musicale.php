@@ -20,7 +20,7 @@ class Musicale
     /**
      * @ORM\Column(type="integer")
      */
-    private $numberOfRows = 3;
+    private $numberOfRows = 1;
 
     /**
      * @ORM\Column(type="integer")

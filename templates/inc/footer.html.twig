@@ -18,7 +18,4 @@
 
 <div class="ui vertical labeled icon bottom fixed menu">
     <button class="item" id="audioBackgroundButton" onclick="onOffAudioBackground()"><i class="volume up icon"></i></button>
-    {% if app.user == false %}
-        <a class="item" href="{{ path('app_login_admin') }}">Admin</a>
-    {% endif %}
 </div>

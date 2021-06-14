@@ -3,6 +3,15 @@
 {% block title %}Modifier énigme Interpersonnelle{% endblock %}
 
 {% block body %}
+    <style>
+        input[type=radio] {
+            display: none;
+        }
+        .blackAndWhite {
+            -webkit-filter: contrast(50%);
+            filter: contrast(50%);
+        }
+    </style>
     <div class="ui grid container pad">
         <div class="row">
             <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
@@ -74,10 +83,13 @@
                 let text = $(this).text().trim();
                 let urlImage = text.split('--')[0];
                 let label = text.split('--')[1];
-                $('<img width="75px" src="{{ asset('images/emoticon/') }}' + urlImage + '" class="popup" alt="image emoticone" data-content="'+ label +'" data-position="top left"/>').insertAfter($(this));
-                $(this).remove();
+                $(this).html('<img width="75px" src="{{ asset('images/emoticon/') }}' + urlImage + '" class="popup" alt="image emoticone" data-content="'+ label +'" data-position="top left"/>');
+                $(this).prepend($(this).prev());
+                if ($(this).find('input[type=radio]').is(':not(:checked)')) {
+                    $(this).find('img').addClass('blackAndWhite');
+                }
             });
-            $('.popup').popup();
+            transformEmoticonIntoImage();
         });
 
         function afficherModalCreateEmoticon() {

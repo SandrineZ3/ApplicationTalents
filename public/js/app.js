@@ -12,8 +12,33 @@ function init() {
             .sidebar('toggle');
     });
 
+    $('form').keypress(function(e) {
+        if (e.which === 13) {
+            return false;
+        }
+    });
+
+    if (document.querySelector('#pageConnexion')) {
+        let inputPassword = $('input[type=password]');
+        inputPassword.parent().addClass('hiddenField');
+        $('#iHavePasswordSession').on('change', function () {
+            if ($(this).parent().hasClass('checked')) {
+                inputPassword.parent().removeClass('hiddenField');
+                inputPassword.val('');
+            }
+            else {
+                inputPassword.parent().addClass('hiddenField');
+                inputPassword.val('password');
+            }
+        });
+    }
+
     if (document.querySelector('#messageFlash')) {
         autoClosingMessageFlash();
+    }
+
+    if (document.querySelector('#pageInterpersonnelle')) {
+        transformEmoticonIntoImage();
     }
 
     if (document.querySelector('#pageIntrapersonnelle')) {
@@ -22,10 +47,6 @@ function init() {
 
     if (document.querySelector('#pageLinguistique')) {
         transformPictoIntoImage();
-    }
-
-    if (document.querySelector('#pageInterpersonnelle')) {
-        transformEmoticonIntoImage();
     }
 
     if (document.querySelector('#pageMusicale')) {
@@ -62,8 +83,9 @@ function afficherModalDelete() {
 // Liste des fonctions appelées automatiquement par init() si besoin
 function autoClosingMessageFlash() {
     setTimeout(function() {
-        $('.message.auto-close').closest('.message').transition('fade');
-    }, 10000 );
+        // $('.message.auto-close').closest('.message').transition('fade');
+        removeMessage();
+    }, 5000 );
 }
 
 function starColorManagement() {
@@ -85,12 +107,9 @@ function transformPictoIntoImage() {
 }
 
 function transformEmoticonIntoImage() {
-    $('.field label').each(function() {
-        let text = $(this).text().trim();
-        let urlImage = text.split('--')[0];
-        let label = text.split('--')[1];
-        $("<img width='75px' src='" + "images/emoticon/" + urlImage + "' class='popup' data-content='" + label + "' data-position='top left' alt='image emoticone'/>").insertAfter($(this));
-        $(this).remove();
-    });
     $('.popup').popup();
+    $('img').click(function() {
+        $('img').addClass('blackAndWhite');
+        $(this).removeClass('blackAndWhite');
+    });
 }
