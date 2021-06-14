@@ -47,22 +47,22 @@ function dragStart(event) {
 // }
 
 function dropSave(event) {
-    let nombrePictoReponse = document.querySelector('#nombrePictoReponse');
-    let nombreReponse = parseInt(nombrePictoReponse.getAttribute('data-nombrePictoReponse'));
-    let tableauReponse = Array(nombreReponse);
-    nombrePictoReponse.remove();
+        let nombrePictoReponse = document.querySelector('#nombrePictoReponse').getAttribute('data-nombrePictoReponse');
+        // let nombreReponse = parseInt(nombrePictoReponse.getAttribute('data-nombrePictoReponse'));
+        let tableauReponse = Array(nombrePictoReponse);
 
-    event.preventDefault(); // n'affiche pas l'image
-    if (event.target.id > 0) {  // Impossible de déplacer un picto sur un autre
-        event.target.innerHTML = '';
-    } else {
-        const draggableElementData = event.dataTransfer.getData("text");
-        event.target.appendChild((document.getElementById(draggableElementData)));
-        let droppableElementData = event.target.getAttribute("data-draggable-id");
-        tableauReponse[droppableElementData] = draggableElementData;
-        document.getElementById('reponseRecuperee').value = tableauReponse;
-        console.log(tableauReponse);
-    }
+        event.preventDefault(); // n'affiche pas l'image
+        if (event.target.id > 0) {  // Impossible de déplacer un picto sur un autre
+            event.target.innerHTML = '';
+        } else {
+            const draggableElementData = event.dataTransfer.getData("text");
+            event.target.appendChild((document.getElementById(draggableElementData)));
+            let droppableElementData = event.target.getAttribute("data-draggable-id");
+            tableauReponse[droppableElementData] = draggableElementData;
+            document.getElementById('reponseRecuperee').value = tableauReponse;
+            console.log(nombrePictoReponse);
+            console.log(tableauReponse);
+        }
 }
 
 function drop(event) {
@@ -75,3 +75,4 @@ function drop(event) {
         let droppableElementData = event.target.getAttribute("data-draggable-id");
     }
 }
+
