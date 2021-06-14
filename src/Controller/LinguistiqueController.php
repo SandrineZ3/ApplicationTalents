@@ -40,17 +40,19 @@ class LinguistiqueController extends AbstractController
         }
         $user = $userRepository->find($this->getUser());
 
+        $allPictos = $pictoRepository->findAll();
+
         // 1 = NIVEAU FACILE
         $levelOfDifficulty = $levelOfDifficultyRepository->find(1);
         $enigmes = $linguistiqueRepository->findBy(array("levelOfDifficulty" => $levelOfDifficulty), array("id" => "ASC"));
         $indexRandom = array_rand($enigmes, 1);
         $enigmeRandom = $enigmes[$indexRandom];
-        $nomInput = "reponseEnigme";
+        $nomInput = "reponseFacile";
 
-        if ($request->get("reponseEnigme")) {
+        if ($request->get("reponseFacile")) {
             $user->setScoreLinguistique(0);
             $entityManager->flush();
-            $reponse = $request->get("reponseEnigme");
+            $reponse = $request->get("reponseFacile");
             $enigme = $linguistiqueRepository->find($request->get("idEnigme"));
 
             $solution = $enigme->getSolution();
@@ -76,9 +78,8 @@ class LinguistiqueController extends AbstractController
             $enigmeRandom = $enigmes[$indexRandom];
             $nomInput = "reponseMoyen";
             // Réponse requete AJAX
-            $finished = false;
             return new JsonResponse([
-                'content' => $this->renderView('linguistique/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput', 'finished'))
+                'content' => $this->renderView('linguistique/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput', 'allPictos'))
             ]);
         }
 
@@ -102,9 +103,8 @@ class LinguistiqueController extends AbstractController
             $enigmeRandom = $enigmes[$indexRandom];
             $nomInput = "reponseDifficile";
             // Réponse AJAX
-            $finished = false;
             return new JsonResponse([
-                'content' => $this->renderView('linguistique/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput', 'finished'))
+                'content' => $this->renderView('linguistique/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput', 'allPictos'))
             ]);
         }
 
@@ -130,8 +130,6 @@ class LinguistiqueController extends AbstractController
                 'content' => $this->renderView('linguistique/content/endScreen.html.twig')
             ]);
         }
-
-        $allPictos = $pictoRepository->findAll();
 
         return $this->render('linguistique/show.html.twig', [
             "enigmeRandom" => $enigmeRandom,
