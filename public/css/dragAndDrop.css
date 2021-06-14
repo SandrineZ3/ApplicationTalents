@@ -1,14 +1,15 @@
 .draggable-elements {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    margin: 2rem;
+    margin-top: 2rem;
 }
 
 .droppable-elements{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 25px
+    margin-top: 2rem
 }
 
 .draggable-elements img {
@@ -16,6 +17,14 @@
     width: 8rem;
     margin-left : 10px;
     margin-right : 10px;
+    margin-top : 10px;
+    border: 2px black solid;
+    border-radius: 5px;
+}
+
+.draggable-elements img:hover, .droppable img:hover {
+    border: 4px black solid;
+    cursor: url("../images/divers/pointer.png") 14 2, auto !important;
 }
 
 .draggable {
@@ -25,14 +34,9 @@
     transition: opacity 0.2s;
 }
 
-.draggable img:hover {
-    opacity: 0.5;
-    cursor: pointer;
-}
-
 .droppable {
-    height: 8rem;
-    width: 8rem;
+    height: 10rem;
+    width: 10rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,8 +47,12 @@
 }
 
 .droppable img {
-    width : 110px; /* remplir le cadre du drop pour éviter plusieurs pictos dans une case */
+    width : 10rem; /* remplir le cadre du drop pour éviter plusieurs pictos dans une case */
+    height : 10rem;
+    border: 2px black solid;
+    border-radius: 5px;
 }
+
 
 @media (max-width: 600px) {
     html { font-size: 14px; }
