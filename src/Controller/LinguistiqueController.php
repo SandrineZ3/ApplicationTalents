@@ -58,25 +58,16 @@ class LinguistiqueController extends AbstractController
             foreach ($solution as $element) {
                 $tableauId[] = $element->getId();
             }
+
             if ($tableauId === $reponse) {
                 $pointGagnes = $enigme->getLevelOfDifficulty()->getPoints();
                 $user = $userRepository->find($this->getUser());
                 $scoreTemp = $user->getScoreLinguistique();
                 $scoreCalcule = $scoreTemp + $pointGagnes;
                 $user->setScoreLinguistique($scoreCalcule);
+
                 $entityManager->flush();
             }
-
-//            if (isset($_GET["matchingOk"])){
-//                dump("Résultat correct !");
-////            if ($reponse == $enigme->getSolution()) {
-//                $pointGagnes = $enigme->getLevelOfDifficulty()->getPoints();
-//                $user = $userRepository->find($this->getUser());
-//                $scoreTemp = $user->getScoreLinguistique();
-//                $scoreCalcule = $scoreTemp + $pointGagnes;
-//                $user->setScoreLinguistique($scoreCalcule);
-//                $entityManager->flush();
-//            }
 
             // 2 = NIVEAU MOYEN
             $levelOfDifficulty = $levelOfDifficultyRepository->find(2);
@@ -148,8 +139,6 @@ class LinguistiqueController extends AbstractController
             "nomInput" => $nomInput,
         ]);
     }
-
-
 
     /**
      * @Route("admin/linguistique/create", name="linguistique_create")

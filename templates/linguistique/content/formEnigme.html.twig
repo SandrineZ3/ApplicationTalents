@@ -10,18 +10,18 @@
         {% endfor %}
     </div>
 
-    {# Pictos : tous ceux de la BDD #}
-    <div class="draggable-elements" ondrop="drop(event)" ondragover="allowDrop(event)">
-        {% for picto in allPictos %}
-            <div class="picto" ondragstart="dragStart(event)"
-                 draggable="true" id="{{ picto.id }}"
-                 data-id ="{{ picto.id }}"
-                 data-src="{{ picto.urlImage }}">{{ picto.label }}</div>
-        {% endfor %}
-    </div>
 
     {# Input caché qui récupère la réponse de l'utilisateur #}
     <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
     <input type="hidden" id="reponseRecuperee" name="{{ nomInput }}" value="">
 </form>
+{# Pictos : tous ceux de la BDD #}
+<div class="draggable-elements" ondrop="drop(event)" ondragover="allowDrop(event)">
+    {% for picto in allPictos %}
+        <div class="picto" ondragstart="dragStart(event)"
+             draggable="true" id="{{ picto.id }}"
+             data-id ="{{ picto.id }}"
+             data-src="{{ picto.urlImage }}">{{ picto.label }}</div>
+    {% endfor %}
+</div>
 <button class="button" id="submitReponse" onclick="requeteAjaxPostv2('#formEnigme', '#blocEnigme')">Envoyer</button>
