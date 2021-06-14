@@ -40,8 +40,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: 1px solid darkgrey;
-    border-bottom: 1px solid darkgrey;
+    border-top: 2px solid darkgrey;
+    border-bottom: 2px solid darkgrey;
     border-right: 1px dashed darkgrey;
     border-left: 1px dashed darkgrey;
 }
