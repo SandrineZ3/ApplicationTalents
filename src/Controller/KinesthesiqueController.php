@@ -11,10 +11,8 @@ class KinesthesiqueController extends AbstractController
     /**
      * @Route("/kinesthesique", name="kinesthesique")
      */
-    public function index(): Response
+    public function show(): Response
     {
-        return $this->render('kinesthesique/index.html.twig', [
-            'controller_name' => 'KinesthesiqueController',
-        ]);
+        return $this->render('kinesthesique/show.html.twig');
     }
 }
