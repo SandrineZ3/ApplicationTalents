@@ -7,13 +7,10 @@ use App\Entity\Linguistique;
 use App\Entity\Picto;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class LinguistiqueFormType extends AbstractType
@@ -28,7 +25,7 @@ class LinguistiqueFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Veuillez renseigner une phrase à traduire en pictogrammes',
                     ]),],])
-            ->add('solution', EntityType::class, [ // ou ChoiceType ??
+            ->add('solution', EntityType::class, [
                 'class' => Picto::class,
                 'required' => false,
                 'expanded' => true,
