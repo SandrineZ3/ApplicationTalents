@@ -23,7 +23,7 @@
                     </div>
                     <div class="field">
                         {{ form_row(interpersonnelleForm.solution) }}
-                        <button onclick="afficherModalCreateEmoticon()" class="ui button mini">Ajouter un Emoticône</button>
+                        <button onclick="afficherModalCreateEmoticon()" class="ui button mini">Gestion Emoticône</button>
                     </div>
                     <div class="field">
                         {{ form_row(interpersonnelleForm.levelOfDifficulty) }}
@@ -35,22 +35,7 @@
                 </div>
             </div>
             {#modal#}
-            <div class="ui mini modal createEmoticon">
-                <div class="ui segment">
-                    <h3 class="ui dividing header">Création Émoticône</h3>
-                    {{ form_start(emoticonForm) }}
-                    <div class="field">
-                        {{ form_row(emoticonForm.label) }}
-                    </div>
-                    <div class="field">
-                        {{ form_row(emoticonForm.image) }}
-                    </div>
-                    <div class="field">
-                        {{ form_row(emoticonForm.save) }}
-                    </div>
-                    {{ form_end(emoticonForm) }}
-                </div>
-            </div>
+            {% include("interpersonnelle/content/modalEmoticon.html.twig") %}
             {#modal#}
         </div>
     </div>

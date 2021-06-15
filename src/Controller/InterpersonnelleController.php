@@ -82,7 +82,7 @@ class InterpersonnelleController extends AbstractController
     /**
      * @Route("admin/interpersonnelle/create", name="interpersonnelle_create")
      */
-    public function create(Request $request, Utils $utils, EntityManagerInterface $entityManager): Response
+    public function create(Request $request, Utils $utils, EntityManagerInterface $entityManager, EmoticonRepository $emoticonRepository): Response
     {
         $interpersonnelle = new Interpersonnelle();
         $interpersonnelleForm = $this->createForm(InterpersonnelleFormType::class, $interpersonnelle);
@@ -114,13 +114,14 @@ class InterpersonnelleController extends AbstractController
         return $this->render('interpersonnelle/create.html.twig', [
             'interpersonnelleForm' => $interpersonnelleForm->createView(),
             'emoticonForm' => $emoticonForm->createView(),
+            'tableauEmoticon' => $emoticonRepository->findAll(),
         ]);
     }
 
     /**
      * @Route("admin/interpersonnelle/{id}/update", name="interpersonnelle_update", requirements={"id"="\d+"})
      */
-    public function update(int $id, Request $request, Utils $utils, EntityManagerInterface $entityManager, InterpersonnelleRepository $interpersonnelleRepository): Response
+    public function update(int $id, Request $request, Utils $utils, EntityManagerInterface $entityManager, InterpersonnelleRepository $interpersonnelleRepository, EmoticonRepository $emoticonRepository): Response
     {
         $interpersonnelle = $interpersonnelleRepository->find($id);
         if (!$interpersonnelle) {
@@ -157,6 +158,7 @@ class InterpersonnelleController extends AbstractController
             'interpersonnelleForm' => $interpersonnelleForm->createView(),
             'emoticonForm' => $emoticonForm->createView(),
             'interpersonnelle' => $interpersonnelle,
+            'tableauEmoticon' => $emoticonRepository->findAll(),
         ]);
     }
 
@@ -175,6 +177,29 @@ class InterpersonnelleController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', 'L\'énigme a bien été supprimée');
+        return $this->redirectToRoute('admin_interpersonnelle');
+    }
+
+    /**
+     * @Route("admin/emoticon/{id}/delete", name="emoticon_delete", requirements={"id"="\d+"})
+     */
+    public function deleteEmoticon(int $id, EntityManagerInterface $entityManager, InterpersonnelleRepository $interpersonnelleRepository, EmoticonRepository $emoticonRepository): Response
+    {
+        $emoticon = $emoticonRepository->find($id);
+        if (!$emoticon) {
+            $this->addFlash('error', 'L\'émoticone recherché n\'existe pas');
+            return $this->redirectToRoute('admin_interpersonnelle');
+        }
+
+        if ($interpersonnelleRepository->findOneBy(['solution' => $emoticon])) {
+            $this->addFlash('error', 'L\'émoticone que vous cherchez à supprimer est rattaché à une énigme');
+            return $this->redirectToRoute('admin_interpersonnelle');
+        }
+
+        $entityManager->remove($emoticon);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'L\'émoticone a bien été supprimée');
         return $this->redirectToRoute('admin_interpersonnelle');
     }
 }

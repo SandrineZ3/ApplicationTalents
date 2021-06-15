@@ -1,0 +1,21 @@
+<div class="ui mini modal createEmoticon">
+    <div class="ui segment">
+        <h3 class="ui dividing header">Ajouter un Émoticône</h3>
+        {{ form_start(emoticonForm) }}
+        <div class="field">
+            {{ form_row(emoticonForm.label) }}
+        </div>
+        <div class="field">
+            {{ form_row(emoticonForm.image) }}
+        </div>
+        <div class="field">
+            {{ form_row(emoticonForm.save) }}
+        </div>
+        {{ form_end(emoticonForm) }}
+        <h3 class="ui dividing header">Supprimer un Émoticône</h3>
+        {% for emoticon in tableauEmoticon %}
+            <img width="75px" src="{{ asset('images/emoticon/') ~ emoticon.urlImage }}" class="popup" alt="image emoticone" data-content="{{ emoticon.label }}" data-position="top left"/>
+            <a href="{{ path('emoticon_delete', {'id': emoticon.id }) }}"><i class="trash icon"></i></a>
+        {% endfor %}
+    </div>
+</div>
