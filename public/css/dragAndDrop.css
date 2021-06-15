@@ -35,8 +35,8 @@
 }
 
 .droppable {
-    height: 10rem;
-    width: 10rem;
+    height: 9rem;
+    width: 9rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,12 +47,11 @@
 }
 
 .droppable img {
-    width : 10rem; /* remplir le cadre du drop pour éviter plusieurs pictos dans une case */
-    height : 10rem;
+    width : 9rem; /* remplir le cadre du drop pour éviter plusieurs pictos dans une case */
+    height : 9rem;
     border: 2px black solid;
     border-radius: 5px;
 }
-
 
 @media (max-width: 600px) {
     html { font-size: 14px; }

@@ -72,7 +72,7 @@ function drop(event) {
     } else {
         const draggableElementData = event.dataTransfer.getData("text");
         event.target.appendChild((document.getElementById(draggableElementData)));
-        let droppableElementData = event.target.getAttribute("data-draggable-id");
+        // let droppableElementData = event.target.getAttribute("data-draggable-id");
     }
 }
 
