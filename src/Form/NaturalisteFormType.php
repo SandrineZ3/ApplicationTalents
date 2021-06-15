@@ -6,7 +6,10 @@ use App\Entity\LevelOfDifficulty;
 use App\Entity\Naturaliste;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -42,16 +45,21 @@ class NaturalisteFormType extends AbstractType
         }
 
         $builder
-            ->add('solution', TextareaType::class, [
+            ->add('solution', ChoiceType::class, [
                 'label' => 'Solution',
                 'required' => false,
+                'expanded' => true,
+                'multiple' => false,
+                'placeholder' => false,
+                'choices'  => [
+                    'Image1' => 1,
+                    'Image2' => 2,
+                    'Image3' => 3,
+                    'Image4' => 4,
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner la solution',
-                    ]),
-                    new Length([
-                        'max' => 255,
-                        'maxMessage' => 'Votre pseudo doit contenir au maximum {{ limit }} caractères',
                     ]),
                 ],
             ])

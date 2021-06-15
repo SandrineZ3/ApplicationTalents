@@ -14,11 +14,11 @@
         <div class="four wide computer eight wide tablet sixteen wide mobile column">
             <div class="ui fluid card">
                 <div class="content">
-                    <div class="ui right floated header purple">
+                    <div class="ui right floated header colorInterpersonnelle">
                         <i class="icon user"></i>
                     </div>
                     <div class="header">
-                        <div class="ui purple header">{{ nbreEnigmeInterpersonnelle }}</div>
+                        <div class="ui colorInterpersonnelle header">{{ nbreEnigmeInterpersonnelle }}</div>
                     </div>
                     <div class="meta">
                         Interpersonnelle
@@ -29,7 +29,7 @@
                 </div>
                 <div class="extra content">
                     <div class="ui two buttons">
-                        <a class="ui purple button" href="{{ path('admin_interpersonnelle') }}">Voir</a>
+                        <a class="ui bgInterpersonnelle button" href="{{ path('admin_interpersonnelle') }}">Voir</a>
                     </div>
                 </div>
             </div>
@@ -37,126 +37,11 @@
         <div class="four wide computer eight wide tablet sixteen wide mobile column">
             <div class="ui fluid card">
                 <div class="content">
-                    <div class="ui right floated header green">
-                        <i class="icon language"></i>
+                    <div class="ui right floated header colorKinesthesique">
+                        <i class="icon child"></i>
                     </div>
                     <div class="header">
-                        <div class="ui header green">{{ nbreEnigmeLinguistique }}</div>
-                    </div>
-                    <div class="meta">
-                        Linguistique
-                    </div>
-                    <div class="description">
-                        Ensemble des énigmes Linguistique
-                    </div>
-                </div>
-                <div class="extra content">
-                    <div class="ui two buttons">
-                        <a class="ui green button" href="{{ path('admin_linguistique') }}">Voir</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="four wide computer eight wide tablet sixteen wide mobile column">
-            <div class="ui fluid card">
-                <div class="content">
-                    <div class="ui right floated header red">
-                        <i class="icon calculator"></i>
-                    </div>
-                    <div class="header">
-                        <div class="ui red header">{{ nbreEnigmeMathematique }}</div>
-                    </div>
-                    <div class="meta">
-                        Mathématique
-                    </div>
-                    <div class="description">
-                        Ensemble des énigmes Mathématique
-                    </div>
-                </div>
-                <div class="extra content">
-                    <div class="ui two buttons">
-                        <a class="ui red button" href="{{ path('admin_mathematique') }}">Voir</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="four wide computer eight wide tablet sixteen wide mobile column">
-            <div class="ui fluid card">
-                <div class="content">
-                    <div class="ui right floated header brown">
-                        <i class="icon user"></i>
-                    </div>
-                    <div class="header">
-                        <div class="ui brown header">{{ nbreEnigmeMusicale }}</div>
-                    </div>
-                    <div class="meta">
-                        Musicale
-                    </div>
-                    <div class="description">
-                        Ensemble des énigmes Musicale
-                    </div>
-                </div>
-                <div class="extra content">
-                    <div class="ui two buttons">
-                        <a class="ui brown button" href="{{ path('admin_musicale') }}">Voir</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="four wide computer eight wide tablet sixteen wide mobile column">
-            <div class="ui fluid card">
-                <div class="content">
-                    <div class="ui right floated header yellow">
-                        <i class="icon tree"></i>
-                    </div>
-                    <div class="header">
-                        <div class="ui yellow header">{{ nbreEnigmeNaturaliste }}</div>
-                    </div>
-                    <div class="meta">
-                        Naturaliste
-                    </div>
-                    <div class="description">
-                        Ensemble des énigmes Naturaliste
-                    </div>
-                </div>
-                <div class="extra content">
-                    <div class="ui two buttons">
-                        <a class="ui yellow button" href="{{ path('admin_naturaliste') }}">Voir</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="four wide computer eight wide tablet sixteen wide mobile column">
-            <div class="ui fluid card">
-                <div class="content">
-                    <div class="ui right floated header teal">
-                        <i class="icon map signs"></i>
-                    </div>
-                    <div class="header">
-                        <div class="ui teal header">{{ nbreEnigmeVisuoSpatiale }}</div>
-                    </div>
-                    <div class="meta">
-                        Visuo-Spatiale
-                    </div>
-                    <div class="description">
-                        Ensemble des énigmes Visuo-Spatiale
-                    </div>
-                </div>
-                <div class="extra content">
-                    <div class="ui two buttons">
-                        <a class="ui teal button" href="{{ path('admin_visuoSpatiale') }}">Voir</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="four wide computer eight wide tablet sixteen wide mobile column">
-            <div class="ui fluid card">
-                <div class="content">
-                    <div class="ui right floated header blue">
-                        <i class="fas fa-running"></i>
-                    </div>
-                    <div class="header">
-{#                    TODO    <div class="ui blue header">{{ nbreEnigmeKinesthesique }}</div>#}
+                        <div class="ui header colorKinesthesique">0</div>
                     </div>
                     <div class="meta">
                         Kinesthésique
@@ -167,7 +52,122 @@
                 </div>
                 <div class="extra content">
                     <div class="ui two buttons">
-{#                       TODO  <a class="ui blue button" href="{{ path('admin_kinesthesique') }}">Voir</a>#}
+                        <a class="ui bgKinesthesique button" href="#">Voir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="four wide computer eight wide tablet sixteen wide mobile column">
+            <div class="ui fluid card">
+                <div class="content">
+                    <div class="ui right floated header colorLinguistique">
+                        <i class="icon language"></i>
+                    </div>
+                    <div class="header">
+                        <div class="ui header colorLinguistique">{{ nbreEnigmeLinguistique }}</div>
+                    </div>
+                    <div class="meta">
+                        Linguistique
+                    </div>
+                    <div class="description">
+                        Ensemble des énigmes Linguistique
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div class="ui two buttons">
+                        <a class="ui bgLinguistique button" href="{{ path('admin_linguistique') }}">Voir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="four wide computer eight wide tablet sixteen wide mobile column">
+            <div class="ui fluid card">
+                <div class="content">
+                    <div class="ui right floated header colorMathematique">
+                        <i class="icon calculator"></i>
+                    </div>
+                    <div class="header">
+                        <div class="ui colorMathematique header">{{ nbreEnigmeMathematique }}</div>
+                    </div>
+                    <div class="meta">
+                        Mathématique
+                    </div>
+                    <div class="description">
+                        Ensemble des énigmes Mathématique
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div class="ui two buttons">
+                        <a class="ui bgMathematique button" href="{{ path('admin_mathematique') }}">Voir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="four wide computer eight wide tablet sixteen wide mobile column">
+            <div class="ui fluid card">
+                <div class="content">
+                    <div class="ui right floated header colorMusicale">
+                        <i class="icon music"></i>
+                    </div>
+                    <div class="header">
+                        <div class="ui colorMusicale header">{{ nbreEnigmeMusicale }}</div>
+                    </div>
+                    <div class="meta">
+                        Musicale
+                    </div>
+                    <div class="description">
+                        Ensemble des énigmes Musicale
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div class="ui two buttons">
+                        <a class="ui bgMusicale button" href="{{ path('admin_musicale') }}">Voir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="four wide computer eight wide tablet sixteen wide mobile column">
+            <div class="ui fluid card">
+                <div class="content">
+                    <div class="ui right floated header colorNaturaliste">
+                        <i class="icon tree"></i>
+                    </div>
+                    <div class="header">
+                        <div class="ui colorNaturaliste header">{{ nbreEnigmeNaturaliste }}</div>
+                    </div>
+                    <div class="meta">
+                        Naturaliste
+                    </div>
+                    <div class="description">
+                        Ensemble des énigmes Naturaliste
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div class="ui two buttons">
+                        <a class="ui bgNaturaliste button" href="{{ path('admin_naturaliste') }}">Voir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="four wide computer eight wide tablet sixteen wide mobile column">
+            <div class="ui fluid card">
+                <div class="content">
+                    <div class="ui right floated header colorVisuoSpatiale">
+                        <i class="icon map signs"></i>
+                    </div>
+                    <div class="header">
+                        <div class="ui colorVisuoSpatiale header">{{ nbreEnigmeVisuoSpatiale }}</div>
+                    </div>
+                    <div class="meta">
+                        Visuo-Spatiale
+                    </div>
+                    <div class="description">
+                        Ensemble des énigmes Visuo-Spatiale
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div class="ui two buttons">
+                        <a class="ui bgVisuoSpatiale button" href="{{ path('admin_visuoSpatiale') }}">Voir</a>
                     </div>
                 </div>
             </div>
@@ -188,29 +188,29 @@
         let myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Interpersonnelle', 'Linguistique', 'Mathématique', 'Musicale', 'Naturaliste', 'Visuo-Spatiale', 'Kinesthésique'],
+                labels: [
+                    'Interpersonnelle',
+                    'Intrapersonnelle',
+                    'Kinesthésique',
+                    'Linguistique',
+                    'Mathématique',
+                    'Musicale',
+                    'Naturaliste',
+                    'Visuo-Spatiale'
+                ],
                 datasets: [{
                     label: '',
-                    data: [12, 19, 3, 5, 2, 3, 8],
+                    data: [12, 19, 3, 5, 2, 3, 8, 9],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(20, 215, 50, 0.2)'
+                        '#D9C7ED',
+                        '#B3EDF8',
+                        '#E1DACA',
+                        '#BCE9D5',
+                        '#F6BDCE',
+                        '#FEEEB3',
+                        '#F9C29B',
+                        '#FF889A'
                     ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(20, 215, 50, 1)'
-                    ],
-                    borderWidth: 1
                 }]
             },
             options: {

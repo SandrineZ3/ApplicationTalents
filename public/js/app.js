@@ -42,6 +42,7 @@ function init() {
     }
 
     if (document.querySelector('#pageIntrapersonnelle')) {
+        $('.popup').popup();
         starColorManagement();
     }
 
@@ -51,6 +52,10 @@ function init() {
 
     if (document.querySelector('#pageMusicale')) {
         loadNumberOfNote();
+    }
+
+    if (document.querySelector('#pageNaturaliste')) {
+        effectIconCloseRadio();
     }
 
     if (document.querySelector('#pageResult')) {
@@ -108,8 +113,15 @@ function transformPictoIntoImage() {
 
 function transformEmoticonIntoImage() {
     $('.popup').popup();
-    $('img').click(function() {
-        $('img').addClass('blackAndWhite');
+    $('.field img').click(function() {
+        $('.field img').addClass('blackAndWhite');
         $(this).removeClass('blackAndWhite');
+    });
+}
+
+function effectIconCloseRadio() {
+    $('img').click(function() {
+        $('.fourImagesInOneBox label').find('i').remove();
+        $('<i class="close icon massive icon"></i>').insertAfter(this);
     });
 }

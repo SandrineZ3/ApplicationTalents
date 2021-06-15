@@ -12,13 +12,13 @@ class Utils
     {
         $user = $userRepository->find($appUser);
         $tableauOrdreJeux = [
-//                ['kinesthesique', $user->getKinesthesiqueFinished()],
             ['interpersonnelle', $user->getInterpersonnelleFinished()],
             ['naturaliste', $user->getNaturalisteFinished()],
+//            ['kinesthesique', $user->getKinesthesiqueFinished()],
             ['musicale', $user->getMusicaleFinished()],
             ['visuoSpatiale', $user->getVisuoSpatialeFinished()],
-            ['linguistique', $user->getLinguistiqueFinished()],
             ['mathematique', $user->getMathematiqueFinished()],
+            ['linguistique', $user->getLinguistiqueFinished()],
             ['intrapersonnelle', $user->getIntrapersonnelleFinished()],
         ];
         $i = 0;

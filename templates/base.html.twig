@@ -21,7 +21,7 @@
     <link href="{{ asset('css/ratingStars.css') }}" rel="stylesheet">
     <link href="{{ asset('css/swup.css') }}" rel="stylesheet">
     <link href="{{ asset('css/particles.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/musicale2.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/musicale.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dragAndDrop.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sandrine.css') }}" rel="stylesheet">
     {% block stylesheets %}{% endblock %}
@@ -30,6 +30,7 @@
 <body>
 <header>
     {% include("inc/messageFlash.html.twig") %}
+    <img width="100px" src="{{ asset('images/divers/logo.webp') }}" alt="logo">
 </header>
 
 <main>
@@ -53,7 +54,7 @@
 <script src="{{ asset('js/particles.js') }}"></script>
 <script src="{{ asset('js/requeteAjax.js') }}"></script>
 <script src="{{ asset('js/dragAndDropApp.js') }}"></script>
-<script src="{{ asset('js/musicale.js') }}"></script>
+<script src="{{ asset('js/musicale2.js') }}"></script>
 <script src="{{ asset('js/result.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script>
@@ -63,7 +64,7 @@
         src: ['audio/KomikuDeHerbeSousLesPieds.mp3'],
         autoplay: true,
         loop: true,
-        volume: 0.2,
+        volume: 0.0,
     });
     audioBackground.play();
     swup.on('contentReplaced', init);

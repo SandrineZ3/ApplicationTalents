@@ -26,6 +26,18 @@ body {
     object-fit: cover !important;
 }
 
+.createEmoticon a {
+    position: relative;
+}
+
+.createEmoticon a i {
+    position: absolute;
+    color: black;
+    bottom: 0;
+    right: 0;
+    z-index: 30;
+}
+
 .ui.vertical.menu.sidebar-menu {
     margin-top: 40px !important;
     max-height: calc(100% - 40px) !important;
@@ -71,4 +83,68 @@ body {
     margin-top: 7rem;
     font-size: 1.3rem;
     font-weight: 600;
+}
+
+.colorInterpersonnelle {
+    color: #D9C7ED !important;
+}
+.bgInterpersonnelle {
+    background-color: #D9C7ED !important;
+    color: white !important;
+}
+
+.colorIntrapersonnelle {
+    color: #B3EDF8 !important;
+}
+.bgIntrapersonnelle {
+    background-color: #B3EDF8 !important;
+    color: white !important;
+}
+
+.colorKinesthesique  {
+    color: #E1DACA !important;
+}
+.bgKinesthesique  {
+    background-color: #E1DACA !important;
+    color: white !important;
+}
+
+.colorLinguistique {
+    color: #BCE9D5 !important;
+}
+.bgLinguistique {
+    background-color: #BCE9D5 !important;
+    color: white !important;
+}
+
+.colorMathematique {
+    color: #F6BDCE !important;
+}
+.bgMathematique {
+    background-color: #F6BDCE !important;
+    color: white !important;
+}
+
+.colorMusicale {
+    color: #FEEEB3 !important;
+}
+.bgMusicale {
+    background-color: #FEEEB3 !important;
+    color: white !important;
+}
+
+.colorNaturaliste {
+    color: #F9C29B !important;
+}
+.bgNaturaliste {
+    background-color: #F9C29B !important;
+    color: white !important;
+}
+
+.colorVisuoSpatiale {
+    color: #FF889A !important;
+}
+.bgVisuoSpatiale {
+    background-color: #FF889A !important;
+    color: white !important;
 }

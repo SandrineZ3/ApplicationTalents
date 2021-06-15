@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\UserRepository;
+use App\Services\Utils;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,10 +14,10 @@ class AppAuthenticatorController extends AbstractController
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils, UserRepository $userRepository, Utils $utils): Response
     {
-        if ($this->getUser()) {
-            return $this->redirectToRoute('main');
+        if ($this->getUser() && $this->getUser()->getRoles() === ['ROLE_USER']) {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
         }
 
         // get the login error if there is one
