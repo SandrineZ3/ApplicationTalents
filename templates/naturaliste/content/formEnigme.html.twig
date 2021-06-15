@@ -1,14 +1,21 @@
 <form class="ui form" id="formEnigme">
     <div class="fourImagesInOneBox">
-        <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage1 }}" alt="image enigme" width="100%">
-        <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage2 }}" alt="image enigme" width="100%">
-        <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage3 }}" alt="image enigme" width="100%">
-        <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage4 }}" alt="image enigme" width="100%">
-    </div>
-
-    <div class="field">
-        <label for="input">Réponse :</label>
-        <input type="text" name="{{ nomInput }}" id="input">
+        <label>
+            <input type="radio" name="{{ nomInput }}" tabindex="0" class="hidden" value="1">
+            <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage1 }}" alt="image enigme" width="100%">
+        </label>
+        <label>
+            <input type="radio" name="{{ nomInput }}" tabindex="0" class="hidden" value="2">
+            <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage2 }}" alt="image enigme" width="100%">
+        </label>
+        <label>
+            <input type="radio" name="{{ nomInput }}" tabindex="0" class="hidden" value="3">
+            <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage3 }}" alt="image enigme" width="100%">
+        </label>
+        <label>
+            <input type="radio" name="{{ nomInput }}" tabindex="0" class="hidden" value="4">
+            <img src="{{ asset('images/naturaliste/') ~ enigmeRandom.urlImage4 }}" alt="image enigme" width="100%">
+        </label>
     </div>
     <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
 </form>
