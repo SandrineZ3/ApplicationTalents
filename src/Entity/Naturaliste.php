@@ -38,7 +38,7 @@ class Naturaliste
     private $urlImage4;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $solution;
 
@@ -101,12 +101,12 @@ class Naturaliste
         return $this;
     }
 
-    public function getSolution(): ?string
+    public function getSolution(): ?int
     {
         return $this->solution;
     }
 
-    public function setSolution(string $solution): self
+    public function setSolution(int $solution): self
     {
         $this->solution = $solution;
 
