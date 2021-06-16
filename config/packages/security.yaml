@@ -18,10 +18,6 @@ security:
             anonymous: true
             lazy: true
             provider: app_user_provider
-            remember_me:
-                secret: '%kernel.secret%'
-                lifetime: 86400
-                path: /
             guard:
                 authenticators:
                     - App\Security\AppAuthenticator
