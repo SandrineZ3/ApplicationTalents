@@ -28,7 +28,7 @@ class AdminController extends AbstractController
                               VisuoSpatialeRepository $visuoSpatialeRepository,
                               UserRepository $userRepository): Response
     {
-<<<<<<< Updated upstream
+
         return $this->render('admin/dashboard.html.twig', [
             'nbreEnigmeInterpersonnelle' => $interpersonnelleRepository->count([]),
             'nbreEnigmeKinesthesique' => $kinesthesiqueRepository->count([]),
@@ -38,24 +38,6 @@ class AdminController extends AbstractController
             'nbreEnigmeNaturaliste' => $naturalisteRepository->count([]),
             'nbreEnigmeVisuoSpatiale' => $visuoSpatialeRepository->count([]),
             'tableauStats' => $userRepository->findStatsByDateEndIsNotNull()[0],
-=======
-        $nbreEnigmeInterpersonnelle = $interpersonnelleRepository->count([]);
-        $nbreEnigmeKinesthesique = $kinesthesiqueRepository->count([]);
-        $nbreEnigmeLinguistique = $linguistiqueRepository->count([]);
-        $nbreEnigmeMathematique = $mathematiqueRepository->count([]);
-        $nbreEnigmeMusicale = $musicaleRepository->count([]);
-        $nbreEnigmeNaturaliste = $naturalisteRepository->count([]);
-        $nbreEnigmeVisuoSpatiale = $visuoSpatialeRepository->count([]);
-
-        return $this->render('admin/dashboard.html.twig', [
-            'nbreEnigmeInterpersonnelle' => $nbreEnigmeInterpersonnelle,
-            'nbreEnigmeKinesthesique' => $nbreEnigmeKinesthesique,
-            'nbreEnigmeLinguistique' => $nbreEnigmeLinguistique,
-            'nbreEnigmeMathematique' => $nbreEnigmeMathematique,
-            'nbreEnigmeMusicale' => $nbreEnigmeMusicale,
-            'nbreEnigmeNaturaliste' => $nbreEnigmeNaturaliste,
-            'nbreEnigmeVisuoSpatiale' => $nbreEnigmeVisuoSpatiale,
->>>>>>> Stashed changes
         ]);
     }
 
