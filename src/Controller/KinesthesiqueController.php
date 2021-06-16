@@ -5,11 +5,13 @@ namespace App\Controller;
 use App\Entity\Kinesthesique;
 use App\Form\KinesthesiqueFormType;
 use App\Repository\KinesthesiqueRepository;
+use App\Repository\LevelOfDifficultyRepository;
 use App\Repository\UserRepository;
 use App\Services\KinesthesiqueUtils;
 use App\Services\Utils;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,6 +26,7 @@ class KinesthesiqueController extends AbstractController
                          KinesthesiqueUtils $kinesthesiqueUtils,
                          Utils $utils,
                          UserRepository $userRepository,
+                         LevelOfDifficultyRepository $levelOfDifficultyRepository,
                          KinesthesiqueRepository $kinesthesiqueRepository): Response
     {
         if (!$this->getUser()) {
@@ -34,25 +37,23 @@ class KinesthesiqueController extends AbstractController
         }
         $user = $userRepository->find($this->getUser());
 
-        $tableauOfReponses = ['reponse1', 'reponse2', 'reponse3'];
-        foreach ($tableauOfReponses as $index => $reponses) {
-            if ($request->get($reponses)) {
+        $tableauOfDifficulty = ['reponseFacile', 'reponseMoyen', 'reponseDifficile'];
+        foreach ($tableauOfDifficulty as $index => $difficulty) {
+            if ($request->get($difficulty)) {
                 if ($index === 0) {
                     $user->setScoreKinesthesique(0);
                     $entityManager->flush();
                 }
 
-                $kinesthesiqueUtils->recordScore($request, $request->get($reponses), $kinesthesiqueRepository, $user, $entityManager);
+                $kinesthesiqueUtils->recordScore($request, $request->get($difficulty), $kinesthesiqueRepository, $user, $entityManager);
 
                 if ($index === 0 || $index === 1) {
-                    $enigmeRandom = $index + 1;
-                    $nomInput = $tableauOfReponses[$index + 1];
-
+                    $enigmeRandom = $utils->nextEnigme($index + 2, $kinesthesiqueRepository, $levelOfDifficultyRepository);
+                    $nomInput = $tableauOfDifficulty[$index + 1];
                     return new JsonResponse([
                         'content' => $this->renderView('kinesthesique/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput'))
                     ]);
-                }
-                else {
+                } else {
                     $user->setKinesthesiqueFinished(true);
                     $entityManager->flush();
 
@@ -68,8 +69,8 @@ class KinesthesiqueController extends AbstractController
             ]);
         }
 
-        $enigmeRandom = $index + 1;
-        $nomInput = 'reponse1';
+        $enigmeRandom = $utils->nextEnigme($index + 2, $kinesthesiqueRepository, $levelOfDifficultyRepository);
+        $nomInput = 'reponseFacile';
 
         return $this->render('kinesthesique/show.html.twig', [
             'enigmeRandom' => $enigmeRandom,
@@ -80,8 +81,8 @@ class KinesthesiqueController extends AbstractController
     /**
      * @Route("admin/kinesthesique/create", name="kinesthesique_create")
      */
-    public function create (Request $request,
-                            EntityManagerInterface $entityManager): Response
+    public function create(Request $request,
+                           EntityManagerInterface $entityManager): Response
     {
         $kinesthesique = new Kinesthesique();
         $kinesthesiqueForm = $this->createForm(KinesthesiqueFormType::class, $kinesthesique);

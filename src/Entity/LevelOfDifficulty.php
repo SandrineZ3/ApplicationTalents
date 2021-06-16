@@ -59,14 +59,21 @@ class LevelOfDifficulty
      */
     private $musicales;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Kinesthesique::class, mappedBy="levelOfDifficulty")
+     */
+    private $kinesthesiques;
+
     public function __construct()
     {
         $this->visuoSpatiales = new ArrayCollection();
+        $this->kinesthesiques = new ArrayCollection();
         $this->naturalistes = new ArrayCollection();
         $this->mathematiques = new ArrayCollection();
         $this->interpersonnelles = new ArrayCollection();
         $this->linguistiques = new ArrayCollection();
         $this->musicales = new ArrayCollection();
+        $this->kinesthesiques = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -272,6 +279,36 @@ class LevelOfDifficulty
             // set the owning side to null (unless already changed)
             if ($musicale->getLevelOfDifficulty() === $this) {
                 $musicale->setLevelOfDifficulty(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Kinesthesique[]
+     */
+    public function getKinesthesiques(): Collection
+    {
+        return $this->kinesthesiques;
+    }
+
+    public function addKinesthesique(Kinesthesique $kinesthesique): self
+    {
+        if (!$this->kinesthesiques->contains($kinesthesique)) {
+            $this->kinesthesiques[] = $kinesthesique;
+            $kinesthesique->setLevelOfDifficulty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeKinesthesique(Kinesthesique $kinesthesique): self
+    {
+        if ($this->kinesthesiques->removeElement($kinesthesique)) {
+            // set the owning side to null (unless already changed)
+            if ($kinesthesique->getLevelOfDifficulty() === $this) {
+                $kinesthesique->setLevelOfDifficulty(null);
             }
         }
 
