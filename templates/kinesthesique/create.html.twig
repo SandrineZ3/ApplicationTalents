@@ -1,0 +1,35 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Création énigme Kinesthésique{% endblock %}
+
+{% block body %}
+    <div class="ui grid container">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+                <div class="ui segment">
+                    <h3 class="ui dividing header">Création</h3>
+                    {{ form_start(kinesthesiqueForm) }}
+                    <div class="field">
+                        {{ form_row(kinesthesiqueForm.question) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(kinesthesiqueForm.answer1) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(kinesthesiqueForm.answer2) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(kinesthesiqueForm.answer3) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(kinesthesiqueForm.solution) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(kinesthesiqueForm.save) }}
+                    </div>
+                    {{ form_end(kinesthesiqueForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

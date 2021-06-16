@@ -28,6 +28,7 @@ class AdminController extends AbstractController
                               VisuoSpatialeRepository $visuoSpatialeRepository,
                               UserRepository $userRepository): Response
     {
+<<<<<<< Updated upstream
         return $this->render('admin/dashboard.html.twig', [
             'nbreEnigmeInterpersonnelle' => $interpersonnelleRepository->count([]),
             'nbreEnigmeKinesthesique' => $kinesthesiqueRepository->count([]),
@@ -37,6 +38,24 @@ class AdminController extends AbstractController
             'nbreEnigmeNaturaliste' => $naturalisteRepository->count([]),
             'nbreEnigmeVisuoSpatiale' => $visuoSpatialeRepository->count([]),
             'tableauStats' => $userRepository->findStatsByDateEndIsNotNull()[0],
+=======
+        $nbreEnigmeInterpersonnelle = $interpersonnelleRepository->count([]);
+        $nbreEnigmeKinesthesique = $kinesthesiqueRepository->count([]);
+        $nbreEnigmeLinguistique = $linguistiqueRepository->count([]);
+        $nbreEnigmeMathematique = $mathematiqueRepository->count([]);
+        $nbreEnigmeMusicale = $musicaleRepository->count([]);
+        $nbreEnigmeNaturaliste = $naturalisteRepository->count([]);
+        $nbreEnigmeVisuoSpatiale = $visuoSpatialeRepository->count([]);
+
+        return $this->render('admin/dashboard.html.twig', [
+            'nbreEnigmeInterpersonnelle' => $nbreEnigmeInterpersonnelle,
+            'nbreEnigmeKinesthesique' => $nbreEnigmeKinesthesique,
+            'nbreEnigmeLinguistique' => $nbreEnigmeLinguistique,
+            'nbreEnigmeMathematique' => $nbreEnigmeMathematique,
+            'nbreEnigmeMusicale' => $nbreEnigmeMusicale,
+            'nbreEnigmeNaturaliste' => $nbreEnigmeNaturaliste,
+            'nbreEnigmeVisuoSpatiale' => $nbreEnigmeVisuoSpatiale,
+>>>>>>> Stashed changes
         ]);
     }
 
@@ -48,6 +67,18 @@ class AdminController extends AbstractController
         $tableauEnigmes = $interpersonnelleRepository->findAll();
 
         return $this->render('admin/interpersonnelle.html.twig', [
+            'tableauEnigmes' => $tableauEnigmes,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/kinesthesique", name="admin_kinesthesique")
+     */
+    public function showAllKinesthesique(KinesthesiqueRepository $kinesthesiqueRepository): Response
+    {
+        $tableauEnigmes = $kinesthesiqueRepository->findAll();
+
+        return $this->render('admin/kinesthesique.html.twig', [
             'tableauEnigmes' => $tableauEnigmes,
         ]);
     }

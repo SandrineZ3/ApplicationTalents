@@ -14,7 +14,7 @@ class Utils
         $tableauOrdreJeux = [
             ['interpersonnelle', $user->getInterpersonnelleFinished()],
             ['naturaliste', $user->getNaturalisteFinished()],
-//            ['kinesthesique', $user->getKinesthesiqueFinished()],
+            ['kinesthesique', $user->getKinesthesiqueFinished()],
             ['musicale', $user->getMusicaleFinished()],
             ['visuoSpatiale', $user->getVisuoSpatialeFinished()],
             ['mathematique', $user->getMathematiqueFinished()],

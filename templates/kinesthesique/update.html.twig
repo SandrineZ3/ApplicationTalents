@@ -1,0 +1,55 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Modifier énigme Kinesthésique{% endblock %}
+
+{% block body %}
+    <div class="ui grid container">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+                <div class="ui segment">
+                    <h3 class="ui dividing header">Modification</h3>
+                    {{ form_start(kinesthesiqueForm) }}
+                    <div class="field">
+                        {{ form_row(kinesthesiqueForm.question) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(kinesthesiqueForm.answer1) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(kinesthesiqueForm.answer2) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(kinesthesiqueForm.answer3) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(kinesthesiqueForm.solution) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(kinesthesiqueForm.save) }}
+                    </div>
+                    {{ form_end(kinesthesiqueForm) }}
+                    <button onclick="afficherModalDelete()" class="ui button">Supprimer</button>
+                </div>
+            </div>
+            {#modal#}
+            <div class="ui mini modal trash">
+                <div class="header">
+                    Suppression
+                </div>
+                <div class="content">
+                    <p>Êtes-vous sûr de vouloir supprimer cette énigme ?</p>
+                </div>
+                <div class="actions">
+                    <div class="ui negative button">
+                        Non
+                    </div>
+                    <a class="ui positive right labeled icon button" href="{{ path('kinesthesique_delete', {'id': kinesthesique.id }) }}">
+                        Oui
+                        <i class="checkmark icon"></i>
+                    </a>
+                </div>
+            </div>
+            {#modal#}
+        </div>
+    </div>
+{% endblock %}
