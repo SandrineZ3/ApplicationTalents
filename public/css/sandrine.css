@@ -81,7 +81,7 @@ h4 {
     font-size: 1.4em;
     font-family: 'Architects Daughter', cursive;
     padding: 0 !important;
-    margin-top: 20px;
+    margin-top: 25px;
     margin-left: 0;
 }
 
@@ -102,3 +102,5 @@ body, label:hover {
 .button:hover, input:hover, .rating>label:hover, [type=radio] + img:hover, .cursor {
     cursor: url("../images/divers/pointer.png") 14 2, auto !important;
 }
+
+
