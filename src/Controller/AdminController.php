@@ -36,7 +36,7 @@ class AdminController extends AbstractController
             'nbreEnigmeMusicale' => $musicaleRepository->count([]),
             'nbreEnigmeNaturaliste' => $naturalisteRepository->count([]),
             'nbreEnigmeVisuoSpatiale' => $visuoSpatialeRepository->count([]),
-            'tableauStats' => $userRepository->findStatsByDateEndIsNotNull()[0],
+            'tableauStats' => $userRepository->findStatsByDateEndIsNotNull(),
         ]);
     }
 

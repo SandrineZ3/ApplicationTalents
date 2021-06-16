@@ -36,9 +36,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    /**
-     * @return User[] Returns an array of User objects
-     */
     public function findStatsByDateEndIsNotNull(): array
     {
         return $this->createQueryBuilder('u')
@@ -52,7 +49,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
                 'SUM(u.scoreVisuoSpatiale)')
             ->andWhere('u.dateEnd is not NULL')
             ->getQuery()
-            ->getResult()
+            ->getSingleResult()
             ;
     }
 
