@@ -49,7 +49,7 @@ class IntrapersonnelleController extends AbstractController
             $user->setIntrapersonnelleFinished(true);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('result');
         }
 
         return $this->render('intrapersonnelle/show.html.twig');

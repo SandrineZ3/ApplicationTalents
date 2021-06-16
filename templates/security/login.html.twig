@@ -3,6 +3,15 @@
 {% block title %}Reprendre{% endblock %}
 
 {% block body %}
+    {% if error %}
+        <div class="ui message-fixed compact error message manuel-close">
+            <i class="close icon" onclick="removeMessage()"></i>
+            <div class="header">
+                Error
+            </div>
+            <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+        </div>
+    {% endif %}
     <div class="ui grid container h100 middle aligned" id="pageConnexion">
         <div class="row">
             <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
