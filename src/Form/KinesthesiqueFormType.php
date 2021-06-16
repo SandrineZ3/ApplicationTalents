@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Kinesthesique;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,21 +24,21 @@ class KinesthesiqueFormType extends AbstractType
                         'message' => 'Veuillez renseigner une question',
                     ]),],])
             ->add('answer1', TextareaType::class, [
-                'label' => 'Reponse1',
+                'label' => 'Réponse 1',
                 'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner une première réponse',
                     ]),],])
             ->add('answer2', TextareaType::class, [
-                'label' => 'Reponse2',
+                'label' => 'Réponse 2',
                 'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner une deuxième réponse',
                     ]),],])
             ->add('answer3', TextareaType::class, [
-                'label' => 'Reponse3',
+                'label' => 'Réponse 3',
                 'required' => false,
                 'constraints' => [
                     new NotBlank([
@@ -55,6 +56,9 @@ class KinesthesiqueFormType extends AbstractType
                         'message' => 'Veuillez renseigner la solution',
                     ]),
                 ],
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => 'Enregistrer',
             ]);
     }
 

@@ -1,14 +1,24 @@
 <form class="ui form" id="formEnigme">
-    <div class="test">
-        <p> Question de l'énigme</p>
-        <p>Reponse 1</p>
-        <p>Reponse 1</p>
-        <p>Reponse 1</p>
+    <div class="field">
+        <input type="text" name="{{ nomInput }}" value="{{ enigmeRandom.question }}" readonly/>
+    </div>
+    <label for="input">Quelle proposition te correspond le plus :</label>
+    <div class="field">
+        <input type="radio" name="{{ nomInput }}" value="1"/>
+        <input type="text" value="{{ enigmeRandom.reponse1 }}" readonly/>
+    </div>
+    <div class="field">
+        <input type="radio" name="{{ nomInput }}" value="2"/>
+        <input type="text" value="{{ enigmeRandom.reponse2 }}" readonly/>
+    </div>
+    <div class="field">
+        <input type="radio" name="{{ nomInput }}" value="3"/>
+        <input type="text" value="{{ enigmeRandom.reponse3 }}" readonly/>
     </div>
 
     <div class="field">
-        <label for="input">Réponse :</label>
-        <input type="text" name="{{ nomInput }}" id="input">
+        <label for="input">Quelle proposition te correspond le plus :</label>
+        <input type="radio" name="{{ nomInput }}" id="input" value="{{ enigmeRandom.solution }}">
     </div>
     <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
 </form>
