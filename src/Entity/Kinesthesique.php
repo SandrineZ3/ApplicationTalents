@@ -42,6 +42,12 @@ class Kinesthesique
      */
     private $solution;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=LevelOfDifficulty::class, inversedBy="kinesthesiques")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $levelOfDifficulty;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +109,18 @@ class Kinesthesique
     public function setSolution(int $solution): self
     {
         $this->solution = $solution;
+
+        return $this;
+    }
+
+    public function getLevelOfDifficulty(): ?LevelOfDifficulty
+    {
+        return $this->levelOfDifficulty;
+    }
+
+    public function setLevelOfDifficulty(?LevelOfDifficulty $levelOfDifficulty): self
+    {
+        $this->levelOfDifficulty = $levelOfDifficulty;
 
         return $this;
     }

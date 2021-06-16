@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Kinesthesique;
+use App\Entity\LevelOfDifficulty;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -54,6 +56,20 @@ class KinesthesiqueFormType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner la solution',
+                    ]),
+                ],
+            ])
+            ->add('levelOfDifficulty', EntityType::class, [
+                'class' => LevelOfDifficulty::class,
+                'label' => 'Difficulté',
+                'required' => false,
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Choisir la difficulté',
+                'choice_label' => 'label',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner la difficulté',
                     ]),
                 ],
             ])
