@@ -41,7 +41,7 @@
                         <i class="icon child"></i>
                     </div>
                     <div class="header">
-                        <div class="ui header colorKinesthesique">0</div>
+                        <div class="ui header colorKinesthesique">{{ nbreEnigmeKinesthesique }}</div>
                     </div>
                     <div class="meta">
                         Kinesthésique
@@ -186,7 +186,7 @@
     <script>
         let ctx = document.getElementById('myChart').getContext('2d');
         let myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'pie',
             data: {
                 labels: [
                     'Interpersonnelle',
@@ -200,7 +200,11 @@
                 ],
                 datasets: [{
                     label: '',
-                    data: [12, 19, 3, 5, 2, 3, 8, 9],
+                    data: [
+                        {% for stat in tableauStats %}
+                        '{{ stat }}',
+                        {% endfor %}
+                    ],
                     backgroundColor: [
                         '#D9C7ED',
                         '#B3EDF8',
@@ -214,14 +218,16 @@
                 }]
             },
             options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                },
                 plugins: {
+                    title: {
+                        display: true,
+                        text: 'Statistiques Visiteurs'
+                    },
+                    tooltip: {
+                        enabled: false,
+                    },
                     legend: {
-                        display: false
+                        display: true
                     }
                 }
             }

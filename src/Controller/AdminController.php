@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Repository\InterpersonnelleRepository;
+use App\Repository\KinesthesiqueRepository;
 use App\Repository\LinguistiqueRepository;
 use App\Repository\MathematiqueRepository;
 use App\Repository\MusicaleRepository;
 use App\Repository\NaturalisteRepository;
+use App\Repository\UserRepository;
 use App\Repository\VisuoSpatialeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,26 +20,23 @@ class AdminController extends AbstractController
      * @Route("/admin", name="admin_dashboard")
      */
     public function dashboard(InterpersonnelleRepository $interpersonnelleRepository,
+                              KinesthesiqueRepository $kinesthesiqueRepository,
                               LinguistiqueRepository $linguistiqueRepository,
                               MathematiqueRepository $mathematiqueRepository,
                               MusicaleRepository $musicaleRepository,
                               NaturalisteRepository $naturalisteRepository,
-                              VisuoSpatialeRepository $visuoSpatialeRepository): Response
+                              VisuoSpatialeRepository $visuoSpatialeRepository,
+                              UserRepository $userRepository): Response
     {
-        $nbreEnigmeInterpersonnelle = $interpersonnelleRepository->count([]);
-        $nbreEnigmeLinguistique = $linguistiqueRepository->count([]);
-        $nbreEnigmeMathematique = $mathematiqueRepository->count([]);
-        $nbreEnigmeMusicale = $musicaleRepository->count([]);
-        $nbreEnigmeNaturaliste = $naturalisteRepository->count([]);
-        $nbreEnigmeVisuoSpatiale = $visuoSpatialeRepository->count([]);
-
         return $this->render('admin/dashboard.html.twig', [
-            'nbreEnigmeInterpersonnelle' => $nbreEnigmeInterpersonnelle,
-            'nbreEnigmeLinguistique' => $nbreEnigmeLinguistique,
-            'nbreEnigmeMathematique' => $nbreEnigmeMathematique,
-            'nbreEnigmeMusicale' => $nbreEnigmeMusicale,
-            'nbreEnigmeNaturaliste' => $nbreEnigmeNaturaliste,
-            'nbreEnigmeVisuoSpatiale' => $nbreEnigmeVisuoSpatiale,
+            'nbreEnigmeInterpersonnelle' => $interpersonnelleRepository->count([]),
+            'nbreEnigmeKinesthesique' => $kinesthesiqueRepository->count([]),
+            'nbreEnigmeLinguistique' => $linguistiqueRepository->count([]),
+            'nbreEnigmeMathematique' => $mathematiqueRepository->count([]),
+            'nbreEnigmeMusicale' => $musicaleRepository->count([]),
+            'nbreEnigmeNaturaliste' => $naturalisteRepository->count([]),
+            'nbreEnigmeVisuoSpatiale' => $visuoSpatialeRepository->count([]),
+            'tableauStats' => $userRepository->findStatsByDateEndIsNotNull()[0],
         ]);
     }
 
