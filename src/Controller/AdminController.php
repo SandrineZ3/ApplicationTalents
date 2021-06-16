@@ -28,6 +28,7 @@ class AdminController extends AbstractController
                               VisuoSpatialeRepository $visuoSpatialeRepository,
                               UserRepository $userRepository): Response
     {
+
         return $this->render('admin/dashboard.html.twig', [
             'nbreEnigmeInterpersonnelle' => $interpersonnelleRepository->count([]),
             'nbreEnigmeKinesthesique' => $kinesthesiqueRepository->count([]),
@@ -48,6 +49,18 @@ class AdminController extends AbstractController
         $tableauEnigmes = $interpersonnelleRepository->findAll();
 
         return $this->render('admin/interpersonnelle.html.twig', [
+            'tableauEnigmes' => $tableauEnigmes,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/kinesthesique", name="admin_kinesthesique")
+     */
+    public function showAllKinesthesique(KinesthesiqueRepository $kinesthesiqueRepository): Response
+    {
+        $tableauEnigmes = $kinesthesiqueRepository->findAll();
+
+        return $this->render('admin/kinesthesique.html.twig', [
             'tableauEnigmes' => $tableauEnigmes,
         ]);
     }
