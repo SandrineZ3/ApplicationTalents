@@ -53,6 +53,7 @@ class KinesthesiqueFormType extends AbstractType
                     'Réponse 3' => 3,
                 ],
                 'multiple' => false,
+                'expanded' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner la solution',

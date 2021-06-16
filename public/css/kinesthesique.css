@@ -1,0 +1,66 @@
+/* Apparence et effets des radio button */
+@keyframes click-wave {
+    0% {
+        height: 20px;
+        width: 20px;
+        opacity: 0.25;
+        position: relative;
+    }
+    100% {
+        height: 100px;
+        width: 100px;
+        margin-left: -40px;
+        margin-top: -40px;
+        opacity: 0;
+    }
+}
+.option-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    top: 6px;
+    height: 20px;
+    width: 20px;
+    transition: all 0.15s ease-out 0s;
+    background: #cbd1d8;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    z-index: 1000;
+}
+.option-input:hover {
+    background: #9faab7;
+}
+.option-input:checked {
+    background: white;
+}
+.option-input:checked::before {
+    position: absolute;
+    content: '✔';
+    display: inline-block;
+    font-size: 40px;
+    color: green;
+    text-align: center;
+    line-height: 15px;
+    left: -2px;
+}
+.option-input:checked::after {
+    -webkit-animation: click-wave 0.65s;
+    -moz-animation: click-wave 0.65s;
+    animation: click-wave 0.65s;
+    background: green;
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 100;
+}
+.option-input.radio {
+    border-radius: 25%;
+}
+.option-input.radio::after {
+    border-radius: 50%;
+}

@@ -69,7 +69,7 @@ class KinesthesiqueController extends AbstractController
             ]);
         }
 
-        $enigmeRandom = $utils->nextEnigme($index + 2, $kinesthesiqueRepository, $levelOfDifficultyRepository);
+        $enigmeRandom = $utils->nextEnigme(1, $kinesthesiqueRepository, $levelOfDifficultyRepository);
         $nomInput = 'reponseFacile';
 
         return $this->render('kinesthesique/show.html.twig', [
