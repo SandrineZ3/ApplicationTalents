@@ -42,3 +42,15 @@ function insertRandomCircle(initialCircle, color) {
 function getRandomNumber(min, max) {
     return Math.round(Math.random() * (max - min) + min);
 }
+
+function generatePDF() {
+    const element = document.getElementById('htmlToPdf');
+    let options = {
+        margin: 1,
+        filename: 'mes-resultats.pdf',
+        image: {type: 'png'},
+        html2canvas: {scale: 1}, // Scaling de TOUT l'élement à imprimer
+        jsPDF: {unit: 'cm', format: 'a4', orientation: 'portrait'}
+    };
+    html2pdf().set(options).from(element).save();
+}

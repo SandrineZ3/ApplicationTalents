@@ -10,61 +10,50 @@
                     <div class="ui colorApp segment">
                         <h3 class="ui dividing header">Résultats</h3>
                         <div class="row">
-                            <div class="line-drawing-demo">
-                                {% include("main/content/brain.html.twig") %}
-                            </div>
-                            <div id="tableauResult"
-                                 dataScore-Interpersonnelle="{{ user.scoreInterpersonnelle }}"
-                                 dataScore-Intrapersonnelle="{{ user.scoreIntrapersonnelle }}"
-                                 dataScore-Kinesthesique="{{ user.scoreKinesthesique }}"
-                                 dataScore-Linguistique="{{ user.scoreLinguistique }}"
-                                 dataScore-Mathematique="{{ user.scoreMathematique }}"
-                                 dataScore-Musicale="{{ user.scoreMusicale }}"
-                                 dataScore-Naturaliste="{{ user.scoreNaturaliste }}"
-                                 dataScore-VisuoSpatiale="{{ user.scoreVisuoSpatiale }}">
-                            </div>
-                            <div id="blocEnigme">
-                                <p>scoreInterpersonnelle : {{ user.scoreInterpersonnelle }}</p>
-                                <p>scoreIntrapersonnelle : {{ user.scoreIntrapersonnelle }}</p>
-                                <p>scoreKinesthesique : {{ user.scoreKinesthesique }}</p>
-                                <p>scoreLinguistique : {{ user.scoreLinguistique }}</p>
-                                <p>scoreMathematique : {{ user.scoreMathematique }}</p>
-                                <p>scoreMusicale : {{ user.scoreMusicale }}</p>
-                                <p>scoreNaturaliste : {{ user.scoreNaturaliste }}</p>
-                                <p>scoreVisuoSpatiale : {{ user.scoreVisuoSpatiale }}</p>
+                            <div id="testSVG">
+                                <div class="line-drawing-demo" id="brainSVG">
+                                    {% include("main/content/brain.html.twig") %}
+                                </div>
+                                <div id="tableauResult"
+                                     dataScore-Interpersonnelle="{{ user.scoreInterpersonnelle }}"
+                                     dataScore-Intrapersonnelle="{{ user.scoreIntrapersonnelle }}"
+                                     dataScore-Kinesthesique="{{ user.scoreKinesthesique }}"
+                                     dataScore-Linguistique="{{ user.scoreLinguistique }}"
+                                     dataScore-Mathematique="{{ user.scoreMathematique }}"
+                                     dataScore-Musicale="{{ user.scoreMusicale }}"
+                                     dataScore-Naturaliste="{{ user.scoreNaturaliste }}"
+                                     dataScore-VisuoSpatiale="{{ user.scoreVisuoSpatiale }}">
+                                </div>
+                                <div id="blocEnigme">
+                                    <p>scoreInterpersonnelle : {{ user.scoreInterpersonnelle }}</p>
+                                    <p>scoreIntrapersonnelle : {{ user.scoreIntrapersonnelle }}</p>
+                                    <p>scoreKinesthesique : {{ user.scoreKinesthesique }}</p>
+                                    <p>scoreLinguistique : {{ user.scoreLinguistique }}</p>
+                                    <p>scoreMathematique : {{ user.scoreMathematique }}</p>
+                                    <p>scoreMusicale : {{ user.scoreMusicale }}</p>
+                                    <p>scoreNaturaliste : {{ user.scoreNaturaliste }}</p>
+                                    <p>scoreVisuoSpatiale : {{ user.scoreVisuoSpatiale }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="ui colorApp segment">
                     <h4 class="ui dividing header">Partager mes résultats !</h4>
-                    <button class="ui circular facebook icon button"
+                    <button class="ui circular facebook icon button" title="Partager sur Facebook"
                             onclick=window.location.href="https://www.facebook.com/sharer/sharer.php?u=http://www.rdvnomade.fr/public/result">
                         <i class="facebook icon"></i>
                     </button>
-                    <button class="ui circular twitter icon button"
+                    <button class="ui circular twitter icon button" title="Partager sur Twitter"
                             onclick=window.location.href="https://twitter.com/intent/tweet?url=http://www.rdvnomade.fr/public/result&text=">
                         <i class="twitter icon"></i>
                     </button>
-                    <button class="ui circular linkedin icon button"
+                    <button class="ui circular linkedin icon button" title="Partager sur LinkedIn"
                             onclick=window.location.href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.rdvnomade.fr%2Fpublic%2Fresult&title=test+test">
                         <i class="linkedin icon"></i>
                     </button>
-                    <button class="ui circular icon button" onclick="generatePDF()"><i class="fas fa-download"></i></button>
-
-                    <script>
-                        function generatePDF() {
-                            const element = document.getElementById('htmlToPdf');
-                            var options = {
-                                margin:       1,
-                                filename:     'mes-resultats.pdf',
-                                image:        { type: 'jpeg', quality: 0.9},
-                                html2canvas:  { scale: 2 }, // TODO : résoudre affichage image /scaling
-                                jsPDF:        { unit: 'cm', format: 'letter', orientation: 'portrait' }
-                            };
-                            html2pdf().set(options).from(element).save();
-                        }
-                    </script>
+                    <button class="ui circular icon button" onclick="generatePDF()" title="Télécharger en format PDF"><i
+                                class="fas fa-download"></i></button>
                 </div>
             </div>
         </div>
