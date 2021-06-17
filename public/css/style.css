@@ -51,7 +51,7 @@ header img {
 
 /* HIDE RADIO */
 #pageInterpersonnelle input[type=radio],
-#pageNaturaliste input[type=radio]{
+#pageNaturaliste input[type=radio] {
     display: none;
 }
 

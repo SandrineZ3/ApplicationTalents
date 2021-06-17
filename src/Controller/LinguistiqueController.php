@@ -40,8 +40,6 @@ class LinguistiqueController extends AbstractController
         }
         $user = $userRepository->find($this->getUser());
 
-        $allPictos = $pictoRepository->findAll();
-
         // 1 = NIVEAU FACILE
         $levelOfDifficulty = $levelOfDifficultyRepository->find(1);
         $enigmes = $linguistiqueRepository->findBy(array("levelOfDifficulty" => $levelOfDifficulty), array("id" => "ASC"));
@@ -133,7 +131,7 @@ class LinguistiqueController extends AbstractController
 
         return $this->render('linguistique/show.html.twig', [
             "enigmeRandom" => $enigmeRandom,
-            "allPictos" => $allPictos,
+            "allPictos" => $pictoRepository->findAll(),
             "nomInput" => $nomInput,
         ]);
     }
@@ -172,13 +170,14 @@ class LinguistiqueController extends AbstractController
         return $this->render('linguistique/create.html.twig', [
             'linguistiqueForm' => $linguistiqueForm->createView(),
             'pictoForm' => $pictoForm->createView(),
+            'allPictos' => $pictoRepository->findAll(),
         ]);
     }
 
     /**
      * @Route("admin/linguistique/{id}/update", name="linguistique_update", requirements={"id"="\d+"})
      */
-    public function update(int $id, Request $request, Utils $utils, EntityManagerInterface $entityManager, LinguistiqueRepository $linguistiqueRepository): Response
+    public function update(int $id, Request $request, Utils $utils, EntityManagerInterface $entityManager, LinguistiqueRepository $linguistiqueRepository, PictoRepository $pictoRepository): Response
     {
         $linguistique = $linguistiqueRepository->find($id);
         if (!$linguistique) {
@@ -208,13 +207,14 @@ class LinguistiqueController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Le pictogramme a bien été enregistré');
-            return $this->redirectToRoute('linguistique_update');
+            return $this->redirectToRoute('linguistique_update', ['id' => $id]);
         }
 
         return $this->render('linguistique/update.html.twig', [
             'linguistiqueForm' => $linguistiqueForm->createView(),
             'pictoForm' => $pictoForm->createView(),
             'linguistique' => $linguistique,
+            'allPictos' => $pictoRepository->findAll(),
         ]);
     }
 
@@ -233,6 +233,29 @@ class LinguistiqueController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', 'L\'énigme a bien été supprimée');
+        return $this->redirectToRoute('admin_linguistique');
+    }
+
+    /**
+     * @Route("admin/picto/{id}/delete", name="picto_delete", requirements={"id"="\d+"})
+     */
+    public function deletePicto(int $id, EntityManagerInterface $entityManager, LinguistiqueRepository $linguistiqueRepository, PictoRepository $pictoRepository): Response
+    {
+        $picto = $pictoRepository->find($id);
+        if (!$picto) {
+            $this->addFlash('error', 'Le pictogramme recherché n\'existe pas');
+            return $this->redirectToRoute('admin_linguistique');
+        }
+
+        if ($linguistiqueRepository->findOneBy(['solution' => $picto])) {
+            $this->addFlash('error', 'Le pictogramme que vous cherchez à supprimer est rattaché à une énigme');
+            return $this->redirectToRoute('admin_linguistique');
+        }
+
+        $entityManager->remove($picto);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Le pictogramme a bien été supprimé');
         return $this->redirectToRoute('admin_linguistique');
     }
 }

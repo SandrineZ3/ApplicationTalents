@@ -1,5 +1,7 @@
 {% extends 'base_admin.html.twig' %}
 
+{% block title %}Création énigme Verbo-Linguistique{% endblock %}
+
 {% block body %}
     <div class="ui grid container pad">
         <div class="row">
@@ -12,7 +14,7 @@
                     </div>
                     <div class="field">
                         {{ form_row(linguistiqueForm.solution) }}
-                        <button onclick="afficherModalCreatePicto()" class="ui button mini">Ajouter un Pictogramme
+                        <button onclick="afficherModalCreatePicto()" class="ui button mini">Gestion des Pictogrammes
                         </button>
                     </div>
                     <div class="field">
@@ -25,54 +27,25 @@
                 </div>
             </div>
             {# modal #}
-            <div class="ui mini modal createPicto">
-                <div class="ui segment">
-                    <h3 class="ui dividing header">Création Pictogramme</h3>
-                    {{ form_start(pictoForm) }}
-                    <div class="field">
-                        {{ form_row(pictoForm.label) }}
-                    </div>
-                    <div class="field">
-                        {{ form_row(pictoForm.image) }}
-                    </div>
-                    <div class="field">
-                        {{ form_row(pictoForm.save) }}
-                    </div>
-                    {{ form_end(pictoForm) }}
-                </div>
-            </div>
+            {% include("linguistique/content/modalPicto.html.twig") %}
             {# modal #}
         </div>
     </div>
 {% endblock %}
 
-{# {% block javascripts %} #}
-{# <script> #}
-{# $('.pictoUrlImage').each(function () { #}
-{# let urlImage = $(this).text().trim(); #}
-{# $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" alt="image pictogramme"/>').insertAfter($(this)); #}
-{# $(this).remove(); #}
-{# }); #}
-{# function afficherModalCreatePicto() { #}
-{# event.preventDefault(); #}
-{# $('.mini.modal.createPicto').modal('show'); #}
-{# } #}
-{# </script> #}
-{# {% endblock %} #}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('#linguistique_form_solution label').each(function () {
+                let urlImage = $(this).text();
+                $('<img width="80px" height="80px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" alt="image pictogramme"/>').insertAfter($(this));
+                $(this).text('');
+            });
+        });
 
- {% block javascripts %}
-     <script>
-         $(document).ready(function () {
-             $('#linguistique_form_solution label').each(function () { // Si "label" au lieu de "urlImage", picto s'affiche mais pas chk box
-                 let urlImage = $(this).text();
-                 $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" alt="image pictogramme"/>').insertAfter($(this));
-                 $(this).text('');
-             });
-         });
-
-         function afficherModalCreatePicto() {
-             event.preventDefault();
-             $('.mini.modal.createPicto').modal('show');
-         }
-     </script>
- {% endblock %}
+        function afficherModalCreatePicto() {
+            event.preventDefault();
+            $('.mini.modal.createPicto').modal('show');
+        }
+    </script>
+{% endblock %}

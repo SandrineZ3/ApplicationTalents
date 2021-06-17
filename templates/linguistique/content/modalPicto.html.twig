@@ -1,0 +1,27 @@
+<div class="ui mini modal createPicto">
+    <div class="ui segment">
+        <h3 class="ui dividing header">Ajouter un pictogramme</h3>
+        {{ form_start(pictoForm) }}
+        <div class="field">
+            {{ form_row(pictoForm.label) }}
+        </div>
+        <div class="field">
+            {{ form_row(pictoForm.image) }}
+        </div>
+        <div class="field">
+            {{ form_row(pictoForm.save) }}
+        </div>
+        {{ form_end(pictoForm) }}
+        <h3 class="ui dividing header">Supprimer un pictogramme</h3>
+        <div id="allPictoDeleting">
+            {% for picto in allPictos %}
+                <div id="deletePictos">
+                    <img width="80px" height="80px" src="{{ asset('images/linguistique_pictos/') ~ picto.urlImage }}" class="popup" alt="image pictogramme" data-content="{{ picto.label }}" data-position="top left"/>
+                    <div id="trashIcon">
+                        <a href="{{ path('picto_delete', {'id': picto.id }) }}"><i class="trash icon"></i></a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
