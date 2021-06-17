@@ -3,23 +3,25 @@
     <div class="field">
         <h4> {{ enigmeRandom.question }} </h4>
     </div>
-    <div class="inline field">
-        <label>
-            <input type="radio" class="option-input radio" name="{{ nomInput }}" value="1"/>
-            <div class="ui transparent input">{{ enigmeRandom.answer1 }}</div>
-        </label>
-    </div>
-    <div class="inline field">
-        <label>
-            <input type="radio" class="option-input radio" name="{{ nomInput }}" value="2"/>
-            <div class="ui transparent input">{{ enigmeRandom.answer2 }}</div>
-        </label>
-    </div>
-    <div class="inline field">
-        <label>
-            <input type="radio" class="option-input radio" name="{{ nomInput }}" value="3"/>
-            <div class="ui transparent input">{{ enigmeRandom.answer3 }}</div>
-        </label>
+    <div class="propositions">
+        <div class="inline field">
+            <div class="flexDiv">
+                <input type="radio" class="option-input radio" name="{{ nomInput }}" value="1"/>
+                <div class="ui transparent input">{{ enigmeRandom.answer1 }}</div>
+            </div>
+        </div>
+        <div class="inline field">
+            <div class="flexDiv">
+                <input type="radio" class="option-input radio" name="{{ nomInput }}" value="2"/>
+                <div class="ui transparent input">{{ enigmeRandom.answer2 }}</div>
+            </div>
+        </div>
+        <div class="inline field">
+            <div class="flexDiv">
+                <input type="radio" class="option-input radio" name="{{ nomInput }}" value="3"/>
+                <div class="ui transparent input">{{ enigmeRandom.answer3 }}</div>
+            </div>
+        </div>
     </div>
     <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
 </form>
