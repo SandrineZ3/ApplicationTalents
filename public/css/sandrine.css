@@ -55,57 +55,11 @@ h4 {
     margin-top : 30px !important;
 }
 
-.button:hover {
-    cursor: pointer;
-    background-color: darkgrey;
-    color: white;
-}
-
-.button:active {
-    transform: translate(0px,1px);
-    -webkit-transform: translate(0px,1px);
-}
-
 .six.wide.column {
     font-size: 1.4em;
 }
 
 
-/* BOUTONS VALIDATION REPONSE */
-#submitReponse {
-    width : 100px;
-    height: 50px;
-    border:solid 3px #41403E;
-    box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);
-    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-    font-size: 1.4em;
-    font-family: 'Architects Daughter', cursive;
-    padding: 0 !important;
-    margin-top: 25px;
-    margin-left: 0;
-}
 
-/* Bouton menu principal */
-.ui.button {
-    font-size: 1.4em;
-    font-family: 'Architects Daughter', cursive;
-    font-weight: 10;
-    color : black;
-    border-radius: 255px 20px 225px 15px/13px 250px 20px 255px;
-}
 
-/* CURSEURS */
-body, label:hover {
-    cursor: url("../images/divers/cursor.png") 8 9, auto;
-}
-
-.button:hover, input:hover, .rating>label:hover, [type=radio] + img:hover, .cursor {
-    cursor: url("../images/divers/pointer.png") 14 2, auto !important;
-}
-
-/*BRAIN*/
-
-#brainSVG {
-    text-align: center;
-}
 
