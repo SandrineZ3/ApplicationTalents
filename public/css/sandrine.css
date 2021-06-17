@@ -103,4 +103,9 @@ body, label:hover {
     cursor: url("../images/divers/pointer.png") 14 2, auto !important;
 }
 
+/*BRAIN*/
+
+#brainSVG {
+    text-align: center;
+}
 
