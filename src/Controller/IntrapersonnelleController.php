@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
-use App\Services\InterpersonnelleUtils;
 use App\Services\Utils;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +16,7 @@ class IntrapersonnelleController extends AbstractController
     /**
      * @Route("/intrapersonnelle", name="intrapersonnelle")
      */
-    public function show(Request $request, EntityManagerInterface $entityManager, InterpersonnelleUtils $interpersonnelleUtils, Utils $utils, UserRepository $userRepository): Response
+    public function show(Request $request, EntityManagerInterface $entityManager, Utils $utils, UserRepository $userRepository): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('main');
@@ -41,12 +41,13 @@ class IntrapersonnelleController extends AbstractController
                 $request->get('kinesthesique') +
                 $request->get('linguistique') +
                 $request->get('mathematique') +
-                $request->get('musciale') +
+                $request->get('musicale') +
                 $request->get('naturaliste') +
                 $request->get('visuoSpatiale');
 
             $user->setScoreIntrapersonnelle(60 - abs(($scoreTotal / 7) - ($scoreTotalAutonotation * 60 / 28)));
             $user->setIntrapersonnelleFinished(true);
+            $user->setDateEnd(new DateTime());
             $entityManager->flush();
 
             return $this->redirectToRoute('result');
