@@ -196,6 +196,8 @@ class InterpersonnelleController extends AbstractController
             return $this->redirectToRoute('admin_interpersonnelle');
         }
 
+        $directoryImage = $this->getParameter('image_emoticon_directory');
+        unlink($directoryImage . '/' . $emoticon->getUrlImage());
         $entityManager->remove($emoticon);
         $entityManager->flush();
 
