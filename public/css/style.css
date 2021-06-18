@@ -5,8 +5,15 @@
     right: 20px;
 }
 
+@media (max-width: 768px) {
+    .ui.grid.container {
+        padding-top: 100px !important;
+        padding-bottom: 60px !important;
+    }
+}
+
 .h100 {
-    height: 100vh !important;
+    min-height: 100vh !important;
 }
 
 .colorApp {
@@ -43,6 +50,13 @@ header img {
     position: absolute;
     top: 10px;
     left: 10px;
+    width: 100px;
+}
+
+@media (max-width: 768px) {
+    header img {
+        width: 70px;
+    }
 }
 
 .hiddenField {
