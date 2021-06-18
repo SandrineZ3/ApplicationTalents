@@ -30,7 +30,8 @@ class LinguistiqueController extends AbstractController
                                  Request $request,
                                  UserRepository $userRepository,
                                  EntityManagerInterface $entityManager,
-                                 Utils $utils): Response
+                                 Utils $utils,
+                                 LinguistiqueUtils $linguistiqueUtils): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('main');
@@ -40,100 +41,156 @@ class LinguistiqueController extends AbstractController
         }
         $user = $userRepository->find($this->getUser());
 
-        // 1 = NIVEAU FACILE
-        $levelOfDifficulty = $levelOfDifficultyRepository->find(1);
-        $enigmes = $linguistiqueRepository->findBy(array("levelOfDifficulty" => $levelOfDifficulty), array("id" => "ASC"));
-        $indexRandom = array_rand($enigmes, 1);
-        $enigmeRandom = $enigmes[$indexRandom];
-        $nomInput = "reponseFacile";
+        $tableauOfDifficulty = ['reponseFacile', 'reponseMoyen', 'reponseDifficile'];
+        foreach ($tableauOfDifficulty as $index => $difficulty) {
+            if ($request->get($difficulty)) {
+                if ($index === 0) {
+                    $user->setScoreLinguistique(0);
+                    $entityManager->flush();
+                }
 
-        if ($request->get("reponseFacile")) {
-            $user->setScoreLinguistique(0);
-            $entityManager->flush();
-            $reponse = $request->get("reponseFacile");
-            $enigme = $linguistiqueRepository->find($request->get("idEnigme"));
+                $linguistiqueUtils->recordScore($request, $request->get($difficulty), $linguistiqueRepository, $user, $entityManager);
 
-            $solution = $enigme->getSolution();
-            $tableauId = [];
-            foreach ($solution as $element) {
-                $tableauId[] = $element->getId();
+                if ($index === 0 || $index === 1) {
+                    $enigmeRandom = $utils->nextEnigme($index + 2, $linguistiqueRepository, $levelOfDifficultyRepository);
+                    $nomInput = $tableauOfDifficulty[$index + 1];
+                    $allPictos = $pictoRepository->findAll();
+                    return new JsonResponse([
+                        'content' => $this->renderView('linguistique/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput', 'allPictos'))
+                    ]);
+                }
+                else {
+                    $user->setLinguistiqueFinished(true);
+                    $entityManager->flush();
+
+                    return new JsonResponse([
+                        'content' => $this->renderView('linguistique/content/endScreen.html.twig')
+                    ]);
+                }
             }
-
-            if ($tableauId === $reponse) {
-                $pointGagnes = $enigme->getLevelOfDifficulty()->getPoints();
-                $user = $userRepository->find($this->getUser());
-                $scoreTemp = $user->getScoreLinguistique();
-                $scoreCalcule = $scoreTemp + $pointGagnes;
-                $user->setScoreLinguistique($scoreCalcule);
-
-                $entityManager->flush();
-            }
-
-            // 2 = NIVEAU MOYEN
-            $levelOfDifficulty = $levelOfDifficultyRepository->find(2);
-            $enigmes = $linguistiqueRepository->findBy(array("levelOfDifficulty" => $levelOfDifficulty), array("id" => "ASC"));
-            $indexRandom = array_rand($enigmes, 1);
-            $enigmeRandom = $enigmes[$indexRandom];
-            $nomInput = "reponseMoyen";
-            // Réponse requete AJAX
+        }
+        if ($request->get('ajax')) {
             return new JsonResponse([
-                'content' => $this->renderView('linguistique/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput', 'allPictos'))
+                'content' => 'error'
             ]);
         }
 
-        if ($request->get("reponseMoyen")) {
-            $reponse = $request->get("reponseMoyen");
-            $enigme = $linguistiqueRepository->find($request->get("idEnigme"));
-
-            if ($reponse == $enigme->getSolution()) {
-                $pointGagnes = $enigme->getLevelOfDifficulty()->getPoints();
-                $user = $userRepository->find($this->getUser());
-                $scoreTemp = $user->getScoreLinguistique();
-                $scoreCalcule = $scoreTemp + $pointGagnes;
-                $user->setScoreLinguistique($scoreCalcule);
-                $entityManager->flush();
-            }
-
-            // 3 = NIVEAU DIFFICILE
-            $levelOfDifficulty = $levelOfDifficultyRepository->find(3);
-            $enigmes = $linguistiqueRepository->findBy(array("levelOfDifficulty" => $levelOfDifficulty), array("id" => "ASC"));
-            $indexRandom = array_rand($enigmes, 1);
-            $enigmeRandom = $enigmes[$indexRandom];
-            $nomInput = "reponseDifficile";
-            // Réponse AJAX
-            return new JsonResponse([
-                'content' => $this->renderView('linguistique/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput', 'allPictos'))
-            ]);
-        }
-
-        if ($request->get("reponseDifficile")) {
-            $reponse = $request->get("reponseDifficile");
-            $enigme = $linguistiqueRepository->find($request->get("idEnigme"));
-
-            if ($reponse == $enigme->getSolution()) {
-                $pointGagnes = $enigme->getLevelOfDifficulty()->getPoints();
-                $user = $userRepository->find($this->getUser());
-                $scoreTemp = $user->getScoreLinguistique();
-                $scoreCalcule = $scoreTemp + $pointGagnes;
-                $user->setScoreLinguistique($scoreCalcule);
-                $entityManager->flush();
-            }
-
-            // Statut terminé
-            $user->setLinguistiqueFinished(true);
-            $entityManager->flush();
-
-            // Réponse AJAX
-            return new JsonResponse([
-                'content' => $this->renderView('linguistique/content/endScreen.html.twig')
-            ]);
-        }
+        $enigmeRandom = $utils->nextEnigme(1, $linguistiqueRepository, $levelOfDifficultyRepository);
+        $nomInput = 'reponseFacile';
+        $allPictos = $pictoRepository->findAll();
 
         return $this->render('linguistique/show.html.twig', [
-            "enigmeRandom" => $enigmeRandom,
-            "allPictos" => $pictoRepository->findAll(),
-            "nomInput" => $nomInput,
+            'enigmeRandom' => $enigmeRandom,
+            'nomInput' => $nomInput,
+            'allPictos' => $allPictos
         ]);
+
+        // 1 = NIVEAU FACILE
+//        $levelOfDifficulty = $levelOfDifficultyRepository->find(1);
+//        $enigmes = $linguistiqueRepository->findBy(array("levelOfDifficulty" => $levelOfDifficulty), array("id" => "ASC"));
+//        $indexRandom = array_rand($enigmes, 1);
+//        $enigmeRandom = $enigmes[$indexRandom];
+//        $nomInput = "reponseFacile";
+//
+//        if ($request->get("reponseFacile")) {
+//            $user->setScoreLinguistique(0);
+//            $entityManager->flush();
+//            $reponse = $request->get("reponseFacile");
+//            $enigme = $linguistiqueRepository->find($request->get("idEnigme"));
+//
+//            $solution = $enigme->getSolution();
+//            $tableauId = [];
+//            foreach ($solution as $element) {
+//                $tableauId[] = $element->getId();
+//            }
+//
+////            if ($tableauId === $reponse) {
+////                $pointGagnes = $enigme->getLevelOfDifficulty()->getPoints();
+////                $user = $userRepository->find($this->getUser());
+////                $scoreTemp = $user->getScoreLinguistique();
+////                $scoreCalcule = $scoreTemp + $pointGagnes;
+////                $user->setScoreLinguistique($scoreCalcule);
+////
+////                $entityManager->flush();
+////            }
+//
+//            $linguistiqueUtils->recordScore();
+//
+//            $enigme = $linguistiqueRepository->find($request->get("idEnigme"));
+//            $testSolution = '';
+//            foreach ($enigme->getSolution() as $element) {
+//                $testSolution .= $element->getId() . '-';
+//            }
+//            $test = false;
+//            if ($reponse === $testSolution) {
+//                $test = true;
+//            }
+//
+//            // 2 = NIVEAU MOYEN
+//            $levelOfDifficulty = $levelOfDifficultyRepository->find(2);
+//            $enigmes = $linguistiqueRepository->findBy(array("levelOfDifficulty" => $levelOfDifficulty), array("id" => "ASC"));
+//            $indexRandom = array_rand($enigmes, 1);
+//            $enigmeRandom = $enigmes[$indexRandom];
+//            $nomInput = "reponseMoyen";
+//            // Réponse requete AJAX
+//            return new JsonResponse([
+//                'content' => $test
+//            ]);
+//        }
+//
+//        if ($request->get("reponseMoyen")) {
+//            $reponse = $request->get("reponseMoyen");
+//            $enigme = $linguistiqueRepository->find($request->get("idEnigme"));
+//
+//            if ($reponse == $enigme->getSolution()) {
+//                $pointGagnes = $enigme->getLevelOfDifficulty()->getPoints();
+//                $user = $userRepository->find($this->getUser());
+//                $scoreTemp = $user->getScoreLinguistique();
+//                $scoreCalcule = $scoreTemp + $pointGagnes;
+//                $user->setScoreLinguistique($scoreCalcule);
+//                $entityManager->flush();
+//            }
+//
+//            // 3 = NIVEAU DIFFICILE
+//            $levelOfDifficulty = $levelOfDifficultyRepository->find(3);
+//            $enigmes = $linguistiqueRepository->findBy(array("levelOfDifficulty" => $levelOfDifficulty), array("id" => "ASC"));
+//            $indexRandom = array_rand($enigmes, 1);
+//            $enigmeRandom = $enigmes[$indexRandom];
+//            $nomInput = "reponseDifficile";
+//            // Réponse AJAX
+//            return new JsonResponse([
+//                'content' => $this->renderView('linguistique/content/formEnigme.html.twig', compact('enigmeRandom', 'nomInput', 'allPictos'))
+//            ]);
+//        }
+//
+//        if ($request->get("reponseDifficile")) {
+//            $reponse = $request->get("reponseDifficile");
+//            $enigme = $linguistiqueRepository->find($request->get("idEnigme"));
+//
+//            if ($reponse == $enigme->getSolution()) {
+//                $pointGagnes = $enigme->getLevelOfDifficulty()->getPoints();
+//                $user = $userRepository->find($this->getUser());
+//                $scoreTemp = $user->getScoreLinguistique();
+//                $scoreCalcule = $scoreTemp + $pointGagnes;
+//                $user->setScoreLinguistique($scoreCalcule);
+//                $entityManager->flush();
+//            }
+//
+//            // Statut terminé
+//            $user->setLinguistiqueFinished(true);
+//            $entityManager->flush();
+//
+//            // Réponse AJAX
+//            return new JsonResponse([
+//                'content' => $this->renderView('linguistique/content/endScreen.html.twig')
+//            ]);
+//        }
+//
+//        return $this->render('linguistique/show.html.twig', [
+//            "enigmeRandom" => $enigmeRandom,
+//            "allPictos" => $allPictos,
+//            "nomInput" => $nomInput,
+//        ]);
     }
 
     /**
