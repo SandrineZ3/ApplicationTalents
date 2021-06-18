@@ -13,7 +13,12 @@ class LinguistiqueUtils
     {
         $enigme = $linguistiqueRepository->find($request->get("idEnigme"));
 
-        if ($reponse === $enigme->getSolution()) {
+        $solution = '';
+        foreach ($enigme->getSolution() as $element) {
+            $solution .= $element->getId() . ';';
+        }
+
+        if ($reponse === $solution) {
             $pointsGagnes = $enigme->getLevelOfDifficulty()->getPoints();
             $currentScore = $user->getScoreLinguistique();
             $user->setScoreLinguistique($currentScore + $pointsGagnes);
