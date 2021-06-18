@@ -54,21 +54,7 @@ function dropSave(event) {
     else {
         const draggableElementData = event.dataTransfer.getData("text");
         event.target.appendChild((document.getElementById(draggableElementData)));
-
-        let code = '';
-        let verifCompleteReponse = true;
-        document.querySelectorAll('.droppable').forEach(function(item) {
-            if (item.firstElementChild) {
-                code += item.firstElementChild.id + ";";
-            }
-            else {
-                verifCompleteReponse = false
-            }
-        });
-
-        if (verifCompleteReponse) {
-            document.getElementById('reponseRecuperee').value = code;
-        }
+        exportReponseLinguistique();
     }
 }
 
@@ -79,6 +65,41 @@ function drop(event) {
     } else {
         const draggableElementData = event.dataTransfer.getData("text");
         event.target.appendChild((document.getElementById(draggableElementData)));
+    }
+}
+
+function clickMovePicto(id) {
+    let picto = $('#'+id);
+    if (picto.parent().hasClass('draggable-elements')) {
+        let bool = true;
+        $('.droppable-elements .droppable').each(function() {
+            if ($(this).children().length === 0 && bool) {
+                picto.prependTo(this);
+                bool = false
+            }
+        });
+    }
+    else {
+        picto.prependTo('.draggable-elements');
+    }
+    exportReponseLinguistique();
+}
+
+function exportReponseLinguistique() {
+    let code = '';
+    let verifCompleteReponse = true;
+    document.querySelectorAll('.droppable').forEach(function(item) {
+        if (item.firstElementChild) {
+            code += item.firstElementChild.id + ";";
+        }
+        else {
+            verifCompleteReponse = false
+        }
+    });
+
+    if (verifCompleteReponse) {
+        console.log(code);
+        document.getElementById('reponseRecuperee').value = code;
     }
 }
 

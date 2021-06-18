@@ -5,7 +5,7 @@
     {# Emplacements vides #}
     <div class="droppable-elements">
         {% for picto in enigmeRandom.solution %}
-            <div class="droppable" ondrop="dropSave(event)" ondragover="allowDrop(event)" id="emplacementReponseUtilisateur"
+            <div class="droppable" ondrop="dropSave(event)" ondragover="allowDrop(event)"
                  data-draggable-id={{ loop.index0 }}></div>
         {% endfor %}
     </div>
@@ -17,7 +17,7 @@
 {# Pictos : tous ceux de la BDD #}
 <div class="draggable-elements" ondrop="drop(event)" ondragover="allowDrop(event)">
     {% for picto in allPictos %}
-        <div class="picto" ondragstart="dragStart(event)"
+        <div class="picto" ondragstart="dragStart(event)" onclick='clickMovePicto({{ picto.id }})'
              draggable="true" id="{{ picto.id }}"
              data-id ="{{ picto.id }}"
              data-src="{{ picto.urlImage }}">{{ picto.label }}</div>

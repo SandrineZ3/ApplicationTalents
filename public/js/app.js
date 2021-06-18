@@ -106,7 +106,7 @@ function transformPictoIntoImage() {
         let urlPicto = $(this).data('src');
         let pictoImage = urlPicto.trim();
         let id = $(this).data('id');
-        $("<img width='75px' src='" + "images/linguistique_pictos/" + pictoImage + "' draggable='true' ondragstart='dragStart(event)' data-id='" + id + "' id='" + id + "' alt='image picto'/>").insertAfter($(this));
+        $("<img width='75px' src='" + "images/linguistique_pictos/" + pictoImage + "' draggable='true' onclick='clickMovePicto(" + id + ")' ondragstart='dragStart(event)' data-id='" + id + "' id='" + id + "' alt='image picto'/>").insertAfter($(this));
         $(this).remove();
     });
 }
