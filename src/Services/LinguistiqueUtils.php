@@ -18,7 +18,12 @@ class LinguistiqueUtils
             $solution .= $element->getId() . ';';
         }
 
-        if ($reponse === $solution) {
+        $reponseArray = explode(';', $reponse);
+        sort($reponseArray);
+        $solutionArray = explode(';', $solution);
+        sort($solutionArray);
+
+        if ($reponseArray === $solutionArray) {
             $pointsGagnes = $enigme->getLevelOfDifficulty()->getPoints();
             $currentScore = $user->getScoreLinguistique();
             $user->setScoreLinguistique($currentScore + $pointsGagnes);

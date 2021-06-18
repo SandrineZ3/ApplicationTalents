@@ -304,11 +304,13 @@ class LinguistiqueController extends AbstractController
             return $this->redirectToRoute('admin_linguistique');
         }
 
-        if ($linguistiqueRepository->findOneBy(['solution' => $picto])) {
+        if ($linguistiqueRepository->findByPicto($picto->getId())) {
             $this->addFlash('error', 'Le pictogramme que vous cherchez à supprimer est rattaché à une énigme');
             return $this->redirectToRoute('admin_linguistique');
         }
 
+        $directoryImage = $this->getParameter('image_linguistique_directory');
+        unlink($directoryImage . '/' . $picto->getUrlImage());
         $entityManager->remove($picto);
         $entityManager->flush();
 
