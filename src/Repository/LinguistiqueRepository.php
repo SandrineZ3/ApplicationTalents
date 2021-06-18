@@ -19,22 +19,18 @@ class LinguistiqueRepository extends ServiceEntityRepository
         parent::__construct($registry, Linguistique::class);
     }
 
-    // /**
-    //  * @return Linguistique[] Returns an array of Linguistique objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findByPicto($idPicto)
     {
         return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('l.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('l', 's')
+            ->leftJoin('l.solution', 's')
+            ->andWhere('s.id = :idPicto')
+            ->setParameter('idPicto', $idPicto)
+            ->setMaxResults(1)
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Linguistique
