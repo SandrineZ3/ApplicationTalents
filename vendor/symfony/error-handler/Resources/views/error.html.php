@@ -1,20 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="<?= $this->charset; ?>" />
-    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <meta charset="<?= $this->charset; ?>"/>
+    <meta name="robots" content="noindex,nofollow,noarchive"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>An Error Occurred: <?= $statusText; ?></title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <style><?= $this->include('assets/css/error.css'); ?></style>
 </head>
 <body>
-<div class="container">
-    <h1>Oops! An Error Occurred</h1>
-    <h2>The server returned a "<?= $statusCode; ?> <?= $statusText; ?>".</h2>
+    <h1>Oh oh !... On dirait qu'une erreur s'est produite !</h1>
+    <div class="container">
+    <div id="left">
+        <div id="errorCode">
+            <div id="attentionIcon">
+                <?= $this->include('assets/images/attention.svg'); ?>
+            </div>
+            <div id="attentionText">
+                <p>Code d'erreur : <span><?= $statusCode; ?></span></p>
+                <p>Description : <span><?= $statusText; ?></span></p>
+            </div>
+        </div>
+        <div id="errorText">
+            <p>Ce n'est probablement pas grand-chose !</p>
+            <p>En attendant, vous pouvez revenir sur l'application en toute sécurité grâce au bouton
+                ci-dessous.</p>
+        </div>
+        <div id="btnRetour">
+            <a href="../">Revenir sur l'application</a>
+        </div>
+    </div>
 
-    <p>
-        Something is broken. Please let us know what you were doing when this error occurred.
-        We will fix it as soon as possible. Sorry for any inconvenience caused.
-    </p>
+    <div id="right">
+        <!--        image SVG du petit cerveau triste ou tout bizarre-->
+        <?= $this->include('assets/images/brain.svg'); ?>
+    </div>
 </div>
+<script><?= $this->include('assets/js/animatedBackgroundError.js'); ?></script>
 </body>
 </html>
