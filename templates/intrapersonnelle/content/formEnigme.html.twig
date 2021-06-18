@@ -1,8 +1,13 @@
 {#<div class="rating">#}
 <div class="ui grid">
     <div class="six wide column">
-        {{ competence | capitalize }} <i class="question circle outline icon popup" data-position="right center" data-html="<div class='image'><img src='{{ asset('images/intrapersonnelle/') ~ competence ~ '.png' }}'></div>"></i>
+        {{ competence | capitalize }} <i class="question circle outline icon" onclick="afficherModalHelp('help-{{ competence }}')"></i>
     </div>
+    {#modal#}
+    <div class="ui mini modal help-{{ competence }}">
+        <img src='{{ asset('images/intrapersonnelle/') ~ competence ~ '.png' }}' alt="image">
+    </div>
+    {#modal#}
 
     <div class="ten wide column">
         <div class="rating">

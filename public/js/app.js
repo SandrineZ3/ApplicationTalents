@@ -85,6 +85,10 @@ function afficherModalDelete() {
     $('.mini.modal.trash').modal('show');
 }
 
+function afficherModalHelp(className) {
+    $('.mini.modal.'+className).modal('show');
+}
+
 // Liste des fonctions appelées automatiquement par init() si besoin
 function autoClosingMessageFlash() {
     setTimeout(function() {

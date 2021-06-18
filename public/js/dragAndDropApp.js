@@ -98,7 +98,6 @@ function exportReponseLinguistique() {
     });
 
     if (verifCompleteReponse) {
-        console.log(code);
         document.getElementById('reponseRecuperee').value = code;
     }
 }
