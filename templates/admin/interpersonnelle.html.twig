@@ -19,7 +19,7 @@
         $(document).ready(function() {
             $('span.solutionImage').each(function() {
                 let urlImage = $(this).text().trim();
-                $('<img width="25px" src="{{ asset('images/emoticon/') }}' + urlImage + '" alt="image emoticone"/>').insertAfter($(this));
+                $('<img width="50px" src="{{ asset('images/emoticon/') }}' + urlImage + '" alt="image emoticone"/>').insertAfter($(this));
                 $(this).remove();
             });
         });

@@ -13,9 +13,16 @@
         </div>
         {{ form_end(emoticonForm) }}
         <h3 class="ui dividing header">Supprimer un Émoticône</h3>
-        {% for emoticon in tableauEmoticon %}
-            <img width="75px" src="{{ asset('images/emoticon/') ~ emoticon.urlImage }}" class="popup" alt="image emoticone" data-content="{{ emoticon.label }}" data-position="top left"/>
-            <a href="{{ path('emoticon_delete', {'id': emoticon.id }) }}"><i class="trash icon"></i></a>
-        {% endfor %}
+        <div id="allEmoticonDeleting">
+            {% for emoticon in tableauEmoticon %}
+            <div id="deleteEmoticon">
+                <img width="75px" height="75px" src="{{ asset('images/emoticon/') ~ emoticon.urlImage }}" class="popup"
+                     alt="image emoticone" data-content="{{ emoticon.label }}" data-position="top left"/>
+                <div id="trashIconEmoticon">
+                <a href="{{ path('emoticon_delete', {'id': emoticon.id }) }}"><i class="trash icon"></i></a>
+                </div>
+            </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-</div>
