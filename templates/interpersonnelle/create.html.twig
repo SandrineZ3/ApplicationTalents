@@ -48,7 +48,7 @@
                 let text = $(this).text().trim();
                 let urlImage = text.split('--')[0];
                 let label = text.split('--')[1];
-                $(this).html('<img width="75px" src="{{ asset('images/emoticon/') }}' + urlImage + '" class="popup" alt="image emoticone" data-content="'+ label +'" data-position="top left"/>');
+                $(this).html('<img width="70px" height="70px" src="{{ asset('images/emoticon/') }}' + urlImage + '" class="popup" alt="image emoticone" data-content="'+ label +'" data-position="top left"/>');
                 $(this).prepend($(this).prev());
             });
             transformEmoticonIntoImage();

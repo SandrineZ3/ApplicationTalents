@@ -68,7 +68,7 @@
                 let text = $(this).text().trim();
                 let urlImage = text.split('--')[0];
                 let label = text.split('--')[1];
-                $(this).html('<img width="75px" src="{{ asset('images/emoticon/') }}' + urlImage + '" class="popup" alt="image emoticone" data-content="'+ label +'" data-position="top left"/>');
+                $(this).html('<img width="75px" height="75px" src="{{ asset('images/emoticon/') }}' + urlImage + '" class="popup" alt="image emoticone" data-content="'+ label +'" data-position="top left"/>');
                 $(this).prepend($(this).prev());
                 if ($(this).find('input[type=radio]').is(':not(:checked)')) {
                     $(this).find('img').addClass('blackAndWhite');
