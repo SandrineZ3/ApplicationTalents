@@ -20,7 +20,7 @@
      <script>
          $('.pictoUrlImage').each(function () {
              let urlImage = $(this).text().trim();
-             $('<img width="75px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" alt="image picto"/>').insertAfter($(this));
+             $('<img width="75px" height="75px" class="pictosApercuSolution" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" alt="image picto"/>').insertAfter($(this));
              $(this).remove();
          });
      </script>
