@@ -66,7 +66,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/linguistique_pictos", name="admin_linguistique")
+     * @Route("/admin/linguistique", name="admin_linguistique")
      */
     public function showAllLinguistique(LinguistiqueRepository $linguistiqueRepository): Response
     {

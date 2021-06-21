@@ -150,7 +150,6 @@ body {
 }
 #linguistique_form_solution {
     text-align: center;
-
 }
 #linguistique_form_solution .checkbox label{
     display: none !important;
@@ -163,9 +162,9 @@ body {
 }
 #linguistique_form_solution .checkbox.checked {
     border: green 4px solid;
-    -webkit-animation: click-wave 0.65s;
-    -moz-animation: click-wave 0.65s;
-    animation: click-wave 0.65s;
+    -webkit-animation: click-wave 0.4s;
+    -moz-animation: click-wave 0.4s;
+    animation: click-wave 0.4s;
     position: relative;
 }
 @keyframes click-wave {
@@ -173,15 +172,15 @@ body {
         border: none;
         height: 80px;
         width: 80px;
-        opacity: 0.5;
+        opacity: 0.2;
         position: relative;
     }
     100% {
         border: none;
         height: 80px;
         width: 80px;
-        transform: scale(2,2);
-        opacity: 0;
+        transform: scale(1.5,1.5);
+        opacity: 1;
     }
 }
 #allPictoDeleting{
@@ -211,4 +210,10 @@ body {
     background-color: #FFE5E5;
     height: 24px;
     margin-top: -2px;
+}
+.pictosApercuSolution {
+    border: black 1px solid;
+    border-radius: 5px;
+    margin-top : 5px;
+    margin-left: 5px;
 }
