@@ -19,6 +19,14 @@ class MainController extends AbstractController
     }
 
     /**
+     * @Route("/introduction", name="introduction")
+     */
+    public function introduction(): Response
+    {
+        return $this->render('main/introduction.html.twig');
+    }
+
+    /**
      * @Route("/result", name="result")
      */
     public function result(UserRepository $userRepository, Utils $utils): Response
