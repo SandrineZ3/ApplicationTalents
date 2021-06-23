@@ -1,4 +1,5 @@
 function init() {
+
     $('.ui.checkbox').checkbox();
 
     $('.sidebar-menu-toggler').on('click', function() {
@@ -128,4 +129,9 @@ function effectIconCloseRadio() {
         $('.fourImagesInOneBox label').find('i').remove();
         $('<i class="close icon massive icon"></i>').insertAfter(this);
     });
+}
+
+function play() {
+    let audio = document.getElementById("audio");
+    audio.play();
 }
