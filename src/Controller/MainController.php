@@ -27,6 +27,14 @@ class MainController extends AbstractController
     }
 
     /**
+     * @Route("/introductionEndScreen", name="introductionEndScreen")
+     */
+    public function introductionEndScreen(): Response
+    {
+        return $this->render('main/content/endScreenIntro.html.twig');
+    }
+
+    /**
      * @Route("/result", name="result")
      */
     public function result(UserRepository $userRepository, Utils $utils): Response

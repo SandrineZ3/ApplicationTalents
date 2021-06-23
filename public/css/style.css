@@ -189,6 +189,7 @@ header h1 {
     font-weight: 10;
     color : black;
     border-radius: 255px 20px 225px 15px/13px 250px 20px 255px;
+    border:solid 3px #41403E;
 }
 /* CURSEURS */
 body, label:hover, footer {
@@ -238,6 +239,26 @@ body, label:hover, footer {
     }
 }
 
+.explanations {
+    font-size: 1.3rem;
+}
+h1 {
+    font-size: 2.2em;
+    font-family: 'Architects Daughter', cursive;
+    font-weight: 20;
+}
+
+h3 {
+    font-size: 1.9rem !important;
+    font-family: 'Architects Daughter', cursive !important;
+    font-weight: 20 !important;
+}
+
+h4 {
+    font-size: 1.7em !important;
+    font-family: 'Architects Daughter', cursive !important;
+    font-weight: 20 !important;
+}
 
 
 
