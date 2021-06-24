@@ -259,6 +259,8 @@ h4 {
     font-family: 'Architects Daughter', cursive !important;
     font-weight: 20 !important;
 }
-
+.flashMessage {
+    position: absolute;
+}
 
 

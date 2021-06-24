@@ -25,7 +25,9 @@ body {
 }
 #right {
     grid-column: 2;
-    margin-top: 80px;
+    width: 500px;
+    margin-top: 20px;
+    margin-left: 100px;
     text-align: center;
 }
 h1 {
@@ -94,27 +96,32 @@ a:hover, input:hover, .rating > label:hover, [type=radio] + img:hover, .cursor {
 
 @media screen and (min-width: 769px) and (max-width: 1025px) {
     h1 {
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
     p {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
     a {
-        font-size: 1.3rem;
+        font-size: 1rem;
+    }
+    body {
+        margin : 30px 50px;
     }
     .container {
         display: grid;
-        grid-template-columns: 2fr, 1fr;
-        grid-gap: 30px;
+        grid-template-columns: 70%, 30%;
+        grid-gap: 10px;
     }
-    #left {
-        width: 500px;
-    }
+    /*#left {*/
+    /*    max-width: 70%;*/
+    /*}*/
+    /*#right {*/
+    /*    max-width: 30%;*/
+    /*}*/
     #right svg{
-        max-width: 100%;
-        min-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
+        max-width: 70%;
+        min-width: 70%;
+        margin-left: -30%;
     }
 }
 @media screen and (min-width: 580px) and (max-width: 768px) {

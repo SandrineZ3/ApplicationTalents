@@ -119,7 +119,7 @@ function requeteAjaxPostv2(selectorFormulaire, selectorReponse, modificationUrl=
             Params.append(key, value);
         }
         else {
-            document.querySelector('header').innerHTML = reponseError;
+            document.querySelector('header').innerHTML += reponseError;
             init();
             throw 'Réponse invalide';
         }
@@ -136,10 +136,10 @@ function requeteAjaxPostv2(selectorFormulaire, selectorReponse, modificationUrl=
     ).then(data => {
 
         if (data.content === 'error') {
-            document.querySelector('header').innerHTML = reponseError;
+            document.querySelector('header').innerHTML += reponseError;
         }
         else {
-            document.querySelector(selectorReponse).innerHTML = data.content;
+            document.querySelector(selectorReponse).innerHTML += data.content;
         }
         init();
 
