@@ -3,6 +3,8 @@
 {% block title %}Enigme Naturaliste{% endblock %}
 
 {% block body %}
+    {% include("inc/brainAnimation.html.twig") with {'pathAnimationJS': 'js/brainAnim/brainNaturaliste.js'} %}
+
     <div class="ui grid container h100 middle aligned" id="pageNaturaliste">
         <div class="row">
             <div class="sixteen wide mobile ten wide tablet eight wide computer centered column">
