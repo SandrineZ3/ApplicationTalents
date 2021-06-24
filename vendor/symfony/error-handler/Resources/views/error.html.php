@@ -33,8 +33,7 @@
     </div>
 
     <div id="right">
-        <!--        image SVG du petit cerveau triste ou tout bizarre-->
-        <?= $this->include('assets/images/brain.svg'); ?>
+        <?= $this->include('assets/images/levitateBrain.svg'); ?>
     </div>
 </div>
 <script><?= $this->include('assets/js/animatedBackgroundError.js'); ?></script>
