@@ -30,8 +30,9 @@
 <body>
 <header>
     {% include("inc/messageFlash.html.twig") %}
+    <div class="errorMessage"></div>
     <a href="{{ path('main') }}" onclick="playBack()"><img src="{{ asset('images/divers/rdvNomadeLogo.png') }}" alt="logo"
-                                      title="Revenir à l'accueil"></a>
+                                                           title="Revenir à l'accueil"></a>
     <h1>A la découverte de vos talents...</h1>
 </header>
 
@@ -74,6 +75,7 @@
     });
     audioBackground.play();
     swup.on('contentReplaced', init);
+    swup.on('contentReplaced', initBrainAnimation);
 </script>
 </body>
 </html>
