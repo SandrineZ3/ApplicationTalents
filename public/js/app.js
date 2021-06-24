@@ -131,7 +131,17 @@ function effectIconCloseRadio() {
     });
 }
 
-function play() {
-    let audio = document.getElementById("audio");
+function playClick() {
+    let audio = document.getElementById("audioClick");
+    audio.play();
+}
+
+function playBack() {
+    let audio = document.getElementById("audioBack");
+    audio.play();
+}
+
+function playLink() {
+    let audio = document.getElementById("audioLink");
     audio.play();
 }

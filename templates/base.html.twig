@@ -30,7 +30,7 @@
 <body>
 <header>
     {% include("inc/messageFlash.html.twig") %}
-    <a href="{{ path('main') }}"><img src="{{ asset('images/divers/rdvNomadeLogo.png') }}" alt="logo"
+    <a href="{{ path('main') }}" onclick="playBack()"><img src="{{ asset('images/divers/rdvNomadeLogo.png') }}" alt="logo"
                                       title="Revenir à l'accueil"></a>
     <h1>A la découverte de vos talents...</h1>
 </header>
@@ -40,8 +40,9 @@
     <div class="transition-fade" id="swup">
         {% block body %}{% endblock %}
     </div>
-    <audio id="audio" src="{{ asset('audio/click.wav') }}"></audio>
-
+    <audio id="audioClick" src="{{ asset('audio/click.wav') }}"></audio>
+    <audio id="audioBack" src="{{ asset('audio/back.wav') }}"></audio>
+    <audio id="audioLink" src="{{ asset('audio/link.wav') }}"></audio>
 </main>
 
 <footer>
