@@ -16,8 +16,8 @@ function handleCompleteInterpersonnelle(evt,comp) {
 	//Registers the "tick" event listener.
 	fnStartAnimation = function() {
 		stage.addChild(exportRoot);
-		createjsInterpersonnelle.Ticker.framerate = libInterpersonnelle.properties.fps;
-		createjsInterpersonnelle.Ticker.addEventListener("tick", stage);
+		createjs.Ticker.framerate = libInterpersonnelle.properties.fps;
+		createjs.Ticker.addEventListener("tick", stage);
 	}
 	//Code to support hidpi screens and responsive scaling.
 	AdobeAn.makeResponsive(false,'both',false,1,[canvas,anim_container,dom_overlay_container]);
@@ -779,5 +779,5 @@ function handleCompleteInterpersonnelle(evt,comp) {
 	}
 
 
-})(createjsInterpersonnelle = createjsInterpersonnelle||{}, AdobeAn = AdobeAn||{});
-var createjsInterpersonnelle, AdobeAn;
+})(createjs = createjs||{}, AdobeAn = AdobeAn||{});
+var createjs, AdobeAn;

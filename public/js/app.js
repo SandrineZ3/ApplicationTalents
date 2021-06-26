@@ -76,10 +76,15 @@ function initBrainCharacterAnimation() {
     }
 
     if (document.querySelector('#pageKinesthesique')) {
-        brainCharacterAnimationInterpersonnelle();
+        brainCharacterAnimationKinesthesique();
     }
 
     if (document.querySelector('#pageLinguistique')) {
+        brainCharacterAnimationLinguistique();
+    }
+
+    if (document.querySelector('#pageMathematique')) {
+        brainCharacterAnimationMathematique();
     }
 
     if (document.querySelector('#pageMusicale')) {
@@ -87,7 +92,11 @@ function initBrainCharacterAnimation() {
     }
 
     if (document.querySelector('#pageNaturaliste')) {
-        brainCharacterAnimationMusicale();
+        brainCharacterAnimationNaturaliste();
+    }
+
+    if (document.querySelector('#pageVisuoSpatiale')) {
+        brainCharacterAnimationVisuoSpatiale();
     }
 
     if (document.querySelector('#pageResult')) {
