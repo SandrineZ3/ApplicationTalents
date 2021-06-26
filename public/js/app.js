@@ -47,6 +47,9 @@ function init() {
         starColorManagement();
     }
 
+    if (document.querySelector('#pageKinesthesique')) {
+    }
+
     if (document.querySelector('#pageLinguistique')) {
         transformPictoIntoImage();
     }
@@ -64,9 +67,36 @@ function init() {
     }
 }
 
+function initBrainCharacterAnimation() {
+    if (document.querySelector('#pageInterpersonnelle')) {
+        brainCharacterAnimationInterpersonnelle();
+    }
+
+    if (document.querySelector('#pageIntrapersonnelle')) {
+    }
+
+    if (document.querySelector('#pageKinesthesique')) {
+        brainCharacterAnimationInterpersonnelle();
+    }
+
+    if (document.querySelector('#pageLinguistique')) {
+    }
+
+    if (document.querySelector('#pageMusicale')) {
+        brainCharacterAnimationMusicale();
+    }
+
+    if (document.querySelector('#pageNaturaliste')) {
+        brainCharacterAnimationMusicale();
+    }
+
+    if (document.querySelector('#pageResult')) {
+    }
+}
+
 function onOffAudioBackground() {
     let buttonOnOff = $('#audioBackgroundButton');
-    if (audioBackground.playing()) {
+    if (buttonOnOff.children().hasClass("volume up")) {
         audioBackground.pause();
         buttonOnOff.children().removeClass("volume up");
         buttonOnOff.children().addClass("volume off");
