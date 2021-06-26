@@ -64,9 +64,11 @@
 <script src="{{ asset('js/musicale2.js') }}"></script>
 <script src="{{ asset('js/result.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+{% include("inc/brainAnimationJS.html.twig") %}
 <script>
     const swup = new Swup();
     init();
+    initBrainCharacterAnimation();
     let audioBackground = new Howl({
         src: ['audio/KomikuDeHerbeSousLesPieds.mp3'],
         autoplay: true,
@@ -75,7 +77,7 @@
     });
     audioBackground.play();
     swup.on('contentReplaced', init);
-    swup.on('contentReplaced', initBrainAnimation);
+    swup.on('contentReplaced', initBrainCharacterAnimation);
 </script>
 </body>
 </html>
