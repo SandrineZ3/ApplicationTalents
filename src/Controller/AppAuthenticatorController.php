@@ -19,6 +19,9 @@ class AppAuthenticatorController extends AbstractController
         if ($this->getUser() && $this->getUser()->getRoles() === ['ROLE_USER']) {
             return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
         }
+        else if ($this->getUser()->getRoles() === ['ROLE_ADMIN']) {
+            return $this->redirectToRoute('main');
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

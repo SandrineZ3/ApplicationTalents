@@ -100,6 +100,7 @@ function initBrainCharacterAnimation() {
     }
 
     if (document.querySelector('#pageResult')) {
+        brainCharacterAnimationResult();
     }
 }
 
