@@ -4,27 +4,69 @@ let idInputReponseUser = '#reponseUser';
 
 function loadNumberOfNote() {
     let holderContainerDiv = $('#holderContainer');
-    let numberOfRows = holderContainerDiv.attr('data-row');
     let numberOfColumns = holderContainerDiv.attr('data-col');
     $('body').prepend('<style></style>');
-    let noteCode;
+
+
+    changeNumberOfNote(numberOfColumns);
 
     if (document.querySelector(idInputSolutionAdmin)) {
-        noteCode = $(idInputSolutionAdmin).val();
+        adminControls();
+        userControls(idInputSolutionAdmin);
+        if ($(idInputSolutionAdmin).val()) {
+            let noteCode = $(idInputSolutionAdmin).val();
+            importMelody(noteCode, idInputSolutionAdmin);
+        }
     }
-
-    changeNumberOfNote(numberOfRows, numberOfColumns);
-
-    if (document.querySelector(idInputSolutionAdmin)) {
-        importMelody(noteCode);
+    else {
+        userControls(idInputReponseUser);
     }
-
 }
 
-function tonesManager(numberOfRows, numberOfColumns) {
+function changeNumberOfNote(numberOfColumns) {
+    let holderContainerDiv = $("#holderContainer");
+    holderContainerDiv.children().remove();
+    holderContainerDiv.append('<div class="row"></div>');
+    let notesOnTheRow = '';
+    for (let i = 0; i < numberOfColumns; i++) {
+        notesOnTheRow += '<div class="holder"><div class="note"><div class="ripple"></div></div></div>';
+    }
+    $('#holderContainer .row').last().append(notesOnTheRow);
+
+    let styleBalise = $('style');
+    styleBalise.empty();
+    let property1 = ".holder {" +
+        "width: " + ((100 / numberOfColumns) - 0.5) + "%;" +
+        "}";
+    let property2 = ".holderContainer .holder {" +
+        "   animation: line " + numberOfColumns * speed + "s linear infinite;" +
+        "}";
+    let property3 = "";
+    for (let h = 0; h < numberOfColumns; h++) {
+        property3 += ".holderContainer .holder:nth-child(" + numberOfColumns + "n+" + h + ") {" +
+            "animation-delay: " + h * speed + "s;" +
+            "}";
+    }
+    let property4 = "@keyframes line {" +
+        "0% {" +
+        "background: #F36E6B;" +
+        "border: solid 2px #F36E6B;" +
+        "box-shadow: 0 0 5px #F36E6B;" +
+        "}" +
+        100/numberOfColumns+"% {" +
+        "background: transparent;" +
+        "border: solid 2px transparent;" +
+        "box-shadow: none;" +
+        "}";
+    styleBalise.append(property1 + property2 + property3 + property4);
+
+    tonesManager(numberOfColumns);
+}
+
+function tonesManager(numberOfColumns) {
     let tones = [];
 
-    for (let i = 0; i < numberOfRows; i++) {
+    for (let i = 0; i < 6; i++) {
         tones[i] = new Howl({
             src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.mp3',
                 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.ogg']
@@ -32,13 +74,13 @@ function tonesManager(numberOfRows, numberOfColumns) {
     }
 
     playNote(numberOfColumns, tones);
-    if (document.querySelector(idInputSolutionAdmin)) {
-        adminControls();
-        userControls(idInputSolutionAdmin);
-    }
-    else {
-        userControls(idInputReponseUser);
-    }
+    // if (document.querySelector(idInputSolutionAdmin)) {
+    //     // adminControls2();
+    //     userControls2(idInputSolutionAdmin);
+    // }
+    // else {
+    //     userControls2(idInputReponseUser);
+    // }
 }
 
 function playNote(numberOfColumns, tones) {
@@ -55,20 +97,46 @@ function playNote(numberOfColumns, tones) {
                 }
             });
     }
+    $('.touchPad').on('click', function () {
+        tones[$(this).attr('data-note')].play();
+        $(this).find('.ripple').addClass('rippleAnim').delay(500).queue(function () {
+            $(this).removeClass('rippleAnim').dequeue();
+        });
+    });
 }
 
 function userControls(idInput) {
-    $('.note').on('click', function () {
-        $(this).toggleClass("active");
-        $(this).parent().toggleClass("active");
+    $('.plus.icon').on('click', function () {
+        let soundNumber = $(this).parent().attr('data-note');
+        let boolean = true;
+        let iconCloseDiv = '<i class="close icon"></i>';
+
+        $('.note').each(function() {
+            if (!$(this).hasClass('active') && boolean) {
+                $(this).parent().attr('data-note', soundNumber);
+                $(this).parent().addClass("active");
+                $(this).addClass("active");
+                $(this).addClass('color' + soundNumber);
+                $(this).append(iconCloseDiv);
+                boolean = false;
+            }
+        });
         exportMelody(idInput);
+        closeIcon(idInput);
     });
+
     let resetButton = $('#reset');
     resetButton.off();
     resetButton.on('click', function () {
+        let note = $('.note');
         $('.active').removeClass('active');
+        note.find("i").remove();
+        note.each(function () {
+            $(this).removeClass('color' + $(this).parent().attr('data-note'));
+        });
         exportMelody(idInput);
     });
+
     let audioButton = $('#audio');
     audioButton.off();
     audioButton.on('click', function () {
@@ -83,12 +151,51 @@ function userControls(idInput) {
         $('#holderContainer').toggleClass("mute")
         $(this).toggleClass('mute');
     });
+
+    if (document.querySelector('#lecture')) {
+        let lectureButton = $('#lecture');
+        let solution = $('#reponseUser').val();
+        let listeningNumber = lectureButton.find('div').text();
+        $('#reponseUser').val('');
+        let splitCode = solution.split(';');
+        splitCode.splice(-1,1) // supprime le dernier élément du tableau : ""
+        let tonesX = [];
+        for (let i = 0; i < 6; i++) {
+            tonesX[i] = new Howl({
+                src: ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.mp3',
+                    'https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.ogg']
+            });
+        }
+        lectureButton.on('click', function () {
+            if (listeningNumber > 0 ) {
+                let i = 0;
+                let myInterval = setInterval(function() {
+                    tonesX[splitCode[i]].play();
+                    i++;
+                    if (i >= splitCode.length) {
+                        clearInterval(myInterval);
+                    }
+                }, 500 );
+                listeningNumber--;
+                lectureButton.find('div').text(listeningNumber);
+            }
+        });
+    }
+}
+
+function closeIcon(idInput) {
+    $('.close.icon').on('click', function () {
+        if ($(this).parent().hasClass('active')) {
+            $(this).parent().removeClass('active');
+            $(this).parent().removeClass('color' + $(this).parent().parent().attr('data-note'));
+            $(this).parent().parent().removeClass('active');
+            $(this).remove();
+            exportMelody(idInput);
+        }
+    });
 }
 
 function adminControls() {
-    $('#musicale_form_numberOfRows').on('change', function () {
-        editNumberOfNote();
-    });
     $('#musicale_form_numberOfColumns').on('change', function () {
         editNumberOfNote();
     });
@@ -103,104 +210,44 @@ function editNumberOfNote() {
         numberOfColumnsDiv.val(20);
     }
 
-    let numberOfRowsDiv = $('#musicale_form_numberOfRows');
-    if (numberOfRowsDiv.val() < 1) {
-        numberOfRowsDiv.val(1);
-    }
-    if (numberOfRowsDiv.val() > 6) {
-        numberOfRowsDiv.val(6);
-    }
-
-    changeNumberOfNote(numberOfRowsDiv.val(), numberOfColumnsDiv.val());
-}
-
-function changeNumberOfNote(numberOfRows, numberOfColumns) {
-    let holderContainerDiv = $("#holderContainer");
-    holderContainerDiv.children().remove();
-    for (let j = 0; j < numberOfRows; j++) {
-        holderContainerDiv.append('<div class="row"></div>');
-        let notesOnTheRow = '';
-        for (let i = 0; i < numberOfColumns; i++) {
-            notesOnTheRow += '<div class="holder" data-note="' + j + '"><div class="note"><div class="ripple"></div></div></div>';
-        }
-        $('#holderContainer .row').last().append(notesOnTheRow);
-    }
-
-    let styleBalise = $('style');
-    styleBalise.empty();
-    let property1 = ".holder {" +
-        "   width: " + ((100 / numberOfColumns) - 0.5) + "%;" +
-        "}";
-    let property2 = ".holderContainer .holder {" +
-        "   animation: line " + numberOfColumns * speed + "s linear infinite;" +
-        "}";
-    let property3 = "";
-    for (let h = 0; h < numberOfColumns; h++) {
-        property3 += ".holderContainer .holder:nth-child(" + numberOfColumns + "n+" + h + ") {" +
-            "   animation-delay: " + h * speed + "s;" +
-            "}";
-    }
-    styleBalise.append(property1 + property2 + property3);
-    $(idInputSolutionAdmin).val('');
-
-    tonesManager(numberOfRows, numberOfColumns);
+    changeNumberOfNote(numberOfColumnsDiv.val());
 }
 
 function exportMelody(idInput) {
     let holder = $('#holderContainer .holder');
-    let noteCode = "",
-        offCount = 0,
-        onCount = 0;
+    let noteCode = "";
 
     holder.each(function() {
         if ($(this).hasClass('active')) {
-            if (offCount > 0) {
-                noteCode = noteCode + "-" + offCount + " ";
-            }
-            onCount++;
-            offCount = 0;
-        } else {
-            if (onCount > 0) {
-                noteCode = noteCode + "+" + onCount + " ";
-            }
-            offCount++;
-            onCount = 0;
+            noteCode += $(this).attr('data-note') + ";";
+        }
+        else {
+            noteCode += "empty;";
         }
     });
 
-    if (offCount > 0) {
-        noteCode = noteCode + "-" + offCount;
+    if (!noteCode.includes("empty")) {
+        $(idInput).val(noteCode);
     }
-    else if (onCount > 0) {
-        noteCode = noteCode + "+" + onCount;
+    else {
+        $(idInput).val('');
     }
-
-    if (noteCode === '-'+holder.length) {
-        noteCode = '';
-    }
-    $(idInput).val(noteCode);
 }
 
-function importMelody(noteCode) {
-    console.log(noteCode)
-    $(idInputSolutionAdmin).val(noteCode);
+function importMelody(noteCode, idInput) {
 
-    let splitCode = noteCode.split(' ');
+    let splitCode = noteCode.split(';');
 
-    let holder = document.querySelectorAll('.holder');
+    let iconCloseDiv = '<i class="close icon"></i>';
     let currentIndex = 0;
 
-    for (let i = 0; i < splitCode.length; i++) {
-        let currentNoteCode = parseInt(splitCode[i]);
-        if (currentNoteCode > 0) {
-            for (let k = 0; k < currentNoteCode; k++) {
-                holder[currentIndex].className += ' active';
-                holder[currentIndex].firstChild.className += ' active';
-                currentIndex++;
-            }
-        }
-        else {
-            currentIndex += Math.abs(currentNoteCode);
-        }
-    }
+    $('.note').each(function() {
+        $(this).parent().attr('data-note', splitCode[currentIndex]);
+        $(this).parent().addClass("active");
+        $(this).addClass("active");
+        $(this).addClass('color' + splitCode[currentIndex]);
+        $(this).append(iconCloseDiv);
+        currentIndex++;
+    });
+    closeIcon(idInput);
 }
