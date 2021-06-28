@@ -9,15 +9,12 @@
                 <div class="ui colorApp segment">
                     <h3 class="ui dividing header">Introduction</h3>
                     <div class="explanations">
-                        <p>Bonjour cher utilisateur !</p>
-                        <p>Ici, tu découvriras qu'il n'existe pas qu'une seule forme d'intelligence mais bien plusieurs
-                            !</p>
-                        <p>C'est Howard Gardner qui a émis cette théorie en 1983 intitulée "La théorie des intelligences
-                            multiples".</p>
-                        <p>Bien que le test qui va suivre n'a pas une vocation scientifique, tu pourras, à travers cette
-                            application, découvrir tes talents !</p>
+                        <p>Bonjour {{app.user.username}} !</p>
+                        <p>Sais-tu que nous sommes tous intelligents, sous différentes formes ? C’est la théorie d’Howard Gardner : celle des 8 types d’intelligence.</p>
+                        <p>Et comme nous, à RDV Nomade, on aime révéler par le jeu, on te propose de découvrir les tiennes !</p>
+                        <p>En 15 minutes, tu en sauras plus sur ton cerveau !</p>
                     </div>
-                    <a class="ui button" href="{{ path('interpersonnelle_intro') }}">Commencer</a>
+                    <a class="ui button" href="{{ path('interpersonnelle_intro') }}" onclick="playClick()">Commencer</a>
                 </div>
             </div>
         </div>
