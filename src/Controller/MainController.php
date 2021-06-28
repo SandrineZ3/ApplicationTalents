@@ -19,19 +19,11 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/introduction", name="introduction")
+     * @Route("/intro", name="intro")
      */
-    public function introduction(): Response
+    public function intro(): Response
     {
-        return $this->render('main/introduction.html.twig');
-    }
-
-    /**
-     * @Route("/introductionEndScreen", name="introductionEndScreen")
-     */
-    public function introductionEndScreen(): Response
-    {
-        return $this->render('main/content/endScreenIntro.html.twig');
+        return $this->render('main/intro.html.twig');
     }
 
     /**
