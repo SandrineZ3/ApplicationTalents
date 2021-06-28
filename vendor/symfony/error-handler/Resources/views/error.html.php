@@ -4,7 +4,7 @@
     <meta charset="<?= $this->charset; ?>"/>
     <meta name="robots" content="noindex,nofollow,noarchive"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Vos talents | Erreur <?= $statusCode; ?></title>
+    <title>Vos 8 intelligences | Erreur <?= $statusCode; ?></title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <style><?= $this->include('assets/css/error.css'); ?></style>
