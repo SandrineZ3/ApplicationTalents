@@ -191,6 +191,10 @@ header h1 {
     border-radius: 255px 20px 225px 15px/13px 250px 20px 255px;
     border:solid 3px #41403E;
 }
+/*LINK SUBMIT*/
+.ui.button.link {
+    margin-top: 25px;
+}
 /* CURSEURS */
 body, label:hover, footer {
     cursor: url("../images/divers/cursor.png") 8 9, auto;
