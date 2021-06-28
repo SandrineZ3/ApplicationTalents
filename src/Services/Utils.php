@@ -12,6 +12,7 @@ class Utils
     {
         $user = $userRepository->find($appUser);
         $tableauOrdreJeux = [
+            ['intro', $user->getDateStart()],
             ['interpersonnelle_intro', $user->getInterpersonnelleFinished()],
             ['naturaliste_intro', $user->getNaturalisteFinished()],
             ['kinesthesique_intro', $user->getKinesthesiqueFinished()],

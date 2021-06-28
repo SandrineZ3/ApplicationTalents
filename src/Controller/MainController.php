@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Repository\UserRepository;
 use App\Services\Utils;
+use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,8 +23,18 @@ class MainController extends AbstractController
     /**
      * @Route("/intro", name="intro")
      */
-    public function intro(): Response
+    public function intro(EntityManagerInterface $entityManager, Utils $utils, UserRepository $userRepository): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('main');
+        }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'intro') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+        $user = $userRepository->find($this->getUser());
+        $user->setDateStart(new DateTime());
+        $entityManager->flush();
+
         return $this->render('main/intro.html.twig');
     }
 
