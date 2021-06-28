@@ -185,3 +185,8 @@ function playLink() {
     let audio = document.getElementById("audioLink");
     audio.play();
 }
+
+function playNext() {
+    let audio = document.getElementById("audioNext");
+    audio.play();
+}
