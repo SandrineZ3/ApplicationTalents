@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Les talents de {{ app.user.username }} | Logico-Mathématique{% endblock %}
+{% block title %}{{ parent() }} | Logique Mathématique{% endblock %}
 
 {% block body %}
     {% include("inc/brainAnimation.html.twig")%}
@@ -9,7 +9,7 @@
         <div class="row">
             <div class="sixteen wide mobile ten wide tablet eight wide computer centered column">
                 <div class="ui colorApp segment">
-                    <h3 class="ui dividing header">Mathématique</h3>
+                    <h3 class="ui dividing header">Logique Mathématique</h3>
                     <div id="blocEnigme">
                         {% include("mathematique/content/formEnigme.html.twig") %}
                     </div>
