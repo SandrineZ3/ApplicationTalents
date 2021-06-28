@@ -86,66 +86,66 @@ body {
 }
 
 .colorInterpersonnelle {
-    color: #D9C7ED !important;
+    color: #FFED78  !important;
 }
 .bgInterpersonnelle {
-    background-color: #D9C7ED !important;
+    background-color: #FFED78  !important;
     color: white !important;
 }
 
 .colorIntrapersonnelle {
-    color: #B3EDF8 !important;
+    color: #B3A1EC !important;
 }
 .bgIntrapersonnelle {
-    background-color: #B3EDF8 !important;
+    background-color: #B3A1EC !important;
     color: white !important;
 }
 
 .colorKinesthesique  {
-    color: #E1DACA !important;
+    color: #FFBD6D !important;
 }
 .bgKinesthesique  {
-    background-color: #E1DACA !important;
+    background-color: #FFBD6D !important;
     color: white !important;
 }
 
 .colorLinguistique {
-    color: #BCE9D5 !important;
+    color: #7593D4 !important;
 }
 .bgLinguistique {
-    background-color: #BCE9D5 !important;
+    background-color: #7593D4 !important;
     color: white !important;
 }
 
 .colorMathematique {
-    color: #F6BDCE !important;
+    color: #E86E6E !important;
 }
 .bgMathematique {
-    background-color: #F6BDCE !important;
+    background-color: #E86E6E !important;
     color: white !important;
 }
 
 .colorMusicale {
-    color: #FEEEB3 !important;
+    color: #95E7E4 !important;
 }
 .bgMusicale {
-    background-color: #FEEEB3 !important;
+    background-color: #95E7E4 !important;
     color: white !important;
 }
 
 .colorNaturaliste {
-    color: #F9C29B !important;
+    color: #94DA7E  !important;
 }
 .bgNaturaliste {
-    background-color: #F9C29B !important;
+    background-color: #94DA7E  !important;
     color: white !important;
 }
 
 .colorVisuoSpatiale {
-    color: #FF889A !important;
+    color: #C3AB87 !important;
 }
 .bgVisuoSpatiale {
-    background-color: #FF889A !important;
+    background-color: #C3AB87 !important;
     color: white !important;
 }
 #linguistique_form_solution {

@@ -1,6 +1,6 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block title %}Admin tableau de bord{% endblock %}
+{% block title %}Tableau de bord - Administrateur{% endblock %}
 
 {% block body %}
     <div class="ui grid padded">
@@ -67,10 +67,10 @@
                         <div class="ui header colorLinguistique">{{ nbreEnigmeLinguistique }}</div>
                     </div>
                     <div class="meta">
-                        Verbo-linguistique
+                        Verbale et linguistique
                     </div>
                     <div class="description">
-                        Ensemble des énigmes Verbo-linguistiques
+                        Ensemble des énigmes Verbales et Linguistiques
                     </div>
                 </div>
                 <div class="extra content">
@@ -90,10 +90,10 @@
                         <div class="ui colorMathematique header">{{ nbreEnigmeMathematique }}</div>
                     </div>
                     <div class="meta">
-                        Logico-mathématique
+                        Logique et Mathématique
                     </div>
                     <div class="description">
-                        Ensemble des énigmes Logico-mathématiques
+                        Ensemble des énigmes Logiques et Mathématiques
                     </div>
                 </div>
                 <div class="extra content">
@@ -113,10 +113,10 @@
                         <div class="ui colorMusicale header">{{ nbreEnigmeMusicale }}</div>
                     </div>
                     <div class="meta">
-                        Musicale-rythmique
+                        Musicale et Rythmique
                     </div>
                     <div class="description">
-                        Ensemble des énigmes Musicales-rythmiques
+                        Ensemble des énigmes Musicales et Rythmiques
                     </div>
                 </div>
                 <div class="extra content">
@@ -159,10 +159,10 @@
                         <div class="ui colorVisuoSpatiale header">{{ nbreEnigmeVisuoSpatiale }}</div>
                     </div>
                     <div class="meta">
-                        Visuo-spatiale
+                        Visuelle et Spatiale
                     </div>
                     <div class="description">
-                        Ensemble des énigmes Visuo-spatiales
+                        Ensemble des énigmes Visuelles et Spatiales
                     </div>
                 </div>
                 <div class="extra content">
@@ -192,11 +192,11 @@
                     'Interpersonnelle',
                     'Intrapersonnelle',
                     'Kinesthésique',
-                    'Verbo-linguistique',
-                    'Logico-mathématique',
-                    'Musicale-rythmique',
+                    'Verbale et Linguistique',
+                    'Logique et Mathématique',
+                    'Musicale et Rythmique',
                     'Naturaliste',
-                    'Visuo-spatiale'
+                    'Visuelle et Spatiale'
                 ],
                 datasets: [{
                     label: '',
@@ -206,14 +206,14 @@
                         {% endfor %}
                     ],
                     backgroundColor: [
-                        '#D9C7ED',
-                        '#B3EDF8',
-                        '#E1DACA',
-                        '#BCE9D5',
-                        '#F6BDCE',
-                        '#FEEEB3',
-                        '#F9C29B',
-                        '#FF889A'
+                        '#FFED78',
+                        '#B3A1EC',
+                        '#FFBD6D',
+                        '#7593D4',
+                        '#E86E6E',
+                        '#95E7E4',
+                        '#94DA7E',
+                        '#C3AB87'
                     ],
                 }]
             },
