@@ -18,6 +18,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class MathematiqueController extends AbstractController
 {
     /**
+     * @Route("/mathematique/intro", name="mathematique_intro")
+     */
+    public function intro(Utils $utils, UserRepository $userRepository): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('main');
+        }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'mathematique_intro') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+
+        return $this->render('mathematique/intro.html.twig');
+    }
+
+    /**
      * @Route("/mathematique", name="mathematique")
      */
     public function mathematique(MathematiqueRepository $mathematiqueRepository,
@@ -30,7 +45,7 @@ class MathematiqueController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('main');
         }
-        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'mathematique') {
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'mathematique_intro') {
             return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
         }
         $user = $userRepository->find($this->getUser());

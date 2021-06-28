@@ -19,6 +19,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class NaturalisteController extends AbstractController
 {
     /**
+     * @Route("/naturaliste/intro", name="naturaliste_intro")
+     */
+    public function intro(Utils $utils, UserRepository $userRepository): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('main');
+        }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'naturaliste_intro') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+
+        return $this->render('naturaliste/intro.html.twig');
+    }
+
+    /**
      * @Route("/naturaliste", name="naturaliste")
      */
     public function show(Request $request, EntityManagerInterface $entityManager, NaturalisteUtils $naturalisteUtils, Utils $utils, UserRepository $userRepository, LevelOfDifficultyRepository $levelOfDifficultyRepository, NaturalisteRepository $naturalisteRepository): Response
@@ -26,7 +41,7 @@ class NaturalisteController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('main');
         }
-        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'naturaliste') {
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'naturaliste_intro') {
             return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
         }
         $user = $userRepository->find($this->getUser());

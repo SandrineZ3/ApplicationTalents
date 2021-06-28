@@ -22,6 +22,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class InterpersonnelleController extends AbstractController
 {
     /**
+     * @Route("/interpersonnelle/intro", name="interpersonnelle_intro")
+     */
+    public function intro(Utils $utils, UserRepository $userRepository): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('main');
+        }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'interpersonnelle_intro') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+
+        return $this->render('interpersonnelle/intro.html.twig');
+    }
+
+    /**
      * @Route("/interpersonnelle", name="interpersonnelle")
      */
     public function show(Request $request, EntityManagerInterface $entityManager, InterpersonnelleUtils $interpersonnelleUtils, Utils $utils, UserRepository $userRepository, LevelOfDifficultyRepository $levelOfDifficultyRepository, InterpersonnelleRepository $interpersonnelleRepository, EmoticonRepository $emoticonRepository): Response
@@ -29,7 +44,7 @@ class InterpersonnelleController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('main');
         }
-        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'interpersonnelle') {
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'interpersonnelle_intro') {
             return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
         }
         $user = $userRepository->find($this->getUser());

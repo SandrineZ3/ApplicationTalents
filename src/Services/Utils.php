@@ -12,14 +12,14 @@ class Utils
     {
         $user = $userRepository->find($appUser);
         $tableauOrdreJeux = [
-            ['interpersonnelle', $user->getInterpersonnelleFinished()],
-            ['naturaliste', $user->getNaturalisteFinished()],
-            ['kinesthesique', $user->getKinesthesiqueFinished()],
-            ['musicale', $user->getMusicaleFinished()],
-            ['visuoSpatiale', $user->getVisuoSpatialeFinished()],
-            ['mathematique', $user->getMathematiqueFinished()],
-            ['linguistique', $user->getLinguistiqueFinished()],
-            ['intrapersonnelle', $user->getIntrapersonnelleFinished()],
+            ['interpersonnelle_intro', $user->getInterpersonnelleFinished()],
+            ['naturaliste_intro', $user->getNaturalisteFinished()],
+            ['kinesthesique_intro', $user->getKinesthesiqueFinished()],
+            ['musicale_intro', $user->getMusicaleFinished()],
+            ['visuoSpatiale_intro', $user->getVisuoSpatialeFinished()],
+            ['mathematique_intro', $user->getMathematiqueFinished()],
+            ['linguistique_intro', $user->getLinguistiqueFinished()],
+            ['intrapersonnelle_intro', $user->getIntrapersonnelleFinished()],
         ];
         $i = 0;
         while ($i < count($tableauOrdreJeux)) {

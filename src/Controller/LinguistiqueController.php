@@ -22,6 +22,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class LinguistiqueController extends AbstractController
 {
     /**
+     * @Route("/linguistique/intro", name="linguistique_intro")
+     */
+    public function intro(Utils $utils, UserRepository $userRepository): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('main');
+        }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'linguistique_intro') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+
+        return $this->render('linguistique/intro.html.twig');
+    }
+
+    /**
      * @Route("/linguistique", name="linguistique")
      */
     public function linguistique(LinguistiqueRepository $linguistiqueRepository,
@@ -36,7 +51,7 @@ class LinguistiqueController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('main');
         }
-        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'linguistique') {
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'linguistique_intro') {
             return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
         }
         $user = $userRepository->find($this->getUser());

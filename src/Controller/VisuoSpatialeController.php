@@ -19,6 +19,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class VisuoSpatialeController extends AbstractController
 {
     /**
+     * @Route("/visuoSpatiale/intro", name="visuoSpatiale_intro")
+     */
+    public function intro(Utils $utils, UserRepository $userRepository): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('main');
+        }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'visuoSpatiale_intro') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+
+        return $this->render('visuoSpatiale/intro.html.twig');
+    }
+
+    /**
      * @Route("/visuoSpatiale", name="visuoSpatiale")
      */
     public function show(Request $request, EntityManagerInterface $entityManager, VisuoSpatialeUtils $visuoSpatialeUtils, Utils $utils, UserRepository $userRepository, LevelOfDifficultyRepository $levelOfDifficultyRepository, VisuoSpatialeRepository $visuoSpatialeRepository): Response
@@ -26,7 +41,7 @@ class VisuoSpatialeController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('main');
         }
-        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'visuoSpatiale') {
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'visuoSpatiale_intro') {
             return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
         }
         $user = $userRepository->find($this->getUser());
