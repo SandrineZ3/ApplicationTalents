@@ -223,14 +223,14 @@ body, label:hover, footer {
     padding : 1px 6px;
     border: 1px black solid;
     border-radius: 10px;
-    background: linear-gradient(45deg, rgba(245,129,255,0.6) 12%, rgba(255,248,0,0.6) 38%, rgba(115,255,169,0.6) 69%, rgba(115,165,255,0.6) 86%);
+    background: rgba(202, 203, 205, 0.7);
     font-size: 1.3rem;
     font-weight: 700;
 }
 #footerLink a:hover {
     cursor: pointer !important;
     border: 2px black solid;
-    background: linear-gradient(45deg, rgba(245,129,255,1) 12%, rgba(255,248,0,1) 38%, rgba(115,255,169,1) 69%, rgba(115,165,255,1) 86%);
+    background: linear-gradient(45deg, rgba(245,129,255,0.6) 12%, rgba(255,248,0,0.6) 38%, rgba(115,255,169,0.6) 69%, rgba(115,165,255,0.6) 86%);
 }
 
 @media screen and (max-width: 640px) {
