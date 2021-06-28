@@ -58,6 +58,12 @@ class NaturalisteController extends AbstractController
                 }
             }
         }
+        if ($request->get('ajax')) {
+            return new JsonResponse([
+                'content' => 'error'
+            ]);
+        }
+
         $enigmeRandom = $utils->nextEnigme(1, $naturalisteRepository, $levelOfDifficultyRepository);
         $nomInput = 'reponseFacile';
 
