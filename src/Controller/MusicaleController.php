@@ -19,6 +19,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class MusicaleController extends AbstractController
 {
     /**
+     * @Route("/musicale/intro", name="musicale_intro")
+     */
+    public function intro(Utils $utils, UserRepository $userRepository): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('main');
+        }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'musicale_intro') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+
+        return $this->render('musicale/intro.html.twig');
+    }
+
+    /**
      * @Route("/musicale", name="musicale")
      */
     public function show(Request $request, EntityManagerInterface $entityManager, MusicaleUtils $musicaleUtils, Utils $utils, UserRepository $userRepository, LevelOfDifficultyRepository $levelOfDifficultyRepository, MusicaleRepository $musicaleRepository): Response
@@ -26,7 +41,7 @@ class MusicaleController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('main');
         }
-        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'musicale') {
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'musicale_intro') {
             return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
         }
         $user = $userRepository->find($this->getUser());

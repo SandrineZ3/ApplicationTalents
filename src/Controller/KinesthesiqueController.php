@@ -19,6 +19,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class KinesthesiqueController extends AbstractController
 {
     /**
+     * @Route("/kinesthesique/intro", name="kinesthesique_intro")
+     */
+    public function intro(Utils $utils, UserRepository $userRepository): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('main');
+        }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'kinesthesique_intro') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+
+        return $this->render('kinesthesique/intro.html.twig');
+    }
+
+    /**
      * @Route("/kinesthesique", name="kinesthesique")
      */
     public function show(Request $request,
@@ -32,7 +47,7 @@ class KinesthesiqueController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('main');
         }
-        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'kinesthesique') {
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'kinesthesique_intro') {
             return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
         }
         $user = $userRepository->find($this->getUser());
