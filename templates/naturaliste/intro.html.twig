@@ -9,13 +9,22 @@
                 <div class="ui colorApp segment">
                     <h3 class="ui dividing header">Introduction au jeu qui va suivre...</h3>
                     <div class="explanations">
-                        <p>Le jeu se déroule en 3 manches.</p>
-                        <p>A chaque manche, tu devras visionner une vidéo mettant en scène une émotion.</p>
-                        <p>Tu devras ensuite choisir parmis toutes les émoticônes celle qui, selon toi, correspond à l'émotion représentée dans la vidéo.</p>
+                        <p>A chaque manche, tu devras trouver, parmi les 4 images qui te seront présentées, celle qui ne
+                            présente pas de point commun avec les 3 autres.</p>
                         <p>Bonne chance !</p>
                     </div>
-                    <img src="{{ asset('gifs/linguistique.gif') }}" alt="gif demonstration" width="100%">
-                    <a class="ui button" id="#submitReponse" href="{{ path('naturaliste') }}" onclick="playClick()">Je suis prêt !</a>
+                    {# modal #}
+                    <div class="ui mini modal demo" id="modalGifNaturaliste">
+                        <h4 class="ui block header naturaliste centered">Aperçu du jeu suivant</h4>
+                        <img src="{{ asset('gifs/linguistique.gif') }}" alt="gif demonstration" width="100%">
+                    </div>
+                    {# modal #}
+                    <div class="introButtons">
+                        <a class="ui button" id="#submitReponse" href="{{ path('naturaliste') }}" onclick="playClick()">Je
+                            suis prêt !</a>
+                        <i class="question circle outline icon" id="demoGifNaturaliste"
+                           onclick="afficherModalDemo()" title="Aperçu du jeu suivant"></i>
+                    </div>
                 </div>
             </div>
         </div>
