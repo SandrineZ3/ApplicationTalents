@@ -2,7 +2,7 @@ function init() {
 
     $('.ui.checkbox').checkbox();
 
-    $('.sidebar-menu-toggler').on('click', function() {
+    $('.sidebar-menu-toggler').on('click', function () {
         let target = $(this).data('target');
         $(target)
             .sidebar({
@@ -13,7 +13,7 @@ function init() {
             .sidebar('toggle');
     });
 
-    $('form').keypress(function(e) {
+    $('form').keypress(function (e) {
         if (e.which === 13) {
             return false;
         }
@@ -26,8 +26,7 @@ function init() {
             if ($(this).parent().hasClass('checked')) {
                 inputPassword.parent().removeClass('hiddenField');
                 inputPassword.val('');
-            }
-            else {
+            } else {
                 inputPassword.parent().addClass('hiddenField');
                 inputPassword.val('password');
             }
@@ -110,8 +109,7 @@ function onOffAudioBackground() {
         audioBackground.pause();
         buttonOnOff.children().removeClass("volume up");
         buttonOnOff.children().addClass("volume off");
-    }
-    else {
+    } else {
         audioBackground.play();
         buttonOnOff.children().removeClass("volume off");
         buttonOnOff.children().addClass("volume up");
@@ -127,7 +125,7 @@ function afficherModalDelete() {
 }
 
 function afficherModalHelp(className) {
-    $('.mini.modal.'+className).modal('show');
+    $('.mini.modal.' + className).modal('show');
 }
 
 function afficherModalDemo() {
@@ -136,14 +134,14 @@ function afficherModalDemo() {
 
 // Liste des fonctions appelées automatiquement par init() si besoin
 function autoClosingMessageFlash() {
-    setTimeout(function() {
+    setTimeout(function () {
         // $('.message.auto-close').closest('.message').transition('fade');
         removeMessage();
-    }, 5000 );
+    }, 5000);
 }
 
 function starColorManagement() {
-    $('label').click(function() {
+    $('label').click(function () {
         $(this).parent().find("label").css({'color': 'lightgrey'});
         $(this).css({'color': 'orange'});
         $(this).nextAll().css({'color': 'orange'});
@@ -160,37 +158,48 @@ function transformPictoIntoImage() {
     });
 }
 
-function transformEmoticonIntoImage() {
-    $('.popup').popup();
-    $('.field img').click(function() {
-        $('.field img').addClass('blackAndWhite');
-        $(this).removeClass('blackAndWhite');
-    });
+function pictoSelection() {
+      // $('#interpersonnelle_form_solution .toggle.checkbox').each(function () {
+        $('input:checkbox').change(function () {
+            if ($(this).is(":checked")) {
+                $('.picto').addClass("selected");
+            } else {
+                $('.picto').removeClass("selected");
+            }
+        });
+     // }
 }
+    function transformEmoticonIntoImage() {
+        $('.popup').popup();
+        $('.field img').click(function () {
+            $('.field img').addClass('blackAndWhite');
+            $(this).removeClass('blackAndWhite');
+        });
+    }
 
-function effectIconCloseRadio() {
-    $('img').click(function() {
-        $('.fourImagesInOneBox label').find('i').remove();
-        $('<i class="close icon massive icon"></i>').insertAfter(this);
-    });
-}
+    function effectIconCloseRadio() {
+        $('img').click(function () {
+            $('.fourImagesInOneBox label').find('i').remove();
+            $('<i class="close icon massive icon"></i>').insertAfter(this);
+        });
+    }
 
-function playClick() {
-    let audio = document.getElementById("audioClick");
-    audio.play();
-}
+    function playClick() {
+        let audio = document.getElementById("audioClick");
+        audio.play();
+    }
 
-function playBack() {
-    let audio = document.getElementById("audioBack");
-    audio.play();
-}
+    function playBack() {
+        let audio = document.getElementById("audioBack");
+        audio.play();
+    }
 
-function playLink() {
-    let audio = document.getElementById("audioLink");
-    audio.play();
-}
+    function playLink() {
+        let audio = document.getElementById("audioLink");
+        audio.play();
+    }
 
-function playNext() {
-    let audio = document.getElementById("audioNext");
-    audio.play();
-}
+    function playNext() {
+        let audio = document.getElementById("audioNext");
+        audio.play();
+    }
