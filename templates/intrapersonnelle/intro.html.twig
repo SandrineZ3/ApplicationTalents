@@ -9,13 +9,32 @@
                 <div class="ui colorApp segment">
                     <h3 class="ui dividing header">Introduction au jeu qui va suivre...</h3>
                     <div class="explanations">
-                        <p>Le jeu se déroule en 3 manches.</p>
-                        <p>A chaque manche, tu devras visionner une vidéo mettant en scène une émotion.</p>
-                        <p>Tu devras ensuite choisir parmis toutes les émoticônes celle qui, selon toi, correspond à l'émotion représentée dans la vidéo.</p>
+                        <p>Après avoir passé ces différents tests, il est temps d'estimer ton niveau !</p>
+                        <p>Pour chacun des tests effectués précédemment, attribue-toi le badge qui représente le mieux
+                            tes points forts, ou tes points faibles.</p>
+                        <p>Astuce :</p>
+                        <ul>
+                            <li>Si tu penses avoir réussi toutes les énigmes mathématiques, octroie-toi le badge or !
+                            </li>
+                            <br>
+                            <li>Si au contraire, tu as trouvé cela difficile et tu ne penses pas avoir donné les bonnes
+                                réponses, tu peux t'attribuer un badge bronze.
+                            </li>
+                        </ul>
                         <p>Bonne chance !</p>
                     </div>
-                    <img src="{{ asset('gifs/linguistique.gif') }}" alt="gif demonstration" width="100%">
-                    <a class="ui button" id="#submitReponse" href="{{ path('intrapersonnelle') }}">Je suis prêt !</a>
+                    {# modal #}
+                    <div class="ui mini modal demo" id="modalGifIntrapersonnelle">
+                        <h4 class="ui block header intrapersonnelle centered">Aperçu du jeu suivant</h4>
+                        <img src="{{ asset('gifs/linguistique.gif') }}" alt="gif demonstration" width="100%">
+                    </div>
+                    {# modal #}
+                    <div class="introButtons">
+                        <a class="ui button" id="#submitReponse" href="{{ path('intrapersonnelle') }}">Je suis prêt
+                            !</a>
+                        <i class="question circle outline icon" id="demoGifIntrapersonnelle"
+                           onclick="afficherModalDemo()" title="Aperçu du jeu suivant"></i>
+                    </div>
                 </div>
             </div>
         </div>

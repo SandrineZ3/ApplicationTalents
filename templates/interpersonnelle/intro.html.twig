@@ -11,19 +11,21 @@
                     <div class="explanations">
                         <p>Ce jeu, comme ceux qui vont suivre, se déroule en 3 manches.</p>
                         <p>A chaque manche, tu visionneras une vidéo mettant en scène une émotion.</p>
-                        <p>Tu devras ensuite choisir parmis toutes les émoticônes celle qui, selon toi, correspond à l'émotion représentée dans la vidéo.</p>
+                        <p>Tu devras ensuite choisir parmi toutes les émoticônes celle qui, selon toi, correspond à
+                            l'émotion représentée dans la vidéo.</p>
                         <p>Bonne chance !</p>
                     </div>
-                    {#modal#}
-                    <div class="ui mini modal demo">
-                            <h4 class="ui block header interpersonnelle centered">Aperçu du jeu suivant</h4>
+                    {# modal #}
+                    <div class="ui mini modal demo" id="modalGifInterpersonnelle">
+                        <h4 class="ui block header interpersonnelle centered">Aperçu du jeu suivant</h4>
                         <img src="{{ asset('gifs/linguistique.gif') }}" alt="gif demonstration" width="100%">
-
                     </div>
-                    {#modal#}
+                    {# modal #}
                     <div class="introButtons">
-                        <a class="ui button" id="#submitReponse" href="{{ path('interpersonnelle') }}" onclick="playClick()">Je suis prêt !</a>
-                        <i class="question circle outline icon" id="demoGifInterpersonnelle" onclick="afficherModalDemo()" title="Aperçu du jeu suivant"></i>
+                        <a class="ui button" id="#submitReponse" href="{{ path('interpersonnelle') }}"
+                           onclick="playClick()">Je suis prêt !</a>
+                        <i class="question circle outline icon" id="demoGifInterpersonnelle"
+                           onclick="afficherModalDemo()" title="Aperçu du jeu suivant"></i>
                     </div>
                 </div>
             </div>

@@ -284,12 +284,98 @@ h4 {
     margin-top: 20px;
     animation: animationDemo 1.5s ease-in-out infinite;
 }
-
+.block.header.interpersonnelle {
+    background-color: rgba(255, 237, 120, 0.3);
+}
+#modalGifInterpersonnelle {
+    border: 4px #FFED78 solid;
+}
+#demoGifNaturaliste {
+    color: #94DA7E;
+    font-size: 3.5em;
+    margin-top: 20px;
+    animation: animationDemo 1.5s ease-in-out infinite;
+}
+.block.header.naturaliste {
+    background-color: rgba(148, 218, 126, 0.3);
+}
+#modalGifNaturaliste {
+    border: 4px #94DA7E solid;
+}
+#demoGifKinesthesique {
+    color: #FFBD6D;
+    font-size: 3.5em;
+    margin-top: 20px;
+    animation: animationDemo 1.5s ease-in-out infinite;
+}
+.block.header.kinesthesique {
+    background-color: rgba(255, 189, 109, 0.3);
+}
+#modalGifKinesthesique {
+    border: 4px #FFBD6D solid;
+}
+#demoGifMusicale {
+    color: #95E7E4;
+    font-size: 3.5em;
+    margin-top: 20px;
+    animation: animationDemo 1.5s ease-in-out infinite;
+}
+.block.header.musicale {
+    background-color: rgba(149, 231, 228, 0.3);
+}
+#modalGifMusicale {
+    border: 4px #95E7E4 solid;
+}
+#demoGifVisuospatiale {
+    color: #C3AB87;
+    font-size: 3.5em;
+    margin-top: 20px;
+    animation: animationDemo 1.5s ease-in-out infinite;
+}
+.block.header.visuospatiale {
+    background-color: rgba(195, 171, 135, 0.3);
+}
+#modalGifVisuospatiale {
+    border: 4px #C3AB87 solid;
+}
+#demoGifMathematique {
+    color: #E86E6E;
+    font-size: 3.5em;
+    margin-top: 20px;
+    animation: animationDemo 1.5s ease-in-out infinite;
+}
+.block.header.mathematique {
+    background-color: rgba(232, 110, 110, 0.3);
+}
+#modalGifMathematique {
+    border: 4px #E86E6E solid;
+}
+#demoGifLinguistique {
+    color: #7593D4;
+    font-size: 3.5em;
+    margin-top: 20px;
+    animation: animationDemo 1.5s ease-in-out infinite;
+}
+.block.header.linguistique {
+    background-color: rgba(117, 147, 212, 0.3);
+}
+#modalGifLinguistique {
+    border: 4px #7593D4 solid;
+}
+#demoGifIntrapersonnelle {
+    color: #B3A1EC;
+    font-size: 3.5em;
+    margin-top: 20px;
+    animation: animationDemo 1.5s ease-in-out infinite;
+}
+.block.header.intrapersonnelle {
+    background-color: rgba(179, 161, 236, 0.3);
+}
+#modalGifIntrapersonnelle {
+    border: 4px #B3A1EC solid;
+}
 @keyframes animationDemo {
     50% {
         color:white;
     }
-}
-.block.header.interpersonnelle {
-    background-color: rgba(255, 237, 120, 0.7);
 }
