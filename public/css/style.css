@@ -199,7 +199,7 @@ header h1 {
 body, label:hover, footer {
     cursor: url("../images/divers/cursor.png") 8 9, auto;
 }
-.button:hover, input:hover, .rating>label:hover, [type=radio] + img:hover, .cursor, a:hover, #footerLink a:hover, button:hover {
+.button:hover, input:hover, .rating>label:hover, [type=radio] + img:hover, .cursor, a:hover, #footerLink a:hover, button:hover, i {
     cursor: url("../images/divers/pointer.png") 14 2, auto !important;
 }
 
@@ -269,4 +269,27 @@ h4 {
     background-position-y: 20px;
     background-size: contain;
     background-repeat: no-repeat;
+}
+.introButtons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.introButtons>i {
+    height: 0 !important;
+}
+#demoGifInterpersonnelle {
+    color: #FFED78;
+    font-size: 3.5em;
+    margin-top: 20px;
+    animation: animationDemo 1.5s ease-in-out infinite;
+}
+
+@keyframes animationDemo {
+    50% {
+        color:white;
+    }
+}
+.block.header.interpersonnelle {
+    background-color: rgba(255, 237, 120, 0.7);
 }
