@@ -59,12 +59,10 @@
         $(document).ready(function () {
             $('#linguistique_form_solution label').each(function () {
                 let urlImage = $(this).text();
-                $('<img width="80px" height="80px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" alt="image pictogramme"/>').insertAfter($(this));
+                $('<img width="80px" height="80px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" class="picto" alt="image pictogramme"/>').insertAfter($(this));
                 $(this).text('');
-                if ($(this).find('input[type=checkbox]').is(':not(:checked)')) {
-                    $(this).find('img').addClass('blackAndWhite');
-                }
             });
+            pictoSelection();
         });
 
         function afficherModalCreatePicto() {
