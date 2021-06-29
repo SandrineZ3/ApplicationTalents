@@ -169,7 +169,7 @@ function transformEmoticonIntoImage() {
 }
 
 function effectIconCloseRadio() {
-    $('img').click(function() {
+    $('.fourImagesInOneBox img').click(function() {
         $('.fourImagesInOneBox label').find('i').remove();
         $('<i class="close icon massive icon"></i>').insertAfter(this);
     });
