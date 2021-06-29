@@ -225,16 +225,14 @@ body, label:hover, footer {
     text-decoration: none;
     color : black;
     padding : 1px 6px;
-    border: 1px black solid;
-    border-radius: 10px;
-    background: rgba(202, 203, 205, 0.7);
     font-size: 1.3rem;
     font-weight: 700;
 }
 #footerLink a:hover {
     cursor: pointer !important;
-    border: 2px black solid;
-    background: linear-gradient(45deg, rgba(245,129,255,0.6) 12%, rgba(255,248,0,0.6) 38%, rgba(115,255,169,0.6) 69%, rgba(115,165,255,0.6) 86%);
+    background-image: url("../images/divers/graffFooter.png");
+    background-size: 9.91rem 2rem;
+    background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 640px) {
@@ -266,5 +264,9 @@ h4 {
 .flashMessage {
     position: absolute;
 }
-
-
+#logo:hover{
+    background-image: url("../images/divers/bckgrndLogo.png");
+    background-position-y: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
