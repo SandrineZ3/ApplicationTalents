@@ -239,3 +239,7 @@ body {
     margin : 10px;
     cursor: pointer;
 }
+
+.selected {
+    border: green 4px solid;
+}
