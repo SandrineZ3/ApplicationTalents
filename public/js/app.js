@@ -159,15 +159,9 @@ function transformPictoIntoImage() {
 }
 
 function pictoSelection() {
-      // $('#interpersonnelle_form_solution .toggle.checkbox').each(function () {
-        $('input:checkbox').change(function () {
-            if ($(this).is(":checked")) {
-                $('.picto').addClass("selected");
-            } else {
-                $('.picto').removeClass("selected");
-            }
-        });
-     // }
+        $('#linguistique_form_solution img').click(function () {
+            $(this).parent().toggleClass('selected');
+       });
 }
     function transformEmoticonIntoImage() {
         $('.popup').popup();

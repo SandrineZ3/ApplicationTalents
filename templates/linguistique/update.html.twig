@@ -61,6 +61,9 @@
                 let urlImage = $(this).text();
                 $('<img width="80px" height="80px" src="{{ asset('images/linguistique_pictos/') }}' + urlImage + '" class="picto" alt="image pictogramme"/>').insertAfter($(this));
                 $(this).text('');
+                if ($(this).parent().find('input[type=checkbox]').is(':checked')) {
+                    $(this).parent().addClass('selected');
+                }
             });
             pictoSelection();
         });
