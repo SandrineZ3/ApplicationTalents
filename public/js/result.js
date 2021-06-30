@@ -24,6 +24,8 @@ function displayBrainResult() {
         insertRandomCircle(circle[j], color[color.length-1]);
         j++;
     }
+
+    result.remove();
 }
 
 function insertRandomCircle(initialCircle, color) {

@@ -1,0 +1,143 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Admin User{% endblock %}
+
+{% block body %}
+    <div class="ui grid container padded">
+        <div class="row">
+            <div class="sixteen wide mobile fourteen wide tablet eight wide computer column">
+                <div class="ui segment">
+                    <h3 class="ui dividing header">Liste des utilisateurs</h3>
+                    {{ form_start(searchUserFormType) }}
+                    <div class="field">
+                        {{ form_row(searchUserFormType.keyword) }}
+                    </div>
+                    <div class="field">
+                        {{ form_row(searchUserFormType.save) }}
+                        ({{ tableauUser.totalItemCount }} résultats)
+                    </div>
+                    {{ form_end(searchUserFormType) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui grid stackable padded">
+        <div class="column">
+            <table class="ui celled striped table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Pseudo</th>
+                    <th>Interpersonnelle</th>
+                    <th>Intrapersonnelle</th>
+                    <th>Kinesthesique</th>
+                    <th>Linguistique</th>
+                    <th>Mathématique</th>
+                    <th>Musicale</th>
+                    <th>Naturaliste</th>
+                    <th>Visuelle</th>
+                    <th>Admin</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in tableauUser %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.scoreInterpersonnelle }}</td>
+                        <td>{{ user.scoreIntrapersonnelle }}</td>
+                        <td>{{ user.scoreKinesthesique }}</td>
+                        <td>{{ user.scoreLinguistique }}</td>
+                        <td>{{ user.scoreMathematique }}</td>
+                        <td>{{ user.scoreMusicale }}</td>
+                        <td>{{ user.scoreNaturaliste }}</td>
+                        <td>{{ user.scoreVisuoSpatiale }}</td>
+                        <td>
+                            <div class="field">
+                                <div class="ui toggle checkbox">
+                                    <label for="checkboxAdmin{{ user.id }}"></label>
+                                    <input onchange="requeteAjaxEdit({{ user.id }}, '#checkboxAdmin{{ user.id }}')" type="checkbox" name="checkboxAdmin" tabindex="0" class="hidden" disabled {{ user.admin ? 'checked' : '' }} id="checkboxAdmin{{ user.id }}">
+                                </div>
+                            </div>
+                        </td>
+                        <td class="right aligned collapsing" id="divEdit{{ user.id }}">
+                            <button onclick="editUser({{ user.id }})" class="ui icon button" id="buttonEdit{{ user.id }}"><i class="edit icon"></i></button>
+                            <button onclick="modalSupprimer({{ user.id }})" class="ui icon button"><i class="trash icon"></i></button>
+                        </td>
+                    </tr>
+                    {#modal#}
+                    <div class="ui mini modal trash{{ user.id }}">
+                        <div class="header">
+                            Suppression
+                        </div>
+                        <div class="content">
+                            <p>Êtes-vous sûr de vouloir supprimer "{{ user.username }}"</p>
+                        </div>
+                        <div class="actions">
+                            <div class="ui negative button">
+                                Non
+                            </div>
+                            <a class="ui positive right labeled icon button" href="{{ path('user_delete', {'id': user.id }) }}">
+                                Oui
+                                <i class="checkmark icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {#modal#}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="ui grid padded">
+        <div class="row">
+            <div class="four wide column">
+                {{ knp_pagination_render(tableauUser) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function modalSupprimer(id) {
+            $('.mini.modal.trash'+id).modal('show');
+        }
+        function editUser(id) {
+            if (document.getElementById('checkboxAdmin'+id).disabled) {
+                document.getElementById('checkboxAdmin'+id).disabled = false;
+                document.getElementById('divEdit'+id).innerHTML = '' +
+                    '<button onclick="editUser('+id+')" class="ui icon button" id="buttonEdit'+id+'"><i class="check icon"></i></button>' +
+                    '<button onclick="modalSupprimer('+id+')" class="ui icon button"><i class="trash icon"></i></button>';
+            }
+            else {
+                document.getElementById('checkboxAdmin'+id).disabled = true;
+                document.getElementById('divEdit'+id).innerHTML = '' +
+                    '<button onclick="editUser('+id+')" class="ui icon button" id="buttonEdit'+id+'"><i class="edit icon"></i></button>' +
+                    '<button onclick="modalSupprimer('+id+')" class="ui icon button"><i class="trash icon"></i></button>';
+            }
+        }
+        function requeteAjaxEdit(id, selector) {
+            const Params = new URLSearchParams();
+            Params.append(document.querySelector(selector).name, document.querySelector(selector).checked);
+            Params.append('id', id);
+
+            const Url = new URL(window.location.href);
+
+            fetch(Url.pathname + "?" + Params.toString() + "&ajax=1", {
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            }).then(response =>
+                response.json()
+            ).then(data => {
+                document.querySelector('header').insertAdjacentHTML('beforeend', data.content);
+                history.pushState({}, null, Url.pathname);
+            }).catch(e => alert(e));
+
+            editUser(id);
+        }
+    </script>
+{% endblock %}

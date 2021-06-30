@@ -5,6 +5,7 @@
         <a href="{{ path('main') }}" class="header item">Vos 8 intelligences</a>
     </div>
     <div class="right menu">
+        <a href="{{ path('user_update_password') }}" class="item"><i class="cogs icon"></i></a>
         <a href="{{ path('app_logout') }}" class="item"><i class="sign-out icon"></i></a>
     </div>
 </nav>
@@ -50,12 +51,11 @@
             </a>
         </div>
     </div>
-
-    {#    <a href="{{ path('admin_dashboard') }}" class="item">#}
-    {#        <div>#}
-    {#            <i class="icon chart line"></i>#}
-    {#            Statistiques#}
-    {#        </div>#}
-    {#    </a>#}
+    <a href="{{ path('admin_user') }}" class="item">
+        <div>
+            <i class="icon users"></i>
+            Utilisateurs
+        </div>
+    </a>
 </div>
 <!-- sidebar -->
