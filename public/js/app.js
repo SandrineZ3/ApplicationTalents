@@ -61,6 +61,10 @@ function init() {
         effectIconCloseRadio();
     }
 
+    if (document.querySelector('#pageVisuoSpatiale')) {
+        initTimerBlur();
+    }
+
     if (document.querySelector('#pageResult')) {
         displayBrainResult();
     }

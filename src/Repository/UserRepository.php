@@ -3,8 +3,12 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use App\Services\SearchUser;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -17,9 +21,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
-    public function __construct(ManagerRegistry $registry)
+    private $paginator;
+
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, User::class);
+        $this->paginator = $paginator;
     }
 
     /**
@@ -53,15 +60,30 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ;
     }
 
-    /*
-    public function findOneBySomeField($value): ?User
+    public function findSearchUserPaginate(SearchUser $searchUser, int $nbreResultat): PaginationInterface
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $query = $this->getSearchQueryUser($searchUser)->getQuery();
+        return $this->paginator->paginate($query, $searchUser->page, $nbreResultat);
     }
-    */
+
+    private function getSearchQueryUser(SearchUser $searchUser): QueryBuilder
+    {
+        $query = $this
+            ->createQueryBuilder('u')
+            ->select('u');
+
+        if (!empty($searchUser->keyword)) {
+            $query = $query
+                ->where($query->expr()->orX(
+                    $query->expr()->like('u.id', ':keyword'),
+                    $query->expr()->like('u.username', ':keyword')
+                ))
+                ->setParameter('keyword', "%$searchUser->keyword%");
+        }
+
+        $query = $query
+            ->orderBy('u.id', 'ASC');
+
+        return $query;
+    }
 }
