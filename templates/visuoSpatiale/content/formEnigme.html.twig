@@ -1,22 +1,23 @@
-<div class="circleTimer">
-    <svg width="100" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-        <g transform="translate(110,110)">
-            <circle r="100" class="e-c-base"/>
-            <g transform="rotate(-90)">
-                <circle r="100" class="e-c-progress"/>
-                <g id="e-pointer">
-                    <circle cx="100" cy="0" r="8" class="e-c-pointer"/>
+<div class="chrono">
+    <div class="circleTimer">
+        <svg width="100" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(110,110)">
+                <circle r="100" class="e-c-base"/>
+                <g transform="rotate(-90)">
+                    <circle r="100" class="e-c-progress"/>
+                    <g id="e-pointer">
+                        <circle cx="100" cy="0" r="8" class="e-c-pointer"/>
+                    </g>
                 </g>
             </g>
-        </g>
-    </svg>
-    <div class="display-remain-time"></div>
+        </svg>
+        <div class="display-remain-time"></div>
+    </div>
 </div>
-
-
 
 <form class="ui form" id="formEnigme">
     <img src="{{ asset('images/visuoSpatiale/') ~ enigmeRandom.urlImage }}" alt="image enigme" width="100%">
+    <img class="bg-transparent" src="{{ asset('images/divers/labyrinthe.gif') }}" alt="voile transparent" width="100%">
 
     <div class="grouped fields">
         <div class="field">
@@ -34,4 +35,4 @@
     </div>
     <input type="hidden" name="idEnigme" value="{{ enigmeRandom.id }}">
 </form>
-<button class="button" id="submitReponse" onclick="requeteAjaxPostv2('#formEnigme', '#blocEnigme'); playClick()">Envoyer</button>
+<button class="button" id="submitReponse" onclick="requeteAjaxPostv2('#formEnigme', '#blocEnigme'); clearInterval(intervalTimer); playClick()">Envoyer</button>
