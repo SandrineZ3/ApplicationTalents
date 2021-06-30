@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\SearchUserFormType;
 use App\Repository\InterpersonnelleRepository;
 use App\Repository\KinesthesiqueRepository;
 use App\Repository\LinguistiqueRepository;
@@ -10,7 +11,11 @@ use App\Repository\MusicaleRepository;
 use App\Repository\NaturalisteRepository;
 use App\Repository\UserRepository;
 use App\Repository\VisuoSpatialeRepository;
+use App\Services\SearchUser;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -122,6 +127,44 @@ class AdminController extends AbstractController
 
         return $this->render('admin/visuoSpatiale.html.twig', [
             'tableauEnigmes' => $tableauEnigmes,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/user", name="admin_user")
+     */
+    public function showAllUser(Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
+    {
+        $searchUser = new SearchUser();
+        $searchUser->page = $request->get('page', 1);
+
+        $searchUserFormType = $this->createForm(SearchUserFormType::class, $searchUser);
+        $searchUserFormType->handleRequest($request);
+
+        $tableauUser = $userRepository->findSearchUserPaginate($searchUser, 24);
+
+        if ($request->get('checkboxAdmin')) {
+            $user = $userRepository->find($request->get('id'));
+
+            if ($request->get('checkboxAdmin') === 'true') {
+                $user->setRoles(['ROLE_ADMIN']);
+                $user->setAdmin(true);
+            }
+            else {
+                $user->setRoles(['ROLE_USER']);
+                $user->setAdmin(false);
+            }
+            $entityManager->flush();
+            $this->addFlash('success', 'Modification enregistrée');
+
+            return new JsonResponse([
+                'content' => $this->renderView('inc/messageFlash.html.twig')
+            ]);
+        }
+
+        return $this->render('admin/user.html.twig', [
+            'searchUserFormType' => $searchUserFormType->createView(),
+            'tableauUser' => $tableauUser,
         ]);
     }
 }
