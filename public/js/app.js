@@ -184,20 +184,24 @@ function effectIconCloseRadio() {
 
     function playClick() {
         let audio = document.getElementById("audioClick");
+        audio.volume = 0.2;
         audio.play();
     }
 
     function playBack() {
         let audio = document.getElementById("audioBack");
+        audio.volume = 0.2;
         audio.play();
     }
 
     function playLink() {
         let audio = document.getElementById("audioLink");
+        audio.volume = 0.1;
         audio.play();
     }
 
     function playNext() {
         let audio = document.getElementById("audioNext");
+        audio.volume = 0.1;
         audio.play();
     }
