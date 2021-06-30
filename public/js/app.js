@@ -163,15 +163,9 @@ function transformPictoIntoImage() {
 }
 
 function pictoSelection() {
-      // $('#interpersonnelle_form_solution .toggle.checkbox').each(function () {
-        $('input:checkbox').change(function () {
-            if ($(this).is(":checked")) {
-                $('.picto').addClass("selected");
-            } else {
-                $('.picto').removeClass("selected");
-            }
-        });
-     // }
+        $('#linguistique_form_solution img').click(function () {
+            $(this).parent().toggleClass('selected');
+       });
 }
     function transformEmoticonIntoImage() {
         $('.popup').popup();
@@ -190,20 +184,24 @@ function effectIconCloseRadio() {
 
     function playClick() {
         let audio = document.getElementById("audioClick");
+        audio.volume = 0.2;
         audio.play();
     }
 
     function playBack() {
         let audio = document.getElementById("audioBack");
+        audio.volume = 0.2;
         audio.play();
     }
 
     function playLink() {
         let audio = document.getElementById("audioLink");
+        audio.volume = 0.1;
         audio.play();
     }
 
     function playNext() {
         let audio = document.getElementById("audioNext");
+        audio.volume = 0.1;
         audio.play();
     }

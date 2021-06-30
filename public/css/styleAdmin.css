@@ -167,6 +167,11 @@ body {
     animation: click-wave 0.4s;
     position: relative;
 }
+
+.selected {
+    border: green 4px solid !important;
+}
+
 @keyframes click-wave {
     0% {
         border: none;
@@ -238,8 +243,4 @@ body {
 #interpersonnelle_form_solution img {
     margin : 10px;
     cursor: pointer;
-}
-
-.selected {
-    border: green 4px solid;
 }
