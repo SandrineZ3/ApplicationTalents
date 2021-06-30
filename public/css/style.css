@@ -376,16 +376,24 @@ h4 {
 }
 
 /* VISUO-SPATIALE TIMER */
+.chrono {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    z-index: 10;
+    background-color: white;
+}
 .circleTimer {
     position: relative;
+    width: 100px;
 }
 .display-remain-time {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 40px;
+    right: 20px;
     font-weight: 100;
-    font-size: 65px;
-    color: #F7958E;
+    font-size: 50px;
+    color: #C3AB87;
 }
 .e-c-base {
     fill: none;
@@ -394,15 +402,25 @@ h4 {
 }
 .e-c-progress {
     fill: none;
-    stroke: #F7958E;
+    stroke: #C3AB87;
     stroke-width: 4px;
     transition: stroke-dashoffset 0.7s;
 }
 .e-c-pointer {
     fill: #FFF;
-    stroke: #F7958E;
+    stroke: #C3AB87;
     stroke-width: 2px;
 }
 #e-pointer {
     transition: transform 0.7s;
+}
+.blur-image {
+    filter: blur(12px);
+    -webkit-filter: blur(12px);
+}
+.bg-transparent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
 }
