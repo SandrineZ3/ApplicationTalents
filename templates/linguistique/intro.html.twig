@@ -3,11 +3,13 @@
 {% block title %}Introduction Verbale et Linguistique{% endblock %}
 
 {% block body %}
-    <div class="ui grid container h100 middle aligned">
+    {% include("inc/brainAnimation.html.twig")%}
+    <div class="ui grid container h100 middle aligned" id="pageIntro">
         <div class="row">
             <div class="sixteen wide mobile ten wide tablet eight wide computer centered column">
                 <div class="ui colorApp segment">
-                    <h3 class="ui dividing header">Introduction au jeu qui va suivre...</h3>
+                    <h3 class="ui dividing header" >Introduction au jeu qui va suivre :</h3>
+                    <h3 class="ui header centered" id="introTitleLinguistique">Intelligence Verbale et Linguistique</h3>
                     <div class="explanations">
                         <p>Pour chaque manche, tu devras traduire la phrase présentée à l'aide de pictogrammes.</p>
                         <p>Astuce : les pictogrammes peuvent être déplacés dans les emplacements vides par
