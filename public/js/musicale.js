@@ -5,8 +5,10 @@ let idInputReponseUser = '#reponseUser';
 function loadNumberOfNote() {
     let holderContainerDiv = $('#holderContainer');
     let numberOfColumns = holderContainerDiv.attr('data-col');
-    $('body').prepend('<style></style>');
 
+    if (!document.getElementById('styleMusicale')) {
+        $('body').prepend('<style id="styleMusicale"></style>');
+    }
 
     changeNumberOfNote(numberOfColumns);
 
@@ -38,12 +40,12 @@ function changeNumberOfNote(numberOfColumns) {
     let property1 = ".holder {" +
         "width: " + ((100 / numberOfColumns) - 0.5) + "%;" +
         "}";
-    let property2 = ".holderContainer .holder {" +
+    let property2 = ".holderContainer.play .holder {" +
         "   animation: line " + numberOfColumns * speed + "s linear infinite;" +
         "}";
     let property3 = "";
     for (let h = 0; h < numberOfColumns; h++) {
-        property3 += ".holderContainer .holder:nth-child(" + numberOfColumns + "n+" + h + ") {" +
+        property3 += ".holderContainer.play .holder:nth-child(" + numberOfColumns + "n+" + (h+1) + ") {" +
             "animation-delay: " + h * speed + "s;" +
             "}";
     }
@@ -60,10 +62,10 @@ function changeNumberOfNote(numberOfColumns) {
         "}";
     styleBalise.append(property1 + property2 + property3 + property4);
 
-    tonesManager(numberOfColumns);
+    tonesManager();
 }
 
-function tonesManager(numberOfColumns) {
+function tonesManager() {
     let tones = [];
 
     for (let i = 0; i < 6; i++) {
@@ -73,30 +75,23 @@ function tonesManager(numberOfColumns) {
         });
     }
 
-    playNote(numberOfColumns, tones);
-    // if (document.querySelector(idInputSolutionAdmin)) {
-    //     // adminControls2();
-    //     userControls2(idInputSolutionAdmin);
-    // }
-    // else {
-    //     userControls2(idInputReponseUser);
-    // }
+    playNote(tones);
 }
 
-function playNote(numberOfColumns, tones) {
-    for (let i = 0; i < numberOfColumns; i++) {
-        $('#holderContainer .holder:nth-child(' + numberOfColumns + 'n + ' + i + ')').
-        on('webkitAnimationIteration mozAnimationIteration animationiteration',
-            function () {
-                if ($(this).hasClass('active') && !$('#holderContainer').hasClass('mute')) {
-                    tones[$(this).attr('data-note')].play();
+function playNote(tones) {
+    $('#holderContainer .holder').off();
+    $('#holderContainer .holder').
+    on('webkitAnimationStart mozAnimationStart animationstart webkitAnimationIteration mozAnimationIteration animationiteration',
+        function () {
+            if ($(this).hasClass('active') && !$('#holderContainer').hasClass('mute')) {
+                tones[$(this).attr('data-note')].play();
 
-                    $(this).find('.ripple').addClass('rippleAnim').delay(500).queue(function () {
-                        $(this).removeClass('rippleAnim').dequeue();
-                    });
-                }
-            });
-    }
+                $(this).find('.ripple').addClass('rippleAnim').delay(500).queue(function () {
+                    $(this).removeClass('rippleAnim').dequeue();
+                });
+            }
+        });
+    $('.touchPad').off();
     $('.touchPad').on('click', function () {
         tones[$(this).attr('data-note')].play();
         $(this).find('.ripple').addClass('rippleAnim').delay(500).queue(function () {
@@ -106,6 +101,7 @@ function playNote(numberOfColumns, tones) {
 }
 
 function userControls(idInput) {
+    $('.plus.icon').off();
     $('.plus.icon').on('click', function () {
         let soundNumber = $(this).parent().attr('data-note');
         let boolean = true;
@@ -125,31 +121,18 @@ function userControls(idInput) {
         closeIcon(idInput);
     });
 
-    let resetButton = $('#reset');
-    resetButton.off();
-    resetButton.on('click', function () {
-        let note = $('.note');
-        $('.active').removeClass('active');
-        note.find("i").remove();
-        note.each(function () {
-            $(this).removeClass('color' + $(this).parent().attr('data-note'));
-        });
-        exportMelody(idInput);
-    });
-
-    let audioButton = $('#audio');
-    audioButton.off();
-    audioButton.on('click', function () {
-        if ($(this).hasClass("mute")) {
-            $(this).children().removeClass("volume off");
-            $(this).children().addClass("volume up");
+    let playButton = $('#play');
+    playButton.off();
+    playButton.on('click', function () {
+        $('#holderContainer').toggleClass('play');
+        if (playButton.find('i').hasClass('play')) {
+            playButton.find('i').addClass('stop');
+            playButton.find('i').removeClass('play');
         }
         else {
-            $(this).children().removeClass("volume up");
-            $(this).children().addClass("volume off");
+            playButton.find('i').addClass('play');
+            playButton.find('i').removeClass('stop');
         }
-        $('#holderContainer').toggleClass("mute")
-        $(this).toggleClass('mute');
     });
 
     if (document.querySelector('#lecture')) {
@@ -166,6 +149,7 @@ function userControls(idInput) {
                     'https://s3-us-west-2.amazonaws.com/s.cdpn.io/380275/' + i*3 + '.ogg']
             });
         }
+        lectureButton.off();
         lectureButton.on('click', function () {
             if (listeningNumber > 0 ) {
                 let i = 0;
@@ -184,6 +168,7 @@ function userControls(idInput) {
 }
 
 function closeIcon(idInput) {
+    $('.close.icon').off();
     $('.close.icon').on('click', function () {
         if ($(this).parent().hasClass('active')) {
             $(this).parent().removeClass('active');
@@ -196,6 +181,7 @@ function closeIcon(idInput) {
 }
 
 function adminControls() {
+    $('#musicale_form_numberOfColumns').off();
     $('#musicale_form_numberOfColumns').on('change', function () {
         editNumberOfNote();
     });
