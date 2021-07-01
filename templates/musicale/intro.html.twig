@@ -3,11 +3,13 @@
 {% block title %}Introduction Musicale et Rythmique{% endblock %}
 
 {% block body %}
-    <div class="ui grid container h100 middle aligned">
+    {% include("inc/brainAnimation.html.twig")%}
+    <div class="ui grid container h100 middle aligned" id="pageIntro">
         <div class="row">
             <div class="sixteen wide mobile ten wide tablet eight wide computer centered column">
                 <div class="ui colorApp segment">
-                    <h3 class="ui dividing header">Introduction au jeu qui va suivre...</h3>
+                    <h3 class="ui dividing header" >Introduction au jeu qui va suivre :</h3>
+                    <h3 class="ui header centered" id="introTitleMusicale">Intelligence Musicale et Rythmique</h3>
                     <div class="explanations">
                         <p>Pour chaque manche, le but est de reproduire l'extrait musical que tu entendras à l'aide des
                             boutons colorés.</p>
