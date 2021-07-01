@@ -24,8 +24,8 @@
                         {{ form_row(linguistiqueForm.save) }}
                     </div>
                     {{ form_end(linguistiqueForm) }}
+                    <button onclick="afficherModalDelete()" class="ui button">Supprimer</button>
                 </div>
-                <button onclick="afficherModalDelete({{ linguistique.id }})" class="ui button">Supprimer</button>
             </div>
             {# modal #}
             <div class="ui mini modal trash">

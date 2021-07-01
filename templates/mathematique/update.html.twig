@@ -22,8 +22,28 @@
                         {{ form_row(mathematiqueForm.save) }}
                     </div>
                     {{ form_end(mathematiqueForm) }}
+                    <button onclick="afficherModalDelete()" class="ui button">Supprimer</button>
                 </div>
             </div>
+            {#modal#}
+            <div class="ui mini modal trash">
+                <div class="header">
+                    Suppression
+                </div>
+                <div class="content">
+                    <p>Êtes-vous sûr de vouloir supprimer cette énigme</p>
+                </div>
+                <div class="actions">
+                    <div class="ui negative button">
+                        Non
+                    </div>
+                    <a class="ui positive right labeled icon button" href="{{ path('mathematique_delete', {'id': mathematique.id }) }}">
+                        Oui
+                        <i class="checkmark icon"></i>
+                    </a>
+                </div>
+            </div>
+            {#modal#}
         </div>
     </div>
 {% endblock %}

@@ -174,6 +174,7 @@ class MathematiqueController extends AbstractController
 
         return $this->render('mathematique/create.html.twig', [
             'mathematiqueForm' => $mathematiqueForm->createView(),
+            'mathematique' => $mathematique,
         ]);
     }
 
@@ -210,6 +211,7 @@ class MathematiqueController extends AbstractController
 
         return $this->render('mathematique/update.html.twig', [
             'mathematiqueForm' => $mathematiqueForm->createView(),
+            'mathematique' => $mathematique,
         ]);
     }
 
