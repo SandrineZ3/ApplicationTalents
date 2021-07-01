@@ -3,11 +3,13 @@
 {% block title %}Introduction Visuelle et Spatiale{% endblock %}
 
 {% block body %}
-    <div class="ui grid container h100 middle aligned">
+    {% include("inc/brainAnimation.html.twig")%}
+    <div class="ui grid container h100 middle aligned" id="pageIntro">
         <div class="row">
             <div class="sixteen wide mobile ten wide tablet eight wide computer centered column">
                 <div class="ui colorApp segment">
-                    <h3 class="ui dividing header">Introduction au jeu qui va suivre...</h3>
+                    <h3 class="ui dividing header" >Introduction au jeu qui va suivre :</h3>
+                    <h3 class="ui header centered" id="introTitleVisuoSpatiale">Intelligence Visuelle et Spatiale</h3>
                     <div class="explanations">
                         <p>Pour chaque manche, un labyrinthe te sera présenté.</p>
                         <p>Tu devras sélectionner le chemin permettant de rejoindre le centre du labyrinthe parmi les

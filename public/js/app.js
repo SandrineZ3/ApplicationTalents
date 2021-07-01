@@ -71,6 +71,10 @@ function init() {
 }
 
 function initBrainCharacterAnimation() {
+    if (document.querySelector('#pageIntro')) {
+        brainCharacterAnimationIntro();
+    }
+
     if (document.querySelector('#pageInterpersonnelle')) {
         brainCharacterAnimationInterpersonnelle();
     }

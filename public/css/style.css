@@ -424,3 +424,52 @@ h4 {
     left: 0;
     opacity: 0;
 }
+
+#introTitleInterpersonnelle {
+    background-image: url("../images/divers/graffInterpersonnelle.png");
+    background-position: center;
+    background-size: 15em 1.3em;
+    background-repeat: no-repeat;
+}
+#introTitleIntrapersonnelle {
+    background-image: url("../images/divers/graffIntrapersonnelle.png");
+    background-position: center;
+    background-size: 15em 1.3em;
+    background-repeat: no-repeat;
+}
+#introTitleMusicale {
+    background-image: url("../images/divers/graffMusicale.png");
+    background-position: center;
+    background-size: 15em 1.3em;
+    background-repeat: no-repeat;
+}
+#introTitleNaturaliste {
+    background-image: url("../images/divers/graffNaturaliste.png");
+    background-position: center;
+    background-size: 12em 1.3em;
+    background-repeat: no-repeat;
+}
+#introTitleVisuoSpatiale {
+    background-image: url("../images/divers/graffVisuoSpatiale.png");
+    background-position: center;
+    background-size: 15em 1.3em;
+    background-repeat: no-repeat;
+}
+#introTitleKinesthesique {
+    background-image: url("../images/divers/graffKinesthesique.png");
+    background-position: center;
+    background-size: 14em 1.3em;
+    background-repeat: no-repeat;
+}
+#introTitleLinguistique {
+    background-image: url("../images/divers/graffLinguistique.png");
+    background-position: center;
+    background-size: 16em 1.3em;
+    background-repeat: no-repeat;
+}
+#introTitleMathematique {
+    background-image: url("../images/divers/graffMathematique.png");
+    background-position: center;
+    background-size: 16em 1.3em;
+    background-repeat: no-repeat;
+}
