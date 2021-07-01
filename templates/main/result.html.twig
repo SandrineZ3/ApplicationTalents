@@ -3,7 +3,7 @@
 {% block title %}{{ parent() }} | Résultats{% endblock %}
 
 {% block body %}
-    {% include("inc/brainAnimation.html.twig")%}
+    {% include("inc/brainAnimation.html.twig") %}
 
     <div class="ui grid container h100 middle aligned" id="pageResult">
         <div class="row">
@@ -32,11 +32,17 @@
                 </div>
                 <div class="ui colorApp segment">
                     <h4 class="ui dividing header">Partager mes résultats !</h4>
-{#                    <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.rdvnomade.fr/public/result" target="_blank" class="ui circular facebook icon button" title="Partager sur Facebook"></a>#}
+
+                    {# TODO : A tester ! #}
                     <button class="ui circular facebook icon button" title="Partager sur Facebook"
-                            onclick=window.location.href="https://www.facebook.com/sharer/sharer.php?u=http://www.rdvnomade.fr/public/result">
-                        <i class="facebook icon"></i>
-                    </button>
+                            onclick=window.location.href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.rdvnomade.fr%2Fresult&amp;src=sdkpreparse">
+                        <i class="facebook icon"></i></button>
+
+                    {# <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.rdvnomade.fr/public/result" target="_blank" class="ui circular facebook icon button" title="Partager sur Facebook">test</a> #}
+                    {# <button class="ui circular facebook icon button" title="Partager sur Facebook" #}
+                    {# onclick=window.location.href="https://www.facebook.com/sharer/sharer.php?u=http://www.rdvnomade.fr/public/result"> #}
+                    {# <i class="facebook icon"></i> #}
+                    {# </button> #}
                     <button class="ui circular twitter icon button" title="Partager sur Twitter"
                             onclick=window.location.href="https://twitter.com/intent/tweet?url=http://www.rdvnomade.fr/public/result&text=">
                         <i class="twitter icon"></i>

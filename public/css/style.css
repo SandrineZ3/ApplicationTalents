@@ -20,6 +20,15 @@
     background-color: #ffffff !important;
 }
 
+#audioBackgroundButton {
+    margin-left: 40px;
+    margin-bottom: 30px;
+}
+.vertical.labeled.icon.bottom.fixed.menu {
+    background: none !important;
+    border: none !important;
+}
+
 .fourImagesInOneBox {
     height: 400px !important;
     display: flex; !important;
