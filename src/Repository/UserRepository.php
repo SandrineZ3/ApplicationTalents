@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use App\Services\SearchUser;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -85,5 +86,25 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->orderBy('u.id', 'ASC');
 
         return $query;
+    }
+
+    public function statsNombrePartie(): array
+    {
+        $result = [];
+        $date = new DateTime();
+        $date->modify('-6 month');
+        for ($i = 0; $i < 6; $i++) {
+            $date->modify('+1 month');
+            $result[] = $this
+                ->createQueryBuilder('u')
+                ->select('COUNT(DISTINCT u)')
+                ->andWhere('MONTH(u.dateEnd) = :mois AND YEAR(u.dateEnd) = :annee')
+                ->setParameter('mois', $date->format('m'))
+                ->setParameter('annee', $date->format('Y'))
+                ->getQuery()
+                ->getSingleScalarResult();
+        }
+
+        return $result;
     }
 }
