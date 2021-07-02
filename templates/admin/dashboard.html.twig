@@ -175,7 +175,12 @@
         <div class="row centered">
             <div class="eight wide computer sixteen wide tablet sixteen wide mobile column">
                 <div class="ui fluid card">
-                    <canvas id="myChart"></canvas>
+                    <canvas id="myChartResult"></canvas>
+                </div>
+            </div>
+            <div class="eight wide computer sixteen wide tablet sixteen wide mobile column">
+                <div class="ui fluid card">
+                    <canvas id="myChartVisit"></canvas>
                 </div>
             </div>
         </div>
@@ -184,8 +189,12 @@
 
 {% block javascripts %}
     <script>
-        let ctx = document.getElementById('myChart').getContext('2d');
-        let myChart = new Chart(ctx, {
+        {% set total = 0 %}
+        {% for stat in tableauStats %}
+        {% set total = total + stat %}
+        {% endfor %}
+        let ctxResult = document.getElementById('myChartResult').getContext('2d');
+        let myChartResult = new Chart(ctxResult, {
             type: 'pie',
             data: {
                 labels: [
@@ -202,7 +211,7 @@
                     label: '',
                     data: [
                         {% for stat in tableauStats %}
-                        '{{ stat }}',
+                        '{{ (stat/total)*100 }}',
                         {% endfor %}
                     ],
                     backgroundColor: [
@@ -221,10 +230,47 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Statistiques Visiteurs'
+                        text: 'Résultats Visiteurs'
                     },
                     tooltip: {
-                        enabled: false,
+                        enabled: true,
+                    },
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        let ctxVisit = document.getElementById('myChartVisit').getContext('2d');
+        let myChartVisit = new Chart(ctxVisit, {
+            type: 'bar',
+            data: {
+                labels: [
+                    {% for mois in tableauDerniersMois %}
+                    '{{ mois }}',
+                    {% endfor %}
+                ],
+                datasets: [{
+                    label: 'Nombre de partie',
+                    backgroundColor: 'rgb(214, 28, 13)',
+                    borderColor: 'rgb(214, 28, 13)',
+                    data: [
+                        {% for stat in statsNombrePartie %}
+                        '{{ stat }}',
+                        {% endfor %}
+                    ],
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Nombre de partie'
+                    },
+                    tooltip: {
+                        enabled: true,
                     },
                     legend: {
                         display: true

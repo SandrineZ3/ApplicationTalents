@@ -12,6 +12,7 @@ use App\Repository\NaturalisteRepository;
 use App\Repository\UserRepository;
 use App\Repository\VisuoSpatialeRepository;
 use App\Services\SearchUser;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -33,6 +34,14 @@ class AdminController extends AbstractController
                               VisuoSpatialeRepository $visuoSpatialeRepository,
                               UserRepository $userRepository): Response
     {
+        $tableauDerniersMois = [];
+        $date = new DateTime();
+        $date->modify('-6 month');
+        for ($i = 0; $i < 6; $i++) {
+            $tableauDerniersMois[] = $date->modify('+1 month')->format('M');
+        }
+
+        $statsNombrePartie = $userRepository->statsNombrePartie();
 
         return $this->render('admin/dashboard.html.twig', [
             'nbreEnigmeInterpersonnelle' => $interpersonnelleRepository->count([]),
@@ -43,6 +52,8 @@ class AdminController extends AbstractController
             'nbreEnigmeNaturaliste' => $naturalisteRepository->count([]),
             'nbreEnigmeVisuoSpatiale' => $visuoSpatialeRepository->count([]),
             'tableauStats' => $userRepository->findStatsByDateEndIsNotNull(),
+            'tableauDerniersMois' => $tableauDerniersMois,
+            'statsNombrePartie' => $statsNombrePartie,
         ]);
     }
 
