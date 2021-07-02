@@ -19,6 +19,8 @@ function init() {
         }
     });
 
+    updateStateButtonAudio();
+
     if (document.querySelector('#pageConnexion')) {
         let inputPassword = $('input[type=password]');
         inputPassword.parent().addClass('hiddenField');
@@ -112,12 +114,24 @@ function initBrainCharacterAnimation() {
 }
 
 function onOffAudioBackground() {
+    if (document.cookie.includes('mute')) {
+        document.cookie = 'audio=mute; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    } else {
+        let date = new Date(Date.now() + 86400000); // 86400000ms = 1 jour
+        date = date.toUTCString();
+        document.cookie = 'audio=mute; path=/; expires=' + date;
+    }
+    updateStateButtonAudio();
+}
+
+function updateStateButtonAudio() {
     let buttonOnOff = $('#audioBackgroundButton');
-    if (buttonOnOff.children().hasClass("volume up")) {
+    if (document.cookie.includes('mute')) {
         audioBackground.pause();
         buttonOnOff.children().removeClass("volume up");
         buttonOnOff.children().addClass("volume off");
-    } else {
+    }
+    else {
         audioBackground.play();
         buttonOnOff.children().removeClass("volume off");
         buttonOnOff.children().addClass("volume up");
@@ -167,17 +181,17 @@ function transformPictoIntoImage() {
 }
 
 function pictoSelection() {
-        $('#linguistique_form_solution img').click(function () {
-            $(this).parent().toggleClass('selected');
-       });
+    $('#linguistique_form_solution img').click(function () {
+        $(this).parent().toggleClass('selected');
+    });
 }
-    function transformEmoticonIntoImage() {
-        $('.popup').popup();
-        $('.field img').click(function () {
-            $('.field img').addClass('blackAndWhite');
-            $(this).removeClass('blackAndWhite');
-        });
-    }
+function transformEmoticonIntoImage() {
+    $('.popup').popup();
+    $('.field img').click(function () {
+        $('.field img').addClass('blackAndWhite');
+        $(this).removeClass('blackAndWhite');
+    });
+}
 
 function effectIconCloseRadio() {
     $('.fourImagesInOneBox img').click(function() {
@@ -186,26 +200,26 @@ function effectIconCloseRadio() {
     });
 }
 
-    function playClick() {
-        let audio = document.getElementById("audioClick");
-        audio.volume = 0.2;
-        audio.play();
-    }
+function playClick() {
+    let audio = document.getElementById("audioClick");
+    audio.volume = 0.2;
+    audio.play();
+}
 
-    function playBack() {
-        let audio = document.getElementById("audioBack");
-        audio.volume = 0.2;
-        audio.play();
-    }
+function playBack() {
+    let audio = document.getElementById("audioBack");
+    audio.volume = 0.2;
+    audio.play();
+}
 
-    function playLink() {
-        let audio = document.getElementById("audioLink");
-        audio.volume = 0.1;
-        audio.play();
-    }
+function playLink() {
+    let audio = document.getElementById("audioLink");
+    audio.volume = 0.1;
+    audio.play();
+}
 
-    function playNext() {
-        let audio = document.getElementById("audioNext");
-        audio.volume = 0.1;
-        audio.play();
-    }
+function playNext() {
+    let audio = document.getElementById("audioNext");
+    audio.volume = 0.1;
+    audio.play();
+}
