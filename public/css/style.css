@@ -61,15 +61,38 @@ header img {
     left: 10px;
     min-width: 100px;
     width: 160px;
+    z-index: 30;
 }
 
 @media (max-width: 768px) {
     header img {
         width: 70px;
     }
+    header h1 {
+        font-size: 2rem !important;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 490px) {
+    header h1 {
+        font-size: 1.8rem !important;
+        text-align: left;
+        margin-left: 140px;
+        width: 100%;
+    }
+}
+
+#logo:hover{
+    background-image: url("../images/divers/bckgrndLogo.png");
+    background-position-y: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 header h1 {
+    font-family: 'Architects Daughter', cursive;
     font-size: 2.6rem;
     position : absolute;
     font-weight: 600;
@@ -97,69 +120,69 @@ header h1 {
     filter: contrast(50%);
 }
 
-.colorInterpersonnelle {
-    color: #D9C7ED !important;
-}
-.bgInterpersonnelle {
-    background-color: #D9C7ED !important;
-    color: white !important;
-}
+/*.colorInterpersonnelle {*/
+/*    color: #D9C7ED !important;*/
+/*}*/
+/*.bgInterpersonnelle {*/
+/*    background-color: #D9C7ED !important;*/
+/*    color: white !important;*/
+/*}*/
 
-.colorIntrapersonnelle {
-    color: #B3EDF8 !important;
-}
-.bgIntrapersonnelle {
-    background-color: #B3EDF8 !important;
-    color: white !important;
-}
+/*.colorIntrapersonnelle {*/
+/*    color: #B3EDF8 !important;*/
+/*}*/
+/*.bgIntrapersonnelle {*/
+/*    background-color: #B3EDF8 !important;*/
+/*    color: white !important;*/
+/*}*/
 
-.colorKinesthesique  {
-    color: #E1DACA !important;
-}
-.bgKinesthesique  {
-    background-color: #E1DACA !important;
-    color: white !important;
-}
+/*.colorKinesthesique  {*/
+/*    color: #E1DACA !important;*/
+/*}*/
+/*.bgKinesthesique  {*/
+/*    background-color: #E1DACA !important;*/
+/*    color: white !important;*/
+/*}*/
 
-.colorLinguistique {
-    color: #BCE9D5 !important;
-}
-.bgLinguistique {
-    background-color: #BCE9D5 !important;
-    color: white !important;
-}
+/*.colorLinguistique {*/
+/*    color: #BCE9D5 !important;*/
+/*}*/
+/*.bgLinguistique {*/
+/*    background-color: #BCE9D5 !important;*/
+/*    color: white !important;*/
+/*}*/
 
-.colorMathematique {
-    color: #F6BDCE !important;
-}
-.bgMathematique {
-    background-color: #F6BDCE !important;
-    color: white !important;
-}
+/*.colorMathematique {*/
+/*    color: #F6BDCE !important;*/
+/*}*/
+/*.bgMathematique {*/
+/*    background-color: #F6BDCE !important;*/
+/*    color: white !important;*/
+/*}*/
 
-.colorMusicale {
-    color: #FEEEB3 !important;
-}
-.bgMusicale {
-    background-color: #FEEEB3 !important;
-    color: white !important;
-}
+/*.colorMusicale {*/
+/*    color: #FEEEB3 !important;*/
+/*}*/
+/*.bgMusicale {*/
+/*    background-color: #FEEEB3 !important;*/
+/*    color: white !important;*/
+/*}*/
 
-.colorNaturaliste {
-    color: #F9C29B !important;
-}
-.bgNaturaliste {
-    background-color: #F9C29B !important;
-    color: white !important;
-}
+/*.colorNaturaliste {*/
+/*    color: #F9C29B !important;*/
+/*}*/
+/*.bgNaturaliste {*/
+/*    background-color: #F9C29B !important;*/
+/*    color: white !important;*/
+/*}*/
 
-.colorVisuoSpatiale {
-    color: #FF889A !important;
-}
-.bgVisuoSpatiale {
-    background-color: #FF889A !important;
-    color: white !important;
-}
+/*.colorVisuoSpatiale {*/
+/*    color: #FF889A !important;*/
+/*}*/
+/*.bgVisuoSpatiale {*/
+/*    background-color: #FF889A !important;*/
+/*    color: white !important;*/
+/*}*/
 /* ALIGNEMENT CERVEAU (Results) */
 #brainSVG {
     text-align: center;
@@ -248,11 +271,6 @@ body, label:hover, footer {
 .explanations {
     font-size: 1.3rem;
 }
-h1 {
-    font-size: 2.2em;
-    font-family: 'Architects Daughter', cursive;
-    font-weight: 20;
-}
 
 h3 {
     font-size: 1.9rem !important;
@@ -267,12 +285,6 @@ h4 {
 }
 .flashMessage {
     position: absolute;
-}
-#logo:hover{
-    background-image: url("../images/divers/bckgrndLogo.png");
-    background-position-y: 20px;
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 .introButtons {
     margin-top: 20px;
