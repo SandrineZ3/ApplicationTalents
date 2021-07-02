@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:og="http://ogp.me/ns#">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,12 +11,20 @@
     <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
-    <meta property="og:title" content="Vos 8 intelligences - Mes résultats"/>
-    <meta property="og:description" content="Voici mes résultats au test des 8 intelligences :"/>
-    <meta property="og:type" content="article" />
-{#    <meta property="og:url" content="http://www.yakaferci.com/open-graph/" />#}
-    <meta property="og:image" content="images/divers/rdvNomadeLogo.png" /> {#TODO : mettre image mascotte ? #}
-    <meta property="og:locale" content="fr_FR"/>
+{#    Balises Réseaux Sociaux (LinkedIn & Fb)#}
+{#    <meta property="og:title" content="Vos 8 intelligences - Mes résultats"/>#}
+{#    <meta property="og:description" content="Voici mes résultats au test des 8 intelligences :"/>#}
+{#    <meta property="og:type" content="article" />#}
+{#    <meta property="og:url" content="http://www.rdvnomade.fr/result"/>#}
+{#    <meta property="og:image" content="images/divers/rdvNomadeLogo.png" />#}
+{#    <meta property="og:locale" content="fr_FR"/>#}
+
+{#    Balises pour Twitter#}
+{#    <meta name="twitter:card" content="summary_large_image">#}
+{#    <meta name="twitter:site" content="@RDVNomade">#}
+{#    <meta name="twitter:title" content="Vos 8 intelligences - Mes résultats">#}
+{#    <meta name="twitter:description" content="Voici mes résultats au test des 8 intelligences :">#}
+{#    <meta name="twitter:image" content="http://www.rdvnomade.fr/images/divers/rdvNomadeLogoNB.png">#}
 
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/ratingStars.css') }}" rel="stylesheet">
@@ -39,9 +47,6 @@
 </header>
 
 <main>
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0" nonce="jSvO189s"></script>
-
     <div id="particles-js"></div>
     <div class="transition-fade" id="swup">
         {% block body %}{% endblock %}
