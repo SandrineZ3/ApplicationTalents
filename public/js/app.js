@@ -19,7 +19,9 @@ function init() {
         }
     });
 
-    updateStateButtonAudio();
+    if (typeof audioBackground !== 'undefined') {
+        updateStateButtonAudio();
+    }
 
     if (document.querySelector('#pageConnexion')) {
         let inputPassword = $('input[type=password]');
