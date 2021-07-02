@@ -2,29 +2,47 @@
     <div class="ui grid">
         <div class="row">
             <div class="column">
-                <div class="holderContainer" id="holderContainer" data-col="{{ enigmeRandom.numberOfColumns }}">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-                <div class="touchPad color0 cursor" data-note="0"><div class="ripple"></div><i class="plus icon cursor"></i></div>
-                <div class="touchPad color1 cursor" data-note="1"><div class="ripple"></div><i class="plus icon cursor"></i></div>
-                <div class="touchPad color2 cursor" data-note="2"><div class="ripple"></div><i class="plus icon cursor"></i></div>
-                <div class="touchPad color3 cursor" data-note="3"><div class="ripple"></div><i class="plus icon cursor"></i></div>
-                <div class="touchPad color4 cursor" data-note="4"><div class="ripple"></div><i class="plus icon cursor"></i></div>
-                <div class="touchPad color5 cursor" data-note="5"><div class="ripple"></div><i class="plus icon cursor"></i></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-                <div class="ui compact menu cursor">
-                    <div class="item" id="lecture">
-                        <i class="play icon"></i>
-                        <div class="ui red floating label">5</div>
+                <h5>
+                    Appuie sur ce bouton
+                    <div class="ui compact menu cursor">
+                        <div class="item" id="lecture">
+                            <i class="play icon"></i>
+                            <div class="ui red floating label">5</div>
+                        </div>
                     </div>
-                    <div class="item" id="play">
-                        <i class="play icon"></i>
+                    pour écouter la mélodie (Attention, tu ne peux l'écouter que 5 fois) et tente de la reproduire avec les touches ci-dessous :
+                </h5>
+            </div>
+        </div>
+        <div class="row centered">
+            <div class="fifteen wide column aligned">
+                <div class="row centered">
+                    <div class="fifteen wide column">
+                        <div class="holderContainer" id="holderContainer" data-col="{{ enigmeRandom.numberOfColumns }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <div class="touchPad colorGradient0 cursor" data-note="0"><div class="ripple"></div><div class="ui bottom attached label"><i class="plus icon cursor"></i>Ajouter</div></div>
+                        <div class="touchPad colorGradient1 cursor" data-note="1"><div class="ripple"></div><div class="ui bottom attached label"><i class="plus icon cursor"></i>Ajouter</div></div>
+                        <div class="touchPad colorGradient2 cursor" data-note="2"><div class="ripple"></div><div class="ui bottom attached label"><i class="plus icon cursor"></i>Ajouter</div></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <div class="touchPad colorGradient3 cursor" data-note="3"><div class="ripple"></div><div class="ui bottom attached label"><i class="plus icon cursor"></i>Ajouter</div></div>
+                        <div class="touchPad colorGradient4 cursor" data-note="4"><div class="ripple"></div><div class="ui bottom attached label"><i class="plus icon cursor"></i>Ajouter</div></div>
+                        <div class="touchPad colorGradient5 cursor" data-note="5"><div class="ripple"></div><div class="ui bottom attached label"><i class="plus icon cursor"></i>Ajouter</div></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <div class="ui basic button" style="width: 50%; font-size: 0.9em;">
+                            <div class="item" id="play">
+                                <i class="play icon"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

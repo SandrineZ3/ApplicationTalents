@@ -101,8 +101,8 @@ function playNote(tones) {
 }
 
 function userControls(idInput) {
-    $('.plus.icon').off();
-    $('.plus.icon').on('click', function () {
+    $('.ui.bottom.attached.label').off();
+    $('.ui.bottom.attached.label').on('click', function () {
         let soundNumber = $(this).parent().attr('data-note');
         let boolean = true;
         let iconCloseDiv = '<i class="close icon"></i>';

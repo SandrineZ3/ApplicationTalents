@@ -7,7 +7,7 @@
 
 .holder {
     display: inline-block;
-    height: 24px;
+    height: 34px;
     margin-top: 3px;
     margin-left: 0.25%;
     margin-right: 0.25%;
@@ -19,13 +19,33 @@
 .touchPad {
     display: inline-block;
     position: relative;
-    height: 40px;
-    width: 40px;
+    height: 100px;
+    width: 30%;
     margin-top: 3px;
     margin-left: 0.25%;
     margin-right: 0.25%;
-    border-radius: 2px;
+    border-radius: .21428571rem;
     cursor: pointer;
+    box-shadow: 0 0 5px rgba( 0, 0, 0, 0.5), 0 -1px 0 rgba( 255, 255, 255, 0.4);
+}
+
+.colorGradient0 {
+    background: radial-gradient(ellipse at center, #c9f2ff 0%, deepskyblue 100%);
+}
+.colorGradient1 {
+    background: radial-gradient(ellipse at center, #cfcfff 0%, blue 100%);
+}
+.colorGradient2 {
+    background: radial-gradient(ellipse at center, #e6ffcf 0%, lawngreen 100%);
+}
+.colorGradient3 {
+    background: radial-gradient(ellipse at center, #ffffc7 0%, yellow 100%);
+}
+.colorGradient4 {
+    background: radial-gradient(ellipse at center, #ffeac5 0%, orange 100%);
+}
+.colorGradient5 {
+    background: radial-gradient(ellipse at center, #ffc6c6 0%, red 100%);
 }
 
 .color0 {
@@ -54,33 +74,35 @@
     width: 100%;
     height: 100%;
     transition: all 0.1s;
-
 }
 
 .note i {
+    color: rgba(0,0,0,.6);
     position: absolute;
     width: 20px;
     height: 20px;
     cursor: pointer;
-    top: 0;
+    top: 5px;
     right: 0;
     z-index: 20;
     margin: 0;
 }
 
-.touchPad i {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    bottom: 0;
-    right: 0;
-    z-index: 20;
+.touchPad .attached.label {
+    background-color: transparent;
+}
+
+.touchPad .attached.label:hover {
+    box-shadow: 0 0 5px rgba( 0, 0, 0, 0.5), 0 -1px 0 rgba( 255, 255, 255, 0.4);
+}
+
+.touchPad .attached.label:active{
+    box-shadow: 1px 1px 10px black inset, 0 1px 0 rgba( 255, 255, 255, 0.4);
 }
 
 .ripple {
     position: relative;
-    /*display: block;*/
+    top: 40%;
     margin: auto;
     background: rgba(255, 255, 255, 0.35);
     border-radius: 100%;
@@ -96,29 +118,3 @@
     transform: scale(8);
     transition: all 0.5s;
 }
-
-/*@-webkit-keyframes line {*/
-/*    0% {*/
-/*        background: #F36E6B;*/
-/*        border: solid 2px #F36E6B;*/
-/*        box-shadow: 0 0 5px #F36E6B;*/
-/*    }*/
-/*    10% {*/
-/*        background: transparent;*/
-/*        border: solid 2px transparent;*/
-/*        box-shadow: none;*/
-/*    }*/
-/*}*/
-
-/*@keyframes line {*/
-/*    0% {*/
-/*        background: #F36E6B;*/
-/*        border: solid 2px #F36E6B;*/
-/*        box-shadow: 0 0 5px #F36E6B;*/
-/*    }*/
-/*    10% {*/
-/*        background: transparent;*/
-/*        border: solid 2px transparent;*/
-/*        box-shadow: none;*/
-/*    }*/
-/*}*/
