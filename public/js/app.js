@@ -132,7 +132,9 @@ function updateStateButtonAudio() {
         buttonOnOff.children().addClass("volume off");
     }
     else {
-        audioBackground.play();
+        if (!audioBackground.playing()) {
+            audioBackground.play();
+        }
         buttonOnOff.children().removeClass("volume off");
         buttonOnOff.children().addClass("volume up");
     }
