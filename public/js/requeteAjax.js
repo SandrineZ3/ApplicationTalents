@@ -23,7 +23,7 @@ function requeteAjaxPostv2(selectorFormulaire, selectorReponse, modificationUrl=
         }
         else {
             document.querySelector('header div.errorMessage').innerHTML = reponseError;
-            init();
+            autoClosingMessageFlash();
             throw 'Réponse invalide';
         }
     });
@@ -40,11 +40,12 @@ function requeteAjaxPostv2(selectorFormulaire, selectorReponse, modificationUrl=
 
         if (data.content === 'error') {
             document.querySelector('header div.errorMessage').innerHTML = reponseError;
+            autoClosingMessageFlash();
         }
         else {
             document.querySelector(selectorReponse).innerHTML = data.content;
+            init();
         }
-        init();
 
         if (modificationUrl) {
             history.pushState({}, null, Url.pathname + "?" + Params.toString());

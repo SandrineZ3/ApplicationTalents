@@ -12,7 +12,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class AppAuthenticatorController extends AbstractController
 {
     /**
-     * @Route("/login", name="app_login")
+     * @Route("/reprendre_partie", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils, UserRepository $userRepository, Utils $utils): Response
     {
