@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
-<html xmlns:og="http://ogp.me/ns#">
+<html lang="fr" xmlns:og="http://ogp.me/ns#">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -75,15 +74,16 @@
 {% include("inc/brainAnimationJS.html.twig") %}
 <script>
     const swup = new Swup();
-    init();
-    initBrainCharacterAnimation();
+
     let audioBackground = new Howl({
         src: ['audio/KomikuDeHerbeSousLesPieds.mp3'],
         autoplay: true,
         loop: true,
         volume: 0.2,
     });
-    audioBackground.play();
+
+    init();
+    initBrainCharacterAnimation();
     swup.on('contentReplaced', init);
     swup.on('contentReplaced', initBrainCharacterAnimation);
 </script>
