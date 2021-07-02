@@ -11,9 +11,10 @@ function timer(seconds) {
     let remainTime = Date.now() + (seconds * 1000);
     displayTimeLeft(seconds);
 
+    clearInterval(intervalTimer);
     intervalTimer = setInterval(function() {
         let timeLeft = Math.round((remainTime - Date.now()) / 1000);
-        if (timeLeft <= 0) {
+        if (timeLeft < 0) {
             clearInterval(intervalTimer);
             img.classList.add("blur-image");
         }
@@ -24,7 +25,12 @@ function timer(seconds) {
 function displayTimeLeft(timeLeft) {
     const displayOutput = document.querySelector('.display-remain-time')
 
-    displayOutput.textContent = `${timeLeft}`;
+    if (displayOutput) {
+        if (timeLeft < 0) {
+            timeLeft = 0;
+        }
+        displayOutput.textContent = `${timeLeft}`;
+    }
     update(timeLeft, wholeTime);
 }
 
@@ -33,7 +39,9 @@ function update(value, timePercent) {
     let pointer = document.getElementById('e-pointer');
     let length = Math.PI * 2 * 100;
 
-    progressBar.style.strokeDasharray = length;
-    progressBar.style.strokeDashoffset = - length - length * value / (timePercent);
-    pointer.style.transform = `rotate(${360 * value / (timePercent)}deg)`;
+    if (progressBar && pointer) {
+        progressBar.style.strokeDasharray = length;
+        progressBar.style.strokeDashoffset = - length - length * value / (timePercent);
+        pointer.style.transform = `rotate(${360 * value / (timePercent)}deg)`;
+    }
 }
