@@ -2,7 +2,7 @@ function displayBrainResult() {
     let circle = document.querySelectorAll('.st1');
     let result = document.querySelector('#tableauResult');
     let tableauAttribute = result.getAttributeNames();
-    tableauAttribute.splice(0 ,1);
+    tableauAttribute.splice(0, 1);
     let color = ["#D9C7ED", "#B3EDF8", "#E1DACA", "#BCE9D5", "#F6BDCE", "#FEEEB3", "#F9C29B", "#FF889A"]
 
     let sommeResultat = 0;
@@ -20,12 +20,14 @@ function displayBrainResult() {
         k = j;
     }
     while (j < circle.length) {
-        circle[j].setAttribute("fill", color[color.length-1]);
-        insertRandomCircle(circle[j], color[color.length-1]);
+        circle[j].setAttribute("fill", color[color.length - 1]);
+        insertRandomCircle(circle[j], color[color.length - 1]);
         j++;
     }
 
     result.remove();
+
+    saveimg();
 }
 
 function insertRandomCircle(initialCircle, color) {
@@ -57,23 +59,44 @@ function generatePDF() {
     html2pdf().set(options).from(element).save();
 }
 
-function saveimg()
-{
-    var svg = document.querySelector( "#brain_svg" );
-    var svgData = new XMLSerializer().serializeToString( svg );
+function saveimg() {
+    let svg = document.querySelector("#brain_svg");
+    let svgData = new XMLSerializer().serializeToString(svg);
 
-    var canvas = document.createElement( "canvas" );
-    var ctx = canvas.getContext( "2d" );
+    let canvas = document.createElement("canvas");
+    let ctx = canvas.getContext("2d");
 
-    var img = document.createElement( "img" );
-    img.setAttribute( "src", "data:image/svg+xml;base64," + btoa( svgData ) );
+    let svgSize = svg.getBoundingClientRect();
+    canvas.width = svgSize.width;
+    canvas.height = svgSize.height;
 
-    img.onload = function() {
-        ctx.drawImage( img, 0, 0 );
+    let img = document.createElement("img");
+    img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgData));
 
-        // test url de l'image
-        let testPublication = canvas.toDataURL( "image/png" );
-            console.log( canvas.toDataURL( "image/png" ) );
+    img.onload = function () {
+        ctx.drawImage(img, 0, 0);
+
+        let testPublication = canvas.toDataURL("image/png");
+
+        const Params = new URLSearchParams();
+
+        Params.append('data', testPublication);
+
+        const Url = new URL(window.location.href);
+
+        fetch(Url.pathname + "?" + "&ajax=1", {
+            method: 'POST',
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            },
+            body: testPublication,
+
+        }).then(response =>
+            response.json()
+        ).then(data => {
+            document.querySelector('#brainSVG').innerHTML = data.content;
+                history.pushState({}, null, Url.pathname);
+        }).catch(e => alert(e));
     };
 }
 
