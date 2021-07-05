@@ -123,7 +123,7 @@ function userControls(idInput) {
 
     let playButton = $('#play');
     playButton.off();
-    playButton.on('click', function () {
+    playButton.parent().on('click', function () {
         $('#holderContainer').toggleClass('play');
         if (playButton.find('i').hasClass('play')) {
             playButton.find('i').addClass('stop');
