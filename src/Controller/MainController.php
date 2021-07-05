@@ -7,6 +7,8 @@ use App\Services\Utils;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -41,7 +43,7 @@ class MainController extends AbstractController
     /**
      * @Route("/result", name="result")
      */
-    public function result(UserRepository $userRepository, Utils $utils): Response
+    public function result(UserRepository $userRepository, Utils $utils, Request $request): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('main');
@@ -51,8 +53,26 @@ class MainController extends AbstractController
         }
         $user = $userRepository->find($this->getUser());
 
+
+//        var_dump($request->headers->get('content-type'));
+         if ($request->get('ajax')) {
+             // split the string on commas
+             // $data[ 0 ] == "data:image/png;base64"
+             // $data[ 1 ] == <actual base64 string>
+             $dataImage = explode( ',', $request->getContent());
+            $nameImg = md5(uniqid()).'.png';
+            file_put_contents('brainResultsArchives/'.$nameImg, base64_decode($dataImage[1]));
+            return new JsonResponse([
+                'content' => '<img src="brainResultsArchives/'.$nameImg.'">'
+            ]);
+        }
+
         return $this->render('main/result.html.twig', [
             'user' => $user
         ]);
+
+
     }
+
+
 }

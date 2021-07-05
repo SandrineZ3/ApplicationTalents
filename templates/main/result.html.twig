@@ -12,37 +12,50 @@
                     <div class="ui colorApp segment">
                         <h3 class="ui dividing header">Résultats</h3>
                         <div class="row">
-                            <div id="testSVG">
-                                <div class="line-drawing-demo" id="brainSVG">
-                                    {% include("main/content/brain.html.twig") %}
-                                </div>
-                                <div id="tableauResult"
-                                     dataScore-Interpersonnelle="{{ user.scoreInterpersonnelle }}"
-                                     dataScore-Intrapersonnelle="{{ user.scoreIntrapersonnelle }}"
-                                     dataScore-Kinesthesique="{{ user.scoreKinesthesique }}"
-                                     dataScore-Linguistique="{{ user.scoreLinguistique }}"
-                                     dataScore-Mathematique="{{ user.scoreMathematique }}"
-                                     dataScore-Musicale="{{ user.scoreMusicale }}"
-                                     dataScore-Naturaliste="{{ user.scoreNaturaliste }}"
-                                     dataScore-VisuoSpatiale="{{ user.scoreVisuoSpatiale }}">
-                                </div>
+                            <div class="line-drawing-demo" id="brainSVG">
+                                {% include("main/content/brain.html.twig") %}
                             </div>
+                            <div id="tableauResult"
+                                 dataScore-Interpersonnelle="{{ user.scoreInterpersonnelle }}"
+                                 dataScore-Intrapersonnelle="{{ user.scoreIntrapersonnelle }}"
+                                 dataScore-Kinesthesique="{{ user.scoreKinesthesique }}"
+                                 dataScore-Linguistique="{{ user.scoreLinguistique }}"
+                                 dataScore-Mathematique="{{ user.scoreMathematique }}"
+                                 dataScore-Musicale="{{ user.scoreMusicale }}"
+                                 dataScore-Naturaliste="{{ user.scoreNaturaliste }}"
+                                 dataScore-VisuoSpatiale="{{ user.scoreVisuoSpatiale }}">
+                            </div>
+                        </div>
+                        <div id="legend left">
+                            Interpersonnelle
+                            Intrapersonnelle
+                            Kinesthésique
+                            Verbale et Linguistique
+                        </div>
+                        <div id="legend right">
+                            Logique et Mathématique
+                            Musicale et Rythmique
+                            Naturaliste
+                            Visuelle et Spatiale
                         </div>
                     </div>
                 </div>
                 <div class="ui colorApp segment">
                     <h4 class="ui dividing header">Partager mes résultats !</h4>
-                    <button class="ui circular twitter icon button" data-url="http://www.rdvnomade.fr/result" onclick="saveimg()" >
+                    <button class="ui circular twitter icon button" data-url="http://www.rdvnomade.fr/result"
+                            onclick="saveimg()">
                         <i class="twitter icon"></i>
                     </button>
-                    <button class="ui circular facebook icon button" data-url="http://www.rdvnomade.fr/result" onclick="shareSocialNetworks()">
+                    <button class="ui circular facebook icon button" data-url="http://www.rdvnomade.fr/result"
+                            onclick="shareSocialNetworks()">
                         <i class="facebook icon"></i>
                     </button>
-                    <button class="ui circular linkedin icon button" data-url="http://www.rdvnomade.fr/result" onclick="shareSocialNetworks()">
+                    <button class="ui circular linkedin icon button" data-url="http://www.rdvnomade.fr/result"
+                            onclick="shareSocialNetworks()">
                         <i class="linkedin icon"></i>
                     </button>
-                    <button class="ui circular icon button" onclick="generatePDF()" title="Télécharger en format PDF"><i
-                                class="fas fa-download"></i></button>
+                    <button class="ui circular icon button" onclick="generatePDF()" title="Télécharger en format PDF">
+                        <i class="fas fa-download"></i></button>
                 </div>
             </div>
         </div>
