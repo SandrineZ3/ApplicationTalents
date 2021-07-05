@@ -57,22 +57,43 @@ function generatePDF() {
     html2pdf().set(options).from(element).save();
 }
 
-(function() {
-    let popupCenter = function(url, title, width, height){
+function saveimg()
+{
+    var svg = document.querySelector( "#brain_svg" );
+    var svgData = new XMLSerializer().serializeToString( svg );
+
+    var canvas = document.createElement( "canvas" );
+    var ctx = canvas.getContext( "2d" );
+
+    var img = document.createElement( "img" );
+    img.setAttribute( "src", "data:image/svg+xml;base64," + btoa( svgData ) );
+
+    img.onload = function() {
+        ctx.drawImage( img, 0, 0 );
+
+        // test url de l'image
+        let testPublication = canvas.toDataURL( "image/png" );
+            console.log( canvas.toDataURL( "image/png" ) );
+    };
+}
+
+function shareSocialNetworks() {
+
+    let popupCenter = function (url, title, width, height) {
         let popupWidth = width || 640;
         let popupHeight = height || 320;
         let windowLeft = window.screenLeft || window.screenX;
         let windowTop = window.screenTop || window.screenY;
         let windowWidth = window.innerWidth || document.documentElement.clientWidth;
         let windowHeight = window.innerHeight || document.documentElement.clientHeight;
-        let popupLeft = windowLeft + windowWidth / 2 - popupWidth / 2 ;
+        let popupLeft = windowLeft + windowWidth / 2 - popupWidth / 2;
         let popupTop = windowTop + windowHeight / 2 - popupHeight / 2;
-        let popup = window.open(url, title, 'scrollbars=no, width=' + popupWidth + ', height=' + popupHeight + ', top=' + popupTop + ', left=' + popupLeft);
+        let popup = window.open(url, title, 'scrollbars=yes, width=' + popupWidth + ', height=' + popupHeight + ', top=' + popupTop + ', left=' + popupLeft);
         popup.focus();
         return true;
     };
 
-    document.querySelector('.ui.circular.twitter.icon.button').addEventListener('click', function(e){
+    document.querySelector('.ui.circular.twitter.icon.button').addEventListener('click', function (e) {
         e.preventDefault();
         let url = this.getAttribute('data-url');
         let shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(document.title) +
@@ -80,17 +101,17 @@ function generatePDF() {
         popupCenter(shareUrl, "Partager sur Twitter");
     });
 
-    document.querySelector('.ui.circular.facebook.icon.button').addEventListener('click', function(e){
+    document.querySelector('.ui.circular.facebook.icon.button').addEventListener('click', function (e) {
         e.preventDefault();
         let url = this.getAttribute('data-url');
         let shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
         popupCenter(shareUrl, "Partager sur facebook");
     });
 
-    document.querySelector('.ui.circular.linkedin.icon.button').addEventListener('click', function(e){
+    document.querySelector('.ui.circular.linkedin.icon.button').addEventListener('click', function (e) {
         e.preventDefault();
         let url = this.getAttribute('data-url');
         let shareUrl = "https://www.linkedin.com/shareArticle?url=" + encodeURIComponent(url);
         popupCenter(shareUrl, "Partager sur Linkedin");
     });
-})();
+};
