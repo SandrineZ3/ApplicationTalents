@@ -53,19 +53,16 @@ class MainController extends AbstractController
         }
         $user = $userRepository->find($this->getUser());
 
-
-//        var_dump($request->headers->get('content-type'));
-         if ($request->get('ajax')) {
-             // split the string on commas
-             // $data[ 0 ] == "data:image/png;base64"
-             // $data[ 1 ] == <actual base64 string>
-             $dataImage = explode( ',', $request->getContent());
-            $nameImg = md5(uniqid()).'.png';
-            file_put_contents('brainResultsArchives/'.$nameImg, base64_decode($dataImage[1]));
+        if ($request->get('ajax')) {
+            $dataImage = explode(',', $request->getContent());
+            $nameImg = md5(uniqid()) . '.png';
+            file_put_contents('brainResultsArchives/' . $nameImg, base64_decode($dataImage[1]));
             return new JsonResponse([
-                'content' => '<img src="brainResultsArchives/'.$nameImg.'">'
+                'content' => '<img src="brainResultsArchives/' . $nameImg . '">'
             ]);
         }
+
+//        $userBrainImgUrl = 'http://www.rdvnomade.fr/brainResultsArchives/' . $nameImg;
 
         return $this->render('main/result.html.twig', [
             'user' => $user
