@@ -89,7 +89,7 @@ class NaturalisteFormType extends AbstractType
         foreach ($tableau as $element){
             $form
                 ->add($element, FileType::class, [
-                    'label' => 'Image',
+                    'label' => ucfirst($element),
                     'required' => false,
                     'mapped' => false,
                     'constraints' => [
@@ -113,7 +113,7 @@ class NaturalisteFormType extends AbstractType
         foreach ($tableau as $element){
             $form
                 ->add($element, FileType::class, [
-                    'label' => 'Image',
+                    'label' => ucfirst($element),
                     'required' => false,
                     'mapped' => false,
                     'constraints' => [

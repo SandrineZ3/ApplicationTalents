@@ -10,7 +10,10 @@
                     <h3 class="ui dividing header">Modification</h3>
                     {{ form_start(mathematiqueForm) }}
                     <div class="field">
-                        {{ form_row(mathematiqueForm.image) }}
+                        {{ form_label(mathematiqueForm.image) }}
+                        <img src="{{ asset('images/mathematique/') ~ mathematique.urlImage }}" alt="image enigme" width="100%">
+                        {{ form_errors(mathematiqueForm.image) }}
+                        {{ form_widget(mathematiqueForm.image) }}
                     </div>
                     <div class="field">
                         {{ form_row(mathematiqueForm.solution) }}
