@@ -3,7 +3,7 @@ function displayBrainResult() {
     let result = document.querySelector('#tableauResult');
     let tableauAttribute = result.getAttributeNames();
     tableauAttribute.splice(0, 1);
-    let color = ["#D9C7ED", "#B3EDF8", "#E1DACA", "#BCE9D5", "#F6BDCE", "#FEEEB3", "#F9C29B", "#FF889A"]
+    let color = ["#FFED78", "#B3A1EC", "#FFBD6D", "#7593D4", "#E86E6E", "#95E7E4", "#94DA7E", "#C3AB87"]
 
     let sommeResultat = 0;
     for (let i = 0; i < tableauAttribute.length; i++) {
