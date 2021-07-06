@@ -19,7 +19,10 @@
                     <h3 class="ui dividing header">Modification</h3>
                     {{ form_start(interpersonnelleForm) }}
                     <div class="field">
-                        {{ form_row(interpersonnelleForm.urlVideo) }}
+                        {{ form_label(interpersonnelleForm.urlVideo) }}
+                        <iframe width="100%" height="315" src="{{ interpersonnelle.urlVideo }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        {{ form_errors(interpersonnelleForm.urlVideo) }}
+                        {{ form_widget(interpersonnelleForm.urlVideo) }}
                     </div>
                     <div class="field">
                         {{ form_row(interpersonnelleForm.solution) }}

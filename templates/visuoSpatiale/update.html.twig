@@ -10,8 +10,10 @@
                     <h3 class="ui dividing header">Modification</h3>
                     {{ form_start(visuoSpatialeForm) }}
                     <div class="field">
+                        {{ form_label(visuoSpatialeForm.image) }}
                         <img src="{{ asset('images/visuoSpatiale/') ~ visuoSpatiale.urlImage }}" alt="image enigme" width="100%">
-                        {{ form_row(visuoSpatialeForm.image) }}
+                        {{ form_errors(visuoSpatialeForm.image) }}
+                        {{ form_widget(visuoSpatialeForm.image) }}
                     </div>
                     <div class="field">
                         {{ form_row(visuoSpatialeForm.solution) }}
