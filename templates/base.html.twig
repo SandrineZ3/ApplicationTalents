@@ -17,7 +17,7 @@
     <meta property="og:description" content="Voici mes résultats au test des 8 intelligences :"/>
     <meta property="og:type" content="article" />
     <meta property="og:url" content="http://www.rdvnomade.fr/result"/>
-    <meta property="og:image" content="http://localhost/ApplicationTalents/public/brainResultsArchives/50cbad986b0ff2a7fcc05aabf230823d.png" />
+    <meta property="og:image" content="<?php echo $userBrainImgUrl; ?>"/>
     <meta property="og:locale" content="fr_FR"/>
 
 {#    Balises pour Twitter#}
@@ -25,7 +25,7 @@
     <meta name="twitter:site" content="@RDVNomade">
     <meta name="twitter:title" content="Vos 8 intelligences - Mes résultats">
     <meta name="twitter:description" content="Voici mes résultats au test des 8 intelligences :">
-    <meta name="twitter:image" content="http://www.rdvnomade.fr/images/divers/rdvNomadeLogoNB.png">
+    <meta name="twitter:image" content="<?php echo $userBrainImgUrl; ?>">
 
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/ratingStars.css') }}" rel="stylesheet">
