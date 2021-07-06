@@ -45,6 +45,10 @@ class UserController extends AbstractController
             $this->addFlash('error', 'L\'utilisateur recherché n\'existe pas');
             return $this->redirectToRoute('main');
         }
+        if ($user === $this->getUser()) {
+            $this->addFlash('error', 'Vous ne pouvez pas supprimer votre propre compte');
+            return $this->redirectToRoute('admin_user');
+        }
 
         $entityManager->remove($user);
         $entityManager->flush();
