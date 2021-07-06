@@ -460,10 +460,20 @@ h4 {
     background-size: 15em 1.3em;
     background-repeat: no-repeat;
 }
+#titleInterpersonnelle {
+    background-image: url("../images/divers/graffInterpersonnelle.png");
+    background-size: 8em 1.3em;
+    background-repeat: no-repeat;
+}
 #introTitleIntrapersonnelle {
     background-image: url("../images/divers/graffIntrapersonnelle.png");
     background-position: center;
     background-size: 15em 1.3em;
+    background-repeat: no-repeat;
+}
+#titleIntrapersonnelle {
+    background-image: url("../images/divers/graffIntrapersonnelle.png");
+    background-size: 8em 1.2em;
     background-repeat: no-repeat;
 }
 #introTitleMusicale {
@@ -472,10 +482,20 @@ h4 {
     background-size: 15em 1.3em;
     background-repeat: no-repeat;
 }
+#titleMusicale {
+    background-image: url("../images/divers/graffMusicale.png");
+    background-size: 11.5em 1.2em;
+    background-repeat: no-repeat;
+}
 #introTitleNaturaliste {
     background-image: url("../images/divers/graffNaturaliste.png");
     background-position: center;
     background-size: 12em 1.3em;
+    background-repeat: no-repeat;
+}
+#titleNaturaliste {
+    background-image: url("../images/divers/graffNaturaliste.png");
+    background-size: 5.5em 1.2em;
     background-repeat: no-repeat;
 }
 #introTitleVisuoSpatiale {
@@ -484,10 +504,20 @@ h4 {
     background-size: 15em 1.3em;
     background-repeat: no-repeat;
 }
+#titleVisuoSpatiale {
+    background-image: url("../images/divers/graffVisuoSpatiale.png");
+    background-size: 10em 1.2em;
+    background-repeat: no-repeat;
+}
 #introTitleKinesthesique {
     background-image: url("../images/divers/graffKinesthesique.png");
     background-position: center;
     background-size: 14em 1.3em;
+    background-repeat: no-repeat;
+}
+#titleKinesthesique {
+    background-image: url("../images/divers/graffKinesthesique.png");
+    background-size: 7em 1.2em;
     background-repeat: no-repeat;
 }
 #introTitleLinguistique {
@@ -496,10 +526,77 @@ h4 {
     background-size: 16em 1.3em;
     background-repeat: no-repeat;
 }
+#titleLinguistique {
+    background-image: url("../images/divers/graffLinguistique.png");
+    background-size: 12em 1.2em;
+    background-repeat: no-repeat;
+}
 #introTitleMathematique {
     background-image: url("../images/divers/graffMathematique.png");
     background-position: center;
     background-size: 16em 1.3em;
     background-repeat: no-repeat;
 }
+#titleMathematique {
+    background-image: url("../images/divers/graffMathematique.png");
+    background-size: 12em 1.2em;
+    background-repeat: no-repeat;
+}
 
+#legend i {
+    font-size: 0.5em;
+}
+#legend p {
+    font-size: 1.3em;
+}
+#legend span {
+    font-size: 1.1em;
+}
+#legendInterpersonnelle {
+    background-image: url("../images/divers/highlightInterpersonnelle.png");
+    background-position: left;
+    background-size: 7.5em 1em;
+    background-repeat: no-repeat;
+}
+#legendIntrapersonnelle {
+    background-image: url("../images/divers/highlightIntrapersonnelle.png");
+    background-position: left;
+    background-size: 7.5em 1em;
+    background-repeat: no-repeat;
+}
+#legendKinesthesique {
+    background-image: url("../images/divers/highlightKinesthesique.png");
+    background-position: left;
+    background-size: 6em 1em;
+    background-repeat: no-repeat;
+}
+#legendLinguistique {
+    background-image: url("../images/divers/highlightLinguistique.png");
+    background-position: left;
+    background-size: 10.5em 1em;
+    background-repeat: no-repeat;
+}
+#legendMathematique {
+    background-image: url("../images/divers/highlightMathematique.png");
+    background-position: left;
+    background-size: 11.5em 1em;
+    background-repeat: no-repeat;
+}
+#legendMusicale {
+    background-image: url("../images/divers/highlightMusicale.png");
+    background-position: left;
+    background-size: 10.5em 1em;
+    background-repeat: no-repeat;
+}
+#legendNaturaliste {
+    background-image: url("../images/divers/highlightNaturaliste.png");
+    background-position: left;
+    background-size: 5em 1em;
+    background-repeat: no-repeat;
+}
+#legendVisuoSpatiale {
+    background-image: url("../images/divers/highlightVisuoSpatiale.png");
+    background-position: left;
+    background-size: 8.5em 1em;
+    background-repeat: no-repeat;
+}
