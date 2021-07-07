@@ -9,13 +9,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
     /**
      * @Route("admin/user/update_password", name="user_update_password")
      */
-    public function updatePassword(Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
+    public function updatePassword(Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         $user = $userRepository->find($this->getUser());
 
@@ -23,6 +24,12 @@ class UserController extends AbstractController
         $changePasswordFormType = $changePasswordFormType->handleRequest($request);
 
         if ($changePasswordFormType->isSubmitted() && $changePasswordFormType->isValid()) {
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $changePasswordFormType->get('plainPassword')->getData()
+                )
+            );
             $entityManager->flush();
             $this->addFlash('success', 'Le mot de passe a été modifié');
 
