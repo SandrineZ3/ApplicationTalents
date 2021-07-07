@@ -30,7 +30,7 @@
     display: inline-block;
     margin-right: 1rem;
     outline: none;
-    z-index: 1000;
+    z-index: 10;
 }
 .option-input:hover {
     background: #9faab7;
