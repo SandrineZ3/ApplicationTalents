@@ -1,5 +1,7 @@
 function init() {
 
+    window.scrollTo(0, 0);
+
     $('.ui.checkbox').checkbox();
 
     $('.sidebar-menu-toggler').on('click', function () {
