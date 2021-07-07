@@ -16,17 +16,21 @@
                             tes points forts, ou tes points faibles.</p>
                         <p>Astuce :</p>
                         <ul>
-                            <li>Si tu penses avoir réussi toutes les énigmes mathématiques, octroie-toi le badge or !
+                            <li>Si tu penses avoir réussi toutes les énigmes mathématiques, octroie-toi 4 étoiles !
                             </li>
                             <br>
                             <li>Si au contraire, tu as trouvé cela difficile et tu ne penses pas avoir donné les bonnes
-                                réponses, tu peux t'attribuer un badge bronze.
+                                réponses, tu peux t'attribuer 0 étoiles.
+                            </li>
+                            <br>
+                            <li>Si tu ne te souviens pas de l'énigme, clique sur les points d'interrogation pour afficher
+                                un aperçu.
                             </li>
                         </ul>
                         <p>Bonne chance !</p>
                     </div>
                     {# modal #}
-                    <div class="ui mini modal demo" id="modalGifIntrapersonnelle">
+                    <div class="ui tiny modal demoGifIntrapersonnelle" id="modalGifIntrapersonnelle">
                         <h4 class="ui block header intrapersonnelle centered">Aperçu du jeu suivant</h4>
                         <img src="{{ asset('gifs/gifIntrapersonnelle.gif') }}" alt="gif demonstration" width="100%">
                     </div>
@@ -35,7 +39,7 @@
                         <a class="ui button" href="{{ path('intrapersonnelle') }}">Je suis prêt
                             !</a>
                         <i class="question circle outline icon" id="demoGifIntrapersonnelle"
-                           onclick="afficherModalDemo(); playLink()" title="Aperçu du jeu suivant"></i>
+                           onclick="afficherModalHelp('demoGifIntrapersonnelle'); playLink()" title="Aperçu du jeu suivant"></i>
                     </div>
                 </div>
             </div>

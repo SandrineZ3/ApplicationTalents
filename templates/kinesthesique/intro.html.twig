@@ -16,7 +16,7 @@
                         <p>Bonne chance !</p>
                     </div>
                     {# modal #}
-                    <div class="ui mini modal demo" id="modalGifKinesthesique">
+                    <div class="ui tiny modal demoGifKinesthesique" id="modalGifKinesthesique">
                         <h4 class="ui block header kinesthesique centered">Aperçu du jeu suivant</h4>
                         <img src="{{ asset('gifs/gifKinesthesique.gif') }}" alt="gif demonstration" width="100%">
                     </div>
@@ -25,7 +25,7 @@
                         <a class="ui button" href="{{ path('kinesthesique') }}"
                            onclick="playClick()">Je suis prêt !</a>
                         <i class="question circle outline icon" id="demoGifKinesthesique"
-                           onclick="afficherModalDemo(); playLink()" title="Aperçu du jeu suivant"></i>
+                           onclick="afficherModalHelp('demoGifKinesthesique'); playLink()" title="Aperçu du jeu suivant"></i>
                     </div>
                 </div>
             </div>
