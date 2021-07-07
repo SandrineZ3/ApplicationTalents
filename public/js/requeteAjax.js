@@ -16,13 +16,21 @@ function requeteAjaxPostv2(selectorFormulaire, selectorReponse, modificationUrl=
         '</div>' +
         '<p>Merci de choisir une réponse</p>' +
         '</div>';
+    let reponseSuccess = '' +
+        '<div class="ui message-fixed compact success message auto-close manuel-close" id="messageFlash">' +
+        '<i class="close icon" onClick="removeMessage()"></i>' +
+        '<div class="header">' +
+        'Envoyée' +
+        '</div>' +
+        '<p>Réponse enregistrée</p>' +
+        '</div>';
 
     Form.forEach((value, key) => {
         if (value.trim()) {
             Params.append(key, value);
         }
         else {
-            document.querySelector('header div.errorMessage').innerHTML = reponseError;
+            document.querySelector('header div.errorOrSuccessMessage').innerHTML = reponseError;
             autoClosingMessageFlash();
             throw 'Réponse invalide';
         }
@@ -39,11 +47,13 @@ function requeteAjaxPostv2(selectorFormulaire, selectorReponse, modificationUrl=
     ).then(data => {
 
         if (data.content === 'error') {
-            document.querySelector('header div.errorMessage').innerHTML = reponseError;
+            document.querySelector('header div.errorOrSuccessMessage').innerHTML = reponseError;
             autoClosingMessageFlash();
         }
         else {
+            window.scrollTo(0, 0);
             document.querySelector(selectorReponse).innerHTML = data.content;
+            document.querySelector('header div.errorOrSuccessMessage').innerHTML = reponseSuccess;
             init();
         }
 
