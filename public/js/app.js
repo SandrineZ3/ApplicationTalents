@@ -156,7 +156,7 @@ function afficherModalDelete() {
 }
 
 function afficherModalHelp(className) {
-    $('.mini.modal.' + className).modal('show');
+    $('.tiny.modal.' + className).modal('show');
 }
 
 function afficherModalDemo() {
