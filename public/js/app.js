@@ -71,6 +71,7 @@ function init() {
 
     if (document.querySelector('#pageResult')) {
         displayBrainResult();
+        shareSocialNetworks();
     }
 }
 
