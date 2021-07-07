@@ -3,9 +3,9 @@ function brainCharacterAnimationFirstIntro() {
 	canvas = document.getElementById("canvas");
 	anim_container = document.getElementById("animation_container");
 	dom_overlay_container = document.getElementById("dom_overlay_container");
-	handleComplete();
+	handleCompleteFirstIntro();
 }
-function handleComplete() {
+function handleCompleteFirstIntro() {
 	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
 	exportRoot = new libFirstIntro.brainFirstIntro();
 	stage = new createjs.Stage(canvas);
@@ -24,9 +24,14 @@ function handleComplete() {
 			var w = libFirstIntro.properties.width, h = libFirstIntro.properties.height;
 			var iw = window.innerWidth, ih=window.innerHeight;
 			var pRatio = window.devicePixelRatio || 1, xRatio=iw/w, yRatio=ih/h, sRatio=1;
-			if(isResp) {
-				if(iw/3.5<w || ih/3.5<h) {
-					sRatio = Math.min(xRatio/2.5, yRatio/2.5);
+			if (isResp) {
+				if (iw < 500 || ih < 500) {
+					if (iw < ih) {
+						sRatio = xRatio/2;
+					}
+					else {
+						sRatio = yRatio/1.1;
+					}
 				}
 			}
 			canvas.width = w*pRatio*sRatio;
@@ -38,7 +43,7 @@ function handleComplete() {
 			lastW = iw; lastH = ih; lastS = sRatio;
 		}
 	}
-	makeResponsiveFirstIntro(false,'both',false,1);
+	makeResponsiveFirstIntro(true,'both',false,1);
 	fnStartAnimation();
 }
 
