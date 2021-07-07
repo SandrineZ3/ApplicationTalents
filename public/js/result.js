@@ -65,7 +65,7 @@ function generatePDF() {
         margin: 1,
         filename: 'mes-resultats.pdf',
         image: {type: 'png'},
-        html2canvas: {scale: 1}, // Scaling de TOUT l'élement à imprimer
+        html2canvas: {scale: 1},
         jsPDF: {unit: 'cm', format: 'a4', orientation: 'portrait'}
     };
 
