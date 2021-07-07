@@ -48,6 +48,18 @@ function getRandomNumber(min, max) {
 }
 
 function generatePDF() {
+    document.querySelector('#brainResult').childNodes.forEach(function (element) {
+            element.classList.remove('eight');
+            element.classList.add('sixteen', 'wide', 'computer');
+            console.log(element.classList);
+        }
+    );
+// $('#brainResult').children().each(function(element) {
+//     $(this).removeClass('sixteen wide mobile sixteen wide tablet eight wide computer column');
+//     element.classList.add('sixteen wide computer');
+// })
+
+
     const element = document.getElementById('htmlToPdf');
     let options = {
         margin: 1,
@@ -56,48 +68,43 @@ function generatePDF() {
         html2canvas: {scale: 1}, // Scaling de TOUT l'élement à imprimer
         jsPDF: {unit: 'cm', format: 'a4', orientation: 'portrait'}
     };
+
     html2pdf().set(options).from(element).save();
 }
 
 function saveimg() {
-    let svg = document.querySelector("#brain_svg");
-    let svgData = new XMLSerializer().serializeToString(svg);
 
-    let canvas = document.createElement("canvas");
-    let ctx = canvas.getContext("2d");
+    let node = document.getElementById('brainResult');
 
-    let svgSize = svg.getBoundingClientRect();
-    canvas.width = svgSize.width;
-    canvas.height = svgSize.height;
+    domtoimage.toPng(node).then(function (dataUrl) {
+        let img = new Image();
+        img.src = dataUrl;
 
-    let img = document.createElement("img");
-    img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgData));
-
-    img.onload = function () {
-        ctx.drawImage(img, 0, 0);
-
-        let testPublication = canvas.toDataURL("image/png");
-
-        const Params = new URLSearchParams();
-
-        Params.append('data', testPublication);
+        document.querySelector('#brainResult').style = "";
+        document.querySelector('#brainResult').childNodes.forEach(element =>
+            element.style = "");
 
         const Url = new URL(window.location.href);
 
-        fetch(Url.pathname + "?" + "&ajax=1", {
+        fetch(Url.pathname + "?" + "ajax=1", {
             method: 'POST',
             headers: {
                 "X-Requested-With": "XMLHttpRequest"
             },
-            body: testPublication,
+            body: dataUrl,
 
         }).then(response =>
             response.json()
         ).then(data => {
-            document.querySelector('#brainSVG').innerHTML = data.content;
-                history.pushState({}, null, Url.pathname);
+            document.querySelector('#baliseFB').content = data.baliseMetaReseauxSociaux;
+            document.querySelector('#baliseTwitter').content = data.baliseMetaReseauxSociaux;
+            history.pushState({}, null, Url.pathname);
         }).catch(e => alert(e));
-    };
+
+    })
+        .catch(function (error) {
+            console.error('oops, something went wrong!', error);
+        });
 }
 
 function shareSocialNetworks() {
