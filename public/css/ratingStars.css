@@ -23,6 +23,13 @@
     content: "\f005";
 }
 
+@media (max-width: 450px) {
+    .rating > label:before {
+        padding: 0 3px 0 3px;
+        font-size: 20px;
+    }
+}
+
 .rating > label {
     color: lightgrey;
     float: right;

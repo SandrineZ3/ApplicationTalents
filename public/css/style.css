@@ -41,6 +41,15 @@
     height: 50% !important;
     width: 50% !important;
 }
+@media (max-width: 500px) {
+    .fourImagesInOneBox {
+        height: auto !important;
+    }
+    .fourImagesInOneBox label {
+        width: 100% !important;
+        height: 200px !important;
+    }
+}
 .fourImagesInOneBox label img {
     height: 100% !important;
     width: 100% !important;
@@ -64,33 +73,6 @@ header img {
     z-index: 30;
 }
 
-@media (max-width: 768px) {
-    header img {
-        width: 70px;
-    }
-    header h1 {
-        font-size: 2rem !important;
-        text-align: center;
-        width: 100%;
-    }
-}
-
-@media (max-width: 490px) {
-    header h1 {
-        font-size: 1.8rem !important;
-        text-align: left;
-        margin-left: 140px;
-        width: 100%;
-    }
-}
-
-#logo:hover{
-    background-image: url("../images/divers/bckgrndLogo.png");
-    background-position-y: 20px;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
 header h1 {
     font-family: 'Architects Daughter', cursive;
     font-size: 2.6rem;
@@ -99,6 +81,29 @@ header h1 {
     top: 40px;
     left: 50%;
     transform: translate(-50%, -50%);
+    /*width: 310px;*/
+}
+
+@media (max-width: 768px) {
+    header img {
+        width: 70px;
+    }
+    header h1 {
+        font-size: 2rem !important;
+    }
+}
+
+@media (max-width: 490px) {
+    header h1 {
+        margin-left: 30px;
+    }
+}
+
+#logo:hover{
+    background-image: url("../images/divers/bckgrndLogo.png");
+    background-position-y: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .hiddenField {

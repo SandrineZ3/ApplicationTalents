@@ -716,9 +716,14 @@ function handleCompleteMathematique(evt,comp) {
 			var w = lib.properties.width, h = lib.properties.height;
 			var iw = window.innerWidth, ih=window.innerHeight;
 			var pRatio = window.devicePixelRatio || 1, xRatio=iw/w, yRatio=ih/h, sRatio=1;
-			if(isResp) {
-				if(iw/3.5<w || ih/3.5<h) {
-					sRatio = Math.min(xRatio/2.5, yRatio/2.5);
+			if (isResp) {
+				if (iw < 500 || ih < 500) {
+					if (iw < ih) {
+						sRatio = xRatio/2;
+					}
+					else {
+						sRatio = yRatio/3;
+					}
 				}
 			}
 			domContainers[0].width = w * pRatio * sRatio;
