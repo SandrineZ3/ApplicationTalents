@@ -1,3 +1,44 @@
+html, body {
+    font-family: 'Architects Daughter', cursive;
+}
+
+.title {
+    text-align: center;
+    margin-top: 50px;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.ui.fluid.button {
+    font-size: 1.7em;
+    font-family: 'Architects Daughter', cursive;
+    font-weight: 100;
+    color : black;
+    border-radius: 255px 20px 225px 15px/13px 250px 20px 255px;
+}
+
+.ui.inverted.grey.segment {
+    border-radius: 255px 17px 225px 14px/13px 250px 7px 255px;
+}
+
+.field label {
+    font-size: 1.4em !important;
+    margin-top : 30px !important;
+}
+
+.field input {
+    font-size: 1.2em !important;
+    margin-top : 15px !important;
+}
+
+.inline.fields label{
+    font-size: 1.4em !important;
+    margin-top : 30px !important;
+}
+
+.six.wide.column {
+    font-size: 1.4em;
+}
+
 .message-fixed {
     position: fixed !important;
     z-index: 99 !important;
@@ -24,6 +65,7 @@
     margin-left: 10px;
     margin-bottom: 10px;
 }
+
 .vertical.labeled.icon.bottom.fixed.menu {
     background: none !important;
     border: none !important;
@@ -31,9 +73,12 @@
 
 .fourImagesInOneBox {
     height: 400px !important;
-    display: flex; !important;
-    flex-wrap: wrap; !important;
-    flex-direction: row; !important;
+    display: flex;
+!important;
+    flex-wrap: wrap;
+!important;
+    flex-direction: row;
+!important;
 }
 
 .fourImagesInOneBox label {
@@ -41,15 +86,18 @@
     height: 50% !important;
     width: 50% !important;
 }
+
 @media (max-width: 500px) {
     .fourImagesInOneBox {
         height: auto !important;
     }
+
     .fourImagesInOneBox label {
         width: 100% !important;
         height: 200px !important;
     }
 }
+
 .fourImagesInOneBox label img {
     height: 100% !important;
     width: 100% !important;
@@ -76,18 +124,18 @@ header img {
 header h1 {
     font-family: 'Architects Daughter', cursive;
     font-size: 2.6rem;
-    position : absolute;
+    position: absolute;
     font-weight: 600;
     top: 40px;
     left: 50%;
     transform: translate(-50%, -50%);
-    /*width: 310px;*/
 }
 
 @media (max-width: 768px) {
     header img {
         width: 70px;
     }
+
     header h1 {
         font-size: 2rem !important;
     }
@@ -99,7 +147,7 @@ header h1 {
     }
 }
 
-#logo:hover{
+#logo:hover {
     background-image: url("../images/divers/bckgrndLogo.png");
     background-position-y: 20px;
     background-size: contain;
@@ -125,79 +173,17 @@ header h1 {
     filter: contrast(50%);
 }
 
-/*.colorInterpersonnelle {*/
-/*    color: #D9C7ED !important;*/
-/*}*/
-/*.bgInterpersonnelle {*/
-/*    background-color: #D9C7ED !important;*/
-/*    color: white !important;*/
-/*}*/
-
-/*.colorIntrapersonnelle {*/
-/*    color: #B3EDF8 !important;*/
-/*}*/
-/*.bgIntrapersonnelle {*/
-/*    background-color: #B3EDF8 !important;*/
-/*    color: white !important;*/
-/*}*/
-
-/*.colorKinesthesique  {*/
-/*    color: #E1DACA !important;*/
-/*}*/
-/*.bgKinesthesique  {*/
-/*    background-color: #E1DACA !important;*/
-/*    color: white !important;*/
-/*}*/
-
-/*.colorLinguistique {*/
-/*    color: #BCE9D5 !important;*/
-/*}*/
-/*.bgLinguistique {*/
-/*    background-color: #BCE9D5 !important;*/
-/*    color: white !important;*/
-/*}*/
-
-/*.colorMathematique {*/
-/*    color: #F6BDCE !important;*/
-/*}*/
-/*.bgMathematique {*/
-/*    background-color: #F6BDCE !important;*/
-/*    color: white !important;*/
-/*}*/
-
-/*.colorMusicale {*/
-/*    color: #FEEEB3 !important;*/
-/*}*/
-/*.bgMusicale {*/
-/*    background-color: #FEEEB3 !important;*/
-/*    color: white !important;*/
-/*}*/
-
-/*.colorNaturaliste {*/
-/*    color: #F9C29B !important;*/
-/*}*/
-/*.bgNaturaliste {*/
-/*    background-color: #F9C29B !important;*/
-/*    color: white !important;*/
-/*}*/
-
-/*.colorVisuoSpatiale {*/
-/*    color: #FF889A !important;*/
-/*}*/
-/*.bgVisuoSpatiale {*/
-/*    background-color: #FF889A !important;*/
-/*    color: white !important;*/
-/*}*/
 /* ALIGNEMENT CERVEAU (Results) */
 #brainSVG {
     text-align: center;
 }
+
 /* BTN SUBMIT */
 #submitReponse {
-    width : 100px;
+    width: 100px;
     height: 50px;
-    border:solid 3px #41403E;
-    box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);
+    border: solid 3px #41403E;
+    box-shadow: 20px 38px 34px -26px hsla(0, 0%, 0%, .2);
     border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
     font-size: 1.4em;
     font-family: 'Architects Daughter', cursive;
@@ -205,42 +191,49 @@ header h1 {
     margin-top: 25px;
     margin-left: 0;
 }
+
 .button:hover {
     cursor: pointer;
     background-color: darkgrey;
     color: white;
 }
+
 .button:active {
-    transform: translate(0px,1px);
-    -webkit-transform: translate(0px,1px);
+    transform: translate(0px, 1px);
+    -webkit-transform: translate(0px, 1px);
 }
+
 /* BTN ACCUEIL */
 .ui.button {
     font-size: 1.4em;
     font-family: 'Architects Daughter', cursive;
     font-weight: 10;
-    color : black;
+    color: black;
     border-radius: 255px 20px 225px 15px/13px 250px 20px 255px;
-    border:solid 3px #41403E;
+    border: solid 3px #41403E;
 }
+
 /*LINK SUBMIT*/
 .ui.button.link {
     margin-top: 25px;
 }
+
 /* CURSEURS */
 body, label:hover, footer {
     cursor: url("../images/divers/cursor.png") 8 9, auto;
 }
-.button:hover, input:hover, .rating>label:hover, [type=radio] + img:hover, .cursor, a:hover, #footerLink a:hover, button:hover, i {
+
+.button:hover, input:hover, .rating > label:hover, [type=radio] + img:hover, .cursor, a:hover, #footerLink a:hover, button:hover, i {
     cursor: url("../images/divers/pointer.png") 14 2, auto !important;
 }
 
 .ui.colorApp.segment {
     margin-top: 20px !important;
 }
-#footerLink{
-    position:fixed;
-    bottom:0;
+
+#footerLink {
+    position: fixed;
+    bottom: 0;
     text-align: center;
     padding-top: 5px;
     height: 35px;
@@ -248,18 +241,20 @@ body, label:hover, footer {
     border-top-right-radius: 10px;
     width: 470px;
     font-size: 1.2rem;
-    color : black;
+    color: black;
     font-weight: 50;
     left: 50%;
     transform: translate(-50%);
 }
+
 #footerLink a {
     text-decoration: none;
-    color : black;
-    padding : 1px 6px;
+    color: black;
+    padding: 1px 6px;
     font-size: 1.3rem;
     font-weight: 700;
 }
+
 #footerLink a:hover {
     cursor: pointer !important;
     background-image: url("../images/divers/graffFooter.png");
@@ -268,8 +263,8 @@ body, label:hover, footer {
 }
 
 @media screen and (max-width: 640px) {
-    #footerLink p{
-        display:none;
+    #footerLink p {
+        display: none;
     }
 }
 
@@ -288,116 +283,144 @@ h4 {
     font-family: 'Architects Daughter', cursive !important;
     font-weight: 20 !important;
 }
+
 .flashMessage {
     position: absolute;
 }
+
 .introButtons {
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
 }
-.introButtons>i {
+
+.introButtons > i {
     height: 0 !important;
 }
+
 #demoGifInterpersonnelle {
     color: #FFED78;
     font-size: 3.5em;
     margin-top: 20px;
     animation: animationDemo 1.5s ease-in-out infinite;
 }
+
 .block.header.interpersonnelle {
     background-color: rgba(255, 237, 120, 0.3);
 }
+
 #modalGifInterpersonnelle {
     border: 4px #FFED78 solid;
 }
+
 #demoGifNaturaliste {
     color: #94DA7E;
     font-size: 3.5em;
     margin-top: 20px;
     animation: animationDemo 1.5s ease-in-out infinite;
 }
+
 .block.header.naturaliste {
     background-color: rgba(148, 218, 126, 0.3);
 }
+
 #modalGifNaturaliste {
     border: 4px #94DA7E solid;
 }
+
 #demoGifKinesthesique {
     color: #FFBD6D;
     font-size: 3.5em;
     margin-top: 20px;
     animation: animationDemo 1.5s ease-in-out infinite;
 }
+
 .block.header.kinesthesique {
     background-color: rgba(255, 189, 109, 0.3);
 }
+
 #modalGifKinesthesique {
     border: 4px #FFBD6D solid;
 }
+
 #demoGifMusicale {
     color: #95E7E4;
     font-size: 3.5em;
     margin-top: 20px;
     animation: animationDemo 1.5s ease-in-out infinite;
 }
+
 .block.header.musicale {
     background-color: rgba(149, 231, 228, 0.3);
 }
+
 #modalGifMusicale {
     border: 4px #95E7E4 solid;
 }
+
 #demoGifVisuospatiale {
     color: #C3AB87;
     font-size: 3.5em;
     margin-top: 20px;
     animation: animationDemo 1.5s ease-in-out infinite;
 }
+
 .block.header.visuospatiale {
     background-color: rgba(195, 171, 135, 0.3);
 }
+
 #modalGifVisuospatiale {
     border: 4px #C3AB87 solid;
 }
+
 #demoGifMathematique {
     color: #E86E6E;
     font-size: 3.5em;
     margin-top: 20px;
     animation: animationDemo 1.5s ease-in-out infinite;
 }
+
 .block.header.mathematique {
     background-color: rgba(232, 110, 110, 0.3);
 }
+
 #modalGifMathematique {
     border: 4px #E86E6E solid;
 }
+
 #demoGifLinguistique {
     color: #7593D4;
     font-size: 3.5em;
     margin-top: 20px;
     animation: animationDemo 1.5s ease-in-out infinite;
 }
+
 .block.header.linguistique {
     background-color: rgba(117, 147, 212, 0.3);
 }
+
 #modalGifLinguistique {
     border: 4px #7593D4 solid;
 }
+
 #demoGifIntrapersonnelle {
     color: #B3A1EC;
     font-size: 3.5em;
     margin-top: 20px;
     animation: animationDemo 1.5s ease-in-out infinite;
 }
+
 .block.header.intrapersonnelle {
     background-color: rgba(179, 161, 236, 0.3);
 }
+
 #modalGifIntrapersonnelle {
     border: 4px #B3A1EC solid;
 }
+
 @keyframes animationDemo {
     50% {
-        color:white;
+        color: white;
     }
 }
 
@@ -411,11 +434,13 @@ h4 {
     width: 100px;
     height: 100px;
 }
+
 .circleTimer {
     position: relative;
     width: 100%;
     height: 100%;
 }
+
 .display-remain-time {
     position: absolute;
     display: flex;
@@ -429,29 +454,35 @@ h4 {
     font-size: 55px;
     color: #C3AB87;
 }
+
 .e-c-base {
     fill: none;
     stroke: #B6B6B6;
     stroke-width: 4px
 }
+
 .e-c-progress {
     fill: none;
     stroke: #C3AB87;
     stroke-width: 4px;
     transition: stroke-dashoffset 0.7s;
 }
+
 .e-c-pointer {
     fill: #FFF;
     stroke: #C3AB87;
     stroke-width: 2px;
 }
+
 #e-pointer {
     transition: transform 0.7s;
 }
+
 .blur-image {
     filter: blur(12px);
     -webkit-filter: blur(12px);
 }
+
 .bg-transparent {
     position: absolute;
     top: 0;
@@ -465,83 +496,98 @@ h4 {
     background-size: 15em 1.3em;
     background-repeat: no-repeat;
 }
+
 #titleInterpersonnelle {
     background-image: url("../images/divers/graffInterpersonnelle.png");
     background-size: 8em 1.3em;
     background-repeat: no-repeat;
 }
+
 #introTitleIntrapersonnelle {
     background-image: url("../images/divers/graffIntrapersonnelle.png");
     background-position: center;
     background-size: 15em 1.3em;
     background-repeat: no-repeat;
 }
+
 #titleIntrapersonnelle {
     background-image: url("../images/divers/graffIntrapersonnelle.png");
     background-size: 8em 1.2em;
     background-repeat: no-repeat;
 }
+
 #introTitleMusicale {
     background-image: url("../images/divers/graffMusicale.png");
     background-position: center;
     background-size: 15em 1.3em;
     background-repeat: no-repeat;
 }
+
 #titleMusicale {
     background-image: url("../images/divers/graffMusicale.png");
     background-size: 11.5em 1.2em;
     background-repeat: no-repeat;
 }
+
 #introTitleNaturaliste {
     background-image: url("../images/divers/graffNaturaliste.png");
     background-position: center;
     background-size: 12em 1.3em;
     background-repeat: no-repeat;
 }
+
 #titleNaturaliste {
     background-image: url("../images/divers/graffNaturaliste.png");
     background-size: 5.5em 1.2em;
     background-repeat: no-repeat;
 }
+
 #introTitleVisuoSpatiale {
     background-image: url("../images/divers/graffVisuoSpatiale.png");
     background-position: center;
     background-size: 15em 1.3em;
     background-repeat: no-repeat;
 }
+
 #titleVisuoSpatiale {
     background-image: url("../images/divers/graffVisuoSpatiale.png");
     background-size: 10em 1.2em;
     background-repeat: no-repeat;
 }
+
 #introTitleKinesthesique {
     background-image: url("../images/divers/graffKinesthesique.png");
     background-position: center;
     background-size: 14em 1.3em;
     background-repeat: no-repeat;
 }
+
 #titleKinesthesique {
     background-image: url("../images/divers/graffKinesthesique.png");
     background-size: 7em 1.2em;
     background-repeat: no-repeat;
 }
+
 #introTitleLinguistique {
     background-image: url("../images/divers/graffLinguistique.png");
     background-position: center;
     background-size: 16em 1.3em;
     background-repeat: no-repeat;
 }
+
 #titleLinguistique {
     background-image: url("../images/divers/graffLinguistique.png");
     background-size: 12em 1.2em;
     background-repeat: no-repeat;
 }
+
 #introTitleMathematique {
     background-image: url("../images/divers/graffMathematique.png");
     background-position: center;
     background-size: 16em 1.3em;
     background-repeat: no-repeat;
 }
+
 #titleMathematique {
     background-image: url("../images/divers/graffMathematique.png");
     background-size: 12em 1.2em;
@@ -551,57 +597,75 @@ h4 {
 #legend i {
     font-size: 0.5em;
 }
+
 #legend p {
     font-size: 1.2em;
 }
+
 #legend span {
     font-size: 1.1em;
 }
+
 #legendInterpersonnelle {
     background-image: url("../images/divers/highlightInterpersonnelle.png");
     background-position: left;
     background-size: 7.5em 1em;
     background-repeat: no-repeat;
 }
+
 #legendIntrapersonnelle {
     background-image: url("../images/divers/highlightIntrapersonnelle.png");
     background-position: left;
     background-size: 7.5em 1em;
     background-repeat: no-repeat;
 }
+
 #legendKinesthesique {
     background-image: url("../images/divers/highlightKinesthesique.png");
     background-position: left;
     background-size: 6em 1em;
     background-repeat: no-repeat;
 }
+
 #legendLinguistique {
     background-image: url("../images/divers/highlightLinguistique.png");
     background-position: left;
     background-size: 10.5em 1em;
     background-repeat: no-repeat;
 }
+
 #legendMathematique {
     background-image: url("../images/divers/highlightMathematique.png");
     background-position: left;
     background-size: 11.5em 1em;
     background-repeat: no-repeat;
 }
+
 #legendMusicale {
     background-image: url("../images/divers/highlightMusicale.png");
     background-position: left;
     background-size: 10.5em 1em;
     background-repeat: no-repeat;
 }
+
 #legendNaturaliste {
     background-image: url("../images/divers/highlightNaturaliste.png");
     background-position: left;
     background-size: 5em 1em;
     background-repeat: no-repeat;
 }
+
 #legendVisuoSpatiale {
     background-image: url("../images/divers/highlightVisuoSpatiale.png");
     background-position: left;
     background-size: 8.5em 1em;
     background-repeat: no-repeat;
+}
+
+.ui.button.link.resultPage {
+    height: 2em;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 7px;
+    margin-bottom: 20px;
 }
