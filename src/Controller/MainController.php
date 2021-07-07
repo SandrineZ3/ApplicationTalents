@@ -55,14 +55,13 @@ class MainController extends AbstractController
 
         if ($request->get('ajax')) {
             $dataImage = explode(',', $request->getContent());
-            $nameImg = md5(uniqid()) . '.png';
-            file_put_contents('brainResultsArchives/' . $nameImg, base64_decode($dataImage[1]));
+            $brainImageURL = 'brainResultsArchives/'.md5(uniqid()) . '.png';
+            file_put_contents($brainImageURL, base64_decode($dataImage[1]));
             return new JsonResponse([
-                'content' => '<img src="brainResultsArchives/' . $nameImg . '">'
+                'content' => '<img src="' . $brainImageURL . '" alt="image résultats" width="100%">',
+                'baliseMetaReseauxSociaux' => 'http://www.rdvnomade.fr/'.$brainImageURL,
             ]);
         }
-
-//        $userBrainImgUrl = 'http://www.rdvnomade.fr/brainResultsArchives/' . $nameImg;
 
         return $this->render('main/result.html.twig', [
             'user' => $user
