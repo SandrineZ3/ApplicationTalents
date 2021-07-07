@@ -159,10 +159,6 @@ function afficherModalHelp(className) {
     $('.tiny.modal.' + className).modal('show');
 }
 
-function afficherModalDemo() {
-    $('.mini.modal.demo').modal('show');
-}
-
 // Liste des fonctions appelées automatiquement par init() si besoin
 function autoClosingMessageFlash() {
     setTimeout(function () {

@@ -16,7 +16,7 @@
                         <p>Bonne chance !</p>
                     </div>
                     {# modal #}
-                    <div class="ui mini modal demo" id="modalGifNaturaliste">
+                    <div class="ui tiny modal demoGifNaturaliste" id="modalGifNaturaliste">
                         <h4 class="ui block header naturaliste centered">Aperçu du jeu suivant</h4>
                         <img src="{{ asset('gifs/gifNaturaliste.gif') }}" alt="gif demonstration" width="100%">
                     </div>
@@ -25,7 +25,7 @@
                         <a class="ui button" href="{{ path('naturaliste') }}" onclick="playClick()">Je
                             suis prêt !</a>
                         <i class="question circle outline icon" id="demoGifNaturaliste"
-                           onclick="afficherModalDemo(); playLink()" title="Aperçu du jeu suivant"></i>
+                           onclick="afficherModalHelp('demoGifNaturaliste'); playLink()" title="Aperçu du jeu suivant"></i>
                     </div>
                 </div>
             </div>
