@@ -16,7 +16,7 @@ html, body {
     font-size: 1.7em;
     font-family: 'Architects Daughter', cursive;
     font-weight: 100;
-    color : black;
+    color: black;
     border-radius: 255px 20px 225px 15px/13px 250px 20px 255px;
 }
 
@@ -26,17 +26,17 @@ html, body {
 
 .field label {
     font-size: 1.4em !important;
-    margin-top : 30px !important;
+    margin-top: 30px !important;
 }
 
 .field input {
     font-size: 1.2em !important;
-    margin-top : 15px !important;
+    margin-top: 15px !important;
 }
 
-.inline.fields label{
+.inline.fields label {
     font-size: 1.4em !important;
-    margin-top : 30px !important;
+    margin-top: 30px !important;
 }
 
 .six.wide.column {
@@ -710,3 +710,20 @@ h5 {
     margin-top: 0;
     margin-bottom: 20px;
 }
+
+.logosIntelligences {
+    width: auto !important;
+    height: 55px !important;
+    margin-top: -10px !important;
+}
+
+.ui.dividing.header {
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+#logosWithChrono {
+    margin-right: 15% !important;
+}
+
+
