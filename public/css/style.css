@@ -307,13 +307,14 @@ h5 {
 
 .pointingHelp {
     position: relative;
+    height: 0;
 }
 
 .pointingHelp div {
     position: absolute !important;
-    width: 115px;
+    width: 142px;
     top: -35px;
-    left: -30px;
+    left: -40px;
 }
 
 .introButtons {
@@ -623,7 +624,7 @@ h5 {
 }
 
 #legend i {
-    font-size: 0.5em;
+    font-size: 1em;
 }
 
 #legend p {
@@ -631,7 +632,7 @@ h5 {
 }
 
 #legend span {
-    font-size: 1.1em;
+    font-size: 1.4em;
 }
 
 #legendInterpersonnelle {
