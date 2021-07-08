@@ -307,13 +307,14 @@ h5 {
 
 .pointingHelp {
     position: relative;
+    height: 0;
 }
 
 .pointingHelp div {
     position: absolute !important;
-    width: 115px;
+    width: 142px;
     top: -35px;
-    left: -30px;
+    left: -40px;
 }
 
 .introButtons {
