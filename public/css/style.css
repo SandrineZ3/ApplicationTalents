@@ -8,6 +8,10 @@ html, body {
     font-family: 'Architects Daughter', cursive;
 }
 
+.ui.title {
+    text-align: left;
+}
+
 .ui.fluid.button {
     font-size: 1.7em;
     font-family: 'Architects Daughter', cursive;

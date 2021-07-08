@@ -59,6 +59,10 @@ function init() {
         transformPictoIntoImage();
     }
 
+    if (document.querySelector('#pageMathematique')) {
+        initTimerBlur(50);
+    }
+
     if (document.querySelector('#pageMusicale')) {
         loadNumberOfNote();
     }
@@ -68,7 +72,7 @@ function init() {
     }
 
     if (document.querySelector('#pageVisuoSpatiale')) {
-        initTimerBlur();
+        initTimerBlur(20);
     }
 
     if (document.querySelector('#pageResult')) {
