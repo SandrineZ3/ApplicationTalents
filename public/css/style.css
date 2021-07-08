@@ -231,9 +231,16 @@ body, label:hover, footer {
     font-size: 1.4rem !important;
 }
 
-@media (max-width: 510px) {
+@media (max-width: 620px) {
     #buttonShareSocialNetwork .button {
         font-size: 1rem !important;
+        margin: 0 !important;
+    }
+}
+
+@media (max-width: 470px) {
+    #buttonShareSocialNetwork .button {
+        font-size: 0.6rem !important;
         margin: 0 !important;
     }
 }
