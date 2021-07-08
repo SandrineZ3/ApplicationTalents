@@ -295,8 +295,25 @@ h4 {
     font-weight: 20 !important;
 }
 
+h5 {
+    font-size: 1.2em !important;
+    font-family: 'Architects Daughter', cursive !important;
+    font-weight: 20 !important;
+}
+
 .flashMessage {
     position: absolute;
+}
+
+.pointingHelp {
+    position: relative;
+}
+
+.pointingHelp div {
+    position: absolute !important;
+    width: 115px;
+    top: -35px;
+    left: -30px;
 }
 
 .introButtons {
