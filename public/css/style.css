@@ -8,6 +8,10 @@ html, body {
     font-family: 'Architects Daughter', cursive;
 }
 
+.ui.title {
+    text-align: left;
+}
+
 .ui.fluid.button {
     font-size: 1.7em;
     font-family: 'Architects Daughter', cursive;
@@ -231,9 +235,16 @@ body, label:hover, footer {
     font-size: 1.4rem !important;
 }
 
-@media (max-width: 510px) {
+@media (max-width: 620px) {
     #buttonShareSocialNetwork .button {
         font-size: 1rem !important;
+        margin: 0 !important;
+    }
+}
+
+@media (max-width: 470px) {
+    #buttonShareSocialNetwork .button {
+        font-size: 0.6rem !important;
         margin: 0 !important;
     }
 }
@@ -307,13 +318,14 @@ h5 {
 
 .pointingHelp {
     position: relative;
+    height: 0;
 }
 
 .pointingHelp div {
     position: absolute !important;
-    width: 115px;
+    width: 142px;
     top: -35px;
-    left: -30px;
+    left: -40px;
 }
 
 .introButtons {
@@ -622,68 +634,68 @@ h5 {
     background-repeat: no-repeat;
 }
 
-#legend i {
-    font-size: 0.5em;
+.legendCompetence i {
+    font-size: 1em;
 }
 
-#legend p {
+.legendCompetence p {
     font-size: 1.2em;
 }
 
-#legend span {
-    font-size: 1.1em;
+.legendCompetence span {
+    font-size: 1.4em;
 }
 
-#legendInterpersonnelle {
+.legendInterpersonnelle {
     background-image: url("../images/divers/highlightInterpersonnelle.png");
     background-position: left;
     background-size: 7.5em 1em;
     background-repeat: no-repeat;
 }
 
-#legendIntrapersonnelle {
+.legendIntrapersonnelle {
     background-image: url("../images/divers/highlightIntrapersonnelle.png");
     background-position: left;
     background-size: 7.5em 1em;
     background-repeat: no-repeat;
 }
 
-#legendKinesthesique {
+.legendKinesthesique {
     background-image: url("../images/divers/highlightKinesthesique.png");
     background-position: left;
     background-size: 6em 1em;
     background-repeat: no-repeat;
 }
 
-#legendLinguistique {
+.legendLinguistique {
     background-image: url("../images/divers/highlightLinguistique.png");
     background-position: left;
     background-size: 10.5em 1em;
     background-repeat: no-repeat;
 }
 
-#legendMathematique {
+.legendMathematique {
     background-image: url("../images/divers/highlightMathematique.png");
     background-position: left;
     background-size: 11.5em 1em;
     background-repeat: no-repeat;
 }
 
-#legendMusicale {
+.legendMusicale {
     background-image: url("../images/divers/highlightMusicale.png");
     background-position: left;
     background-size: 10.5em 1em;
     background-repeat: no-repeat;
 }
 
-#legendNaturaliste {
+.legendNaturaliste {
     background-image: url("../images/divers/highlightNaturaliste.png");
     background-position: left;
     background-size: 5em 1em;
     background-repeat: no-repeat;
 }
 
-#legendVisuoSpatiale {
+.legendVisuoSpatiale {
     background-image: url("../images/divers/highlightVisuoSpatiale.png");
     background-position: left;
     background-size: 8.5em 1em;
@@ -695,5 +707,6 @@ h5 {
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 7px;
+    margin-top: 0;
     margin-bottom: 20px;
 }

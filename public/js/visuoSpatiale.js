@@ -1,12 +1,12 @@
-let wholeTime = 20;
 let intervalTimer;
 
-function initTimerBlur() {
+function initTimerBlur(wholeTime) {
     displayTimeLeft(wholeTime);
     timer(wholeTime);
 }
 
 function timer(seconds) {
+    let wholeTime = seconds;
     const img = document.querySelector('#formEnigme img')
     let remainTime = Date.now() + (seconds * 1000);
     displayTimeLeft(seconds);
@@ -18,11 +18,11 @@ function timer(seconds) {
             clearInterval(intervalTimer);
             img.classList.add("blur-image");
         }
-        displayTimeLeft(timeLeft);
+        displayTimeLeft(timeLeft, wholeTime);
     }, 1000);
 }
 
-function displayTimeLeft(timeLeft) {
+function displayTimeLeft(timeLeft, wholeTime) {
     const displayOutput = document.querySelector('.display-remain-time')
 
     if (displayOutput) {
