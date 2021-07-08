@@ -1,14 +1,12 @@
-{#<div class="rating">#}
 <div class="ui grid">
     <div class="six wide column">
         {{ competence | capitalize }} <i class="question circle outline icon" onclick="afficherModalHelp('help-{{ competence }}')"></i>
     </div>
     {#modal#}
-    <div class="ui mini modal help-{{ competence }}">
-        <img src='{{ asset('images/intrapersonnelle/') ~ competence ~ '.png' }}' alt="image">
+    <div class="ui tiny modal help-{{ competence }}">
+        <img src='{{ asset('images/intrapersonnelle/') ~ competence ~ '.png' }}' alt="image" width="100%">
     </div>
     {#modal#}
-
     <div class="ten wide column">
         <div class="rating">
             <input type="radio" id="{{ competence }}_star4" name="{{ competence }}" value="4"/>
@@ -25,4 +23,3 @@
         </div>
     </div>
 </div>
-{#</div>#}

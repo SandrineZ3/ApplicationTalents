@@ -51,7 +51,6 @@ function requeteAjaxPostv2(selectorFormulaire, selectorReponse, modificationUrl=
             autoClosingMessageFlash();
         }
         else {
-            window.scrollTo(0, 0);
             document.querySelector(selectorReponse).innerHTML = data.content;
             document.querySelector('header div.errorOrSuccessMessage').innerHTML = reponseSuccess;
             init();

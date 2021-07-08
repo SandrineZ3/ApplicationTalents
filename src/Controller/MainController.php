@@ -58,8 +58,8 @@ class MainController extends AbstractController
             $brainImageURL = 'brainResultsArchives/'.md5(uniqid()) . '.png';
             file_put_contents($brainImageURL, base64_decode($dataImage[1]));
             return new JsonResponse([
-                'content' => '<img src="' . $brainImageURL . '" alt="image résultats" width="100%">',
-                'baliseMetaReseauxSociaux' => 'http://www.rdvnomade.fr/'.$brainImageURL,
+                'content' => '<img src="' . $brainImageURL . '" alt="image résultat" width="100%">',
+                'baliseMetaReseauxSociaux' => 'http://www.rdvnomade.fr/' . $brainImageURL,
             ]);
         }
 

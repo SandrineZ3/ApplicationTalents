@@ -26,7 +26,6 @@ function displayBrainResult() {
     }
 
     result.remove();
-
     saveimg();
 }
 
@@ -48,41 +47,37 @@ function getRandomNumber(min, max) {
 }
 
 function generatePDF() {
-    document.querySelector('#brainResult').childNodes.forEach(function (element) {
-            element.classList.remove('eight');
-            element.classList.add('sixteen', 'wide', 'computer');
-            console.log(element.classList);
-        }
-    );
+    // document.querySelector('#brainResult').childNodes.forEach(function (element) {
+    //         element.classList.remove('eight');
+    //         element.classList.add('sixteen', 'wide', 'computer');
+    //         console.log(element.classList);
+    //     }
+    // );
 // $('#brainResult').children().each(function(element) {
 //     $(this).removeClass('sixteen wide mobile sixteen wide tablet eight wide computer column');
 //     element.classList.add('sixteen wide computer');
 // })
 
-
     const element = document.getElementById('htmlToPdf');
     let options = {
         margin: 1,
         filename: 'mes-resultats.pdf',
-        image: {type: 'png'},
+        // image: {type: 'png'},
         html2canvas: {scale: 1},
-        jsPDF: {unit: 'cm', format: 'a4', orientation: 'portrait'}
+        jsPDF: {unit: 'cm', format: 'a4', orientation: 'landscape'}
     };
-
     html2pdf().set(options).from(element).save();
 }
 
 function saveimg() {
-
-    let node = document.getElementById('brainResult');
-
-    domtoimage.toPng(node).then(function (dataUrl) {
+    domtoimage.toPng(document.getElementById('brainResult')).then(function (dataUrl) {
         let img = new Image();
         img.src = dataUrl;
 
         document.querySelector('#brainResult').style = "";
         document.querySelector('#brainResult').childNodes.forEach(element =>
-            element.style = "");
+            element.style = ""
+        );
 
         const Url = new URL(window.location.href);
 
@@ -92,15 +87,13 @@ function saveimg() {
                 "X-Requested-With": "XMLHttpRequest"
             },
             body: dataUrl,
-
         }).then(response =>
             response.json()
         ).then(data => {
             document.querySelector('#baliseFB').content = data.baliseMetaReseauxSociaux;
             document.querySelector('#baliseTwitter').content = data.baliseMetaReseauxSociaux;
             history.pushState({}, null, Url.pathname);
-        }).catch(e => alert(e));
-
+        }).catch(e => console.error('oops, something went wrong!', e));
     })
         .catch(function (error) {
             console.error('oops, something went wrong!', error);
@@ -113,25 +106,25 @@ function shareSocialNetworks() {
         let url = this.getAttribute('data-url');
         let shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(document.title) +
             "&url=" + encodeURIComponent(url);
-        popupCenter(shareUrl, "Partager sur Twitter");
+        socialNetworksPopupCenter(shareUrl, "Partager sur Twitter");
     });
 
     document.querySelector('.ui.circular.facebook.icon.button').addEventListener('click', function (e) {
         e.preventDefault();
         let url = this.getAttribute('data-url');
         let shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
-        popupCenter(shareUrl, "Partager sur facebook");
+        socialNetworksPopupCenter(shareUrl, "Partager sur facebook");
     });
 
     document.querySelector('.ui.circular.linkedin.icon.button').addEventListener('click', function (e) {
         e.preventDefault();
         let url = this.getAttribute('data-url');
         let shareUrl = "https://www.linkedin.com/shareArticle?url=" + encodeURIComponent(url);
-        popupCenter(shareUrl, "Partager sur Linkedin");
+        socialNetworksPopupCenter(shareUrl, "Partager sur Linkedin");
     });
 }
 
-function popupCenter(url, title, width, height) {
+function socialNetworksPopupCenter(url, title, width, height) {
     let popupWidth = width || 640;
     let popupHeight = height || 320;
     let windowLeft = window.screenLeft || window.screenX;

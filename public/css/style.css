@@ -227,6 +227,17 @@ body, label:hover, footer {
     cursor: url("../images/divers/pointer.png") 14 2, auto !important;
 }
 
+#buttonShareSocialNetwork .button {
+    font-size: 1.4rem !important;
+}
+
+@media (max-width: 510px) {
+    #buttonShareSocialNetwork .button {
+        font-size: 1rem !important;
+        margin: 0 !important;
+    }
+}
+
 .ui.colorApp.segment {
     margin-top: 20px !important;
 }
@@ -284,8 +295,25 @@ h4 {
     font-weight: 20 !important;
 }
 
+h5 {
+    font-size: 1.2em !important;
+    font-family: 'Architects Daughter', cursive !important;
+    font-weight: 20 !important;
+}
+
 .flashMessage {
     position: absolute;
+}
+
+.pointingHelp {
+    position: relative;
+}
+
+.pointingHelp div {
+    position: absolute !important;
+    width: 115px;
+    top: -35px;
+    left: -30px;
 }
 
 .introButtons {

@@ -1,5 +1,7 @@
 function init() {
 
+    window.scrollTo(0, 0);
+
     $('.ui.checkbox').checkbox();
 
     $('.sidebar-menu-toggler').on('click', function () {
@@ -156,11 +158,7 @@ function afficherModalDelete() {
 }
 
 function afficherModalHelp(className) {
-    $('.mini.modal.' + className).modal('show');
-}
-
-function afficherModalDemo() {
-    $('.mini.modal.demo').modal('show');
+    $('.tiny.modal.' + className).modal('show');
 }
 
 // Liste des fonctions appelées automatiquement par init() si besoin
