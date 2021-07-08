@@ -12,20 +12,22 @@
     <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
-    {#    Balises Réseaux Sociaux (LinkedIn & Fb)#}
-    <meta property="og:title" content="Test des 8 intelligences"/>
-    <meta property="og:description" content="Découvrez vos formes d'intelligences !"/>
-    <meta property="og:type" content="article"/>
-    <meta property="og:url" content="http://www.rdvnomade.fr"/>
-    <meta property="og:image" content="http://www.rdvnomade.fr/images/divers/rdvNomadeLogoNB.png" id="baliseFB"/>
-    <meta property="og:locale" content="fr_FR"/>
+    {% block metaSocialNetworks %}
+        {#    Balises Réseaux Sociaux (LinkedIn & Fb)#}
+        <meta property="og:title" content="Test des 8 intelligences"/>
+        <meta property="og:description" content="Découvrez vos formes d'intelligences !"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:url" content="http://www.rdvnomade.fr"/>
+        <meta property="og:image" content="http://www.rdvnomade.fr/images/divers/rdvNomadeLogoNB.png" id="baliseFB"/>
+        <meta property="og:locale" content="fr_FR"/>
 
-    {#    Balises pour Twitter#}
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@RDVNomade">
-    <meta name="twitter:title" content="Test des 8 intelligences">
-    <meta name="twitter:description" content="Découvrez vos formes d'intelligences !">
-    <meta name="twitter:image" content="http://www.rdvnomade.fr/images/divers/rdvNomadeLogoNB.png" id="baliseTwitter">
+        {#    Balises pour Twitter#}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@RDVNomade">
+        <meta name="twitter:title" content="Test des 8 intelligences">
+        <meta name="twitter:description" content="Découvrez vos formes d'intelligences !">
+        <meta name="twitter:image" content="http://www.rdvnomade.fr/images/divers/rdvNomadeLogoNB.png" id="baliseTwitter">
+    {% endblock %}
 
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/ratingStars.css') }}" rel="stylesheet">
@@ -83,7 +85,7 @@
     const swup = new Swup();
 
     let audioBackground = new Howl({
-        src: ['audio/KomikuDeHerbeSousLesPieds.mp3'],
+        src: ['{{ asset('audio/KomikuDeHerbeSousLesPieds.mp3') }}'],
         loop: true,
         volume: 0.2,
     });

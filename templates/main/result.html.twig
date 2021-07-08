@@ -8,200 +8,141 @@
     <div class="ui grid container h100 middle aligned" id="pageResult">
         <div class="row">
             <div class="sixteen wide mobile sixteen wide tablet sixteen wide computer column">
-                <div id="htmlToPdf">
-                    <div class="ui colorApp segment">
-                        <h3 class="ui dividing header">
-                            <div class="ui grid">
-                                <div class="row">
-                                    <div class="four wide column">
-                                        Résultats
-                                    </div>
-                                    <div class="right floated eight wide mobile seven wide tablet five wide computer column" id="buttonShareSocialNetwork">
-                                        <div class="ui center aligned padded grid">
-                                            <div class="ui circular twitter icon button" data-url="http://www.rdvnomade.fr/result">
-                                                <i class="twitter icon"></i>
-                                            </div>
-                                            <button class="ui circular facebook icon button" data-url="http://www.rdvnomade.fr/result">
-                                                <i class="facebook icon"></i>
-                                            </button>
-                                            <button class="ui circular linkedin icon button" data-url="http://www.rdvnomade.fr/result">
-                                                <i class="linkedin icon"></i>
-                                            </button>
-                                            <button class="ui circular icon button" onclick="generatePDF()" title="Télécharger en format PDF">
-                                                <i class="fas fa-download"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </h3>
+                <div class="ui colorApp segment">
+                    <h3 class="ui dividing header">
                         <div class="ui grid">
-                            <div class="row" id="brainResult">
-                                <div class="sixteen wide mobile sixteen wide tablet eight wide computer column">
-                                    <div class="line-drawing-demo" id="brainSVG">
-                                        {% include("main/content/brain.html.twig") %}
-                                    </div>
-                                    <div id="tableauResult"
-                                         dataScore-Interpersonnelle="{{ user.scoreInterpersonnelle }}"
-                                         dataScore-Intrapersonnelle="{{ user.scoreIntrapersonnelle }}"
-                                         dataScore-Kinesthesique="{{ user.scoreKinesthesique }}"
-                                         dataScore-Linguistique="{{ user.scoreLinguistique }}"
-                                         dataScore-Mathematique="{{ user.scoreMathematique }}"
-                                         dataScore-Musicale="{{ user.scoreMusicale }}"
-                                         dataScore-Naturaliste="{{ user.scoreNaturaliste }}"
-                                         dataScore-VisuoSpatiale="{{ user.scoreVisuoSpatiale }}">
+                            <div class="row">
+                                <div class="four wide column">
+                                    Résultats
+                                </div>
+                                <div class="right floated eight wide mobile seven wide tablet five wide computer column" id="buttonShareSocialNetwork">
+                                    <div class="ui center aligned padded grid">
+                                        <button class="ui circular twitter icon button" data-url="#">
+                                            <i class="twitter icon"></i>
+                                        </button>
+                                        <button class="ui circular facebook icon button" data-url="#">
+                                            <i class="facebook icon"></i>
+                                        </button>
+                                        <button class="ui circular linkedin icon button" data-url="#">
+                                            <i class="linkedin icon"></i>
+                                        </button>
+                                        <button class="ui circular icon button" onclick="generatePDF()" title="Télécharger en format PDF">
+                                            <i class="fas fa-download"></i>
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="sixteen wide mobile sixteen wide tablet eight wide computer column">
-                                    <div class="legendCompetence">
+                            </div>
+                        </div>
+                    </h3>
+                    <div class="ui grid">
+                        <div class="row" id="brainResult">
+                            <div class="sixteen wide mobile sixteen wide tablet eight wide computer column">
+                                <div class="line-drawing-demo" id="brainSVG">
+                                    {% include("main/content/brain.html.twig") %}
+                                </div>
+                                <div id="tableauResult"
+                                     dataScore-Interpersonnelle="{{ user.scoreInterpersonnelle }}"
+                                     dataScore-Intrapersonnelle="{{ user.scoreIntrapersonnelle }}"
+                                     dataScore-Kinesthesique="{{ user.scoreKinesthesique }}"
+                                     dataScore-Linguistique="{{ user.scoreLinguistique }}"
+                                     dataScore-Mathematique="{{ user.scoreMathematique }}"
+                                     dataScore-Musicale="{{ user.scoreMusicale }}"
+                                     dataScore-Naturaliste="{{ user.scoreNaturaliste }}"
+                                     dataScore-VisuoSpatiale="{{ user.scoreVisuoSpatiale }}">
+                                </div>
+                            </div>
+                            <div class="sixteen wide mobile sixteen wide tablet eight wide computer column">
+                                <div class="legendCompetence">
 
-                                        <div class="ui styled fluid accordion">
-                                            <div class="ui active title">
-                                                <i class="dropdown icon"></i>
-                                                <span class="legendInterpersonnelle">Interpersonnelle</span>
-                                            </div>
-                                            <div class="active content">
-                                                <p>
-                                                    permet de collaborer, communiquer, être empathique et apaiser les
-                                                    relations.
-                                                </p>
-                                            </div>
+                                    <div class="ui styled fluid accordion">
+                                        <div class="ui active title">
+                                            <i class="dropdown icon"></i>
+                                            <span class="legendInterpersonnelle">Interpersonnelle</span>
+                                        </div>
+                                        <div class="active content">
+                                            <p>
+                                                permet de collaborer, communiquer, être empathique et apaiser les
+                                                relations.
+                                            </p>
+                                        </div>
 
-                                            <div class="ui title">
-                                                <i class="dropdown icon"></i>
-                                                <span class="legendIntrapersonnelle">Intrapersonnelle</span>
-                                            </div>
-                                            <div class="content">
-                                                <p>
-                                                    permet la compréhension de soi, la connaissance de ses forces et
-                                                    faiblesses.
-                                                </p>
-                                            </div>
+                                        <div class="ui title">
+                                            <i class="dropdown icon"></i>
+                                            <span class="legendIntrapersonnelle">Intrapersonnelle</span>
+                                        </div>
+                                        <div class="content">
+                                            <p>
+                                                permet la compréhension de soi, la connaissance de ses forces et
+                                                faiblesses.
+                                            </p>
+                                        </div>
 
-                                            <div class="ui title">
-                                                <i class="dropdown icon"></i>
-                                                <span class="legendKinesthesique">Kinesthésique</span>
-                                            </div>
-                                            <div class="content">
-                                                <p>
-                                                    permet d'utiliser les mots pour comprendre les autres et exprimer ce
-                                                    que l’on pense.
-                                                </p>
-                                            </div>
+                                        <div class="ui title">
+                                            <i class="dropdown icon"></i>
+                                            <span class="legendKinesthesique">Kinesthésique</span>
+                                        </div>
+                                        <div class="content">
+                                            <p>
+                                                permet d'utiliser les mots pour comprendre les autres et exprimer ce
+                                                que l’on pense.
+                                            </p>
+                                        </div>
 
-                                            <div class="ui title">
-                                                <i class="dropdown icon"></i>
-                                                <span class="legendLinguistique">Verbale et Linguistique</span>
-                                            </div>
-                                            <div class="content">
-                                                <p>
-                                                    permet d'utiliser les mots pour comprendre les autres et exprimer ce
-                                                    que l’on pense.
-                                                </p>
-                                            </div>
+                                        <div class="ui title">
+                                            <i class="dropdown icon"></i>
+                                            <span class="legendLinguistique">Verbale et Linguistique</span>
+                                        </div>
+                                        <div class="content">
+                                            <p>
+                                                permet d'utiliser les mots pour comprendre les autres et exprimer ce
+                                                que l’on pense.
+                                            </p>
+                                        </div>
 
-                                            <div class="ui title">
-                                                <i class="dropdown icon"></i>
-                                                <span class="legendMathematique">Logique et Mathématique</span>
-                                            </div>
-                                            <div class="content">
-                                                <p>
-                                                    permet de résoudre des problèmes, calculer, quantifier.
-                                                </p>
-                                            </div>
+                                        <div class="ui title">
+                                            <i class="dropdown icon"></i>
+                                            <span class="legendMathematique">Logique et Mathématique</span>
+                                        </div>
+                                        <div class="content">
+                                            <p>
+                                                permet de résoudre des problèmes, calculer, quantifier.
+                                            </p>
+                                        </div>
 
-                                            <div class="ui title">
-                                                <i class="dropdown icon"></i>
-                                                <span class="legendMusicale">Musicale et Rythmique</span>
-                                            </div>
-                                            <div class="content">
-                                                <p>
-                                                    permet de reconnaître des sons & rythmes, les reproduire ou les créer.
-                                                </p>
-                                            </div>
+                                        <div class="ui title">
+                                            <i class="dropdown icon"></i>
+                                            <span class="legendMusicale">Musicale et Rythmique</span>
+                                        </div>
+                                        <div class="content">
+                                            <p>
+                                                permet de reconnaître des sons & rythmes, les reproduire ou les créer.
+                                            </p>
+                                        </div>
 
-                                            <div class="ui title">
-                                                <i class="dropdown icon"></i>
-                                                <span class="legendNaturaliste">Naturaliste</span>
-                                            </div>
-                                            <div class="content">
-                                                <p>
-                                                    permet de reconnaître, classer, identifier des minéraux, végétaux ou
-                                                    animaux.
-                                                </p>
-                                            </div>
+                                        <div class="ui title">
+                                            <i class="dropdown icon"></i>
+                                            <span class="legendNaturaliste">Naturaliste</span>
+                                        </div>
+                                        <div class="content">
+                                            <p>
+                                                permet de reconnaître, classer, identifier des minéraux, végétaux ou
+                                                animaux.
+                                            </p>
+                                        </div>
 
-                                            <div class="ui title">
-                                                <i class="dropdown icon"></i>
-                                                <span class="legendVisuoSpatiale">Visuelle et Spatiale</span>
-                                            </div>
-                                            <div class="content">
-                                                <p>
-                                                    permet de se créer une représentation spatiale de son environnement.
-                                                </p>
-                                            </div>
-
+                                        <div class="ui title">
+                                            <i class="dropdown icon"></i>
+                                            <span class="legendVisuoSpatiale">Visuelle et Spatiale</span>
+                                        </div>
+                                        <div class="content">
+                                            <p>
+                                                permet de se créer une représentation spatiale de son environnement.
+                                            </p>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
-
-                            {# div pour generatePDF() #}
-                            <div class="row" style="display: none; flex-wrap: nowrap !important;">
-                                <div class="sixteen wide mobile sixteen wide tablet eight wide computer column" id="brainClone"
-                                     style="min-width:500px !important;">
-                                </div>
-                                <div class="sixteen wide mobile sixteen wide tablet eight wide computer column"
-                                     style="min-width:500px !important;">
-                                    <div class="legendCompetence">
-                                        <p>
-                                            <i class="fas fa-solid fa-square"></i>
-                                            <span class="legendInterpersonnelle">Interpersonnelle :</span>
-                                            permet de collaborer, communiquer, être empathique et apaiser les relations.
-                                        </p>
-                                        <p>
-                                            <i class="fas fa-solid fa-square"></i>
-                                            <span class="legendIntrapersonnelle">Intrapersonnelle :</span>
-                                            permet la compréhension de soi, la connaissance de ses forces et faiblesses.
-                                        </p>
-                                        <p>
-                                            <i class="fas fa-solid fa-square"></i>
-                                            <span class="legendKinesthesique">Kinesthésique :</span>
-                                            permet d’utiliser son corps pour communiquer, agir, apprendre ou pratiquer
-                                            des sports.
-                                        </p>
-                                        <p>
-                                            <i class="fas fa-solid fa-square"></i>
-                                            <span class="legendLinguistique">Verbale et Linguistique :</span>
-                                            permet d'utiliser les mots pour comprendre les autres et exprimer ce que
-                                            l’on pense.
-                                        </p>
-                                        <p>
-                                            <i class="fas fa-solid fa-square"></i>
-                                            <span class="legendMathematique">Logique et Mathématique :</span>
-                                            permet de résoudre des problèmes, calculer, quantifier.
-                                        </p>
-                                        <p>
-                                            <i class="fas fa-solid fa-square"></i>
-                                            <span class="legendMusicale">Musicale et Rythmique :</span>
-                                            permet de reconnaître des sons & rythmes, les reproduire ou les créer.
-                                        </p>
-                                        <p>
-                                            <i class="fas fa-solid fa-square"></i>
-                                            <span class="legendNaturaliste">Naturaliste :</span>
-                                            permet de reconnaître, classer, identifier des minéraux, végétaux ou
-                                            animaux.
-                                        </p>
-                                        <p>
-                                            <i class="fas fa-solid fa-square"></i>
-                                            <span class="legendVisuoSpatiale">Visuelle et Spatiale :</span>
-                                            permet de se créer une représentation spatiale de son environnement.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            {# div pour generatePDF() #}
-
                         </div>
                     </div>
                 </div>
@@ -218,5 +159,54 @@
                 </div>
             </div>
         </div>
+
+        {# div pour generatePDF() #}
+        <div class="row" style="display: none; flex-wrap: nowrap !important;">
+            <div class="column" id="brainClone"
+                 style="min-width:500px !important;">
+            </div>
+            <div class="column"
+                 style="min-width:500px !important;">
+                <div class="legendCompetence">
+                    <p>
+                        <span class="legendInterpersonnelle">&bull; Interpersonnelle :</span>
+                        permet de collaborer, communiquer, être empathique et apaiser les relations.
+                    </p>
+                    <p>
+                        <span class="legendIntrapersonnelle">&bull; Intrapersonnelle :</span>
+                        permet la compréhension de soi, la connaissance de ses forces et faiblesses.
+                    </p>
+                    <p>
+                        <span class="legendKinesthesique">&bull; Kinesthésique :</span>
+                        permet d’utiliser son corps pour communiquer, agir, apprendre ou pratiquer
+                        des sports.
+                    </p>
+                    <p>
+                        <span class="legendLinguistique">&bull; Verbale et Linguistique :</span>
+                        permet d'utiliser les mots pour comprendre les autres et exprimer ce que
+                        l’on pense.
+                    </p>
+                    <p>
+                        <span class="legendMathematique">&bull; Logique et Mathématique :</span>
+                        permet de résoudre des problèmes, calculer, quantifier.
+                    </p>
+                    <p>
+                        <span class="legendMusicale">&bull; Musicale et Rythmique :</span>
+                        permet de reconnaître des sons & rythmes, les reproduire ou les créer.
+                    </p>
+                    <p>
+                        <span class="legendNaturaliste">&bull; Naturaliste :</span>
+                        permet de reconnaître, classer, identifier des minéraux, végétaux ou
+                        animaux.
+                    </p>
+                    <p>
+                        <span class="legendVisuoSpatiale">&bull; Visuelle et Spatiale :</span>
+                        permet de se créer une représentation spatiale de son environnement.
+                    </p>
+                </div>
+            </div>
+        </div>
+        {# div pour generatePDF() #}
+
     </div>
 {% endblock %}

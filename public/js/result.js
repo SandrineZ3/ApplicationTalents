@@ -27,7 +27,7 @@ function displayBrainResult() {
 
     result.remove();
     $("#brainClone").prepend($("#brainSVG").clone());
-    // saveimg();
+    saveImageBrainArchives();
 }
 
 function insertRandomCircle(initialCircle, color) {
@@ -65,19 +65,18 @@ function generatePDF() {
         html2pdf().set(options).from(img).save();
     })
         .catch(function (error) {
-            console.error('oops, something went wrong!', error);
+            console.error('oops, something went wrong to generate PDF!', error);
         });
 }
 
-function saveimg() {
-    domtoimage.toPng(document.getElementById('brainResult')).then(function (dataUrl) {
+function saveImageBrainArchives() {
+    const element = document.getElementById('brainClone').parentNode;
+
+    element.style.display = '';
+    domtoimage.toPng(element).then(function (dataUrl) {
         let img = new Image();
         img.src = dataUrl;
-
-        document.querySelector('#brainResult').style = "";
-        document.querySelector('#brainResult').childNodes.forEach(element =>
-            element.style = ""
-        );
+        element.style.display = 'none';
 
         const Url = new URL(window.location.href);
 
@@ -90,13 +89,14 @@ function saveimg() {
         }).then(response =>
             response.json()
         ).then(data => {
-            document.querySelector('#baliseFB').content = data.baliseMetaReseauxSociaux;
-            document.querySelector('#baliseTwitter').content = data.baliseMetaReseauxSociaux;
+            document.querySelectorAll('#buttonShareSocialNetwork button').forEach((element)=>
+                element.setAttribute("data-url", 'http://www.rdvnomade.fr/result/' + data.uniqueNameImage)
+            )
             history.pushState({}, null, Url.pathname);
         }).catch(e => console.error('oops, something went wrong!', e));
     })
         .catch(function (error) {
-            console.error('oops, something went wrong!', error);
+            console.error('oops, something went wrong to generate PDF!', error);
         });
 }
 
@@ -113,6 +113,7 @@ function shareSocialNetworks() {
         e.preventDefault();
         let url = this.getAttribute('data-url');
         let shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
+        console.log(shareUrl);
         socialNetworksPopupCenter(shareUrl, "Partager sur facebook");
     });
 
