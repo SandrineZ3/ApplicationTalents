@@ -96,6 +96,7 @@ function initBrainCharacterAnimation() {
     }
 
     if (document.querySelector('#pageIntrapersonnelle')) {
+        brainCharacterAnimationIntrapersonnelle();
     }
 
     if (document.querySelector('#pageKinesthesique')) {
