@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Résultats{% endblock %}
+
+{% block metaSocialNetworks %}
+    {#    Balises Réseaux Sociaux (LinkedIn & Fb)#}
+    <meta property="og:title" content="Test des 8 intelligences"/>
+    <meta property="og:description" content="Découvrez vos formes d'intelligences !"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="{{ urlPage }}"/>
+    <meta property="og:image" content="{{ urlImage }}"/>
+    <meta property="og:locale" content="fr_FR"/>
+
+    {#    Balises pour Twitter#}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@RDVNomade">
+    <meta name="twitter:title" content="Test des 8 intelligences">
+    <meta name="twitter:description" content="Découvrez vos formes d'intelligences !">
+    <meta name="twitter:image" content="{{ urlImage }}">
+{% endblock %}
+
+{% block body %}
+    <div class="ui grid container h100 middle aligned">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
+                <div class="ui colorApp segment">
+                    <a class="fluid ui button" onclick="playClick()" href="{{ path('app_register') }}">Nouvelle Partie</a>
+                    <br>
+                    <a class="fluid ui button" onclick="playClick()" href="{{ path('app_login') }}">Reprendre</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

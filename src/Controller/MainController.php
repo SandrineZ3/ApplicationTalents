@@ -55,10 +55,11 @@ class MainController extends AbstractController
 
         if ($request->get('ajax')) {
             $dataImage = explode(',', $request->getContent());
-            $brainImageURL = 'brainResultsArchives/'.md5(uniqid()) . '.png';
+            $uniqueNameImage = md5(uniqid());
+            $brainImageURL = 'brainResultsArchives/'. $uniqueNameImage . '.png';
             file_put_contents($brainImageURL, base64_decode($dataImage[1]));
             return new JsonResponse([
-                'content' => '<img src="' . $brainImageURL . '" alt="image résultat" width="100%">',
+                'uniqueNameImage' => $uniqueNameImage,
                 'baliseMetaReseauxSociaux' => 'http://www.rdvnomade.fr/' . $brainImageURL,
             ]);
         }
@@ -66,9 +67,17 @@ class MainController extends AbstractController
         return $this->render('main/result.html.twig', [
             'user' => $user
         ]);
-
-
     }
 
-
+    /**
+     * @Route("/result/{nameImage}", name="resultLinkSocialNetworks")
+     */
+    public function resultLinkSocialNetworks(string $nameImage): Response
+    {
+//       Permet de partager l'image du résultat du visiteur sur les réseaux sociaux
+        return $this->render('main/resultLinkSocialNetworks.html.twig', [
+            'urlPage' => 'http://rdvnomade.fr/result/'.$nameImage,
+            'urlImage' => 'http://rdvnomade.fr/brainResultsArchives/'.$nameImage.'.png'
+        ]);
+    }
 }
