@@ -72,6 +72,7 @@ function init() {
     }
 
     if (document.querySelector('#pageResult')) {
+        $('.ui.accordion').accordion();
         displayBrainResult();
         shareSocialNetworks();
     }
