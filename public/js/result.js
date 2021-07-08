@@ -26,7 +26,8 @@ function displayBrainResult() {
     }
 
     result.remove();
-    saveimg();
+    $("#brainClone").prepend($("#brainSVG").clone());
+    // saveimg();
 }
 
 function insertRandomCircle(initialCircle, color) {
@@ -47,26 +48,25 @@ function getRandomNumber(min, max) {
 }
 
 function generatePDF() {
-    // document.querySelector('#brainResult').childNodes.forEach(function (element) {
-    //         element.classList.remove('eight');
-    //         element.classList.add('sixteen', 'wide', 'computer');
-    //         console.log(element.classList);
-    //     }
-    // );
-// $('#brainResult').children().each(function(element) {
-//     $(this).removeClass('sixteen wide mobile sixteen wide tablet eight wide computer column');
-//     element.classList.add('sixteen wide computer');
-// })
+    const element = document.getElementById('brainClone').parentNode;
 
-    const element = document.getElementById('htmlToPdf');
-    let options = {
-        margin: 1,
-        filename: 'mes-resultats.pdf',
-        // image: {type: 'png'},
-        html2canvas: {scale: 1},
-        jsPDF: {unit: 'cm', format: 'a4', orientation: 'landscape'}
-    };
-    html2pdf().set(options).from(element).save();
+    element.style.display = '';
+    domtoimage.toPng(element).then(function (dataUrl) {
+        let img = new Image();
+        img.src = dataUrl;
+        element.style.display = 'none';
+
+        let options = {
+            margin: 1,
+            filename: 'mes-resultats.pdf',
+            html2canvas: {scale: 1},
+            jsPDF: {unit: 'cm', format: 'a4', orientation: 'landscape'}
+        };
+        html2pdf().set(options).from(img).save();
+    })
+        .catch(function (error) {
+            console.error('oops, something went wrong!', error);
+        });
 }
 
 function saveimg() {
