@@ -474,6 +474,23 @@ h5 {
     width: 100px;
     height: 100px;
 }
+@media screen and (max-width: 500px) {
+    .chrono {
+        width: 70px;
+        height: 70px;
+    }
+    .circleTimer {
+        width: 50%;
+        height: 50%;
+    }
+    .circleTimer svg {
+        width: 100%;
+        height: 100%;
+    }
+    .display-remain-time {
+        font-size: 40px !important;
+    }
+}
 
 .circleTimer {
     position: relative;
@@ -729,5 +746,7 @@ h5 {
 .logosInIntros {
     text-align: center;
 }
-
+#centeredMazes {
+    text-align: center;
+}
 
