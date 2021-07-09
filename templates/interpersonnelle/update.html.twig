@@ -16,7 +16,21 @@
         <div class="row">
             <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
                 <div class="ui segment">
-                    <h3 class="ui dividing header">Modification</h3>
+                    <h3 class="ui dividing header">
+                        Modification
+                        <i class="question circle outline icon" onclick="afficherModalHelp('helpModal')"></i>
+                    </h3>
+                    {#modal#}
+                    <div class="ui tiny modal helpModal">
+                        <div class="header">
+                            Aide
+                        </div>
+                        <div class="content">
+                            <p>Voici la marche à suivre pour récupérer le lien de la vidéo Youtube :</p>
+                            <img src="{{ asset('gifs/gifInterpersonnelle.gif') }}" alt="gif demonstration" width="100%">
+                        </div>
+                    </div>
+                    {#modal#}
                     {{ form_start(interpersonnelleForm) }}
                     <div class="field">
                         {{ form_label(interpersonnelleForm.urlVideo) }}
