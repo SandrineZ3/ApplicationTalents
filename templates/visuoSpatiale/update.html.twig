@@ -7,8 +7,21 @@
         <div class="row">
             <div class="sixteen wide mobile ten wide tablet six wide computer centered column">
                 <div class="ui segment">
-                    <h3 class="ui dividing header">Modification</h3>
-                    <a class="ui inverted secondary button" href="http://www.mazegenerator.net/" target="_blank">Générateur labyrinthe</a>
+                    <h3 class="ui dividing header">
+                        Modification
+                        <i class="question circle outline icon" onclick="afficherModalHelp('helpModal')"></i>
+                    </h3>
+                    {#modal#}
+                    <div class="ui tiny modal helpModal">
+                        <div class="header">
+                            Aide
+                        </div>
+                        <div class="content">
+                            <p>Pour générer un labyrinthe au format png, vous pouvez aller sur le site ci-dessous :</p>
+                            <a class="ui inverted secondary button" href="http://www.mazegenerator.net/" target="_blank">Maze Generator</a>
+                        </div>
+                    </div>
+                    {#modal#}
                     {{ form_start(visuoSpatialeForm) }}
                     <div class="field">
                         {{ form_label(visuoSpatialeForm.image) }}
