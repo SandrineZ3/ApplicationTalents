@@ -1,37 +1,43 @@
 function displayBrainResult() {
-    let circle = document.querySelectorAll('.st1');
-    let result = document.querySelector('#tableauResult');
-    let tableauAttribute = result.getAttributeNames();
-    tableauAttribute.splice(0, 1);
-    let color = ["#FFED78", "#B3A1EC", "#FFBD6D", "#7593D4", "#E86E6E", "#95E7E4", "#94DA7E", "#C3AB87"]
+    let tableauId = ['', '_averageScore']
 
-    let sommeResultat = 0;
-    for (let i = 0; i < tableauAttribute.length; i++) {
-        sommeResultat += parseInt(result.getAttribute(tableauAttribute[i]));
-    }
+    for (let z = 0; z < tableauId.length; z++) {
+        let id = tableauId[z];
+        let container = document.querySelector('#brainSVG'+id);
+        let circle = container.querySelectorAll('.st1');
+        let result = container.nextElementSibling;
+        let tableauAttribute = result.getAttributeNames();
+        let color = ["#FFED78", "#B3A1EC", "#FFBD6D", "#7593D4", "#E86E6E", "#95E7E4", "#94DA7E", "#C3AB87"]
 
-    let j = 0;
-    let k = 0;
-    for (let i = 0; i < tableauAttribute.length; i++) {
-        for (j; j < Math.round(((circle.length / sommeResultat) * result.getAttribute(tableauAttribute[i]))) + k; j++) {
-            if (circle[j]) {
-                circle[j].setAttribute("fill", color[i]);
-                insertRandomCircle(circle[j], color[i]);
-            }
+        let sommeResultat = 0;
+        for (let i = 0; i < tableauAttribute.length; i++) {
+            sommeResultat += parseInt(result.getAttribute(tableauAttribute[i]));
         }
-        k = j;
-    }
-    while (j < circle.length) {
-        circle[j].setAttribute("fill", color[color.length - 1]);
-        insertRandomCircle(circle[j], color[color.length - 1]);
-        j++;
+
+        let j = 0;
+        let k = 0;
+        for (let i = 0; i < tableauAttribute.length; i++) {
+            for (j; j < Math.round(((circle.length / sommeResultat) * result.getAttribute(tableauAttribute[i]))) + k; j++) {
+                if (circle[j]) {
+                    circle[j].setAttribute("fill", color[i]);
+                    insertRandomCircle(id, circle[j], color[i]);
+                }
+            }
+            k = j;
+        }
+        while (j < circle.length) {
+            circle[j].setAttribute("fill", color[color.length - 1]);
+            insertRandomCircle(id, circle[j], color[color.length - 1]);
+            j++;
+        }
+
+        result.remove();
     }
 
-    result.remove();
     $("#brainClone").prepend($("#brainSVG").clone());
 }
 
-function insertRandomCircle(initialCircle, color) {
+function insertRandomCircle(id, initialCircle, color) {
     for (let i = 0; i < 5; i++) {
         let X = parseInt(initialCircle.getAttribute("cx")) + getRandomNumber(-50, 50);
         let Y = parseInt(initialCircle.getAttribute("cy")) + getRandomNumber(-50, 50);
@@ -40,7 +46,7 @@ function insertRandomCircle(initialCircle, color) {
         newCircle.setAttributeNS(null, 'cy', Y.toString());
         newCircle.setAttributeNS(null, 'r', getRandomNumber(5, 25).toString());
         newCircle.setAttributeNS(null, 'style', 'fill: ' + color + '; opacity: 0.8;');
-        document.getElementById('brain_svg').prepend(newCircle);
+        document.getElementById('brain_svg'+id).prepend(newCircle);
     }
 }
 

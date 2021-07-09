@@ -61,6 +61,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ;
     }
 
+    public function nombrePartie(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->select('COUNT(DISTINCT u)')
+            ->andWhere('u.dateEnd is not NULL')
+            ->getQuery()
+            ->getSingleResult()
+            ;
+    }
+
     public function findSearchUserPaginate(SearchUser $searchUser, int $nbreResultat): PaginationInterface
     {
         $query = $this->getSearchQueryUser($searchUser)->getQuery();
