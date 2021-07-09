@@ -53,12 +53,19 @@ function generatePDF(button) {
     const body = document.querySelector('body');
 
     button.classList.add('loading');
-    body.style.overflow = 'hidden';
-    element.style.display = '';
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        body.style.position = 'fixed';
+    }
+    else {
+        body.style.overflow = 'hidden';
+    }
+    element.style.display = 'flex';
+
     domtoimage.toPng(element).then(function (dataUrl) {
         let img = new Image();
         img.src = dataUrl;
         element.style.display = 'none';
+        body.style.position = '';
         body.style.overflow = '';
 
         let options = {
@@ -77,13 +84,19 @@ function saveImageBrainArchives() {
     const element = document.getElementById('brainClone').parentNode;
     const body = document.querySelector('body');
 
-    body.style.overflow = 'hidden';
-    element.style.display = '';
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        body.style.position = 'fixed';
+    }
+    else {
+        body.style.overflow = 'hidden';
+    }
+    element.style.display = 'flex';
 
     return domtoimage.toPng(element).then(function (dataUrl) {
         let img = new Image();
         img.src = dataUrl;
         element.style.display = 'none';
+        body.style.position = '';
         body.style.overflow = '';
 
         const Url = new URL(window.location.href);
