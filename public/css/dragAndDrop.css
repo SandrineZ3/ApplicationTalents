@@ -5,7 +5,7 @@
     margin-top: 2rem;
 }
 
-.droppable-elements{
+.droppable-elements {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -16,9 +16,9 @@
 .draggable-elements img {
     height: 6.5rem;
     width: 6.5rem;
-    margin-left : 10px;
-    margin-right : 10px;
-    margin-top : 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
     border: 2px black solid;
     border-radius: 5px;
 }
@@ -49,13 +49,18 @@
 }
 
 .droppable img {
-    width : 6.5rem; /* remplir le cadre du drop pour éviter plusieurs pictos dans une case */
-    height : 6.5rem;
+    width: 6.5rem;
+    height: 6.5rem;
     border: 2px black solid;
     border-radius: 5px;
 }
 
 @media (max-width: 600px) {
-    html { font-size: 14px; }
-    .draggable-elements { margin: 1.5rem; }
+    html {
+        font-size: 14px;
+    }
+
+    .draggable-elements {
+        margin: 1.5rem;
+    }
 }
