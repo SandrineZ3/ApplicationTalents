@@ -20,7 +20,7 @@ class InterpersonnelleFormType extends AbstractType
     {
         $builder
             ->add('urlVideo', TextType::class, [
-                'label' => 'Lien vidéo Youtube',
+                'label' => 'Lien vidéo',
                 'required' => false,
                 'constraints' => [
                     new NotBlank([
