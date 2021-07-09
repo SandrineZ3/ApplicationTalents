@@ -14,8 +14,10 @@ function displayBrainResult() {
     let k = 0;
     for (let i = 0; i < tableauAttribute.length; i++) {
         for (j; j < Math.round(((circle.length / sommeResultat) * result.getAttribute(tableauAttribute[i]))) + k; j++) {
-            circle[j].setAttribute("fill", color[i]);
-            insertRandomCircle(circle[j], color[i]);
+            if (circle[j]) {
+                circle[j].setAttribute("fill", color[i]);
+                insertRandomCircle(circle[j], color[i]);
+            }
         }
         k = j;
     }
@@ -47,14 +49,24 @@ function getRandomNumber(min, max) {
 }
 
 function generatePDF(button) {
-    button.classList.add('loading');
     const element = document.getElementById('brainClone').parentNode;
+    const body = document.querySelector('body');
 
-    element.style.display = '';
+    button.classList.add('loading');
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        body.style.position = 'fixed';
+    }
+    else {
+        body.style.overflow = 'hidden';
+    }
+    element.style.display = 'flex';
+
     domtoimage.toPng(element).then(function (dataUrl) {
         let img = new Image();
         img.src = dataUrl;
         element.style.display = 'none';
+        body.style.position = '';
+        body.style.overflow = '';
 
         let options = {
             margin: 1,
@@ -63,20 +75,29 @@ function generatePDF(button) {
             jsPDF: {unit: 'cm', format: 'a4', orientation: 'landscape'}
         };
         html2pdf().set(options).from(img).save();
+        button.classList.remove('loading');
 
     }).catch(e => console.error('oops, something went wrong to generate PDF!', e));
-    button.classList.remove('loading');
 }
 
 function saveImageBrainArchives() {
     const element = document.getElementById('brainClone').parentNode;
+    const body = document.querySelector('body');
 
-    element.style.display = '';
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        body.style.position = 'fixed';
+    }
+    else {
+        body.style.overflow = 'hidden';
+    }
+    element.style.display = 'flex';
 
     return domtoimage.toPng(element).then(function (dataUrl) {
         let img = new Image();
         img.src = dataUrl;
         element.style.display = 'none';
+        body.style.position = '';
+        body.style.overflow = '';
 
         const Url = new URL(window.location.href);
 
