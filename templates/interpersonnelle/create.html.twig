@@ -18,16 +18,24 @@
                 <div class="ui segment">
                     <h3 class="ui dividing header">
                         Création
-                        <i class="question circle outline icon" onclick="afficherModalHelp('helpModal')"></i>
+                        <i class="question circle outline icon" onclick="afficherModalHelpVideo('helpModal')"></i>
                     </h3>
                     {#modal#}
-                    <div class="ui tiny modal helpModal">
+                    <div class="ui large modal helpModal">
                         <div class="header">
                             Aide
                         </div>
                         <div class="content">
-                            <p>Voici la marche à suivre pour récupérer le lien de la vidéo :</p>
-                            <img src="{{ asset('gifs/gifInterpersonnelle.gif') }}" alt="gif demonstration" width="100%">
+                            <p style="font-size: 1.1em;">Voici la marche à suivre pour récupérer le lien de la vidéo :</p>
+                            <ul>
+                                <li>Sélectionner la vidéo de votre choix</li>
+                                <li>Cliquer sur le bouton <strong>"Partager"</strong> à droite de la vidéo</li>
+                                <li>Choisir <strong>"Obtenir le code d'intégration"</strong> symbolisé par < /></li>
+                                <li>Copier le lien</li>
+                                <li>Coller le lien dans le tableau de bord admin</li>
+                                <li>Ne garder <strong>QUE</strong> le lien débutant par "https://" <strong>SANS LES GUILLEMETS</strong>, le reste est à supprimer.</li>
+                            </ul>
+                            <img src="{{ asset('gifs/gifAjoutVideo.gif') }}" alt="gif demonstration" width="100%">
                         </div>
                     </div>
                     {#modal#}

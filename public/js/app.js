@@ -166,6 +166,10 @@ function afficherModalHelp(className) {
     $('.tiny.modal.' + className).modal('show');
 }
 
+function afficherModalHelpVideo(className) {
+    $('.large.modal.' + className).modal('show');
+}
+
 // Liste des fonctions appelées automatiquement par init() si besoin
 function autoClosingMessageFlash() {
     setTimeout(function () {
