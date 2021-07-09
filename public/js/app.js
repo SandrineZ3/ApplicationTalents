@@ -77,6 +77,7 @@ function init() {
 
     if (document.querySelector('#pageResult')) {
         $('.ui.accordion').accordion();
+        $('.menu .item').tab();
         displayBrainResult();
     }
 }
