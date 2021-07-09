@@ -15,16 +15,16 @@
                         </div>
                         <div class="right floated eight wide mobile seven wide tablet five wide computer column" id="buttonShareSocialNetwork">
                             <div class="ui center aligned padded grid">
-                                <button class="ui circular twitter icon button" data-url="#">
+                                <button class="ui circular twitter icon button" onclick="shareSocialNetworksTwitter(this)" data-url="#">
                                     <i class="twitter icon"></i>
                                 </button>
-                                <button class="ui circular facebook icon button" data-url="#">
+                                <button class="ui circular facebook icon button" onclick="shareSocialNetworksFacebook(this)" data-url="#">
                                     <i class="facebook icon"></i>
                                 </button>
-                                <button class="ui circular linkedin icon button" data-url="#">
+                                <button class="ui circular linkedin icon button" onclick="shareSocialNetworksLinkedin(this)" data-url="#">
                                     <i class="linkedin icon"></i>
                                 </button>
-                                <button class="ui circular icon button" onclick="generatePDF()" title="Télécharger en format PDF">
+                                <button class="ui circular icon button" onclick="generatePDF(this)" title="Télécharger en format PDF">
                                     <i class="fas fa-download"></i>
                                 </button>
                             </div>
@@ -157,7 +157,7 @@
         </div>
 
         {# div pour generatePDF() #}
-        <div class="row" style="display: none; flex-wrap: nowrap !important;">
+        <div class="row" style="display: none; flex-wrap: nowrap !important; z-index: -1000;">
             <div class="column" id="brainClone"
                  style="min-width:500px !important;">
             </div>

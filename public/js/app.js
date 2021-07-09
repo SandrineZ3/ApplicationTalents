@@ -60,7 +60,7 @@ function init() {
     }
 
     if (document.querySelector('#pageMathematique')) {
-        initTimerBlur(50);
+        initTimerBlur(90);
     }
 
     if (document.querySelector('#pageMusicale')) {
@@ -78,7 +78,6 @@ function init() {
     if (document.querySelector('#pageResult')) {
         $('.ui.accordion').accordion();
         displayBrainResult();
-        shareSocialNetworks();
     }
 }
 

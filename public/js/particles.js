@@ -20,7 +20,7 @@ particlesJS("particles-js", {
                 "nb_sides": 5
             },
             "image": {
-                "src": "images/emoticon/0e6a5323ceb1ef82a769a0921191fc18.jpg",
+                "src": "",
                 "width": 100,
                 "height": 100
             }

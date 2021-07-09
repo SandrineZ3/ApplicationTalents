@@ -27,7 +27,6 @@ function displayBrainResult() {
 
     result.remove();
     $("#brainClone").prepend($("#brainSVG").clone());
-    saveImageBrainArchives();
 }
 
 function insertRandomCircle(initialCircle, color) {
@@ -47,7 +46,8 @@ function getRandomNumber(min, max) {
     return Math.round(Math.random() * (max - min) + min);
 }
 
-function generatePDF() {
+function generatePDF(button) {
+    button.classList.add('loading');
     const element = document.getElementById('brainClone').parentNode;
 
     element.style.display = '';
@@ -63,24 +63,24 @@ function generatePDF() {
             jsPDF: {unit: 'cm', format: 'a4', orientation: 'landscape'}
         };
         html2pdf().set(options).from(img).save();
-    })
-        .catch(function (error) {
-            console.error('oops, something went wrong to generate PDF!', error);
-        });
+
+    }).catch(e => console.error('oops, something went wrong to generate PDF!', e));
+    button.classList.remove('loading');
 }
 
 function saveImageBrainArchives() {
     const element = document.getElementById('brainClone').parentNode;
 
     element.style.display = '';
-    domtoimage.toPng(element).then(function (dataUrl) {
+
+    return domtoimage.toPng(element).then(function (dataUrl) {
         let img = new Image();
         img.src = dataUrl;
         element.style.display = 'none';
 
         const Url = new URL(window.location.href);
 
-        fetch(Url.pathname + "?" + "ajax=1", {
+        return fetch(Url.pathname + "?" + "ajax=1", {
             method: 'POST',
             headers: {
                 "X-Requested-With": "XMLHttpRequest"
@@ -93,36 +93,43 @@ function saveImageBrainArchives() {
                 element.setAttribute("data-url", 'http://www.rdvnomade.fr/result/' + data.uniqueNameImage)
             )
             history.pushState({}, null, Url.pathname);
-        }).catch(e => console.error('oops, something went wrong!', e));
-    })
-        .catch(function (error) {
-            console.error('oops, something went wrong to generate PDF!', error);
-        });
+        }).catch(e => console.error('oops, something went wrong to AjaxRequest!', e));
+
+    }).catch(e => console.error('oops, something went wrong to generate SocialNetworks Page!', e));
 }
 
-function shareSocialNetworks() {
-    document.querySelector('.ui.circular.twitter.icon.button').addEventListener('click', function (e) {
-        e.preventDefault();
-        let url = this.getAttribute('data-url');
-        let shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(document.title) +
-            "&url=" + encodeURIComponent(url);
-        socialNetworksPopupCenter(shareUrl, "Partager sur Twitter");
-    });
+async function shareSocialNetworksFacebook(button) {
+    button.classList.add('loading');
+    if (button.getAttribute('data-url') === '#') {
+        await saveImageBrainArchives();
+    }
+    let url = button.getAttribute('data-url');
+    let shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
+    socialNetworksPopupCenter(shareUrl, "Partager sur facebook");
+    button.classList.remove('loading');
+}
 
-    document.querySelector('.ui.circular.facebook.icon.button').addEventListener('click', function (e) {
-        e.preventDefault();
-        let url = this.getAttribute('data-url');
-        let shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
-        console.log(shareUrl);
-        socialNetworksPopupCenter(shareUrl, "Partager sur facebook");
-    });
+async function shareSocialNetworksTwitter(button) {
+    button.classList.add('loading');
+    if (button.getAttribute('data-url') === '#') {
+        await saveImageBrainArchives();
+    }
+    let url = button.getAttribute('data-url');
+    let shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(document.title) +
+        "&url=" + encodeURIComponent(url);
+    socialNetworksPopupCenter(shareUrl, "Partager sur Twitter");
+    button.classList.remove('loading');
+}
 
-    document.querySelector('.ui.circular.linkedin.icon.button').addEventListener('click', function (e) {
-        e.preventDefault();
-        let url = this.getAttribute('data-url');
-        let shareUrl = "https://www.linkedin.com/shareArticle?url=" + encodeURIComponent(url);
-        socialNetworksPopupCenter(shareUrl, "Partager sur Linkedin");
-    });
+async function shareSocialNetworksLinkedin(button) {
+    button.classList.add('loading');
+    if (button.getAttribute('data-url') === '#') {
+        await saveImageBrainArchives();
+    }
+    let url = button.getAttribute('data-url');
+    let shareUrl = "https://www.linkedin.com/shareArticle?url=" + encodeURIComponent(url);
+    socialNetworksPopupCenter(shareUrl, "Partager sur Linkedin");
+    button.classList.remove('loading');
 }
 
 function socialNetworksPopupCenter(url, title, width, height) {
