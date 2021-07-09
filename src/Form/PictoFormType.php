@@ -37,6 +37,7 @@ class PictoFormType extends AbstractType
                     'label' => 'Image',
                     'required' => false,
                     'mapped' => false,
+                    'attr' => ['onchange' => 'addPreviewImage(this, 80, 80)'],
                     'constraints' => [
                         new Image([
                             'maxSize' => '512k',
@@ -53,6 +54,7 @@ class PictoFormType extends AbstractType
                     'label' => 'Image',
                     'required' => false,
                     'mapped' => false,
+                    'attr' => ['onchange' => 'addPreviewImage(this, 80, 80)'],
                     'constraints' => [
                         new NotBlank([
                             'message' => 'Veuillez télécharger une image',

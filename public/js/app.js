@@ -166,6 +166,49 @@ function afficherModalHelp(className) {
     $('.tiny.modal.' + className).modal('show');
 }
 
+function addPreviewImage(input, hauteur, largeur) {
+    const [file] = input.files
+    if (file) {
+        if (input.previousElementSibling.tagName === 'IMG') {
+            input.previousElementSibling.src = URL.createObjectURL(file);
+        }
+        else {
+            let img = document.createElement('img');
+            img.src = URL.createObjectURL(file);
+
+            if (largeur) {
+                img.style.width = largeur+'px';
+            }
+            else {
+                img.style.width = '100%';
+            }
+            if (hauteur) {
+                img.style.height = hauteur+'px';
+            }
+            img.style.objectFit = 'cover';
+            input.parentNode.insertBefore(img, input);
+        }
+    }
+}
+
+function addPreviewVideo(input, hauteur) {
+    if (input.previousElementSibling.tagName === 'IFRAME') {
+        input.previousElementSibling.src = input.value;
+    }
+    else {
+        let iframe = document.createElement('iframe');
+        iframe.src = input.value;
+        iframe.style.width = '100%';
+        if (hauteur) {
+            iframe.style.height = hauteur+'px';
+        }
+        iframe.frameBorder = '0';
+        iframe.allow = 'autoplay; encrypted-media';
+        iframe.allowfullscreen = 'true';
+        input.parentNode.insertBefore(iframe, input);
+    }
+}
+
 // Liste des fonctions appelées automatiquement par init() si besoin
 function autoClosingMessageFlash() {
     setTimeout(function () {
