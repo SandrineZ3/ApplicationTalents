@@ -22,6 +22,7 @@ class InterpersonnelleFormType extends AbstractType
             ->add('urlVideo', TextType::class, [
                 'label' => 'Lien vidéo',
                 'required' => false,
+                'attr' => ['onchange' => 'addPreviewVideo(this, 315)'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner l\'url de la vidéo',

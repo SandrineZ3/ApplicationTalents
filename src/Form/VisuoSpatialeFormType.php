@@ -24,6 +24,7 @@ class VisuoSpatialeFormType extends AbstractType
                     'label' => 'Image',
                     'required' => false,
                     'mapped' => false,
+                    'attr' => ['onchange' => 'addPreviewImage(this)'],
                     'constraints' => [
                         new Image([
                             'maxSize' => '1024k',
@@ -41,6 +42,7 @@ class VisuoSpatialeFormType extends AbstractType
                     'label' => 'Image',
                     'required' => false,
                     'mapped' => false,
+                    'attr' => ['onchange' => 'addPreviewImage(this)'],
                     'constraints' => [
                         new NotBlank([
                             'message' => 'Veuillez télécharger une image',
