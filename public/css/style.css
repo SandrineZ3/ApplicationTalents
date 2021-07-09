@@ -1,5 +1,5 @@
-html, body {
-    font-family: 'Architects Daughter', cursive;
+html, body, a.item {
+    font-family: 'Architects Daughter', cursive !important;
 }
 
 .title {
@@ -754,4 +754,6 @@ h5 {
 #centeredMazes {
     text-align: center;
 }
-
+a.item {
+    font-size: 1.2em;
+}
