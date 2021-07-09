@@ -15,9 +15,12 @@ body {
 
 .fourImagesInOneBox {
     height: 250px !important;
-    display: flex; !important;
-    flex-wrap: wrap; !important;
-    flex-direction: row; !important;
+    display: flex;
+!important;
+    flex-wrap: wrap;
+!important;
+    flex-direction: row;
+!important;
 }
 
 .fourImagesInOneBox img {
@@ -56,9 +59,11 @@ body {
         transform: translate3d(0, 0, 0);
         width: 15rem !important;
     }
+
     .main-content {
         margin-left: 15rem;
     }
+
     .sidebar-menu-toggler {
         display: none !important;
     }
@@ -86,25 +91,28 @@ body {
 }
 
 .colorInterpersonnelle {
-    color: #FFED78  !important;
+    color: #FFED78 !important;
 }
+
 .bgInterpersonnelle {
-    background-color: #FFED78  !important;
+    background-color: #FFED78 !important;
     color: white !important;
 }
 
 .colorIntrapersonnelle {
     color: #B3A1EC !important;
 }
+
 .bgIntrapersonnelle {
     background-color: #B3A1EC !important;
     color: white !important;
 }
 
-.colorKinesthesique  {
+.colorKinesthesique {
     color: #FFBD6D !important;
 }
-.bgKinesthesique  {
+
+.bgKinesthesique {
     background-color: #FFBD6D !important;
     color: white !important;
 }
@@ -112,6 +120,7 @@ body {
 .colorLinguistique {
     color: #7593D4 !important;
 }
+
 .bgLinguistique {
     background-color: #7593D4 !important;
     color: white !important;
@@ -120,6 +129,7 @@ body {
 .colorMathematique {
     color: #E86E6E !important;
 }
+
 .bgMathematique {
     background-color: #E86E6E !important;
     color: white !important;
@@ -128,38 +138,45 @@ body {
 .colorMusicale {
     color: #95E7E4 !important;
 }
+
 .bgMusicale {
     background-color: #95E7E4 !important;
     color: white !important;
 }
 
 .colorNaturaliste {
-    color: #94DA7E  !important;
+    color: #94DA7E !important;
 }
+
 .bgNaturaliste {
-    background-color: #94DA7E  !important;
+    background-color: #94DA7E !important;
     color: white !important;
 }
 
 .colorVisuoSpatiale {
     color: #C3AB87 !important;
 }
+
 .bgVisuoSpatiale {
     background-color: #C3AB87 !important;
     color: white !important;
 }
+
 #linguistique_form_solution {
     text-align: center;
 }
-#linguistique_form_solution .checkbox label{
+
+#linguistique_form_solution .checkbox label {
     display: none !important;
 }
+
 #linguistique_form_solution .checkbox {
     border: black 2px dashed;
     border-radius: 5px;
-    margin : 10px;
+    margin: 10px;
     cursor: pointer;
 }
+
 #linguistique_form_solution .checkbox.checked {
     border: green 4px solid;
     -webkit-animation: click-wave 0.4s;
@@ -184,63 +201,74 @@ body {
         border: none;
         height: 80px;
         width: 80px;
-        transform: scale(1.5,1.5);
+        transform: scale(1.5, 1.5);
         opacity: 1;
     }
 }
-#allPictoDeleting{
+
+#allPictoDeleting {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
+
 #deletePictos {
     width: 85px;
     height: 108px;
     margin: 10px;
     border: black 2px dashed;
 }
+
 #deletePictos a {
     margin-left: 32px;
     font-size: 1.2em;
 }
+
 #deletePictos a i, #deleteEmoticon a i {
     margin-top: 5px;
     color: #404040;
 }
-#deletePictos a i:hover, #deleteEmoticon a i:hover{
+
+#deletePictos a i:hover, #deleteEmoticon a i:hover {
     color: black;
     transform: scale(1.25, 1.25);
 }
+
 #trashIcon {
     background-color: #FFE5E5;
     height: 24px;
     margin-top: -2px;
 }
+
 .pictosApercuSolution {
     border: black 1px solid;
     border-radius: 5px;
-    margin-top : 5px;
+    margin-top: 5px;
     margin-left: 5px;
 }
 
-#allEmoticonDeleting{
+#allEmoticonDeleting {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
+
 #deleteEmoticon {
     width: 80px;
     height: 100px;
     margin: 10px;
 }
+
 #deleteEmoticon a {
     margin-left: 52px;
 }
+
 #trashIconEmoticon {
     height: 24px;
     margin-top: 2px;
 }
+
 #interpersonnelle_form_solution img {
-    margin : 10px;
+    margin: 10px;
     cursor: pointer;
 }

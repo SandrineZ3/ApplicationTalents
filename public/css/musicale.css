@@ -26,24 +26,29 @@
     margin-right: 0.25%;
     border-radius: .21428571rem;
     cursor: pointer;
-    box-shadow: 0 0 5px rgba( 0, 0, 0, 0.5), 0 -1px 0 rgba( 255, 255, 255, 0.4);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5), 0 -1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .colorGradient0 {
     background: radial-gradient(ellipse at center, #c9f2ff 0%, deepskyblue 100%);
 }
+
 .colorGradient1 {
     background: radial-gradient(ellipse at center, #cfcfff 0%, blue 100%);
 }
+
 .colorGradient2 {
     background: radial-gradient(ellipse at center, #e6ffcf 0%, lawngreen 100%);
 }
+
 .colorGradient3 {
     background: radial-gradient(ellipse at center, #ffffc7 0%, yellow 100%);
 }
+
 .colorGradient4 {
     background: radial-gradient(ellipse at center, #ffeac5 0%, orange 100%);
 }
+
 .colorGradient5 {
     background: radial-gradient(ellipse at center, #ffc6c6 0%, red 100%);
 }
@@ -51,18 +56,23 @@
 .color0 {
     background-color: deepskyblue;
 }
+
 .color1 {
     background-color: blue;
 }
+
 .color2 {
     background-color: lawngreen;
 }
+
 .color3 {
     background-color: yellow;
 }
+
 .color4 {
     background-color: orange;
 }
+
 .color5 {
     background-color: red;
 }
@@ -77,7 +87,7 @@
 }
 
 .note i {
-    color: rgba(0,0,0,.6);
+    color: rgba(0, 0, 0, .6);
     position: absolute;
     width: 20px;
     height: 20px;
@@ -93,11 +103,11 @@
 }
 
 .touchPad .attached.label:hover {
-    box-shadow: 0 0 5px rgba( 0, 0, 0, 0.5), 0 -1px 0 rgba( 255, 255, 255, 0.4);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5), 0 -1px 0 rgba(255, 255, 255, 0.4);
 }
 
-.touchPad .attached.label:active{
-    box-shadow: 1px 1px 10px black inset, 0 1px 0 rgba( 255, 255, 255, 0.4);
+.touchPad .attached.label:active {
+    box-shadow: 1px 1px 10px black inset, 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .ripple {
