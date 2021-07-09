@@ -209,6 +209,10 @@ function addPreviewVideo(input, hauteur) {
     }
 }
 
+function afficherModalHelpVideo(className) {
+    $('.large.modal.' + className).modal('show');
+}
+
 // Liste des fonctions appelées automatiquement par init() si besoin
 function autoClosingMessageFlash() {
     setTimeout(function () {
