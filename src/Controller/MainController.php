@@ -51,7 +51,6 @@ class MainController extends AbstractController
         if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'result') {
             return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
         }
-        $user = $userRepository->find($this->getUser());
 
         if ($request->get('ajax')) {
             $dataImage = explode(',', $request->getContent());
@@ -65,7 +64,9 @@ class MainController extends AbstractController
         }
 
         return $this->render('main/result.html.twig', [
-            'user' => $user
+            'user' => $userRepository->find($this->getUser()),
+            'averageScore' => $userRepository->findStatsByDateEndIsNotNull(),
+            'nombrePartie' => $userRepository->nombrePartie()[1],
         ]);
     }
 

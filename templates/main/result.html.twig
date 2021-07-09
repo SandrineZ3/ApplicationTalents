@@ -44,10 +44,9 @@
                                 </div>
                                 <div class="ui bottom attached active tab segment" data-tab="first">
                                     <div class="line-drawing-demo" id="brainSVG">
-                                        {% include("main/content/brain.html.twig") %}
+                                        {% include("main/content/brain.html.twig") with {'id': 'brain_svg'} %}
                                     </div>
-                                    <div id="tableauResult"
-                                         dataScore-Interpersonnelle="{{ user.scoreInterpersonnelle }}"
+                                    <div dataScore-Interpersonnelle="{{ user.scoreInterpersonnelle }}"
                                          dataScore-Intrapersonnelle="{{ user.scoreIntrapersonnelle }}"
                                          dataScore-Kinesthesique="{{ user.scoreKinesthesique }}"
                                          dataScore-Linguistique="{{ user.scoreLinguistique }}"
@@ -58,11 +57,18 @@
                                     </div>
                                 </div>
                                 <div class="ui bottom attached tab segment" data-tab="second">
-{#                                    TODO : inclure cerveau moyenne#}
-                                    <div class="line-drawing-demo" id="brainSVG">
-                                        {% include("main/content/brain.html.twig") %}
+                                    <div class="line-drawing-demo" id="brainSVG_averageScore">
+                                        {% include("main/content/brain.html.twig") with {'id': 'brain_svg_averageScore'} %}
                                     </div>
-{#                                    -----------------------#}
+                                    <div dataScore-Interpersonnelle="{{ (averageScore[1] / nombrePartie) | round }}"
+                                         dataScore-Intrapersonnelle="{{ (averageScore[2] / nombrePartie) | round }}"
+                                         dataScore-Kinesthesique="{{ (averageScore[3] / nombrePartie) | round }}"
+                                         dataScore-Linguistique="{{ (averageScore[4] / nombrePartie) | round }}"
+                                         dataScore-Mathematique="{{ (averageScore[5] / nombrePartie) | round }}"
+                                         dataScore-Musicale="{{ (averageScore[6] / nombrePartie) | round }}"
+                                         dataScore-Naturaliste="{{ (averageScore[7] / nombrePartie) | round }}"
+                                         dataScore-VisuoSpatiale="{{ (averageScore[8] / nombrePartie) | round }}">
+                                    </div>
                                 </div>
                             </div>
 
