@@ -3,9 +3,9 @@ function brainCharacterAnimationIntrapersonnelle() {
 	canvas = document.getElementById("canvas");
 	anim_container = document.getElementById("animation_container");
 	dom_overlay_container = document.getElementById("dom_overlay_container");
-	handleComplete();
+	handleCompleteIntrapersonnelle();
 }
-function handleComplete() {
+function handleCompleteIntrapersonnelle() {
 	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
 	exportRoot = new libIntrapersonnelle.brainIntrapersonnelle();
 	stage = new createjs.Stage(canvas);
@@ -16,7 +16,7 @@ function handleComplete() {
 		createjs.Ticker.addEventListener("tick", stage);
 	}
 	//Code to support hidpi screens and responsive scaling.
-	function makeResponsive(isResp, respDim, isScale, scaleType) {
+	function makeResponsiveIntrapersonnelle(isResp, respDim, isScale, scaleType) {
 		var lastW, lastH, lastS=1;
 		window.addEventListener('resize', resizeCanvas);
 		resizeCanvas();
@@ -25,18 +25,13 @@ function handleComplete() {
 			var iw = window.innerWidth, ih=window.innerHeight;
 			var pRatio = window.devicePixelRatio || 1, xRatio=iw/w, yRatio=ih/h, sRatio=1;
 			if(isResp) {
-				if((respDim=='width'&&lastW==iw) || (respDim=='height'&&lastH==ih)) {
-					sRatio = lastS;
-				}
-				else if(!isScale) {
-					if(iw<w || ih<h)
-						sRatio = Math.min(xRatio, yRatio);
-				}
-				else if(scaleType==1) {
-					sRatio = Math.min(xRatio, yRatio);
-				}
-				else if(scaleType==2) {
-					sRatio = Math.max(xRatio, yRatio);
+				if (iw < 500 || ih < 500) {
+					if (iw < ih) {
+						sRatio = xRatio/1.9;
+					}
+					else {
+						sRatio = yRatio/2.5;
+					}
 				}
 			}
 			canvas.width = w*pRatio*sRatio;
@@ -48,7 +43,7 @@ function handleComplete() {
 			lastW = iw; lastH = ih; lastS = sRatio;
 		}
 	}
-	makeResponsive(false,'both',false,1);
+	makeResponsiveIntrapersonnelle(true,'both',false,1);
 	fnStartAnimation();
 }
 
@@ -439,6 +434,47 @@ p.nominalBounds = new cjs.Rectangle(-85.4,-59.1,171,118.4);
 p.nominalBounds = new cjs.Rectangle(-37.2,-8.3,74.5,16.7);
 
 
+(lib.Symbole11 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Calque 1
+	this.instance = new lib.Interpoler2("synched",0);
+	this.instance.parent = this;
+	this.instance.setTransform(0.1,0.1,0.962,0.962,0,0,0,0.1,0.1);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-82.1,-56.8,164.5,113.8);
+
+
+(lib.Symbole9 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Calque 1
+	this.instance = new lib.Interpoler2("synched",0);
+	this.instance.parent = this;
+	this.instance.setTransform(0.1,0.1,0.962,0.962,0,0,0,0.1,0.1);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-82.1,-56.8,164.5,113.8);
+
+
+(lib.Symbole10 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Calque 1
+	this.instance = new lib.Symbole9("synched",0);
+	this.instance.parent = this;
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-82.1,-56.8,164.5,113.8);
+
+
 // stage content:
 (lib.brainIntrapersonnelle = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
@@ -446,58 +482,58 @@ p.nominalBounds = new cjs.Rectangle(-37.2,-8.3,74.5,16.7);
 	// Symbole 6
 	this.instance = new lib.Symbole6("synched",0);
 	this.instance.parent = this;
-	this.instance.setTransform(32.7,331.8,1.118,0.787,0,9.1,7,0.4,0.1);
+	this.instance.setTransform(32.7,31.8,1.118,0.787,0,9.1,7,0.4,0.1);
 	this.instance._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(30).to({_off:false},0).to({startPosition:0},31).to({startPosition:0},40).to({_off:true},1).wait(3).to({_off:false,regY:0.2,scaleX:1.12,skewX:9,x:32.8},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).to({_off:true},1).wait(3).to({_off:false},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).to({_off:true},1).wait(3).to({_off:false},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).to({_off:true},1).wait(3).to({_off:false},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({regY:0.1,scaleX:1.12,skewX:9.1,x:32.7},0).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(30).to({_off:false},0).to({startPosition:0},31).to({startPosition:0},73).wait(1));
 
-	// Symbole 6
+	// Symbole 9
 	this.instance_1 = new lib.Symbole6("synched",0);
 	this.instance_1.parent = this;
-	this.instance_1.setTransform(272.2,325.7,1.065,0.801,0,-17,163,-0.1,0.3);
+	this.instance_1.setTransform(272.2,25.7,1.065,0.801,0,-17,163,-0.1,0.3);
 	this.instance_1._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(61).to({_off:false},0).to({startPosition:0},34).to({startPosition:0},6).to({_off:true},1).wait(3).to({_off:false,regY:0.4,scaleX:1.06,skewX:-16.8,skewY:163.2,x:272.3},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).to({_off:true},1).wait(3).to({_off:false},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).to({_off:true},1).wait(3).to({_off:false},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).to({_off:true},1).wait(3).to({_off:false},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({startPosition:0},0).wait(1).to({regY:0.3,scaleX:1.07,skewX:-17,skewY:163,x:272.2},0).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(61).to({_off:false},0).to({startPosition:0},34).to({startPosition:0},39).wait(1));
 
 	// Symbole 4
 	this.instance_2 = new lib.Interpoler1("synched",0);
 	this.instance_2.parent = this;
-	this.instance_2.setTransform(156.2,365.6,0.962,0.962,0,0,0,0.1,0.1);
+	this.instance_2.setTransform(156.2,65.6,0.962,0.962,0,0,0,0.1,0.1);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).to({startPosition:0},14).to({regY:-0.8,scaleY:0.19,skewX:180,y:365.7},1).to({startPosition:0},1).to({regY:0.1,scaleY:0.96,skewX:0,y:365.6},1).to({startPosition:0},13).to({startPosition:0},5).to({x:136.6,y:363.5},1).to({startPosition:0},24).to({x:171.3},7,cjs.Ease.get(1)).to({startPosition:0},27).to({x:156.2,y:365.6},1).to({startPosition:0},12).to({regY:-0.8,scaleY:0.19,skewX:180,y:365.7},1).to({regY:0.1,scaleY:0.96,skewX:0,y:365.6},1).to({startPosition:0},17).to({regY:-0.8,scaleY:0.19,skewX:180,y:365.7},1).to({regY:0.1,scaleY:0.96,skewX:0,y:365.6},1).to({startPosition:0},6).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_2).to({startPosition:0},14).to({regY:-0.8,scaleY:0.19,skewX:180,y:65.7},1).to({startPosition:0},1).to({regY:0.1,scaleY:0.96,skewX:0,y:65.6},1).to({startPosition:0},13).to({startPosition:0},5).to({x:136.6,y:63.5},1).to({startPosition:0},24).to({x:171.3},7,cjs.Ease.get(1)).to({startPosition:0},27).to({x:156.2,y:65.6},1).to({startPosition:0},12).to({regY:-0.8,scaleY:0.19,skewX:180,y:65.7},1).to({regY:0.1,scaleY:0.96,skewX:0,y:65.6},1).to({startPosition:0},17).to({regY:-0.8,scaleY:0.19,skewX:180,y:65.7},1).to({regY:0.1,scaleY:0.96,skewX:0,y:65.6},1).to({startPosition:0},6).wait(1));
 
 	// Symbole 5
 	this.instance_3 = new lib.Symbole5("synched",0);
 	this.instance_3.parent = this;
-	this.instance_3.setTransform(170.9,452.7,0.962,0.962,0,0,0,0.1,0.1);
+	this.instance_3.setTransform(170.9,152.7,0.962,0.962,0,0,0,0.1,0.1);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_3).to({startPosition:0},134).wait(1));
 
 	// Symbole 3
 	this.instance_4 = new lib.Symbole3("synched",0);
 	this.instance_4.parent = this;
-	this.instance_4.setTransform(144.1,452.9,0.962,0.962);
+	this.instance_4.setTransform(144.1,152.9,0.962,0.962);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_4).to({startPosition:0},134).wait(1));
 
 	// Symbole 2
 	this.instance_5 = new lib.Symbole2("synched",0);
 	this.instance_5.parent = this;
-	this.instance_5.setTransform(68.5,391.3,0.962,0.962,0,0,0,0.1,0.2);
+	this.instance_5.setTransform(68.5,91.3,0.962,0.962,0,0,0,0.1,0.2);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_5).to({startPosition:0},134).wait(1));
 
 	// Symbole 1
 	this.instance_6 = new lib.Symbole1("synched",0);
 	this.instance_6.parent = this;
-	this.instance_6.setTransform(244.6,392.1,0.962,0.962);
+	this.instance_6.setTransform(244.6,92.1,0.962,0.962);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_6).to({startPosition:0},134).wait(1));
 
 	// Symbole 8
 	this.instance_7 = new lib.Symbole8("synched",0);
 	this.instance_7.parent = this;
-	this.instance_7.setTransform(161.2,397.3,0.962,0.962,0,0,0,0.1,0.1);
+	this.instance_7.setTransform(161.2,97.3,0.962,0.962,0,0,0,0.1,0.1);
 	this.instance_7._off = true;
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_7).wait(95).to({_off:false},0).to({startPosition:0},39).wait(1));
@@ -505,24 +541,29 @@ p.nominalBounds = new cjs.Rectangle(-37.2,-8.3,74.5,16.7);
 	// Symbole 7
 	this.instance_8 = new lib.Symbole7("synched",0);
 	this.instance_8.parent = this;
-	this.instance_8.setTransform(137.7,400.4,0.962,0.962);
+	this.instance_8.setTransform(137.7,100.4,0.962,0.962);
 	this.instance_8._off = true;
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_8).wait(36).to({_off:false},0).to({startPosition:0},2).to({startPosition:0},19).to({startPosition:0},3).to({_off:true},1).wait(6).to({_off:false,x:169.5},0).to({startPosition:0},27).to({_off:true},1).wait(40));
 
 	// Calque 2
-	this.instance_9 = new lib.Interpoler2("synched",0);
+	this.instance_9 = new lib.Symbole10("synched",0);
 	this.instance_9.parent = this;
-	this.instance_9.setTransform(155.9,374.7,0.962,0.962,0,0,0,0.1,0.1);
+	this.instance_9.setTransform(155.8,74.6);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_9).to({startPosition:0},134).wait(1));
+	this.instance_10 = new lib.Symbole11("synched",0);
+	this.instance_10.parent = this;
+	this.instance_10.setTransform(155.8,74.6);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_9}]}).to({state:[{t:this.instance_10}]},134).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_9).to({_off:true},134).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(199.5,557.7,214.1,162.1);
+p.nominalBounds = new cjs.Rectangle(199.5,107.7,214.1,162.1);
 // library properties:
 lib.properties = {
 	width: 300,
-	height: 480,
+	height: 180,
 	fps: 24,
 	color: "#FFFFFF",
 	opacity: 1.00,
