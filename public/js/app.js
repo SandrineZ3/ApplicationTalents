@@ -67,7 +67,9 @@ function init() {
     }
 
     if (document.querySelector('#pageMusicale')) {
-        audioBackground.volume(0);
+        if (typeof audioBackground !== 'undefined') {
+            audioBackground.volume(0);
+        }
         loadNumberOfNote();
     }
 
