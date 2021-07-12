@@ -29,7 +29,7 @@ class Utils
             }
             $i++;
         }
-        return 'result';
+        return 'result_intro';
     }
 
     public function nextEnigme(int $levelOfDifficultySuivant, $repository, LevelOfDifficultyRepository $levelOfDifficultyRepository)

@@ -63,7 +63,7 @@ class MainController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('main');
         }
-        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'result') {
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'result_intro') {
             return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
         }
 
