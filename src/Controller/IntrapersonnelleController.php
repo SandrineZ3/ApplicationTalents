@@ -65,7 +65,7 @@ class IntrapersonnelleController extends AbstractController
             $user->setDateEnd(new DateTime());
             $entityManager->flush();
 
-            return $this->redirectToRoute('result');
+            return $this->redirectToRoute('result_intro');
         }
 
         return $this->render('intrapersonnelle/show.html.twig');
