@@ -7,6 +7,7 @@ use App\Services\Utils;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -65,7 +66,9 @@ class IntrapersonnelleController extends AbstractController
             $user->setDateEnd(new DateTime());
             $entityManager->flush();
 
-            return $this->redirectToRoute('result_intro');
+            return new JsonResponse([
+                'content' => $this->renderView('intrapersonnelle/content/endScreen.html.twig')
+            ]);
         }
 
         return $this->render('intrapersonnelle/show.html.twig');
