@@ -4,20 +4,13 @@
 
 {% block body %}
     {% include("inc/brainAnimation.html.twig")%}
-
     <div class="ui grid container h100 middle aligned" id="pageIntrapersonnelle">
         <div class="row">
             <div class="sixteen wide mobile twelve wide tablet eight wide computer centered column">
                 <div class="ui colorApp segment">
                     <h3 class="ui dividing header" id="titleIntrapersonnelle">Intrapersonnelle <img src="{{ asset('images/logos/logoIntrapersonnelle.png') }}" class="logosIntelligences" alt="logo intrapersonnelle"></h3>
                     <div id="blocEnigme">
-                        <form method="post">
-                            {% set tableauCompetence = ['mathematique', 'interpersonnelle', 'linguistique', 'naturaliste', 'visuoSpatiale', 'kinesthesique', 'musicale'] %}
-                            {% for competence in tableauCompetence %}
-                                {% include("intrapersonnelle/content/formEnigme.html.twig") %}
-                            {% endfor %}
-                            <button type="submit" name="formIntrapersonnelle" value="submit" class="button" id="submitReponse" onclick="requeteAjaxPostv2('#formEnigme', '#blocEnigme'); playClick()">Envoyer</button>
-                        </form>
+                        {% include("intrapersonnelle/content/formEnigme.html.twig") %}
                     </div>
                 </div>
             </div>

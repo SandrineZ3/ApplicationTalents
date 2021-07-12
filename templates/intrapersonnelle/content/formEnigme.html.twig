@@ -1,25 +1,32 @@
-<div class="ui grid">
-    <div class="six wide column">
-        {{ competence | capitalize }} <i class="question circle outline icon" onclick="afficherModalHelp('help-{{ competence }}')"></i>
-    </div>
-    {#modal#}
-    <div class="ui tiny modal help-{{ competence }}">
-        <img src='{{ asset('images/intrapersonnelle/') ~ competence ~ '.png' }}' alt="image" width="100%">
-    </div>
-    {#modal#}
-    <div class="ten wide column">
-        <div class="rating">
-            <input type="radio" id="{{ competence }}_star4" name="{{ competence }}" value="4"/>
-            <label class="full" for="{{ competence }}_star4"></label>
+<form class="ui form" id="formEnigme">
+    {% set tableauCompetence = ['mathematique', 'interpersonnelle', 'linguistique', 'naturaliste', 'visuoSpatiale', 'kinesthesique', 'musicale'] %}
+    {% for competence in tableauCompetence %}
+        <div class="ui grid">
+            <div class="six wide column">
+                {{ competence | capitalize }} <i class="question circle outline icon" onclick="afficherModalHelp('help-{{ competence }}')"></i>
+            </div>
+            {#modal#}
+            <div class="ui tiny modal help-{{ competence }}">
+                <img src='{{ asset('images/intrapersonnelle/') ~ competence ~ '.png' }}' alt="image" width="100%">
+            </div>
+            {#modal#}
+            <div class="ten wide column">
+                <div class="rating">
+                    <input type="radio" id="{{ competence }}_star4" name="{{ competence }}" value="4"/>
+                    <label class="full" for="{{ competence }}_star4"></label>
 
-            <input type="radio" id="{{ competence }}_star3" name="{{ competence }}" value="3"/>
-            <label class="full" for="{{ competence }}_star3"></label>
+                    <input type="radio" id="{{ competence }}_star3" name="{{ competence }}" value="3"/>
+                    <label class="full" for="{{ competence }}_star3"></label>
 
-            <input type="radio" id="{{ competence }}_star2" name="{{ competence }}" value="2"/>
-            <label class="full" for="{{ competence }}_star2"></label>
+                    <input type="radio" id="{{ competence }}_star2" name="{{ competence }}" value="2"/>
+                    <label class="full" for="{{ competence }}_star2"></label>
 
-            <input type="radio" id="{{ competence }}_star1" name="{{ competence }}" value="1"/>
-            <label class="full" for="{{ competence }}_star1"></label>
+                    <input type="radio" id="{{ competence }}_star1" name="{{ competence }}" value="1"/>
+                    <label class="full" for="{{ competence }}_star1"></label>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+    {% endfor %}
+    <input type="hidden" name="formIntrapersonnelle" value="true">
+</form>
+<button class="button" id="submitReponse" onclick="requeteAjaxPostv2('#formEnigme', '#blocEnigme'); playClick()">Envoyer</button>
