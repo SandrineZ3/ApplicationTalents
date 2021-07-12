@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Résultats{% endblock %}
+
+{% block body %}
+    {% include("inc/brainAnimation.html.twig") %}
+
+    <div class="ui grid container h100 middle aligned" id="pageKinesthesique">
+        <div class="row">
+            <div class="sixteen wide mobile ten wide tablet eight wide computer centered column">
+                <div class="ui colorApp segment">
+                    <h3 class="ui dividing header">BRAVO !<br>Tu as terminé le test des 8 intelligences !</h3>
+                    <div class="resultIntroBrainImg">
+                        <img src="{{ asset('images/divers/resultIntroBrain.png') }}" alt="image cerveau pouce levé" style="max-width: 30%;">
+                    </div>
+                    <div class="resultIntro">
+                        <p>Ca y est, nous avons calculé tes résultats !</p>
+                        <a class="ui button" href="{{ path('result') }}" onclick="playNext()">Voir mes résultats !</a>
+                        <p>Ces résultats peuvent évoluer, alors multiplie les expériences pour muscler tes intelligences !</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

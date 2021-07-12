@@ -41,6 +41,21 @@ class MainController extends AbstractController
     }
 
     /**
+     * @Route("/result/intro", name="result_intro")
+     */
+    public function resultIntro(UserRepository $userRepository, Utils $utils): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('main');
+        }
+        if ($this->getUser()->getRoles() === ['ROLE_USER'] && $utils->progressCheck($this->getUser(), $userRepository) !== 'result_intro') {
+            return $this->redirectToRoute($utils->progressCheck($this->getUser(), $userRepository));
+        }
+
+        return $this->render('main/resultIntro.html.twig');
+    }
+
+    /**
      * @Route("/result", name="result")
      */
     public function result(UserRepository $userRepository, Utils $utils, Request $request): Response

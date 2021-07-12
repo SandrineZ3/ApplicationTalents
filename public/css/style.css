@@ -757,3 +757,25 @@ h5 {
 a.item {
     font-size: 1.2em;
 }
+
+.legendBrainResult p {
+    font-size: 1.2em;
+    text-align: justify;
+}
+@media screen and (max-width: 510px) {
+    .ui.top.attached.tabular.menu a {
+        font-size: 1em !important;
+        max-width: 50%; display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+.resultIntroBrainImg, .resultIntro {
+    text-align:center;
+}
+
+.resultIntro p {
+    font-size: 1.3em;
+    margin-top: 20px;
+}
+
