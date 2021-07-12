@@ -23,6 +23,9 @@ function init() {
 
     if (typeof audioBackground !== 'undefined') {
         updateStateButtonAudio();
+        if (audioBackground.volume() === 0) {
+            audioBackground.volume(0.2);
+        }
     }
 
     if (document.querySelector('#pageConnexion')) {
@@ -64,6 +67,7 @@ function init() {
     }
 
     if (document.querySelector('#pageMusicale')) {
+        audioBackground.volume(0);
         loadNumberOfNote();
     }
 
